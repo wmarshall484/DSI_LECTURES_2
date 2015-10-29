@@ -616,10 +616,47 @@ div.output_prompt {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="6.--Close-cursor-and-connection">6.  Close cursor and connection<a class="anchor-link" href="#6.--Close-cursor-and-connection">&#182;</a></h3>
+<h3 id="6.-Rollback-pending-transaction">6. Rollback pending transaction<a class="anchor-link" href="#6.-Rollback-pending-transaction">&#182;</a></h3><ul>
+<li><p>Undo operation for cursor.execute(query)</p>
+</li>
+<li><p>Only works if transaction has not been committed yet</p>
+</li>
+</ul>
+
 </div>
 </div>
 </div><div class="fragment" data-fragment-index="22">
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c"># for example</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span> <span class="c"># attempt to execute query</span>
+<span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span> <span class="c"># an error happens, might specify specific Exception type</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">rollback</span><span class="p">()</span> <span class="c"># rollback the pending transaction</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+    </div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="7.--Close-cursor-and-connection">7.  Close cursor and connection<a class="anchor-link" href="#7.--Close-cursor-and-connection">&#182;</a></h3>
+</div>
+</div>
+</div><div class="fragment" data-fragment-index="24">
     
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -650,7 +687,7 @@ div.output_prompt {
 
 </div>
 </div>
-</div><div class="fragment" data-fragment-index="24">
+</div><div class="fragment" data-fragment-index="26">
     
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -683,7 +720,7 @@ div.output_prompt {
 
 </div>
 </div>
-</div><div class="fragment" data-fragment-index="26">
+</div><div class="fragment" data-fragment-index="28">
     
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
