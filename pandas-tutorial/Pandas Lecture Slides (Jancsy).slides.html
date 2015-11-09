@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-<title>mh-psql-python-lecture (MJ edit) slides</title>
+<title>Pandas Lecture Slides (Jancsy) slides</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -222,35 +222,41 @@ div.output_prompt {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Python-+-SQL">Python + SQL<a class="anchor-link" href="#Python-+-SQL">&#182;</a></h1><h2 id="Using-psycopg2">Using psycopg2<a class="anchor-link" href="#Using-psycopg2">&#182;</a></h2>
-</div>
-</div>
-</div></section>
-    </section><section>
-    <section>
-    
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Problem:">Problem:<a class="anchor-link" href="#Problem:">&#182;</a></h2><h3 id="What-if-your-data-is-in-a-SQL-database,">What if your data is in a SQL database,<a class="anchor-link" href="#What-if-your-data-is-in-a-SQL-database,">&#182;</a></h3><h3 id="but-your-machine-learning-is-built-in-Python?">but your machine learning is built in Python?<a class="anchor-link" href="#but-your-machine-learning-is-built-in-Python?">&#182;</a></h3>
-</div>
-</div>
-</div><div class="fragment" data-fragment-index="2">
-    
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Solution:">Solution:<a class="anchor-link" href="#Solution:">&#182;</a></h2><h3 id="Run-SQL-queries-from-Python">Run SQL queries from Python<a class="anchor-link" href="#Run-SQL-queries-from-Python">&#182;</a></h3><ul>
-<li>Very useful for scaled data pipelines, pre-cleaning, data exploration</li>
-<li>Allows for dynamic query generation</li>
-</ul>
+<h1 id="Pandas">Pandas<a class="anchor-link" href="#Pandas">&#182;</a></h1><h2 id="What-is-Pandas?">What is Pandas?<a class="anchor-link" href="#What-is-Pandas?">&#182;</a></h2><p>A Python library providing data structures and analysis tools for labeled, relational, or tabular data.</p>
+<p>You could think of it as a more powerful Excel spreadsheet or R dataframe in Python.</p>
+<p>This lecture is a very brief introduction intended to prepare you for the sprint.</p>
 
 </div>
 </div>
+</div><div class="fragment" data-fragment-index="1">
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+    </div><div style=display:none>
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
 </div>
     </div></section>
     </section><section>
@@ -261,10 +267,8 @@ div.output_prompt {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="psycopg2">psycopg2<a class="anchor-link" href="#psycopg2">&#182;</a></h2><ul>
-<li>"psycopg2" is a Python module that allows you to easily query SQL databases</li>
-<li>Docs: <a href="http://initd.org/psycopg/docs/install.html">http://initd.org/psycopg/docs/install.html</a></li>
-</ul>
+<h1 id="Series">Series<a class="anchor-link" href="#Series">&#182;</a></h1><p>One of the essential Pandas data types is the Series.</p>
+<p>A Pandas Series as a <em>labeled</em> one-dimensional vector whose entries can contain any type of Python object.</p>
 
 </div>
 </div>
@@ -272,475 +276,12 @@ div.output_prompt {
     
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="c"># basic usage</span>
-<span class="n">query</span> <span class="o">=</span> <span class="s">&quot;SELECT * FROM some_table;&quot;</span>
-<span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-<span class="n">results</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-    </div></section>
-    </section><section>
-    <section>
-    
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Lecture-Objectives">Lecture Objectives<a class="anchor-link" href="#Lecture-Objectives">&#182;</a></h1><ul>
-<li>Learn how to connect to and run Postgres queries from Python</li>
-<li>Understand psycopg2's cursors, executes, and commits</li>
-<li>Learn how to generate dynamic queries</li>
-</ul>
-
-</div>
-</div>
-</div></section>
-    </section><section>
-    <section>
-    
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Walkthrough">Walkthrough<a class="anchor-link" href="#Walkthrough">&#182;</a></h2><h3 id="1.-Connect-to-the-database">1. Connect to the database<a class="anchor-link" href="#1.-Connect-to-the-database">&#182;</a></h3>
-</div>
-</div>
-</div><div class="fragment" data-fragment-index="7">
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="kn">import</span> <span class="nn">psycopg2</span> <span class="kn">as</span> <span class="nn">pg2</span>
-<span class="n">conn</span> <span class="o">=</span> <span class="n">pg2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">dbname</span><span class="o">=</span><span class="s">&#39;postgres&#39;</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="s">&#39;gSchool&#39;</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s">&#39;localhost&#39;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-    </div></section>
-    </section><section>
-    <section>
-    
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="2.-Instantiate-the-Cursor">2. Instantiate the Cursor<a class="anchor-link" href="#2.-Instantiate-the-Cursor">&#182;</a></h3><ul>
-<li>A cursor is a control structure that enables traversal over the records in a database.  You can think of it as an iterator or pointer for SQL data retrieval.</li>
-</ul>
-
-</div>
-</div>
-</div><div class="fragment" data-fragment-index="9">
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">cur</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-    </div></section>
-    </section><section>
-    <section>
-    
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="2.-Create-a-database">2. Create a database<a class="anchor-link" href="#2.-Create-a-database">&#182;</a></h3>
-</div>
-</div>
-</div><div class="fragment" data-fragment-index="11">
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">&#39;CREATE DATABASE test;&#39;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-    </div></section>
-    </section><section>
-    <section>
-    
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="3.-Create-a-table">3. Create a table<a class="anchor-link" href="#3.-Create-a-table">&#182;</a></h3>
-</div>
-</div>
-</div><div class="fragment" data-fragment-index="13">
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">query</span> <span class="o">=</span> <span class="s">&#39;&#39;&#39;</span>
-<span class="s">        CREATE TABLE logins (</span>
-<span class="s">            userid integer</span>
-<span class="s">            , tmstmp timestamp</span>
-<span class="s">            , type varchar(10)</span>
-<span class="s">        );</span>
-<span class="s">        &#39;&#39;&#39;</span>
-<span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-    </div></section>
-    </section><section>
-    <section>
-    
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="4.-Insert-csv-into-table">4. Insert csv into table<a class="anchor-link" href="#4.-Insert-csv-into-table">&#182;</a></h3>
-</div>
-</div>
-</div><div class="fragment" data-fragment-index="15">
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">query</span> <span class="o">=</span> <span class="s">&#39;&#39;&#39;</span>
-<span class="s">        COPY logins </span>
-<span class="s">        FROM &#39;/Users/minghuang/Documents/git/zipfian-dsr/sql-python/mh-lecture/data/logins01.csv&#39; </span>
-<span class="s">        DELIMITER &#39;,&#39; </span>
-<span class="s">        CSV;</span>
-<span class="s">        &#39;&#39;&#39;</span>
-<span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-    </div></section>
-    </section><section>
-    <section>
-    
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="5.-Select-from-table">5. Select from table<a class="anchor-link" href="#5.-Select-from-table">&#182;</a></h3>
-</div>
-</div>
-</div><div class="fragment" data-fragment-index="17">
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">query</span> <span class="o">=</span> <span class="s">&#39;&#39;&#39;</span>
-<span class="s">        SELECT *</span>
-<span class="s">        FROM logins</span>
-<span class="s">        LIMIT 30;</span>
-<span class="s">        &#39;&#39;&#39;</span>
-<span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-    </div><div class="fragment" data-fragment-index="18">
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="c"># fetchone() to get one row of data (like iter.next())</span>
-<span class="n">cur</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[15]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>(579, datetime.datetime(2013, 11, 20, 3, 20, 6), &apos;mobile&apos;)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    </div></section><section>
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="c"># fetchmany(n) to get n rows</span>
-<span class="n">cur</span><span class="o">.</span><span class="n">fetchmany</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[16]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>[(823, datetime.datetime(2013, 11, 20, 3, 20, 49), &apos;web&apos;),
- (953, datetime.datetime(2013, 11, 20, 3, 28, 49), &apos;web&apos;),
- (612, datetime.datetime(2013, 11, 20, 3, 36, 55), &apos;web&apos;),
- (269, datetime.datetime(2013, 11, 20, 3, 43, 13), &apos;web&apos;),
- (799, datetime.datetime(2013, 11, 20, 3, 56, 55), &apos;web&apos;),
- (890, datetime.datetime(2013, 11, 20, 4, 2, 33), &apos;mobile&apos;),
- (330, datetime.datetime(2013, 11, 20, 4, 54, 59), &apos;mobile&apos;),
- (628, datetime.datetime(2013, 11, 20, 4, 57, 22), &apos;mobile&apos;),
- (398, datetime.datetime(2013, 11, 20, 5, 3, 19), &apos;mobile&apos;),
- (482, datetime.datetime(2013, 11, 20, 5, 4, 43), &apos;mobile&apos;)]</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div></section><section>
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">cur</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[17]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>[(581, datetime.datetime(2013, 11, 20, 5, 12, 3), &apos;mobile&apos;),
- (370, datetime.datetime(2013, 11, 20, 5, 26, 46), &apos;mobile&apos;),
- (230, datetime.datetime(2013, 11, 20, 5, 28, 29), &apos;web&apos;),
- (596, datetime.datetime(2013, 11, 20, 5, 28, 36), &apos;web&apos;),
- (274, datetime.datetime(2013, 11, 20, 5, 43, 8), &apos;mobile&apos;),
- (581, datetime.datetime(2013, 11, 20, 5, 47, 10), &apos;web&apos;),
- (417, datetime.datetime(2013, 11, 20, 5, 54, 37), &apos;mobile&apos;),
- (185, datetime.datetime(2013, 11, 20, 5, 56, 22), &apos;mobile&apos;),
- (371, datetime.datetime(2013, 11, 20, 5, 58, 35), &apos;mobile&apos;),
- (133, datetime.datetime(2013, 11, 20, 5, 59, 7), &apos;web&apos;),
- (621, datetime.datetime(2013, 11, 20, 6, 1, 46), &apos;web&apos;),
- (306, datetime.datetime(2013, 11, 20, 6, 3, 23), &apos;mobile&apos;),
- (509, datetime.datetime(2013, 11, 20, 6, 4, 43), &apos;web&apos;),
- (505, datetime.datetime(2013, 11, 20, 6, 9, 52), &apos;web&apos;),
- (678, datetime.datetime(2013, 11, 20, 6, 34, 18), &apos;web&apos;),
- (889, datetime.datetime(2013, 11, 20, 6, 36, 32), &apos;mobile&apos;),
- (202, datetime.datetime(2013, 11, 20, 6, 43, 33), &apos;mobile&apos;),
- (614, datetime.datetime(2013, 11, 20, 6, 47, 55), &apos;mobile&apos;),
- (882, datetime.datetime(2013, 11, 20, 6, 49), &apos;mobile&apos;)]</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div></section>
-    </section><section>
-    <section>
-    
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="6.-Rollback-pending-transaction">6. Rollback pending transaction<a class="anchor-link" href="#6.-Rollback-pending-transaction">&#182;</a></h3><ul>
-<li><p>Undo operation for cursor.execute(query)</p>
-</li>
-<li><p>Only works if transaction has not been committed yet</p>
-</li>
-</ul>
-
-</div>
-</div>
-</div><div class="fragment" data-fragment-index="22">
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="c"># for example</span>
-<span class="k">try</span><span class="p">:</span>
-    <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span> <span class="c"># attempt to execute query</span>
-<span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span> <span class="c"># an error happens, might specify specific Exception type</span>
-    <span class="n">conn</span><span class="o">.</span><span class="n">rollback</span><span class="p">()</span> <span class="c"># rollback the pending transaction</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-    </div></section>
-    </section><section>
-    <section>
-    
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="7.--Close-cursor-and-connection">7.  Close cursor and connection<a class="anchor-link" href="#7.--Close-cursor-and-connection">&#182;</a></h3>
-</div>
-</div>
-</div><div class="fragment" data-fragment-index="24">
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">cur</span><span class="o">.</span><span class="n">close</span><span class="p">()</span> <span class="c"># Optional since you can just close the connection</span>
-<span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-    </div></section>
-    </section><section>
-    <section>
-    
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Dynamic-Queries">Dynamic Queries<a class="anchor-link" href="#Dynamic-Queries">&#182;</a></h1><ul>
-<li>A dynamic query is a query constructed based on context</li>
-</ul>
-
-</div>
-</div>
-</div><div class="fragment" data-fragment-index="26">
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="c"># example</span>
-<span class="k">for</span> <span class="n">table</span> <span class="ow">in</span> <span class="n">tables</span><span class="p">:</span>
-    <span class="n">query</span> <span class="o">=</span> <span class="s">&quot;SELECT * FROM {table}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">table</span><span class="o">=</span><span class="n">table</span><span class="p">)</span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-    </div></section>
-    </section><section>
-    <section>
-    
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li>We have 8 csv files to be inserted into the a table.</li>
-<li>Instead of writing 8 COPY FROM queries, we'll construct the queries dynamically.</li>
-</ul>
-
-</div>
-</div>
-</div><div class="fragment" data-fragment-index="28">
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">query</span> <span class="o">=</span> <span class="s">&#39;&#39;&#39;</span>
-<span class="s">        COPY logins </span>
-<span class="s">        FROM {file_path} </span>
-<span class="s">        DELIMITER &#39;,&#39; </span>
-<span class="s">        CSV;</span>
-<span class="s">        &#39;&#39;&#39;</span>
-
-<span class="n">folder_path</span> <span class="o">=</span> <span class="s">&#39;/Users/minghuang/Documents/git/zipfian-dsr/sql-python/mh-lecture/data/&#39;</span>
-
-<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">folder_path</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&#39;.csv&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">f</span> <span class="o">!=</span> <span class="s">&#39;logins01.csv&#39;</span><span class="p">:</span>
-        <span class="n">file_path</span> <span class="o">=</span> <span class="s">&quot;&#39;{0}&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">folder_path</span> <span class="o">+</span> <span class="n">f</span><span class="p">)</span>
-        <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="n">file_path</span><span class="p">))</span>
-        <span class="k">print</span> <span class="n">file_path</span> <span class="o">+</span> <span class="s">&#39;inserted&#39;</span>
+<div class=" highlight hl-ipython2"><pre><span class="c"># int</span>
+<span class="n">int_series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">101</span><span class="p">,</span><span class="mi">110</span><span class="p">))</span>
+<span class="k">print</span> <span class="n">int_series</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
 </div>
@@ -753,15 +294,262 @@ div.output_prompt {
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>&apos;/Users/minghuang/Documents/git/zipfian-dsr/sql-python/mh-lecture/data/logins02.csv&apos;inserted
-&apos;/Users/minghuang/Documents/git/zipfian-dsr/sql-python/mh-lecture/data/logins03.csv&apos;inserted
-&apos;/Users/minghuang/Documents/git/zipfian-dsr/sql-python/mh-lecture/data/logins04.csv&apos;inserted
-&apos;/Users/minghuang/Documents/git/zipfian-dsr/sql-python/mh-lecture/data/logins05.csv&apos;inserted
-&apos;/Users/minghuang/Documents/git/zipfian-dsr/sql-python/mh-lecture/data/logins06.csv&apos;inserted
-&apos;/Users/minghuang/Documents/git/zipfian-dsr/sql-python/mh-lecture/data/logins07.csv&apos;inserted
-&apos;/Users/minghuang/Documents/git/zipfian-dsr/sql-python/mh-lecture/data/logins08.csv&apos;inserted
+<pre>0    101
+1    102
+2    103
+3    104
+4    105
+dtype: int64
 </pre>
 </div>
+</div>
+
+</div>
+</div>
+
+</div>
+    </div></section><section>
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c"># float</span>
+<span class="n">float_series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+<span class="k">print</span> <span class="n">float_series</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0    0.00000
+1    0.10101
+2    0.20202
+3    0.30303
+4    0.40404
+dtype: float64
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></section><section>
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c"># string</span>
+<span class="n">str_series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="s">&#39;abcde&#39;</span><span class="o">*</span><span class="mi">2</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s">&#39;string&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">str_series</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0    a
+1    b
+2    c
+3    d
+4    e
+dtype: object
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></section><section>
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c"># datetime</span>
+<span class="n">date_series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s">&#39;2015-1-1&#39;</span><span class="p">,</span> 
+                                      <span class="s">&#39;2015-11-1&#39;</span><span class="p">,</span>
+                                      <span class="n">freq</span><span class="o">=</span><span class="s">&#39;m&#39;</span><span class="p">))</span>
+
+<span class="k">print</span> <span class="n">date_series</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0   2015-01-31
+1   2015-02-28
+2   2015-03-31
+3   2015-04-30
+4   2015-05-31
+dtype: datetime64[ns]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="DataFrames">DataFrames<a class="anchor-link" href="#DataFrames">&#182;</a></h1><p>Data frames extend the concept of Series to tabular data.</p>
+
+</div>
+</div>
+</div><div class="fragment" data-fragment-index="9">
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[68]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> 
+                  <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="s">&#39;abcde&#39;</span><span class="p">])</span>
+<span class="n">df</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[68]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>a</th>
+      <th>b</th>
+      <th>c</th>
+      <th>d</th>
+      <th>e</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td> 0.879186</td>
+      <td>-0.483880</td>
+      <td>-0.193364</td>
+      <td> 0.538595</td>
+      <td>-0.479076</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-0.504337</td>
+      <td>-0.815071</td>
+      <td>-0.255533</td>
+      <td>-1.637823</td>
+      <td> 0.962461</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td> 0.462413</td>
+      <td>-0.097132</td>
+      <td>-0.943511</td>
+      <td> 1.720747</td>
+      <td>-1.114607</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-0.232390</td>
+      <td>-2.556239</td>
+      <td> 1.997716</td>
+      <td>-0.626188</td>
+      <td>-0.106642</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td> 0.479790</td>
+      <td>-1.744325</td>
+      <td> 0.768285</td>
+      <td>-1.557014</td>
+      <td>-0.573672</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>-0.599831</td>
+      <td>-0.210520</td>
+      <td>-0.449362</td>
+      <td> 0.869437</td>
+      <td> 0.394829</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td> 0.764018</td>
+      <td>-0.153589</td>
+      <td> 1.326025</td>
+      <td> 2.292867</td>
+      <td> 0.378869</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td> 2.852531</td>
+      <td> 0.565726</td>
+      <td>-0.040722</td>
+      <td>-0.905428</td>
+      <td>-1.298709</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td> 0.553279</td>
+      <td> 0.380876</td>
+      <td>-0.349890</td>
+      <td> 0.232721</td>
+      <td>-0.279359</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td> 1.672047</td>
+      <td>-2.654748</td>
+      <td> 0.251786</td>
+      <td>-0.102103</td>
+      <td> 0.265498</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
 </div>
 
 </div>
@@ -772,32 +560,994 @@ div.output_prompt {
     </section><section>
     <section>
     
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[69]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c"># rows and columns in dataframes are both series</span>
+<span class="n">column</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">a</span>
+<span class="k">print</span> <span class="nb">type</span><span class="p">(</span><span class="n">column</span><span class="p">)</span>
+<span class="n">row</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">print</span> <span class="nb">type</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>&lt;class &apos;pandas.core.series.Series&apos;&gt;
+&lt;class &apos;pandas.core.series.Series&apos;&gt;
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></section>
+    </section><section>
+    <section>
+    
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Key-Things-to-Know">Key Things to Know<a class="anchor-link" href="#Key-Things-to-Know">&#182;</a></h1><ul>
-<li>Connections must be established using an existing database, username, database IP/URL, and maybe passwords</li>
-<li>If you have no created databases, you can connect to Postgres using the dbname 'postgres' to initialize db commands</li>
-<li>Data changes are not actually stored until you choose to commit. This can be done either through conn.commit() or setting autocommit = True.  Until commited, all transactions is only temporary stored.</li>
-<li>Autocommit = True is necessary to do database commands like CREATE DATABASE.  This is because Postgres does not have temporary transactions at the database level.</li>
-<li>If you ever need to build similar pipelines for other forms of database, there are libraries such Pyodbc which operates essentially the same</li>
-<li>SQL connection databases utilizes cursors for data traversal and retrieval.  This is kind of like an iterator in Python.</li>
-<li>Cursor operations typically goes like the following:<ul>
-<li>execute a query</li>
-<li>fetch rows from query result if it is a SELECT query</li>
-<li>because it is iterative, previously fetched rows can only be fetched again by rerunning the query</li>
-<li>close cursor through .close()</li>
-</ul>
-</li>
-<li>Cursors and Connections must be closed using .close() or else Postgres will lock certain operation on the database/tables to connection is severed. </li>
-</ul>
+<h2 id="Working-with-DataFrames">Working with DataFrames<a class="anchor-link" href="#Working-with-DataFrames">&#182;</a></h2>
+</div>
+</div>
+</div><div class="fragment" data-fragment-index="12">
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[71]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c"># add a column</span>
+<span class="n">df</span><span class="p">[</span><span class="s">&#39;new&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">df</span><span class="p">[</span><span class="s">&#39;a&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s">&#39;b&#39;</span><span class="p">]</span>
+<span class="n">df</span>
+</pre></div>
 
 </div>
 </div>
-</div><div style=display:none>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[71]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>a</th>
+      <th>b</th>
+      <th>c</th>
+      <th>d</th>
+      <th>e</th>
+      <th>new</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td> 0.879186</td>
+      <td>-0.483880</td>
+      <td>-0.193364</td>
+      <td> 0.538595</td>
+      <td>-0.479076</td>
+      <td> 1.274492</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-0.504337</td>
+      <td>-0.815071</td>
+      <td>-0.255533</td>
+      <td>-1.637823</td>
+      <td> 0.962461</td>
+      <td>-1.823744</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td> 0.462413</td>
+      <td>-0.097132</td>
+      <td>-0.943511</td>
+      <td> 1.720747</td>
+      <td>-1.114607</td>
+      <td> 0.827694</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-0.232390</td>
+      <td>-2.556239</td>
+      <td> 1.997716</td>
+      <td>-0.626188</td>
+      <td>-0.106642</td>
+      <td>-3.021019</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td> 0.479790</td>
+      <td>-1.744325</td>
+      <td> 0.768285</td>
+      <td>-1.557014</td>
+      <td>-0.573672</td>
+      <td>-0.784746</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>-0.599831</td>
+      <td>-0.210520</td>
+      <td>-0.449362</td>
+      <td> 0.869437</td>
+      <td> 0.394829</td>
+      <td>-1.410181</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td> 0.764018</td>
+      <td>-0.153589</td>
+      <td> 1.326025</td>
+      <td> 2.292867</td>
+      <td> 0.378869</td>
+      <td> 1.374447</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td> 2.852531</td>
+      <td> 0.565726</td>
+      <td>-0.040722</td>
+      <td>-0.905428</td>
+      <td>-1.298709</td>
+      <td> 6.270788</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td> 0.553279</td>
+      <td> 0.380876</td>
+      <td>-0.349890</td>
+      <td> 0.232721</td>
+      <td>-0.279359</td>
+      <td> 1.487435</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td> 1.672047</td>
+      <td>-2.654748</td>
+      <td> 0.251786</td>
+      <td>-0.102103</td>
+      <td> 0.265498</td>
+      <td> 0.689346</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    </div></section><section>
     
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[73]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c"># delete a column</span>
+<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s">&#39;new&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[73]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>a</th>
+      <th>b</th>
+      <th>c</th>
+      <th>d</th>
+      <th>e</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td> 0.879186</td>
+      <td>-0.483880</td>
+      <td>-0.193364</td>
+      <td> 0.538595</td>
+      <td>-0.479076</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-0.504337</td>
+      <td>-0.815071</td>
+      <td>-0.255533</td>
+      <td>-1.637823</td>
+      <td> 0.962461</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td> 0.462413</td>
+      <td>-0.097132</td>
+      <td>-0.943511</td>
+      <td> 1.720747</td>
+      <td>-1.114607</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-0.232390</td>
+      <td>-2.556239</td>
+      <td> 1.997716</td>
+      <td>-0.626188</td>
+      <td>-0.106642</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td> 0.479790</td>
+      <td>-1.744325</td>
+      <td> 0.768285</td>
+      <td>-1.557014</td>
+      <td>-0.573672</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>-0.599831</td>
+      <td>-0.210520</td>
+      <td>-0.449362</td>
+      <td> 0.869437</td>
+      <td> 0.394829</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td> 0.764018</td>
+      <td>-0.153589</td>
+      <td> 1.326025</td>
+      <td> 2.292867</td>
+      <td> 0.378869</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td> 2.852531</td>
+      <td> 0.565726</td>
+      <td>-0.040722</td>
+      <td>-0.905428</td>
+      <td>-1.298709</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td> 0.553279</td>
+      <td> 0.380876</td>
+      <td>-0.349890</td>
+      <td> 0.232721</td>
+      <td>-0.279359</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td> 1.672047</td>
+      <td>-2.654748</td>
+      <td> 0.251786</td>
+      <td>-0.102103</td>
+      <td> 0.265498</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[77]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c"># select a subset</span>
+<span class="n">df</span><span class="p">[[</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">]]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[77]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>a</th>
+      <th>b</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td> 0.879186</td>
+      <td>-0.483880</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-0.504337</td>
+      <td>-0.815071</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td> 0.462413</td>
+      <td>-0.097132</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-0.232390</td>
+      <td>-2.556239</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td> 0.479790</td>
+      <td>-1.744325</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>-0.599831</td>
+      <td>-0.210520</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td> 0.764018</td>
+      <td>-0.153589</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td> 2.852531</td>
+      <td> 0.565726</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td> 0.553279</td>
+      <td> 0.380876</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td> 1.672047</td>
+      <td>-2.654748</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div></section><section>
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[78]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">a</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="o">*</span><span class="n">df</span><span class="o">.</span><span class="n">b</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[78]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>a</th>
+      <th>b</th>
+      <th>c</th>
+      <th>d</th>
+      <th>e</th>
+      <th>new</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td> 0.879186</td>
+      <td>-0.483880</td>
+      <td>-0.193364</td>
+      <td> 0.538595</td>
+      <td>-0.479076</td>
+      <td> 1.274492</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-0.504337</td>
+      <td>-0.815071</td>
+      <td>-0.255533</td>
+      <td>-1.637823</td>
+      <td> 0.962461</td>
+      <td>-1.823744</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td> 0.462413</td>
+      <td>-0.097132</td>
+      <td>-0.943511</td>
+      <td> 1.720747</td>
+      <td>-1.114607</td>
+      <td> 0.827694</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-0.232390</td>
+      <td>-2.556239</td>
+      <td> 1.997716</td>
+      <td>-0.626188</td>
+      <td>-0.106642</td>
+      <td>-3.021019</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td> 0.479790</td>
+      <td>-1.744325</td>
+      <td> 0.768285</td>
+      <td>-1.557014</td>
+      <td>-0.573672</td>
+      <td>-0.784746</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td> 0.764018</td>
+      <td>-0.153589</td>
+      <td> 1.326025</td>
+      <td> 2.292867</td>
+      <td> 0.378869</td>
+      <td> 1.374447</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td> 2.852531</td>
+      <td> 0.565726</td>
+      <td>-0.040722</td>
+      <td>-0.905428</td>
+      <td>-1.298709</td>
+      <td> 6.270788</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td> 1.672047</td>
+      <td>-2.654748</td>
+      <td> 0.251786</td>
+      <td>-0.102103</td>
+      <td> 0.265498</td>
+      <td> 0.689346</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div></section><section>
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[79]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="o">.</span><span class="n">a</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">c</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[79]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>a</th>
+      <th>b</th>
+      <th>c</th>
+      <th>d</th>
+      <th>e</th>
+      <th>new</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td> 0.879186</td>
+      <td>-0.483880</td>
+      <td>-0.193364</td>
+      <td> 0.538595</td>
+      <td>-0.479076</td>
+      <td> 1.274492</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td> 0.462413</td>
+      <td>-0.097132</td>
+      <td>-0.943511</td>
+      <td> 1.720747</td>
+      <td>-1.114607</td>
+      <td> 0.827694</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td> 2.852531</td>
+      <td> 0.565726</td>
+      <td>-0.040722</td>
+      <td>-0.905428</td>
+      <td>-1.298709</td>
+      <td> 6.270788</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td> 0.553279</td>
+      <td> 0.380876</td>
+      <td>-0.349890</td>
+      <td> 0.232721</td>
+      <td>-0.279359</td>
+      <td> 1.487435</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[80]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[80]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>a</th>
+      <th>b</th>
+      <th>c</th>
+      <th>d</th>
+      <th>e</th>
+      <th>new</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td> 10.000000</td>
+      <td> 10.000000</td>
+      <td> 10.000000</td>
+      <td> 10.000000</td>
+      <td> 10.000000</td>
+      <td> 10.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>  0.632671</td>
+      <td> -0.776890</td>
+      <td>  0.211143</td>
+      <td>  0.082581</td>
+      <td> -0.185041</td>
+      <td>  0.488451</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>  1.038425</td>
+      <td>  1.156146</td>
+      <td>  0.899133</td>
+      <td>  1.315686</td>
+      <td>  0.709528</td>
+      <td>  2.557780</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td> -0.599831</td>
+      <td> -2.654748</td>
+      <td> -0.943511</td>
+      <td> -1.637823</td>
+      <td> -1.298709</td>
+      <td> -3.021019</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td> -0.058689</td>
+      <td> -1.512012</td>
+      <td> -0.326301</td>
+      <td> -0.835618</td>
+      <td> -0.550023</td>
+      <td> -1.253822</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>  0.516535</td>
+      <td> -0.347200</td>
+      <td> -0.117043</td>
+      <td>  0.065309</td>
+      <td> -0.193000</td>
+      <td>  0.758520</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>  0.850394</td>
+      <td> -0.111247</td>
+      <td>  0.639160</td>
+      <td>  0.786727</td>
+      <td>  0.350526</td>
+      <td>  1.349458</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>  2.852531</td>
+      <td>  0.565726</td>
+      <td>  1.997716</td>
+      <td>  2.292867</td>
+      <td>  0.962461</td>
+      <td>  6.270788</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Indexes">Indexes<a class="anchor-link" href="#Indexes">&#182;</a></h1><p>Pandas Series and Dataframes have a default integer index. Indexes work like a dictionary key, allowing fast lookups based on the index. Indexes can also be exploited for fast group-bys, merges, time-series operations, etc. You can create custom indexes too.</p>
+
+</div>
+</div>
+</div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[87]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">indexed_series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> 
+                           <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;California&#39;</span><span class="p">,</span> <span class="s">&#39;Alabama&#39;</span><span class="p">,</span> 
+                                    <span class="s">&#39;Indiana&#39;</span><span class="p">,</span> <span class="s">&#39;Montana&#39;</span><span class="p">,</span> 
+                                    <span class="s">&#39;Kentucky&#39;</span><span class="p">])</span>
+<span class="n">alt_indexed_series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+                               <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;Washington&#39;</span><span class="p">,</span> <span class="s">&#39;Alabama&#39;</span><span class="p">,</span> 
+                                        <span class="s">&#39;Montana&#39;</span><span class="p">,</span> <span class="s">&#39;Indiana&#39;</span><span class="p">,</span> 
+                                        <span class="s">&#39;New York&#39;</span><span class="p">])</span>
+<span class="k">print</span> <span class="n">indexed_series</span>
+<span class="k">print</span>
+<span class="k">print</span> <span class="n">alt_indexed_series</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>California    0
+Alabama       1
+Indiana       2
+Montana       3
+Kentucky      4
+dtype: int64
+
+Washington    5
+Alabama       6
+Montana       7
+Indiana       8
+New York      9
+dtype: int64
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div><div class="fragment" data-fragment-index="20">
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[88]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c">#Pandas uses the index by default to align series for arithmetic</span>
+<span class="n">indexed_series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> 
+                           <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;California&#39;</span><span class="p">,</span> <span class="s">&#39;Alabama&#39;</span><span class="p">,</span> 
+                                    <span class="s">&#39;Indiana&#39;</span><span class="p">,</span> <span class="s">&#39;Montana&#39;</span><span class="p">,</span> 
+                                    <span class="s">&#39;Kentucky&#39;</span><span class="p">])</span>
+<span class="n">alt_indexed_series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+                               <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;Washington&#39;</span><span class="p">,</span> <span class="s">&#39;Alabama&#39;</span><span class="p">,</span> 
+                                        <span class="s">&#39;Montana&#39;</span><span class="p">,</span> <span class="s">&#39;Indiana&#39;</span><span class="p">,</span> 
+                                        <span class="s">&#39;New York&#39;</span><span class="p">])</span>
+
+<span class="n">indexed_series</span> <span class="o">+</span> <span class="n">alt_indexed_series</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[88]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Alabama        7
+California   NaN
+Indiana       10
+Kentucky     NaN
+Montana       10
+New York     NaN
+Washington   NaN
+dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    </div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[83]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c">#Datetime index</span>
+<span class="n">dt_index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s">&#39;2015-1-1&#39;</span><span class="p">,</span> 
+                        <span class="s">&#39;2015-11-1&#39;</span><span class="p">,</span> 
+                        <span class="n">freq</span><span class="o">=</span><span class="s">&#39;m&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">dt_index</span>
+<span class="n">df</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[83]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>a</th>
+      <th>b</th>
+      <th>c</th>
+      <th>d</th>
+      <th>e</th>
+      <th>new</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2015-01-31</th>
+      <td> 0.879186</td>
+      <td>-0.483880</td>
+      <td>-0.193364</td>
+      <td> 0.538595</td>
+      <td>-0.479076</td>
+      <td> 1.274492</td>
+    </tr>
+    <tr>
+      <th>2015-02-28</th>
+      <td>-0.504337</td>
+      <td>-0.815071</td>
+      <td>-0.255533</td>
+      <td>-1.637823</td>
+      <td> 0.962461</td>
+      <td>-1.823744</td>
+    </tr>
+    <tr>
+      <th>2015-03-31</th>
+      <td> 0.462413</td>
+      <td>-0.097132</td>
+      <td>-0.943511</td>
+      <td> 1.720747</td>
+      <td>-1.114607</td>
+      <td> 0.827694</td>
+    </tr>
+    <tr>
+      <th>2015-04-30</th>
+      <td>-0.232390</td>
+      <td>-2.556239</td>
+      <td> 1.997716</td>
+      <td>-0.626188</td>
+      <td>-0.106642</td>
+      <td>-3.021019</td>
+    </tr>
+    <tr>
+      <th>2015-05-31</th>
+      <td> 0.479790</td>
+      <td>-1.744325</td>
+      <td> 0.768285</td>
+      <td>-1.557014</td>
+      <td>-0.573672</td>
+      <td>-0.784746</td>
+    </tr>
+    <tr>
+      <th>2015-06-30</th>
+      <td>-0.599831</td>
+      <td>-0.210520</td>
+      <td>-0.449362</td>
+      <td> 0.869437</td>
+      <td> 0.394829</td>
+      <td>-1.410181</td>
+    </tr>
+    <tr>
+      <th>2015-07-31</th>
+      <td> 0.764018</td>
+      <td>-0.153589</td>
+      <td> 1.326025</td>
+      <td> 2.292867</td>
+      <td> 0.378869</td>
+      <td> 1.374447</td>
+    </tr>
+    <tr>
+      <th>2015-08-31</th>
+      <td> 2.852531</td>
+      <td> 0.565726</td>
+      <td>-0.040722</td>
+      <td>-0.905428</td>
+      <td>-1.298709</td>
+      <td> 6.270788</td>
+    </tr>
+    <tr>
+      <th>2015-09-30</th>
+      <td> 0.553279</td>
+      <td> 0.380876</td>
+      <td>-0.349890</td>
+      <td> 0.232721</td>
+      <td>-0.279359</td>
+      <td> 1.487435</td>
+    </tr>
+    <tr>
+      <th>2015-10-31</th>
+      <td> 1.672047</td>
+      <td>-2.654748</td>
+      <td> 0.251786</td>
+      <td>-0.102103</td>
+      <td> 0.265498</td>
+      <td> 0.689346</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="SQL-like-operations">SQL-like operations<a class="anchor-link" href="#SQL-like-operations">&#182;</a></h1><p>Pandas dataframes can be combined relationally like SQL tables.</p>
+<p>Examples: <a href="http://pandas.pydata.org/pandas-docs/stable/comparison_with_sql.html">http://pandas.pydata.org/pandas-docs/stable/comparison_with_sql.html</a></p>
+
+</div>
+</div>
+</div><div class="fragment" data-fragment-index="20">
+        
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
@@ -811,7 +1561,7 @@ div.output_prompt {
 </div>
 
 </div>
-    </div></section>
+        </div></section>
     </section>
 </div>
 </div>
