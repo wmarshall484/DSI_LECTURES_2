@@ -412,8 +412,8 @@ Why does this not affect MLE?
 What are the different Naive Bayes models?
 
 - Multinomial Bayes
-- Bernoulli Bayes
-- Gaussian Bayes
+- Bernoulli Naive Bayes
+- Gaussian Naive Bayes
 
 ## Multinomial Bayes
 
@@ -426,10 +426,10 @@ What is Multinomial Bayes?
 </details>
 
 
-## Bernoulli Bayes
+## Bernoulli Naive Bayes
 
 <br><details><summary>
-What is Bernoulli Bayes?
+What is Bernoulli Naive Bayes?
 </summary>
 
 1. Features are independent booleans.<br>
@@ -448,17 +448,17 @@ Because we are explicitly considering the absence of terms.<br>
 </details>
 
 <br><details><summary>
-Where might Bernoulli Bayes be useful?
+Where might Bernoulli Naive Bayes be useful?
 </summary>
 
 Useful for classifying short texts.<br>
 </details>
 
 
-## Gaussian Bayes
+## Gaussian Naive Bayes
 
 <br><details><summary>
-What is Gaussian Bayes?
+What is Gaussian Naive Bayes?
 </summary>
 
 Features are continuous variables.<br>
@@ -469,7 +469,7 @@ Features are continuous variables.<br>
 How can we modify Bayes to handle continuous variables?
 </summary>
 
-One approach is suggested by name Gaussian Bayes:<br>
+One approach is suggested by name Gaussian Naive Bayes:<br>
 
 1. Compute the mean and variance of each class.<br>
 2. Assume the probability distribution is a Gaussian.<br>
@@ -477,12 +477,31 @@ One approach is suggested by name Gaussian Bayes:<br>
 
 ![](images/gaussian-bayes.png)<br>
 
-Another approach is to convert it to Bernoulli Bayes.
+Another approach is to convert it to Bernoulli Naive Bayes.
 
 1. Use binning to discretize the features.<br>
-2. Then use Bernoulli Bayes based on whether the a particular feature in a bin is present or not.<br>
+2. Then use Bernoulli Naive Bayes based on whether the a particular feature in a bin is present or not.<br>
 
 </details>
 
 
+## Combining
+
+<br><details><summary>
+Suppose you have a mixture of boolean and continuous features. How can
+you apply Naive Bayes?
+</summary>
+
+This is a limitation of Python's SciKit Learn API. 
+
+According to Oliver Grisel, one of the main committers of SciKit Learn
+here are some [options][ogrisel-bayes].<br>
+
+1. Use Bernoulli Naive Bayes and use binning for the continuous features.<br>
+2. Create two classifiers for the two different kinds of features. For details see [here][ogrisel-bayes].<br>
+3. Write your own Naive Bayes classifier.
+
+[ogrisel-bayes]: http://stackoverflow.com/questions/14254203/mixing-categorial-and-continuous-data-in-naive-bayes-classifier-using-scikit-lea
+
+</details>
 
