@@ -37,6 +37,17 @@ What is NLP?
 </details>
 
 <br><details><summary>
+What is unstructured text? How is it different from structured text?
+</summary>
+
+1. Unstructured text is text without a schema.<br>
+2. Structured text is text with a schema, e.g. CSV, JSON.<br>
+3. A schema specifies column names and types for the data.<br>
+4. Unstructured text has no columns, no specified types.<br>
+5. Usually is just a blob of text.<br>
+</details>
+
+<br><details><summary>
 What are some sources of unstructured text?
 </summary>
 
