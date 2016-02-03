@@ -19,11 +19,12 @@ What could computers do if they could read?
 </summary>
 
 1. Filter out email spam.<br>
-2. Detect plagiarism.<br>
-3. Classify software bugs into different categories.<br>
-4. Cluster news like Google News.<br>
-5. Find out which headlines will get the most clicks.<br>
-6. Find out which ad copy will get the most clicks.<br>
+2. Scan resumes.<br>
+3. Detect plagiarism.<br>
+4. Classify software bugs into different categories.<br>
+5. Cluster news like Google News.<br>
+6. Find out which headlines will get the most clicks.<br>
+7. Find out which ad copy will get the most clicks.<br>
 </details>
 
 <br><details><summary>
@@ -151,10 +152,10 @@ Index |Word     |Text 1   |Text 2
 
 Term         |Meaning
 ----         |-------
-Corpus       |Body of text (the web, a news site, an anthology of stories...).
-Document     |Stand-alone part of your corpus (a website, an article, a story...).
+Corpus       |Collection of documents (collection of articles).
+Document     |A single document (a tweet, an email, an article).
 Vocabulary   |Set of words in your corpus, or maybe the entire English dictionary. 
-Bag of Words |Vector representation of words in a documents.
+Bag of Words |Vector representation of words in a document.
 Token        |Single word.
 Stop Words   |Common ignored words because not useful in distinguishing text.
 Vectorizing  |Converting text into a bag-of-words.
@@ -252,7 +253,7 @@ words from your text?
 
 1. Plagiarism detection.<br>
 2. Investigating if dusty papers found in attic are a lost Shakespeare play.<br>
-3. Identifying document types in Digital Loss Prevention. E.g. resume, 
+3. Identifying document types in Data Loss Prevention. E.g. resume, 
    insider information, legal contract, etc.<br> 
 </details>
 
