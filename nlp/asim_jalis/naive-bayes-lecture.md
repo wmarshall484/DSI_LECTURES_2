@@ -2,7 +2,8 @@
 
 ## Objectives
 
-Build a Naive Bayes classifier.
+- Build a Naive Bayes classifier.
+- Use it to classify documents into categories.
 
 # Naive Bayes
 
