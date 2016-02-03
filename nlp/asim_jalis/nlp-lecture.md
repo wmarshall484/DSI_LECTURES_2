@@ -20,7 +20,7 @@ What could computers do if they could read?
 
 1. Filter out email spam.<br>
 2. Detect plagiarism.<br>
-3. Classify bugs into different categories.<br>
+3. Classify software bugs into different categories.<br>
 4. Cluster news like Google News.<br>
 5. Find out which headlines will get the most clicks.<br>
 6. Find out which ad copy will get the most clicks.<br>
@@ -330,7 +330,8 @@ Why use N-grams?
 from nltk.util import ngrams
 
 # An example of 2-grams in our "document" above.
-ngrams(document, 2)
+document_bigrams = ngrams(document,2)
+for p in document_bigrams: print p
 ```
 
 ## Bag-of-Words
@@ -365,9 +366,11 @@ What are some limitations of the bag-of-words approach and
 CountVectorizer?
 </summary>
 
-1. High frequency words weight more. <br>
-2. Longer documents weigh more than short documents.<br>
-3. Does not consider uniqueness of words. Unique words should weigh more.<br>
+1. Longer documents weigh more than short documents.<br>
+2. Does not consider uniqueness of words. Unique words should weigh more.<br>
+3. We are losing a lot of structure. This is like a giant word grinder.<br>
+4. We will address the first two issues. The third issue is part of the bargain we struck with the bag-of-words approach.<br>
+5. Note: bag-of-words is not the only way to featurize text. It is simple, and surprisingly powerful.<br>
 </details>
 
 ## L2 Normalization
@@ -484,7 +487,7 @@ Suppose:
 
 - *n(t)* is the number of documents containing *t*
 
-$$idf(t, d) = \log{\left[\frac{N}{n}\right]}$$
+$$idf(t, d) = \log{\left(\frac{N}{n}\right)}$$
 
 ## TF-IDF
 
@@ -522,11 +525,11 @@ What is IDF?
 
 - IDF is a score for how unique a token is across the corpus.
 
-$$idf(t, d) = \log{\left[\frac{N}{n}\right]}$$
+$$idf(t, d) = \log{\left(\frac{N}{n}\right)}$$
 
 - This is sometimes written with some smoothers like this:
 
-$$idf(t, d) = \log{\left[\frac{N + 1}{n + 1}\right]} + 1$$
+$$idf(t, d) = \log{\left(\frac{N + 1}{n + 1}\right)} + 1$$
 
 ## Adding Ones
 
@@ -556,19 +559,22 @@ bees   |0    |150
 hive   |20   |50
 
 <br><details><summary>
-Which terms will have a high TF?
+Intuitively what do you expect the IDF scores of hadoop, bees, and
+hive to be?
 </summary>
 
-1. Hadoop in HH will have high TF.<br>
-2. Bees in BB will have high TF.<br>
+1. Hadoop and bees should have a higher score.<br>
+2. Hive should have a low score because it is not rare.<br>
 </details>
 
-
 <br><details><summary>
-What will the IDF score of hive be in both books?
+What are the IDF scores of hadoop, bees, and hive? Assume log base 2.
 </summary>
 
-1<br>
+1. Note these are independent of document.<br>
+2. For hadoop: $N = 2, n = 1, \log(N/n) = \log(2) = 1$.<br>
+3. For bees: $N = 2, n = 1, \log(N/n) = \log(2) = 1$.<br>
+4. For hive: $N = 2, n = 2, \log(N/n) = \log(1) = 0$.<br>
 </details>
 
 ## Computing  TF-IDF
@@ -649,3 +655,19 @@ hv = HashingVectorizer(n_features=10)
 features = hv.transform(corpus)
 print features.toarray()
 ```
+
+## Summarize
+
+<br><details><summary>
+What are some steps in vectorizing text?
+</summary>
+
+1. Tokenize.<br>
+2. Stemming, lemmatization, lowercasing, etc.<br>
+3. Count frequencies.<br>
+4. Modify feature weights using TF-IDF<br>
+5. Divide by L2 norm.<br>
+6. Use hashing trick.<br>
+</details>
+
+
