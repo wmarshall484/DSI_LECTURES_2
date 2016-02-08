@@ -1,0 +1,134 @@
+CREATE TABLE band
+(
+band_no INTEGER NOT NULL, 
+band_name VARCHAR(255), 
+band_home INTEGER, 
+band_type VARCHAR(255), 
+b_date DATE, 
+band_contact INTEGER,
+CONSTRAINT band_pk PRIMARY KEY (band_no)
+);
+
+COPY band 
+FROM '/Users/clayton.schupp/Dropbox/Zipfian/Lecture Slides/SQL/example/band.csv' CSV ;
+
+CREATE TABLE composer
+(
+comp_no INTEGER NOT NULL, 
+comp_is INTEGER, 
+comp_type VARCHAR(255),
+CONSTRAINT composer_pk PRIMARY KEY (comp_no)
+);
+
+COPY composer
+FROM '/Users/clayton.schupp/Dropbox/Zipfian/Lecture Slides/SQL/example/composer.csv' CSV ;
+
+CREATE TABLE composition
+(
+c_no INTEGER NOT NULL, 
+comp_date DATE, 
+c_title VARCHAR(255), 
+c_in INTEGER,
+CONSTRAINT composition_pk PRIMARY KEY (c_no)
+);
+
+COPY composition
+FROM '/Users/clayton.schupp/Dropbox/Zipfian/Lecture Slides/SQL/example/composition.csv' CSV ;
+
+CREATE TABLE concert
+(
+concert_no INTEGER NOT NULL, 
+concert_venue VARCHAR(255), 
+concert_in INTEGER, 
+con_date DATE, 
+concert_orgniser INTEGER,
+CONSTRAINT concert_pk PRIMARY KEY (concert_no)
+);
+
+COPY concert
+FROM '/Users/clayton.schupp/Dropbox/Zipfian/Lecture Slides/SQL/example/concert.csv' CSV ;
+
+CREATE TABLE has_composed
+(
+cmpr_no INTEGER NOT NULL, 
+cmpn_no INTEGER
+);
+
+COPY has_composed
+FROM '/Users/clayton.schupp/Dropbox/Zipfian/Lecture Slides/SQL/example/has_composed.csv' CSV ;
+
+CREATE TABLE musician
+(
+m_no INTEGER NOT NULL, 
+m_name VARCHAR(255), 
+born DATE, 
+died DATE, 
+born_in INTEGER, 
+living_in INTEGER,
+CONSTRAINT musician_pk PRIMARY KEY (m_no)
+);
+
+COPY musician
+FROM '/Users/clayton.schupp/Dropbox/Zipfian/Lecture Slides/SQL/example/musician.csv' CSV ;
+
+
+CREATE TABLE performance
+(
+pfrmnc_no INTEGER NOT NULL, 
+gave INTEGER, 
+performed INTEGER, 
+conducted_by INTEGER, 
+performed_in INTEGER,
+CONSTRAINT performance_pk PRIMARY KEY (pfrmnc_no)
+);
+
+COPY performance
+FROM '/Users/clayton.schupp/Dropbox/Zipfian/Lecture Slides/SQL/example/performance.csv' CSV ;
+
+
+CREATE TABLE performer
+(
+perf_no INTEGER NOT NULL, 
+perf_is INTEGER, 
+instrument VARCHAR(255), 
+perf_type VARCHAR(255),
+CONSTRAINT performer_pk PRIMARY KEY (perf_no)
+);
+
+COPY performer
+FROM '/Users/clayton.schupp/Dropbox/Zipfian/Lecture Slides/SQL/example/performer.csv' CSV ;
+
+
+CREATE TABLE place
+(
+place_no INTEGER NOT NULL, 
+place_town VARCHAR(255), 
+place_country VARCHAR(255),
+CONSTRAINT place_pk PRIMARY KEY (place_no)
+);
+
+COPY place
+FROM '/Users/clayton.schupp/Dropbox/Zipfian/Lecture Slides/SQL/example/place.csv' CSV ;
+
+
+CREATE TABLE plays_in 
+(
+player INTEGER NOT NULL, 
+band_id INTEGER
+);
+
+COPY plays_in
+FROM '/Users/clayton.schupp/Dropbox/Zipfian/Lecture Slides/SQL/example/plays_in.csv' CSV ;
+
+
+
+
+
+
+
+
+
+
+
+
+
