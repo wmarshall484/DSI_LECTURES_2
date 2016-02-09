@@ -389,7 +389,7 @@ What are some applications of PCA?
 3. Visualization.<br>
 </details>
 
-## Pick K
+## How To Pick K
 
 <br><details><summary>
 How can we decide what *k* to use?
@@ -400,19 +400,8 @@ How can we decide what *k* to use?
    variances explained.<br>
 3. Add eigenvalues until you have 90% variance explained (or 95% or
    99% or whatever your goal is).<br>
-</details>
-
-## Eigen
-
-<br><details><summary>
-What does eigen mean?
-</summary>
-
-1. Eigen means *proper* or *characteristic* in German.<br>
-2. Eigenvectors and eigenvalues characterize a matrix viewed as a
-   transformation.<br>
-3. Why are we using a German word for them? Because they were named 
-   by David Hilbert who wrote in German.<br>
+4. Another approach is to create a Scree plot and look for the
+   elbow.<br>
 </details>
 
 ## Scree Plots
@@ -430,5 +419,18 @@ What is a Scree Plot?
 ## Job Performance Scree Plot
 
 ![](images/scree-plot.png)
+
+## Eigen
+
+<br><details><summary>
+What does eigen mean?
+</summary>
+
+1. Eigen means *proper* or *characteristic* in German.<br>
+2. Eigenvectors and eigenvalues characterize a matrix viewed as a
+   transformation.<br>
+3. Why are we using a German word for them? Because they were named 
+   by David Hilbert who wrote in German.<br>
+</details>
 
 
