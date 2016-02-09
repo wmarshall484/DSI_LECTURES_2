@@ -1,22 +1,13 @@
 # Dimensionality Reduction
 
-# Objectives
+## Objectives
 
-## PCA
-
+- Understand what PCA is and how to use it
 - Reduce data dimensions
 - Compress data to optimize ML speed and memory
 - Visualize data by reducing dimensions to 2 or 3
 
-## SVD
-
-- Decompose matrix into factors
-- Identify minimal underlying basis
-- Extract generic categories from sample
-
-# Curse of Dimensionality
-
-## Intro
+## Curse of Dimensionality
 
 <br><details><summary>
 What is the curse of dimensionality?
