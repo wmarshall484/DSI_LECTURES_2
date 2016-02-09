@@ -249,6 +249,9 @@ Should I use the covariance matrix or the correlation matrix?
 3. The pros and cons are identical to what we discussed above.<br>
 </details>
 
+## Why Covariance
+
+
 ## Matrix Intuition
 
 Consider this matrix in the following discussion.
@@ -399,10 +402,33 @@ How can we decide what *k* to use?
    99% or whatever your goal is).<br>
 </details>
 
-## Questions
+## Eigen
 
-What is Multi-Dimensional Scaling (MDS)?
+<br><details><summary>
+What does eigen mean?
+</summary>
 
-What are the applications of MDS?
+1. Eigen means *proper* or *characteristic* in German.<br>
+2. Eigenvectors and eigenvalues characterize a matrix viewed as a
+   transformation.<br>
+3. Why are we using a German word for them? Because they were named 
+   by David Hilbert who wrote in German.<br>
+</details>
+
+## Scree Plots
+
+<br><details><summary>
+What is a Scree Plot?
+</summary>
+
+1. A scree plot displays the eigenvalues associated with a component
+   in descending order versus the number of the component.<br>
+2. You can use scree plots in PCA to visually assess which components
+   explain most of the variability in the data.<br>
+</details>
+
+## Job Performance Scree Plot
+
+![](images/scree-plot.png)
 
 
