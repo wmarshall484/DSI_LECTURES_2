@@ -4,7 +4,7 @@ for number in array:
     if number == 2:
         print "It's a 2"
     else:
-        pritn "It's not a 2"
+        print "It's not a 2"
 
 array2 = [1,2,2,3,3,4,4]
 
