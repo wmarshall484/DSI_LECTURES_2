@@ -17,8 +17,8 @@ To train the model, all you need to do is save the training data. There's absolu
 To predict a new value, here's the pseudocode:
 
 ```
-For datapoint in training set:
-    calculate distance from datapoint to new_value
+For data point in training set:
+    calculate distance from data point to new_value
 Order distances in increasing order and take the first k
 Take the label with the most votes
 ```
@@ -28,7 +28,7 @@ Take the label with the most votes
 #### Why kNN
 * Really easy to train (just save all the data)
 * Easily works with any number of classes
-* Easy to add new training datapoints
+* Easy to add new training data points
 
 #### Why not kNN
 * Really slow to predict (especially if you have a lot of features)
@@ -67,7 +67,7 @@ __(basically anything in and anything out)__
 
 * Easily interpretable
 * Handles missing values and outliers
-* [non-parametric](http://en.wikipedia.org/wiki/Non-parametric_statistics#Non-parametric_models)/[non-linear](http://www.yaksis.com/static/img/02/cows_and_wolves.png)/model complex phenomenom
+* [non-parametric](http://en.wikipedia.org/wiki/Non-parametric_statistics#Non-parametric_models)/[non-linear](http://www.yaksis.com/static/img/02/cows_and_wolves.png)/model complex phenomenon
 * Computationally _cheap_ to ___predict___
 * Can handle irrelevant features
 * Mixed data (nominal and continuous)
@@ -97,7 +97,7 @@ The intuition of entropy is more important than the actual function, which follo
 
 Here, P(c) is the percent of the group that belongs to a given class.
 
-If you have a collection of datapoints, the entropy will be large when they are evenly distributed across the classes and small when they are mostly the same class. Here's a graph to demonstrate what entropy looks like:
+If you have a collection of data points, the entropy will be large when they are evenly distributed across the classes and small when they are mostly the same class. Here's a graph to demonstrate what entropy looks like:
 
 ![entropy](images/entropy_graph.png)
 
@@ -139,7 +139,7 @@ function BuildTree:
 
 
 ## Pruning
-As is mentioned above, Decision Trees are prone to overfitting. If we have a lot of features and they all get used in building our tree, we will build a tree that perfectly represents our training data but is not general. A way to relax this is *pruning*. The idea is that we may not want to continue building the tree until all the leaves are pure (have only datapoints of one class). There are two main ways of pruning: *prepruning* and *postpruning*.
+As is mentioned above, Decision Trees are prone to overfitting. If we have a lot of features and they all get used in building our tree, we will build a tree that perfectly represents our training data but is not general. A way to relax this is *pruning*. The idea is that we may not want to continue building the tree until all the leaves are pure (have only data points of one class). There are two main ways of pruning: *prepruning* and *postpruning*.
 
 ### Prepruning
 *Prepruning* is making the decision tree algorithm stop early. Here are a few ways that we preprune:
@@ -198,7 +198,7 @@ This is Quinlan's first improvement on the ID3 algorithm. The main improvements 
 * handles continuous data
 * implements pruning to reduce overfitting
 
-There is now a **C5.0** which is supposedly better, but is propietary so we don't have access to the specifics of the improvements.
+There is now a **C5.0** which is supposedly better, but is proprietary so we don't have access to the specifics of the improvements.
 
 #### In practice
 
