@@ -378,6 +378,18 @@ What is the difference between PCA and regression?
 </details>
 
 
+## Best Practices
+
+<br><details><summary>
+Should I always use PCA on my data?
+</summary>
+
+1. Not necessarily.<br>
+2. For example, because the data is unlabeled PCA might collapse a dimension that separates two labels.<br>
+3. Without scaling important but smaller valued dimensions might get flattened out.<br>
+4. Assumes linear projections.<br>
+</details>
+
 ## Applications
 
 <br><details><summary>
