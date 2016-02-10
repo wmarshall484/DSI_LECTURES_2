@@ -416,13 +416,13 @@ What are the different Naive Bayes models?
 - Bernoulli Naive Bayes
 - Gaussian Naive Bayes
 
-## Multinomial Bayes
+## Multinomial Naive Bayes
 
 <br><details><summary>
 What is Multinomial Bayes?
 </summary>
 
-1. The predictors our target variables are multiple classes.<br>
+1. Features are frequencies.<br>
 2. This is the Bayes algorithm we discussed.<br>
 </details>
 
