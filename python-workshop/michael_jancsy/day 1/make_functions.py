@@ -1,6 +1,6 @@
 array1 = [1,2,3,2,1]
 
-for number in array:
+for number in array1:
     if number == 2:
         print "It's a 2"
     else:
@@ -21,6 +21,27 @@ for number in array3:
         print "It's a 5"
     else:
         print "It's not a 5"
+
+
+def value_check(array, value):
+    for item in array:
+        if item == value:
+            print "It's a %d" % value
+        else:
+            print "It's not a %d" % value
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
