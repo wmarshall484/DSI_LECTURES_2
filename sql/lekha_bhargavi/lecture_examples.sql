@@ -1,11 +1,8 @@
-Miniquiz:
-https://github.com/zipfian/miniquizzes/blob/master/classes.md
 
-Lecture and examples: https://github.com/zipfian/DSI_Lectures/tree/master/sql/lekha_bhargavi
+---To create a database, run the following command at the psql prompt
+CREATE DATABASE cohort3;
+\connect cohort3
 
-
-
-CREATE DATABASE class;
 
 --- Licensing System ----
 CREATE TABLE CUSTOMERS (
@@ -19,7 +16,7 @@ CREATE TABLE CUSTOMERS (
 
 INSERT INTO CUSTOMERS(id, name, age, gender, city, state) VALUES
 	(1, 'john', 25, 'M', 'San Francisco', 'CA')
-,	(2, 'becky', 30, 'F', 'NYC', 'NY')
+,	(2, 'becky', null, 'F', 'NYC', 'NY')
 ,	(3, 'sarah', 20, 'F', 'Denver', 'CO')
 ,   (4, 'max', 35, 'M', 'Austin', 'TX')
 ,   (5, 'sam', 40, 'M', 'Fremont', 'CA')
@@ -49,69 +46,117 @@ CREATE TABLE LICENSES (
 , customer_id INTEGER REFERENCES customers(id)
 , UNIQUE(state, number));
 
+
 INSERT INTO LICENSES (id, state, number, uploaded_at, customer_id) VALUES
   (1, 'CO', 'DL19480284', '2013-04-18', 3)
 , (2, 'CA', 'DL19852984', '2013-05-12', 1);
 
 --- Querying the data
---- Check the tables in the database ---
-
+--- Check the table count ---
+SELECT count(*) FROM customers;
 
 --- Select all the rows in customers ---
 
+SELECT * FROM customers;
 
--- Select only the top 3 rows in customers ---
+-- Select only 3 rows in customers ---
+
+SELECT * FROM customers LIMIT 3;
 
 
 --- Select all customers from CA ---
 
+SELECT name
+FROM customers
+WHERE state = 'CA';
 
 
 --- Max and min age of the customers ---
 
+SELECT
+    MAX(age) as max_age
+,   MIN(age) as min_age
+FROM customers;
 
+
+--- Select average age by state---
+
+SELECT
+    state
+,    AVG(age) as avg_age
+FROM customers
+GROUP BY state;
 
 --- Count number of visits by customer ---
 
-
+SELECT
+   customer_id
+,  COUNT(*)
+FROM visits
+GROUP BY customer_id;
 
 -- Select the number of distinct states in the customers table ---
+
+SELECT DISTINCT state
+FROM customers;
 
 
 --- Count visits by customer and sort in descending order ---
 
+SELECT
+   customer_id
+,  COUNT(*) as cnt
+FROM visits
+GROUP BY customer_id
+ORDER BY cnt DESC;
 
+
+----
+SELECT
+    id
+,   name
+,   state
+,   avg(age) as avg_age
+FROM customers
+GROUP BY id, name, state
+HAVING avg(age) > 30;
 
 --- Return the customer_ids of all customers who visited in June ---
 
-SELECT c.id, v.created_at
+SELECT
+  c.id
+, v.created_at
 FROM customers as c
 JOIN visits as v
 ON c.id = v.customer_id
 WHERE date_part('month', v.created_at) = 6;
 
 
---- Example of CASE: how many customers ?
+--- LEFT JOIN: return all customers from the customers table regardless of presence in visits
+
 SELECT
+  c.id
+, v.created_at
+FROM customers as c
+LEFT JOIN visits as v
+ON c.id = v.customer_id
+WHERE date_part('month', v.created_at) = 6;
+
+
+--- Alternate way of doing an INNER JOIN ----
+
+SELECT
+  c.id
+, v.created_at
+FROM customers as c, visits as v
+WHERE c.id = v.customer_id
+and date_part('month', v.created_at) = 6;
+
+
+--- Example of CASE: how many customers ?
+SELECT id, name,
    CASE WHEN gender = 'F' THEN 'female' ELSE 'male' END AS gender_r
 FROM customers
-
-
----JOINS----
-
----List the names of customers who visited the Licensing office in 2014---
-
-
-
---- All customers including the visits for 2014---
-
-
-
-
-
-
-
-
 
 
 --- Products Table ----
@@ -156,24 +201,3 @@ INSERT INTO purchases_no_key (id, customer_id, product_id, date, quantity) VALUE
 
 INSERT INTO purchases ( id, customer_id, product_id, date, quantity) VALUES
    (4, 2, 4, '2015-06-20', 3);
-
-
-
----- POll SQL ---
-
-PollEv.com/gschool702
-
-SELECT customer_id, count(*) as cust_cnt
-FROM visits
-GROUP BY customer_id
-HAVING cust_cnt > 1
-
-SELECT customer_id, count(*) as cust_cnt
-FROM visits
-HAVING cust_cnt > 1
-GROUP BY customer_id;
-
-SELECT customer_id, count(*) as cust_cnt
-FROM visits
-GROUP BY customer_id
-HAVING cust_cnt > 1;
