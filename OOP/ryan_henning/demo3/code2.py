@@ -16,17 +16,26 @@ class Banana(Fruit):
     def __init__(self, weight):
         super(Banana, self).__init__(weight)
 
+    def peel(self, percentage):
+        print "Peeling to", percentage, "%..."
+
 
 class Orange(Fruit):
 
     def __init__(self, weight):
         super(Orange, self).__init__(weight)
 
+    def peel(self):
+        print "Peeling..."
+
 
 class Apple(Fruit):
 
     def __init__(self, weight):
         super(Apple, self).__init__(weight)
+
+    def wash(self):
+        print "Washing..."
 
 
 
