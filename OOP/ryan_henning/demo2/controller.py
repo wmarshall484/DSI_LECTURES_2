@@ -30,7 +30,7 @@ class Controller(object):
         frame = self.camera.capture()
         decision = self.decisionModule.process(frame)
 
-        elif decision == decisions.RECYCLE:
+        if decision == decisions.RECYCLE:
             self._run_path_to_bin(-12.5)
 
         elif decision == decisions.COMPOST:
