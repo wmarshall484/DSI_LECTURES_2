@@ -19,6 +19,11 @@ class Banana(Fruit):
     def peel(self, percentage):
         print "Banana is peeled", percentage, "%"
 
+    def eat(self):
+        for percentage in [20, 40, 60, 80, 100]:
+            self.peel(percentage)
+        print "Banana is eaten!"
+
 
 class Orange(Fruit):
 
@@ -28,6 +33,10 @@ class Orange(Fruit):
     def peel(self):
         print "Orange is peeled fully."
 
+    def eat(self):
+        self.peel()
+        print "Orange is eaten!"
+
 
 class Apple(Fruit):
 
@@ -36,6 +45,10 @@ class Apple(Fruit):
 
     def wash(self):
         print "Apple is washed."
+
+    def eat(self):
+        self.wash()
+        print "Apple is eaten!"
 
 
 
