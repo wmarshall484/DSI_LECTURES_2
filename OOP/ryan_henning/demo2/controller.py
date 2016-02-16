@@ -36,7 +36,7 @@ class Controller(object):
         elif decision == decisions.COMPOST:
             self._run_path_to_bin(1.5)
 
-        else:  # <-- BUG!
+        else:  # <-- must be decisions.LANDFILL, right?
             self._run_path_to_bin(15.5)
 
     def _run_path_to_bin(self, bin_x_location):
