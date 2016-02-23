@@ -57,7 +57,7 @@ Breiman, the originator of random forests, uses out-of-bag error to determine fe
             Randomly permute the values of the feature (i.e. keep the same values,
                 but shuffle them around the data points).
             Calculate the OOB error on the data with the feature values permuted.
-            Subtract the permutated OOB from the OOB of the original data to get the
+            Subtract the permutated OOB error from the OOB error of the original data to get the
                 feature importance on this tree.
         Average all the individual feature importances to get the feature importance.
 
