@@ -6,10 +6,9 @@ from controller import Controller
 import decisions
 
 
-def test_controller():
+def test_empty_basket():
     '''
-    This tests the Controller to make sure that it doesn't
-    move the arm when the bay is empty.
+    This tests the Controller to make sure that it doesn't move the arm when the basket is empty.
     '''
 
     class MockDecisionModule(object):
@@ -25,6 +24,12 @@ def test_controller():
             self.did_move = False
 
         def move_to(self, location):
+            self.did_move = True
+
+        def release(self):
+            self.did_move = True
+
+        def grasp(self):
             self.did_move = True
 
     decisionModule = MockDecisionModule()
