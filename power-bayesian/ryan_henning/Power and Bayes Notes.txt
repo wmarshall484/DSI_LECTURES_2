@@ -1,0 +1,127 @@
+==============
+
+We have a website with ads and a product. Here’s our distribution of revenue per user. Most users (90%) do nothing that generates revenue. Some click ads (7% do, causes a little revenue) and some (3%) buy our app!
+
+=============
+
+Previously we were plotting the histogram of single samples. What if we plot a histogram of sample means? Here’s what you get! Here’s the histogram of sample means where each mean is the average of 160 website users.
+
+This is called the “sampling distribution”.
+
+==============
+
+What is the Central Limit Theorem?
+It states: The distribution of sample means (aka, the “sampling distribution”) is normally distributed, no matter what the underlying distribution is!
+
+=============
+
+What happens to the sampling distribution when the sample size increases?
+1. The distribution becomes more normal.
+2. The variance & standard deviation decreases.
+
+What happens to the mean of the sampling distribution when the sample size increases?
+It stays the same. (But recall, the variance decreases.)
+
+==============
+
+We can see the exact relationship between std dev and the sample size here.
+
+We’ll see this “divide by the root of the sample size” later in this presentation.
+
+=============
+
+The pictures show a unit normal distribution (mean 0, std 1).
+
+Explain the two-sided test. When do we reject H0? What ranges of x-bar will cause us to reject H0? If H0 is true, what’s the probability that we’ll reject H0 anyway?
+
+Two-sided example: Imagine an email marketing campaign. Your boss asks “do these two emails give the same response?”
+
+Explain the one-sided test. When do we reject H0? What ranges of x-bar will cause us to reject H0? If H0 is true, what’s the probability that we’ll reject H0 anyway?
+
+One-sided example: Imagine an email marketing campaign. Your boss asks “does this second email sell more product than the first?”
+
+It just matters what question you want to answer.
+
+===============
+
+“Say you sample and you get some value, let’s say you get 4. You suspect that the underlying distribution is one of the two shown in this picture--either it’s the red or the blue distribution shown in this picture… but you’re not sure which it is. All you actually know is that you sampled and got a 4.
+
+Can we guess at the underlying distribution? Did the 4 come from the red distribution or did it come from the blue distribution?
+
+This is basically what we’re doing when we do hypothesis tests. We come up with a theory (our hypothesis), then we sample and see if it’s consistent with our hypothesis. The funny thing is, we can never be SURE of anything--we can only speak in terms of probability. So, we set an alpha value and let that be our cutoff for making decisions about the underlying distribution.
+
+Not all experiments are created equal. Some are good experiments, and some are bad experiments.
+
+What’s a bad experiment? It’s one where you can’t be very confident about the result… your confidence will be very low. For example, in this picture, if we sample and get a 4, can we be very confident about which distribution is the true distribution? Nope.
+
+This leads us to the idea of an experiment’s POWER. We want to design experiments with high POWER.”
+
+===========
+
+Here are the four possible outcomes of a statistical experiment. ...
+
+=============
+
+This slide just goes over some terminology that you may come accross.
+
+specificity is the true negative rate
+
+============
+
+Draw on the board, see that increasing alpha increases power.
+
+Draw on the board, see that increasing effect size increases power.
+
+Draw on the board, see that increasing std. DECREASES the power.
+
+Draw on the board, see that increasing sample size causes the std. to decrease, which increases power.
+
+================
+
+ppf = “Percent point function” (Inverse of CDF)
+http://docs.scipy.org/doc/scipy/reference/tutorial/stats.html
+
+s, u_b, and u_a can come from:
+ - research literature, or
+ - a pilot experiment, or
+ - from one’s … head
+
+=================
+
+Comments:
+
+alpha of 1% is probably overly cautious. Typically we set it to 5%.
+
+power of 95% is also very aggressive. Typically it’s 80% or 90%.
+
+Q:Why not collect more than the minimum required visitors? What’s the harm in collecting more visitors than we need?
+A: In the case that the new page underperforms, we’ll take a revenue hit. So we only want to run the page for the minimum amount of time needed to draw a conclusion.
+
+To get the answer, run my program: power.py
+
+
+What’s the standard deviation for this test: Well, we’re dealing with a Bernoulli random variable. The std dev is sqrt(p(1-p)). See:
+https://en.wikipedia.org/wiki/Bernoulli_distribution
+
+===========
+
+Intuitively, why do we need more?
+
+============
+
+Intuitively, why do we need less?
+
+============
+
+Probability is our measure of certainty.
+
+We evaluate probability as a function of our prior knowledge and of our observations.
+
+=============
+
+“a priori” is latin for “from the earlier”
+
+“a posteriori” is latin for “from the latter”
+
+Frequentists criticize Bayesians due to their use of the prior probability distribution, which they claim is non object, but is very subjective.
+

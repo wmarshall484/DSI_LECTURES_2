@@ -52,3 +52,8 @@ class Fraction:
         '''
         return "{0}/{1}".format(self.num, self.denom)
 
+    def __add__(self, other):
+        common_denom = self.denom * other.denom
+        new_num = self.num * other.denom + other.num * self.denom
+        return Fraction(new_num, common_denom)
+
