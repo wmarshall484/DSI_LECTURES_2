@@ -76,6 +76,25 @@ $$ \nabla f(a) = \left(\frac{\partial f}{\partial x_1}(a), \ldots, \frac{\partia
 
 ![`alpha` too large](../images/learning_rate_divergence.gif)
 
+## Choosing Alpha
+
+* If the value of $$\frac{|\nabla f(x) - \nabla f(y)|}{|x-y|}$$ is bounded above by some number $L(\nabla f)$ then $$\alpha \leq \frac{1}{L(\nabla f)}$$ will converge.
+* For example:
+    * $f(x) = x^2$
+    * $L(\nabla f) = 2$
+    * $\alpha = 1/2$ will be the best value
+
+## Adaptive Step Size
+
+* Change $\alpha$ at each iteration
+* (Barzilai and Borwein 1998)
+    * Suppose $x_i$ is the value of $x$ at the iteration $i$
+    * $\Delta x = x_{i} - x_{i-1}$
+    * $\Delta g(x) = \nabla f(x_{i}) - \nabla f(x_{i-1})$
+    * At each step $$\alpha = \frac{\Delta g(x)^T \Delta x}{||\Delta g(x)||^2}$$ is a good choice of $\alpha$
+
+
+
 ## Convergence Criteria
 
 Choices:
