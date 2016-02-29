@@ -79,6 +79,7 @@ $$ \nabla f(a) = \left(\frac{\partial f}{\partial x_1}(a), \ldots, \frac{\partia
 ## Convergence Criteria
 
 Choices:
+
 * $\frac{|f(x) - f(y)|}{|f(x)|} < \epsilon$
 * Max number of iterations
 * Magnitude of gradient $|\nabla f| < \epsilon$
@@ -99,7 +100,7 @@ Choices:
 
 ## Example
 
-![](../images/non_convex.jpeg)
+![Non-convex function](../images/non_convex.jpeg)
 
 ## More Bad Things
 
@@ -170,7 +171,7 @@ $$ y_i - \beta^T x_i$$
 ## Variants
 
 * Can use a small subset of your data instead of a single observations
-    * *minibatch* Stochastic GD
+    * "Minibatch" Stochastic GD
 * "Online" Stochastic GD updates the model by performing a gradient descent step each time a new observation is collected
 
 # Newton's Method
