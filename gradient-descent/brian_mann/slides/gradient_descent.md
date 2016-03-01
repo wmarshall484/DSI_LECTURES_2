@@ -4,19 +4,23 @@
 
 ## Objectives
 
-* Understand How Gradient Descent Works
+* Know How Gradient Descent Works
 * Use Gradient Descent to Optimize the Cost Function For Logistic Regression
-* Stochastic Gradient Descent and Newton's Method
+* Know How Stochastic Gradient Descent Works
+* Implement Stochastic Gradient Descent
+* Know How Newton's Method Works
+* Implement Newton's Method
 
 ## Agenda
 
 * Morning
     1. What is Gradient Descent and why do we need it?
-    2. An example of gradient descent
-    3. Using Gradient Descent to Solve Logistic Regression
+    2. Examples of gradient descent
+    3. What can go wrong?
+    4. Using Gradient Descent to solve logistic regression
 * Afternoon
-    1. Stochastic Gradient Descent and Examples
-    2. Newton's Method and Examples
+    1. Stochastic Gradient Descent
+    2. Newton's Method
 
 ## Cost Functions
 
@@ -87,13 +91,11 @@ $$ \nabla f(a) = \left(\frac{\partial f}{\partial x_1}(a), \ldots, \frac{\partia
 ## Adaptive Step Size
 
 * Change $\alpha$ at each iteration
-* (Barzilai and Borwein 1998)
+* Barzilai and Borwein, 1998
     * Suppose $x_i$ is the value of $x$ at the iteration $i$
     * $\Delta x = x_{i} - x_{i-1}$
     * $\Delta g(x) = \nabla f(x_{i}) - \nabla f(x_{i-1})$
     * At each step $$\alpha = \frac{\Delta g(x)^T \Delta x}{||\Delta g(x)||^2}$$ is a good choice of $\alpha$
-
-
 
 ## Convergence Criteria
 
@@ -171,7 +173,7 @@ First, let's compute the derivative of the sigmoid function $g$:
 
 ## Solution
 
-* Only use a single data point, or a small subset of your data!
+* Only use a single data point, or a small subset of your data, at in each step!
 
 ## Algorithm
 
@@ -179,11 +181,11 @@ First, let's compute the derivative of the sigmoid function $g$:
 * For example in linear regression, instead of computing the gradient of
 $$\sum_i (y_i - \beta^Tx_i)^2$$
 randomly select some $x_i, y_i$ and compute the gradient of
-$$ y_i - \beta^T x_i$$
+$$ (y_i - \beta^T x_i)^2$$
 
 ## Properties
 
-* Faster than *batch* Gradient Descent on average
+* Faster than *batch* (regular) Gradient Descent on average
 * Prone to oscillation around an optimum
 * Only requires one observation in memory at once
 
