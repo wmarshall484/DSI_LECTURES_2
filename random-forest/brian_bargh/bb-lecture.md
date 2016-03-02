@@ -40,10 +40,24 @@ Morning Objectives:
 Similar to Classification Trees But:
 
 * Instead of predicting a class label we're not trying to predict a number
-* We minimize *mean squared error* instead of entropy or impurity
+* We minimize *total squared error* instead of entropy or impurity
 $$ \sum_{i\in R} (y_i - m_R)^2 + \sum_{i\in S} (y_i - m_S)^2$$
 
 * For inference take the mean of the leaf node
+
+## Regression Trees: Example
+
+ $x_1$     $x_2$    $y$
+-------   ------- --------
+ 1          1        1
+ 0          0        2
+ 1          0        3
+ 0          1        4
+
+ Prior to the split we guess the mean, 2.5, for everything, giving total squared error:
+ $$ E = (1-2.5)^2 + (2-2.5)^2 + (3-2.5)^2 + (4-2.5)^2  = 5$$
+ After we split on $x_1$ we guess 2 for rows 1 & 3 and 3 for rows 2 & 4:
+ $$ E = (1-2)^2 + (3-2)^2 + (2-3)^2 + (4-3)^2 = 4 $$
 
 ## Decision Tree Summary
 
