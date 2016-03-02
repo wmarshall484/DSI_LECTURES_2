@@ -41,6 +41,8 @@ Similar to Classification Trees But:
 
 * Instead of predicting a class label we're not trying to predict a number
 * We minimize *mean squared error* instead of entropy or impurity
+$$ \sum_{i\in R} (y_i - m_R)^2 + \sum_{i\in S} (y_i - m_S)^2$$
+
 * For inference take the mean of the leaf node
 
 ## Decision Tree Summary
@@ -94,13 +96,13 @@ Second slide saying the same thing again to emphasize that Bagging is important.
 * Take a bunch of bootstrap samples - say n
 * Train a high variance, low bias model on each of them
 * Average the results - this can reduce your variance by up to $\sqrt n$
-    - Quiz your neighbor: Why is it actually less than $\sqrt n$?
+    - Quiz your neighbor: Why is the reduction in variance less than $\sqrt n$?
 * This is Bootstrap Aggregation or 'Bagging'
 
 
 ## Correlation Between the Trees
 
-Why is it actually less than $\sqrt n$
+Why is the reduction in variance less than $\sqrt n$?
 
 * We are thinking about the population of all possible decision tree models on our data.
 * If I take $n$ samples *iid* from this distribution and average them the variance goes down by $\sqrt n$
@@ -136,21 +138,38 @@ Afternoon Lecture: Interpreting Random Forests
 
 Afternoon Objectives:
 
-*   Rank feature importances in a Random Forest model
 *   Understand OOB error
+*   Rank feature importances in a Random Forest model
 
-##  Summary
+## Out Of Bag Error
 
-**Q**:  When do you use factorial vs. combination?
+* Out Of Bag error is a method of estimating the error of ensemble methods that use Bagging.  
+* About 1/3 of the estimators will not have been trained on each data point.  (Why?)
+* Test each data point only on the estimators that didn't see that data point during training.  
 
-**Q**:  What is independence?
+## Out Of Bag Error
 
-**Q**:  What is conditional probability? How do I use Bayes's rule?
+* Often we'll use cross validation anyway because we're comparing random forest to other models and we want to measure the accuracy the same way.
 
-**Q**:  What are the PDF and CDF?
+## Feature Importances
 
-**Q**:  What are moments should you use to characterize a distribution?  How do you calculate them?
+* Determining which features are important in predicting the target variable is often a critically important business question.
+* Example: Churn analysis - it's generally more important to understand *why* customers are churning than to predict which customers are going to churn.
 
-**Q**:  What is a quantile?
+## Feature Importances: Mean Decrease Impurity
 
-**Q**:  What are some common distributions?  What type of processes do they model?
+* For each tree, each split is made in order to reduce the total impurity of the tree (Gini Impurity for classification, mean squared error for regression); we can record the magnitude of the reduction.
+* Then the importance of a feature is the average decrease in impurity across trees in the forest, as a result of splits defined by that feature.  
+* This is implemented in sklearn.
+
+## Feature Importances: Mean Decrease Accuracy
+
+To compute the importance of the jth variable:
+
+* When the bth tree is grown, use it to predict the OOB samples and record accuracy.
+* Scramble the values of the jth variable in the OOB samples and do the prediction again.  Compute the new (lower) accuracy.
+* Average the decrease in entropy across all trees.
+
+## Feature Importances: ipython
+
+See example in ipython notebook.  
