@@ -188,7 +188,7 @@ Silhouette score is between 1 and -1
 
 The higher the the average silhouette score, the tigher and more separated the clusters.
 
-# Choosing K -- Silouette Score
+# Choosing K -- Silhouette Score
 
 ![](images/silhouettescores.png)
 
