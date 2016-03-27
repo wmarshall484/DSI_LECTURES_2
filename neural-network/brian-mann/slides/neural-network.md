@@ -155,6 +155,15 @@ Rather than compute the gradient for each observation and add up the result, you
 
 ![SGD](../images/sgd.jpg){width=250px}
 
+## Considerations
+
+Training a neural network can be tricky
+
+* Can make bad initial guesses for weights
+* Loss function is *highly* non-convex and has many "flat spots", can easily get stuck
+
+
+
 ## Afternoon Objectives
 
 * Get acquainted with some more complicated versions of neural networks
