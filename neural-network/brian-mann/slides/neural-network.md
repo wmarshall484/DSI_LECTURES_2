@@ -116,7 +116,7 @@ where $\otimes$ is component-wise multiplication of vectors
 * Remains to compute $\delta^{(L)}$ to seed the process
     * Depends on the error function $E(\mathbf{w})$ and the output activation function
     * For $\theta = id$ and $e = (\mathbf{x}^{(L)} - y)^2$ (regression) $\rightarrow$ $$\delta^{(L)} = 2(\mathbf{x}^{(L)} - y)s^{(L)}$$
-    * For $\theta = \sigma$ and $e = -y \log \hat{y}$ (binary classification) $\rightarrow$ $$\delta^{(L)} = -y + \sigma(\mathbf{s}^{(L)})$$
+    * For $\theta = \sigma$ and $e = -y \log \hat{y} - (1-y) \log(1-\hat{y})$ (binary classification) $\rightarrow$ $$\delta^{(L)} = -y + \sigma(\mathbf{s}^{(L)})$$
 
 ## Example
 
