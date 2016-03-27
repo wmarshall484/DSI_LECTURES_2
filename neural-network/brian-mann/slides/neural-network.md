@@ -63,7 +63,7 @@ Notation for neural networks can be quite messy (lots of indices and variables f
 
 ## Forward Propagation
 
-Let's describe how a neural network takes and input and produces an output. Using the notation from before:
+Let's describe how a neural network takes an input and produces an output. Using the notation from before:
 
 * $\mathbf{x}^{(\ell)} = \begin{bmatrix} 1 \\ \theta(\mathbf{s}^{(\ell)}) \end{bmatrix}$
 * $\mathbf{s}^{(\ell)} = (W^{(\ell)})^T \mathbf{x}^{(\ell - 1)}$
@@ -93,7 +93,7 @@ What's the complexity of forward propagation in terms of the numbers of nodes $V
 
 The most common way to train a neural network is a gradient descent algorithm called *backpropagation*
 
-* Recall the update step in gradient descent: $\mathbf{w}(t+1) = \mathbf{w}(t) - \nu \nabla E(\mathbf{w}(t))$
+* Recall the update step in gradient descent: $\mathbf{w}(t+1) = \mathbf{w}(t) - \eta \nabla E(\mathbf{w}(t))$
 * Consider a loss/error function which is a sum of the errors $e_n$ on each input $E(\mathbf{w}) = \frac{1}{N} \sum e_n$
     * $\frac{\partial E}{\partial W^{(\ell)}} = \frac{1}{N} \sum \frac{\partial e_n}{\partial W^{(\ell)}}$
 * Could use a numerical finite difference approximation to compute $\frac{\partial e_n}{\partial W^{(\ell)}}$ for each input observation, but this is computationally infeasible
@@ -116,7 +116,44 @@ where $\otimes$ is component-wise multiplication of vectors
 * Remains to compute $\delta^{(L)}$ to seed the process
     * Depends on the error function $E(\mathbf{w})$ and the output activation function
     * For $\theta = id$ and $e = (\mathbf{x}^{(L)} - y)^2$ (regression) $\rightarrow$ $$\delta^{(L)} = 2(\mathbf{x}^{(L)} - y)s^{(L)}$$
-    * For $\theta = \sigma$ and $e = -y \log \hat{y}$ (binary classification) $\rightarrow$ $$\delta^{(L)} = -y(1 - \sigma(\mathbf{s}^{(L)})) = -y(1 - \hat{y})$$
+    * For $\theta = \sigma$ and $e = -y \log \hat{y}$ (binary classification) $\rightarrow$ $$\delta^{(L)} = -y(1 - \sigma(\mathbf{s}^{(L)}))$$ $$= -y(1 - \hat{y})$$
+
+## Example
+
+Consider the following neural network
+
+![Example network](../images/example_network.png){width=300px}
+
+The weights are $$W^{(1)} = \begin{bmatrix} 0.1 & 0.2 \\ 0.3 & 0.4 \end{bmatrix}; W^{(2)} = \begin{bmatrix} 0.2 \\ 1 \\ -3 \end{bmatrix}; W^{(3)} = \begin{bmatrix} 1 \\ 2 \end{bmatrix}$$
+
+## Example Continued
+
+Suppose our observation is $x = 2, y = 1$
+
+* $\mathbf{x}^{(0)} = \begin{bmatrix} 1 \\ 2 \end{bmatrix}$; $\mathbf{s}^{(1)} = \begin{bmatrix} 0.1 & 0.3 \\ 0.2 & 0.4 \end{bmatrix} \begin{bmatrix} 1 \\ 2 \end{bmatrix} = \begin{bmatrix} 0.7 \\ 1 \end{bmatrix}$; $\mathbf{x}^{(1)} = \begin{bmatrix} 1 \\ 0.6 \\ 0.76 \end{bmatrix}$
+* $\mathbf{s}^{(2)} = \begin{bmatrix} -1.48 \end{bmatrix}$; $\mathbf{x}^{(2)} = \begin{bmatrix} 1 \\ -0.90 \end{bmatrix}$
+* $\mathbf{s}^{(3)} = \begin{bmatrix} -0.8 \end{bmatrix}$; $\mathbf{x}^{(3)} = \begin{bmatrix} 0.31 \end{bmatrix}$
+
+## Example Continued
+
+Backpropagation gives:
+
+* $\delta^{(3)} = -1(1 - 0.31) = -0.69$; $\delta^{(2)} = (1 - 0.9^2)(2)(-0.69) = -0.2622$; $\delta^{(1)}
+ = \begin{bmatrix} -0.104 \\ 0.188 \end{bmatrix}$
+
+Now we can find the partial derivatives
+
+* $\frac{\partial e}{\partial W^{(1)}} = \mathbf{x}^{(0)}(\delta^{(1)})^T = \begin{bmatrix} -0.104 & 0.188 \\ -0.208 & 0.376 \end{bmatrix}$; $\frac{\partial e}{\partial W^{(2)}} = \mathbf{x}^{(1)}(\delta^{(2)})^T = \begin{bmatrix} -0.69 \\ -0.42 \\ -0.53 \end{bmatrix}$; $\frac{\partial e}{\partial W^{(3)}} = \mathbf{x}^{(2)}(\delta^{(3)})^T = \begin{bmatrix} -1.85 \\ 1.67  \end{bmatrix}$
+
+## Exercise
+
+Repeat the computations in that example, but for the case when the output transformation is the identity and the loss function is squared error.
+
+## Stochastic Gradient Descent
+
+Rather than compute the gradient for each observation and add up the result, you can update the weights based on the error of each observation as you loop through your data
+
+![SGD](../images/sgd.jpg){width=250px}
 
 ## Afternoon Objectives
 
