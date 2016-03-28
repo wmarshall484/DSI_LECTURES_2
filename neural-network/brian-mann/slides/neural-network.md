@@ -148,19 +148,19 @@ In general, neural networks look something like
 Let's go back to our earlier example to clear up as much confusion as possible:
 
 * $\mathbf{x}^{(0)}$ is $\begin{bmatrix} 1 \\ 3 \end{bmatrix}$
-* $\mathbf{s}^{(1)}$ is the result of applying the weights on the edges between layer 0 and 1: $$\begin{bmatrix} (0.1)(1) + (0.3)(3) \\ (0.2)(1) + (0.4)(3) \end{bmatrix} = \begin{bmatrix} 1 \\ 1.4 \end{bmatrix}$$
 * $W^{(1)} = \begin{bmatrix} 0.1 & 0.2 \\ 0.3 & 0.4 \end{bmatrix}$
+* $\mathbf{s}^{(1)}$ is the result of applying the weights on the edges between layer 0 and 1: $$\begin{bmatrix} (0.1)(1) + (0.3)(3) \\ (0.2)(1) + (0.4)(3) \end{bmatrix} = \begin{bmatrix} 1 \\ 1.4 \end{bmatrix}$$
 * $\mathbf{x}^{(1)}$ is the output of layer 1 after applying $\tanh$ and adding a bias node: $$\begin{bmatrix} 1 \\ \tanh(1) \\ \tanh(1.4) \end{bmatrix} = \begin{bmatrix} 1 \\ 0.76 \\ 0.89 \end{bmatrix}$$
 
 ## Example: Notation in Toy Network from Before (2/2)
 
 Continuing:
 
-* $\mathbf{s}^{(2)} = \begin{bmatrix} (0.2)(1) + (1)(0.76) + (-3)(0.89) \end{bmatrix} = \begin{bmatrix} -1.71 \end{bmatrix}$
 * $W^{(2)} = \begin{bmatrix} 0.2 \\ 1 \\ -3 \end{bmatrix}$
+* $\mathbf{s}^{(2)} = \begin{bmatrix} (0.2)(1) + (1)(0.76) + (-3)(0.89) \end{bmatrix} = \begin{bmatrix} -1.71 \end{bmatrix}$
 * $\mathbf{x}^{(2)} =  \begin{bmatrix} 1 \\ \tanh(-1.71) \end{bmatrix} = \begin{bmatrix} 1 \\ -0.94 \end{bmatrix}$
-* $\mathbf{s}^{(3)} = \begin{bmatrix} (1)(1) + (2)(-0.94) \end{bmatrix} = \begin{bmatrix} -0.88 \end{bmatrix}$
 * $W^{(3)} = \begin{bmatrix} 1 \\ 2 \end{bmatrix}$
+* $\mathbf{s}^{(3)} = \begin{bmatrix} (1)(1) + (2)(-0.94) \end{bmatrix} = \begin{bmatrix} -0.88 \end{bmatrix}$
 * $\mathbf{x}^{(3)} = \begin{bmatrix} \sigma(-0.88) \end{bmatrix} = \begin{bmatrix} 0.29 \end{bmatrix}$
 
 ## Check for Mastery
@@ -190,7 +190,7 @@ In terms of the number of nodes $V$ and weights $E$, what is the algorithmic com
 
 We now know how NNs with fixed weights make predictions. But how do we train a neural network?
 
-* Training data $\{(\mathbf{x_i}, y_i\}$
+* Training data $\{(\mathbf{x_i}, y_i)\}$
 * Need to minimize some error function $E$ on our training set over the weights $\mathbf{w} = (W^{(1)}, \ldots, W^{(L)})$
     * We'll use $$E(\mathbf{w}) = \frac{1}{N} \sum_i (h(\mathbf{x_i}; \mathbf{w}) - y_i)^2$$ (mean squared error)
 * This function can be *extremely* complicated to write algebraically
@@ -198,7 +198,9 @@ We now know how NNs with fixed weights make predictions. But how do we train a n
 
 ## Check for Mastery
 
-What tool/tools do we have available to find the minimum value? Why don't we use sign as an activation function?
+1. What tool/tools do we have available to find the minimum value?
+
+2. Why don't we use sign as an activation function?
 
 ## Backpropagation (2/4)
 
@@ -240,36 +242,141 @@ Suppose our observation is $x = 2, y = 1$
 Backpropagation gives:
 
 * $\delta^{(3)} = 2(0.31 - 1)(0.31)(1 - 0.31) = -0.30$; $\delta^{(2)} = (1 - 0.9^2)(2)(-0.30) = -0.114$; $\delta^{(1)}
- = \begin{bmatrix} -0.104 \\ 0.188 \end{bmatrix}$
+ = \begin{bmatrix} -0.072 \\ 0.144 \end{bmatrix}$
 
 Now we can find the partial derivatives
 
-* $\frac{\partial e}{\partial W^{(1)}} = \mathbf{x}^{(0)}(\delta^{(1)})^T = \begin{bmatrix} -0.104 & 0.188 \\ -0.208 & 0.376 \end{bmatrix}$; $\frac{\partial e}{\partial W^{(2)}} = \mathbf{x}^{(1)}(\delta^{(2)})^T = \begin{bmatrix} -0.69 \\ -0.42 \\ -0.53 \end{bmatrix}$; $\frac{\partial e}{\partial W^{(3)}} = \mathbf{x}^{(2)}(\delta^{(3)})^T = \begin{bmatrix} -1.85 \\ 1.67  \end{bmatrix}$
+* $\frac{\partial e}{\partial W^{(1)}} = \mathbf{x}^{(0)}(\delta^{(1)})^T = \begin{bmatrix} -0.072 & 0.144 \\ -0.144 & 0.288 \end{bmatrix}$; $\frac{\partial e}{\partial W^{(2)}} = \mathbf{x}^{(1)}(\delta^{(2)})^T = \begin{bmatrix} -0.69 \\ -0.42 \\ -0.53 \end{bmatrix}$; $\frac{\partial e}{\partial W^{(3)}} = \mathbf{x}^{(2)}(\delta^{(3)})^T = \begin{bmatrix} -1.85 \\ 1.67  \end{bmatrix}$
 
 ## Stochastic Gradient Descent
 
-Backpropagation finds the gradient at each observation, adds then up to find the total gradient
+Backpropagation finds the gradient at each observation, adds them up to find the total gradient
 
 * $\displaystyle \nabla E(\mathbf{w}) = \frac{1}{N} \sum_i \nabla e_i(\mathbf{w})$
 * $\mathbf{w}(t+1) = \mathbf{w}(t) - \eta \nabla E(\mathbf{w}(t))$
 
-Instead, update weights at each observation
+Instead, update weights at each observation (or after a small batch of observations)
 
 * $\mathbf{w}(t+1) = \mathbf{w}(t) - \eta \nabla e_i(\mathbf{w}(t))$
 
 ![](../images/sgd.jpg){width=175px}
 
+## Termination
 
+The error function is generally an *extremely* non-convex function.
+
+* Lots of local minima and flat spots
+* Often best to terminate after a set number of iterations
+* Also, can terminate when the gradient is small and the total error is small
+
+## Epochs
+
+You'll often see the word *epoch*:
+
+* An epoch is a single sweep through all your data
+* If you have 100,000 observations, and a batch size of 100, each epoch consists of 1,000 gradient descent update steps
 
 ## Afternoon Objectives
 
-This afternoon's objectives are:
+This afternoon we'll give a high-level overview of the ecosystem of neural networks:
 
 * Understand how neural networks can be used for regression and multi-class classification by using different loss functions and output activations
 * Explain the properties/pros/cons of different activation functions
 * Explain some methods to avoid overfitting
 * Learn about some more complicated versions of neural networks
 * Use Keras to build neural networks in Python
+
+## Initialization (1/2)
+
+1. What can go wrong if you set all the weights $= 0$ initially?
+
+2. What happens if all the weights are initially very large?
+
+## Initialization (2/2)
+
+Rule of thumb:
+
+* Sample weights from $N(0, \sigma_w^2)$
+* $\sigma_w^2 \max_i ||\mathbf{x_i}||^2 << 1$
+
+## Momentum
+
+Helps push backpropagation out of local minima.
+
+* Adds a fraction of the previous gradient in the new update step: $$\mathbf{w}(t+1) = \mathbf{w}(t) - \eta \nabla E(\mathbf{w}(t)) + m (\mathbf{w}(t) - \mathbf{w}(t-1))$$
+* $m = 0.9$ is standard
+* Too high risks overshooting minimum
+* Too lows risks getting stuck in local minima
+
+
+## Regression and Multi-Class Classification
+
+Neural Networks can also be used for regression and for data with multiple classes
+
+* For regression, replace the output transformation with $\theta = id$ and use mean squared error
+
+* For multiple classes:
+    * The output layer will have multiple nodes, one for each class $1, 2, \ldots, K$
+    * The output activation function on the $j$-th component of the output layer is the *softmax* function $$\displaystyle \frac{e^{\mathbf{s}^{(L)}_j}}{\sum_{i=1}^K e^{\mathbf{s}^{(L)}_i}}$$
+    * Minimize cross-entropy $\sum_i -y_i \log h(\mathbf{x_i})$
+
+## Check for Mastery
+
+Repeat the backpropagation example from the morning lecture, but for regression.
+
+## Activation Functions
+
+There are many choices for activation functions in hidden layers. Two popular choices are:
+
+* $\tanh$ is similar to $\sigma$, and trains faster in most cases
+    * Normalize your data!
+* A *rectifier* or *hard max* function $\max\{0, x\}$ is also popular
+    * An artificial neuron using this function is called a *rectified linear unit* (ReLU for short)
+    * Gradient does not vanish as $x$ gets large
+    * $0$ if $x < 0$, introduces sparsity into the network
+    * Faster training
+    * Doesn't require normalization of data
+
+## Check for Mastery
+
+What's the derivative of a ReLU?
+
+## Overfitting
+
+To avoid overfitting you can use:
+
+* Regularization
+    * Add an $\ell2$-regularization term $\lambda \sum_{\ell, i, j} (w_{ij}^{(\ell)})^2$ to the error function
+
+* Dropout
+    * Randomly remove nodes from the network each time you run backpropagation
+
+## Fully Connected Neural Networks
+
+This is the type of neural network you've already seen.
+
+* Each layer is *fully connected* to the next
+* No missing edges between nodes
+
+![Fully Connected Neural Network](../images/neural_network.jpg)
+
+## Deep Learning
+
+*Deep Learning* is a buzz-phrase that just refers to NNs with more than 3 layers.
+
+## Convolutional Neural Networks
+
+A type of NN modeled after the human eye.
+
+* Not fully connected
+* Used mainly for image classification
+    * State of the art
+* Employs *convolution layers*
+    * Each node only "sees" a subset of the previous layer's nodes
+    * Applies *convolutions* (a sort of filter) to each sub-image to "look for" certain patterns or shapes (which are learned)
+
+![Convolution NN](../images/convnet.png)
+
 
 
 ## References
