@@ -10,7 +10,6 @@ This morning's objectives are:
 * Know the benefits and drawbacks of using a neural network
 * Build a simple neural network for binary classification
 * Train a neural network using backpropagation
-* Explain the parameters of a neural network and what they do
 
 ## Background
 
@@ -106,6 +105,7 @@ The hyperbolic tangent function is commonly used as an *activation function* in 
 * $\tanh(z) = 2\sigma(2z) - 1$
     * Same shape as the sigmoid function
     * Output values centered around $0$
+* $\tanh^{\prime}(z) = 1 - \tanh^2(z)$
 
 ## Check for Mastery
 
@@ -123,7 +123,7 @@ Since this is some heavy-duty stuff, let's keep things as simple as possible whi
 
 ## Notation (1/2)
 
-We need a way to write down the network mathematically to do anything with it. As a warning: this can get quite messy:
+We need a way to write down the network mathematically to do anything with it. As a warning, this can get quite messy:
 
 * Layers are given by indices $0, 1, 2, \ldots, L$ where $0$ is the input layer, and $L$ is the output layer
 * For each layer $\ell$:
@@ -136,6 +136,12 @@ We need a way to write down the network mathematically to do anything with it. A
 If we zoom in to a single node in a single layer, the picture looks like:
 
 ![Artificial Neuron Schematic](../images/notation_image_2.jpg){width=300px}
+
+## Schematic
+
+In general, neural networks look something like
+
+![Neural Network](../images/neural_network.jpg)
 
 ## Example: Notation in Toy Network from Before (1/2)
 
@@ -180,7 +186,78 @@ This chain of transformations is called the *forward propagation* algorithm.
 
 In terms of the number of nodes $V$ and weights $E$, what is the algorithmic complexity of forward propagation (in Big-O notation)?
 
+## Backpropagation (1/4)
 
+We now know how NNs with fixed weights make predictions. But how do we train a neural network?
+
+* Training data $\{(\mathbf{x_i}, y_i\}$
+* Need to minimize some error function $E$ on our training set over the weights $\mathbf{w} = (W^{(1)}, \ldots, W^{(L)})$
+    * We'll use $$E(\mathbf{w}) = \frac{1}{N} \sum_i (h(\mathbf{x_i}; \mathbf{w}) - y_i)^2$$ (mean squared error)
+* This function can be *extremely* complicated to write algebraically
+    * No closed form solution for minima
+
+## Check for Mastery
+
+What tool/tools do we have available to find the minimum value? Why don't we use sign as an activation function?
+
+## Backpropagation (2/4)
+
+Train a neural network using a gradient descent algorithm called *backpropagation*:
+
+* Recall the update step in gradient descent: $$\mathbf{w}(t+1) = \mathbf{w}(t) - \eta \nabla E(\mathbf{w}(t))$$
+* Our total error is a sum of the errors $e_n$ on each input $E(\mathbf{w}) = \frac{1}{N} \sum e_i$
+    * $e_i = (h(\mathbf{x_i}; \mathbf{w}) - y_i)^2$
+    * $\displaystyle \frac{\partial E}{\partial W^{(\ell)}} = \frac{1}{N} \sum \frac{\partial e_n}{\partial W^{(\ell)}}$
+    * Can consider one data point at a time and add the results to get the total gradient
+
+## Backpropagation (3/4)
+
+Backpropagation uses the chain rule to compute the partial derivatives of layer $\ell$ in terms of layer $\ell + 1$.
+
+* The *sensitivity vector* of layer $\ell$ is $$\mathbf{\delta}^{(l)} = \frac{\partial e}{\partial \mathbf{s}^{(\ell)}}$$
+* Then we can compute $$\frac{\partial e}{\partial W^{(\ell)}} = \mathbf{x}^{(l-1)} (\mathbf{\delta}^{(\ell)})^T$$
+* For $j$ in $1, \ldots, d^{(\ell)}$
+$$\mathbf{\delta}^{(\ell)}_j = \theta^{\prime}(\mathbf{s}^{(\ell)})_j \times [W^{(\ell+1)}\mathbf{\delta}^{(\ell+1)}]_j$$  
+
+## Backpropagation (4/4)
+
+* Can compute $\delta^{(\ell)}$ from $\delta^{(\ell + 1)}$
+* Must still compute $\delta^{(L)}$ to seed the process
+    * Depends on the error function and the output activation function
+    * In our case $$\delta^{(L)} = 2(h(\mathbf{x_i}; \mathbf{w}) - y_i)h(\mathbf{x_i}; \mathbf{w})(1 - h(\mathbf{x_i}; \mathbf{w}))$$
+* $W^{(\ell)} = W^{(\ell)} - \eta \frac{\partial E}{\partial W^{(\ell)}}$
+
+## Example: Backpropagation
+
+Suppose our observation is $x = 2, y = 1$
+
+* $\mathbf{x}^{(0)} = \begin{bmatrix} 1 \\ 2 \end{bmatrix}$; $\mathbf{s}^{(1)} = \begin{bmatrix} 0.1 & 0.3 \\ 0.2 & 0.4 \end{bmatrix} \begin{bmatrix} 1 \\ 2 \end{bmatrix} = \begin{bmatrix} 0.7 \\ 1 \end{bmatrix}$; $\mathbf{x}^{(1)} = \begin{bmatrix} 1 \\ 0.6 \\ 0.76 \end{bmatrix}$
+* $\mathbf{s}^{(2)} = \begin{bmatrix} -1.48 \end{bmatrix}$; $\mathbf{x}^{(2)} = \begin{bmatrix} 1 \\ -0.90 \end{bmatrix}$
+* $\mathbf{s}^{(3)} = \begin{bmatrix} -0.8 \end{bmatrix}$; $\mathbf{x}^{(3)} = \begin{bmatrix} 0.31 \end{bmatrix}$
+
+## Example: Backpropagation
+
+Backpropagation gives:
+
+* $\delta^{(3)} = 2(0.31 - 1)(0.31)(1 - 0.31) = -0.30$; $\delta^{(2)} = (1 - 0.9^2)(2)(-0.30) = -0.114$; $\delta^{(1)}
+ = \begin{bmatrix} -0.104 \\ 0.188 \end{bmatrix}$
+
+Now we can find the partial derivatives
+
+* $\frac{\partial e}{\partial W^{(1)}} = \mathbf{x}^{(0)}(\delta^{(1)})^T = \begin{bmatrix} -0.104 & 0.188 \\ -0.208 & 0.376 \end{bmatrix}$; $\frac{\partial e}{\partial W^{(2)}} = \mathbf{x}^{(1)}(\delta^{(2)})^T = \begin{bmatrix} -0.69 \\ -0.42 \\ -0.53 \end{bmatrix}$; $\frac{\partial e}{\partial W^{(3)}} = \mathbf{x}^{(2)}(\delta^{(3)})^T = \begin{bmatrix} -1.85 \\ 1.67  \end{bmatrix}$
+
+## Stochastic Gradient Descent
+
+Backpropagation finds the gradient at each observation, adds then up to find the total gradient
+
+* $\displaystyle \nabla E(\mathbf{w}) = \frac{1}{N} \sum_i \nabla e_i(\mathbf{w})$
+* $\mathbf{w}(t+1) = \mathbf{w}(t) - \eta \nabla E(\mathbf{w}(t))$
+
+Instead, update weights at each observation
+
+* $\mathbf{w}(t+1) = \mathbf{w}(t) - \eta \nabla e_i(\mathbf{w}(t))$
+
+![](../images/sgd.jpg){width=175px}
 
 
 
