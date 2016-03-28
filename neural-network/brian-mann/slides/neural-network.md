@@ -4,66 +4,166 @@
 
 ## Morning Objectives
 
-* Understand the intuition and use cases for neural networks
-* Learn how neural networks predict on new observations (forward propagation) and how to train them (backpropagation)
-* Build and train a simple neural network
+This morning's objectives are:
 
-## Introduction to Neural Networks
+* Know the best use cases for neural networks
+* Know the benefits and drawbacks of using a neural network
+* Build a simple neural network for binary classification
+* Train a neural network using backpropagation
+* Explain the parameters of a neural network and what they do
 
-Originally designed to mimic neurons in the brain
+## Background
 
-* Neurons "fire" when the input reaches a certain threshold
-* Modeled by an *activation function* ($sign$, $logistic$, $tanh$, a rectifier, etc...)
-* Otherwise not a good analogy, don't think about NNs as models for the brain. They're not.
+Neural Networks were introduced in the 1950's as a model which mimics the human brain.
 
-## When Do I Use One
+* Biological neurons "fire" at a certain voltage threshold
+* An artificial neuron will be modeled by an activation function like sign, the sigmoid function, or $\tanh$
+* Otherwise, not a good analogy
+    * Don't think of neural networks as models for a brain
 
-Most of the time other (simpler) models will be better, but...
+## Why Neural Networks?
 
-* Work well on high dimensional data (images, text, audio)
-* Can model *arbitrarily* complicated decision functions given enough training time
+Pros:
+
+* Works well with high dimensional data:
+    * images
+    * text
+    * audio
+* Can model *arbitrarily* complicated decision functions
+
+Cons:
+
 * Not interpretable
-* Hard to tune, many parameters and choices to make
-* Long training time, hard to train
-* Easy to overfit if not careful
+* Slow to train
+* Easy to overfit
+* Difficult to tune
+    * Many parameters/choices when building the network
 
-## You've Already Seen One!
+## Example: Logistic Regression (1/3)
 
-![A perceptron](../images/perceptron.jpg){width=200px}
+Recall logistic regression:
 
-Replacing the output activation function $sign$ with:
+* Input $\mathbf{x}$
+* Weights $\mathbf{w}$
+* $\sigma(z) = \frac{1}{1 + e^{-z}}$
+* Classify $\mathbf{x}$ as positive if $\sigma(\mathbf{w}^T\mathbf{x}) > 0.5$
+* Think of $\sigma$ as an *activation function* which *activates* if the input is larger than $0$
 
-* $\sigma(z) = \frac{1}{1 + e^{-z}}$ $\rightarrow$ logistic regression
-* The identity $id(z) = z$ gives linear regression
-* For a multi-class classification problem (multiple output nodes) use softmax $$\frac{e^{z_i}}{\sum_j e^{z_j}}$$
+## Example: Logistic Regression (2/3)
 
-## Adding Hidden Layers
+Draw logistic regression schematically as
 
-![A fully connected NN](../images/neural_network.jpg){width=400px}
+![Logisitic Regression](../images/logistic_regression.jpg){width=180px}
 
-A NN is *fully connected* if all the outputs of each layer are inputs to every neural on the next layer
+Think of the diagram as having two *layers*
 
-## Notation
+* Input layer: The nodes which hold the inputs $1, x_1, x_2, \ldots, x_n$
+* Output layer: The single node that holds the output value
+* The weights $w_0, w_1, \ldots, w_n$ transition between the two layers
 
-Notation for neural networks can be quite messy (lots of indices and variables floating around)
+## Example: Logisitic Regression (3/3)
+
+The hypothesis $h(\mathbf{x}; \mathbf{w}) = \sigma(\mathbf{w}^T\mathbf{x})$ only models linear decision functions.
+
+* The decision boundary is the set of points where $\mathbf{w}^T\mathbf{x} = 0$, a hyperplane
+* What about more complicated behavior?
+
+## Example: Neural Network with Multiple Layers (1/2)
+
+Consider the following network with 4 layers:
+
+![NN with Multiple Layers](../images/neural_network_example.jpg){width=250px}
+
+* Input (layer 0): Contains the input value $x$ and a bias term $1$
+* Two *hidden layers* (layers 1 and 2)
+* Output (layer 3): Contains the output value (probability of positive classification)
+
+## Example: Neural Network with Multiple Layers (2/2)
+
+Let's compute the output of the network for $x = 3$. We'll go layer by layer to keep things straight:
+
+* Layer 1:
+    * The first non-bias node is $\tanh((0.1)(1) + (0.3)(3)) = 0.76$
+    * The second non-bias node is $\tanh((0.2)(1) + (0.4)(3)) = 0.89$
+* Layer 2:
+    * The non-bias node is $\tanh((0.2)(1) + (1)(0.76) + (-3)(0.89)) = -0.94$
+* Output:
+    * The value of the output layer is $\sigma((1)(1) + (2)(-0.94)) = 0.29$
+
+So $h(3) = 0.29$ for this example.
+
+## Check for Mastery
+
+Compute the output of the this neural network for $x = 1$.
+
+## Why tanh?
+
+The hyperbolic tangent function is commonly used as an *activation function* in hidden layers:
+
+![$\tanh$](../images/tanh.gif){width=180px}
+
+* Smooth (differentiable), unlike sign
+* $\tanh(z) = 2\sigma(2z) - 1$
+    * Same shape as the sigmoid function
+    * Output values centered around $0$
+
+## Check for Mastery
+
+Why do you think the fact that the value of $\tanh$ being centered around $0$ is important?
+
+## Let's Keep it Simple For Now
+
+Since this is some heavy-duty stuff, let's keep things as simple as possible while still trying to grasp the general picture:
+
+* Stick to networks for binary classification (a single output node)
+* The output node will use the sigmoid activation function $\sigma$
+* Hidden layers will use the $\tanh$ activation function
+* $\theta$ will always represent an activation function (like sign, $\tanh$, $\sigma$, or something else like a rectifier)
+
+
+## Notation (1/2)
+
+We need a way to write down the network mathematically to do anything with it. As a warning: this can get quite messy:
 
 * Layers are given by indices $0, 1, 2, \ldots, L$ where $0$ is the input layer, and $L$ is the output layer
-* $\theta$ is an activation function, can change from layer to layer. We'll use $\tanh$ in each hidden layer and $\sigma$ for the output activation (or softmax for multi-class)
 * For each layer $\ell$:
     * $\mathbf{s}^{(\ell)}$ is the $d^{(\ell)}$-dimensional input vector
     * $\mathbf{x}^{(\ell)}$ is the $d^{(\ell)}+1$-dimensional output vector
-    * $W^{(\ell)}$ is the $d^{(\ell-1)}+1 \times d^{(\ell)}$ matrix of input weights
+    * $W^{(\ell)}$ is the $d^{(\ell-1)}+1 \times d^{(\ell)}$ matrix of input weights. $W^{(\ell)}_{ij}$ is the weight of the edge from the $i$-th node in layer $\ell -1$ to the $j$-th node in $\ell$
 
+## Notation (2/2)
 
-## More Notation
+If we zoom in to a single node in a single layer, the picture looks like:
 
-![Notation Diagram](../images/notation_image_2.jpg){width=250px}
+![Artificial Neuron Schematic](../images/notation_image_2.jpg){width=300px}
 
-![Notation Diagram](../images/notation_image.jpg){width=250px}
+## Example: Notation in Toy Network from Before (1/2)
 
-## Forward Propagation
+Let's go back to our earlier example to clear up as much confusion as possible:
 
-Let's describe how a neural network takes an input and produces an output. Using the notation from before:
+* $\mathbf{x}^{(0)}$ is $\begin{bmatrix} 1 \\ 3 \end{bmatrix}$
+* $\mathbf{s}^{(1)}$ is the result of applying the weights on the edges between layer 0 and 1: $$\begin{bmatrix} (0.1)(1) + (0.3)(3) \\ (0.2)(1) + (0.4)(3) \end{bmatrix} = \begin{bmatrix} 1 \\ 1.4 \end{bmatrix}$$
+* $W^{(1)} = \begin{bmatrix} 0.1 & 0.2 \\ 0.3 & 0.4 \end{bmatrix}$
+* $\mathbf{x}^{(1)}$ is the output of layer 1 after applying $\tanh$ and adding a bias node: $$\begin{bmatrix} 1 \\ \tanh(1) \\ \tanh(1.4) \end{bmatrix} = \begin{bmatrix} 1 \\ 0.76 \\ 0.89 \end{bmatrix}$$
+
+## Example: Notation in Toy Network from Before (2/2)
+
+Continuing:
+
+* $\mathbf{s}^{(2)} = \begin{bmatrix} (0.2)(1) + (1)(0.76) + (-3)(0.89) \end{bmatrix} = \begin{bmatrix} -1.71 \end{bmatrix}$
+* $W^{(2)} = \begin{bmatrix} 0.2 \\ 1 \\ -3 \end{bmatrix}$
+* $\mathbf{x}^{(2)} =  \begin{bmatrix} 1 \\ \tanh(-1.71) \end{bmatrix} = \begin{bmatrix} 1 \\ -0.94 \end{bmatrix}$
+* $\mathbf{s}^{(3)} = \begin{bmatrix} (1)(1) + (2)(-0.94) \end{bmatrix} = \begin{bmatrix} -0.88 \end{bmatrix}$
+* $W^{(3)} = \begin{bmatrix} 1 \\ 2 \end{bmatrix}$
+* $\mathbf{x}^{(3)} = \begin{bmatrix} \sigma(-0.88) \end{bmatrix} = \begin{bmatrix} 0.29 \end{bmatrix}$
+
+## Check for Mastery
+
+What are $\mathbf{x}^{(2)}$ and $\mathbf{s}^{(2)}$ when $x = 1$?
+
+## Forward Propagation (1/2)
+
+Studying the above example gives general formulae for computing the output of a neural network with fixed weights:
 
 * $\mathbf{x}^{(\ell)} = \begin{bmatrix} 1 \\ \theta(\mathbf{s}^{(\ell)}) \end{bmatrix}$
 * $\mathbf{s}^{(\ell)} = (W^{(\ell)})^T \mathbf{x}^{(\ell - 1)}$
@@ -72,101 +172,26 @@ So we get the chain:
 
 $$\mathbf{x}^{(0)} \xrightarrow{W^{(1)}} \mathbf{s}^{(1)} \xrightarrow{\theta} \mathbf{x}^{(1)} \xrightarrow{W^{(2)}} \mathbf{s}^{(2)} \cdots \rightarrow \mathbf{s}^{(L)} \xrightarrow{\theta} \mathbf{x}^{(L)} = h(\mathbf{x}^{(0)})$$
 
-## More Forward Propagation
+## Forward Propagation (2/2)
 
-![Forward Prop](../images/forward_prop.jpg)
+This chain of transformations is called the *forward propagation* algorithm.
 
-## Question
+## Check for Mastery
 
-What's the complexity of forward propagation in terms of the numbers of nodes $V$ and edges $E$ of the network?
-
-## Training a Neural Networks
-
-* Need to determine the optimal weights $\mathbf{w} = (W^{(1)}, \ldots, W^{(L)})$
-* Loss function $E(\mathbf{w})$
-    * $\hat{y_n} = h(x_n; \mathbf{w})$
-    * For regression $E(\mathbf{w}) = \frac{1}{N} \sum (\hat{y_n} - y_n)^2$ and $\theta = id$
-    * For binary classification $E(\mathbf{w}) = \sum - y_n \log \hat{y_n} - (1-y_n) \log(1 - \hat{y_n})$ and $\theta = \sigma$
-    * For multi-class classification $E(\mathbf{w}) = \sum -y_n \log \hat{y_n}$ and $\theta =$ softmax
-
-## Backpropagation
-
-The most common way to train a neural network is a gradient descent algorithm called *backpropagation*
-
-* Recall the update step in gradient descent: $\mathbf{w}(t+1) = \mathbf{w}(t) - \eta \nabla E(\mathbf{w}(t))$
-* Consider a loss/error function which is a sum of the errors $e_n$ on each input $E(\mathbf{w}) = \frac{1}{N} \sum e_n$
-    * $\frac{\partial E}{\partial W^{(\ell)}} = \frac{1}{N} \sum \frac{\partial e_n}{\partial W^{(\ell)}}$
-* Could use a numerical finite difference approximation to compute $\frac{\partial e_n}{\partial W^{(\ell)}}$ for each input observation, but this is computationally infeasible
-* Instead we'll use a clever stepwise, dynamic programming approach
+In terms of the number of nodes $V$ and weights $E$, what is the algorithmic complexity of forward propagation (in Big-O notation)?
 
 
-## Backpropagation
-
-Backpropagation uses the chain rule to compute the partial derivatives of layer $\ell$ in terms of layer $\ell + 1$.
-
-* Define the sensitivity vector of layer $\ell$ $$\mathbf{\delta}^{(l)} = \frac{\partial e}{\partial \mathbf{s}^{(\ell)}}$$
-* Then we can compute $$\frac{\partial e}{\partial W^{(\ell)}} = \mathbf{x}^{(l-1)} (\mathbf{\delta}^{(\ell)})^T$$
-* In order to compute $\delta^{(\ell)}$
-$$\mathbf{\delta}^{(\ell)} = \theta^{\prime}(\mathbf{s}^{(\ell)}) \otimes [W^{(\ell+1)}\mathbf{\delta}^{(\ell+1)}]_1^{d^{(\ell)}}$$  
-where $\otimes$ is component-wise multiplication of vectors
-
-## Backpropagation
-
-* Now we have a way to get $\delta^{(\ell)}$ from $\delta^{(\ell + 1)}$
-* Remains to compute $\delta^{(L)}$ to seed the process
-    * Depends on the error function $E(\mathbf{w})$ and the output activation function
-    * For $\theta = id$ and $e = (\mathbf{x}^{(L)} - y)^2$ (regression) $\rightarrow$ $$\delta^{(L)} = 2(\mathbf{x}^{(L)} - y)s^{(L)}$$
-    * For $\theta = \sigma$ and $e = -y \log \hat{y} - (1-y) \log(1-\hat{y})$ (binary classification) $\rightarrow$ $$\delta^{(L)} = -y + \sigma(\mathbf{s}^{(L)})$$
-
-## Example
-
-Consider the following neural network
-
-![Example network](../images/example_network.png){width=300px}
-
-The weights are $$W^{(1)} = \begin{bmatrix} 0.1 & 0.2 \\ 0.3 & 0.4 \end{bmatrix}; W^{(2)} = \begin{bmatrix} 0.2 \\ 1 \\ -3 \end{bmatrix}; W^{(3)} = \begin{bmatrix} 1 \\ 2 \end{bmatrix}$$
-
-## Example Continued
-
-Suppose our observation is $x = 2, y = 1$
-
-* $\mathbf{x}^{(0)} = \begin{bmatrix} 1 \\ 2 \end{bmatrix}$; $\mathbf{s}^{(1)} = \begin{bmatrix} 0.1 & 0.3 \\ 0.2 & 0.4 \end{bmatrix} \begin{bmatrix} 1 \\ 2 \end{bmatrix} = \begin{bmatrix} 0.7 \\ 1 \end{bmatrix}$; $\mathbf{x}^{(1)} = \begin{bmatrix} 1 \\ 0.6 \\ 0.76 \end{bmatrix}$
-* $\mathbf{s}^{(2)} = \begin{bmatrix} -1.48 \end{bmatrix}$; $\mathbf{x}^{(2)} = \begin{bmatrix} 1 \\ -0.90 \end{bmatrix}$
-* $\mathbf{s}^{(3)} = \begin{bmatrix} -0.8 \end{bmatrix}$; $\mathbf{x}^{(3)} = \begin{bmatrix} 0.31 \end{bmatrix}$
-
-## Example Continued
-
-Backpropagation gives:
-
-* $\delta^{(3)} = -1(1 - 0.31) = -0.69$; $\delta^{(2)} = (1 - 0.9^2)(2)(-0.69) = -0.2622$; $\delta^{(1)}
- = \begin{bmatrix} -0.104 \\ 0.188 \end{bmatrix}$
-
-Now we can find the partial derivatives
-
-* $\frac{\partial e}{\partial W^{(1)}} = \mathbf{x}^{(0)}(\delta^{(1)})^T = \begin{bmatrix} -0.104 & 0.188 \\ -0.208 & 0.376 \end{bmatrix}$; $\frac{\partial e}{\partial W^{(2)}} = \mathbf{x}^{(1)}(\delta^{(2)})^T = \begin{bmatrix} -0.69 \\ -0.42 \\ -0.53 \end{bmatrix}$; $\frac{\partial e}{\partial W^{(3)}} = \mathbf{x}^{(2)}(\delta^{(3)})^T = \begin{bmatrix} -1.85 \\ 1.67  \end{bmatrix}$
-
-## Exercise
-
-Repeat the computations in that example, but for the case when the output transformation is the identity and the loss function is squared error.
-
-## Stochastic Gradient Descent
-
-Rather than compute the gradient for each observation and add up the result, you can update the weights based on the error of each observation as you loop through your data
-
-![SGD](../images/sgd.jpg){width=250px}
-
-## Considerations
-
-Training a neural network can be tricky
-
-* Can make bad initial guesses for weights
-* Loss function is *highly* non-convex and has many "flat spots", can easily get stuck
 
 
 
 ## Afternoon Objectives
 
-* Get acquainted with some more complicated versions of neural networks
+This afternoon's objectives are:
+
+* Understand how neural networks can be used for regression and multi-class classification by using different loss functions and output activations
+* Explain the properties/pros/cons of different activation functions
+* Explain some methods to avoid overfitting
+* Learn about some more complicated versions of neural networks
 * Use Keras to build neural networks in Python
 
 
