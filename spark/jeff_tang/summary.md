@@ -79,7 +79,7 @@
 		* Since disk I/O is orders of magnitude slower than RAM, jobs typically take a long time to complete
 
 * **Spark implements MapReduce with much greater flexibility**
-	* Map and Reduce fundtions can be interspersed
+	* Map and Reduce functions can be interspersed
 	* Results are stored in memory and 'pipelined` between phases without incurring the cost of disk I/O
 		* Operations can be chained easily
 		
