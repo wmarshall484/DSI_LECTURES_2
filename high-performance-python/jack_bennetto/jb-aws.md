@@ -9,9 +9,8 @@ Morning objectives:
 
  * Understand motivation for cloud computing and AWS
  * Describe core AWS service and concepts
- * Configure your laptop to use AWS
+ * Configure your laptop to use AWS CLI
  * Use SSH key to access EC2 instances
- * Launch and access ECS
  * Access S3
 
 # Agenda
