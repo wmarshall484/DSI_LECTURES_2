@@ -10,19 +10,19 @@
 
 # Agenda
 
+Morning - AWS
+
 Afternoon
 
-
-# Counting words in documents
-
-# Counting words in documents (in parallel)
+ * Discuss computer resources
+ * Talk about processes
+ * Talk about threads
 
 # Motivation
 
- * Process biggish data ($ge$ 5GB depending on task)
+ * Process biggish data ($\ge$ 5GB depending on task)
  * More efficient use of CPU resources
  * Saves time
-
 
 # Computing Resources
 
@@ -33,7 +33,6 @@ Afternoon
 * Graphics Processing Unit (GPU)
 * ...
 
-
 # CPU Cores
 
  * A CPU can have multiple cores
@@ -43,7 +42,7 @@ Afternoon
 # Processes
 An instance of a computer program that is being executed.
 
-Each process has its own memory, text, filehandles, permissions, etc. and can run on any core.
+Each process has its own memory, program text, filehandles, permissions, etc. and can run on any core.
 
 A computer runs many, many processes, most just waiting.
 
@@ -68,7 +67,7 @@ def sequential_word_count(lst_of_files):
 
 # Use a multiple cores to count words in files
 def parallel_word_count(lst_of_files):
-    pool = Pool (processes = 4)
+    pool = Pool(processes=4)
     results = pool.map(word_count, lst_of_files)
     return sum(results)
 ```
@@ -95,9 +94,9 @@ Python processes have a Global Interpreter Lock (GIL) that prevents multiple thr
 
 Python threads are concurrent but not parallel
 
-*In the most common implemetation
-
 Why use threads?
+
+*In the most common implemetation
 
 # Multi-threading in python
 
