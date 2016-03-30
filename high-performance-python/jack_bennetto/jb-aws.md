@@ -425,6 +425,7 @@ $ ssh -N -f -L localhost:8888:localhost:8889 \
     remote_user@remote_host
 ```
 
+ * galvanize-dsi-ami already has a notebook server running, but you need to change security group to allow access
  * Access notebook via browser at URL localhost:8888
  * Run a notebook server:
  * [Official documentation](http://ipython.org/ipython-doc/2/notebook/public_server.html)
