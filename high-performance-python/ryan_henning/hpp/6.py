@@ -10,7 +10,7 @@ few reasons:
       This is NOT the case if you use threads. Btw, most browsers will
       create one process to run each tab for this very reason; you don't
       want an error in one of your tabs to bring down the whole browser!
-    - This point is true ONLY FOR PYTHON: The implementation of python we
+    - This next point is true ONLY FOR PYTHON: The implementation of python we
       all use (CPython) has what they call the Global Interpreter Lock (GIL)
       that prevents more than one thread of a single process from executing
       python code concurrently. So... if you want your python code to be

@@ -1,10 +1,11 @@
 '''
 Python tries to be cleaver by giving you a Process class that works
 like the Thread class. But that hides what's actually happening under-
-the-hood. Processes are not launched like threads are launched.
+the-hood. Processes are not /actually/ launched like threads are launched.
 
 This script demonstrates why it is a little deceiving to have the
-Process class work like the Thread class.
+Process class work like the Thread class. Run this script and note the
+behavior.
 
 The reason for this behavior is that processes are created via the
 system call fork(). What does fork() do? Well, fork(), when called,

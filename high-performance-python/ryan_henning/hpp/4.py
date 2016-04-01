@@ -1,16 +1,16 @@
 '''
-This script uses thread to compute the number of factors of a given integer.
-This script does not consider 1 and n to be factors of n (even though they
-technically are). We're only interested in finding the number of factors
+This script uses multiple threads to compute the number of factors of a given
+integer. This script does not consider 1 and n to be factors of n (even though
+they technically are). We're only interested in finding the number of factors
 between 1 and n.
 
 Run the script as: `python 4.py <number_to_factorize> <number_of_worker_threads>`
-E.g. `python 4.py 87178291200 4`
+              E.g. `python 4.py 87178291200 4`
 
 Run this command: for i in {1..100}; do python 4.py 87178291200 2; done
-Also try: for i in {1..100}; do python 4.py 1307674368000 2; done
+Also try:         for i in {1..100}; do python 4.py 1307674368000 2; done
 
-What happens? (It /hopefully/ will print the wrong answer sometimes. I say /hopefully/ because I'm trying to prove a point about the dangers of threading. Its possible that if you have a fast computer you will not see this bug for this particular program.)
+What happens? (It /hopefully/ will print the wrong answer sometimes. I say /hopefully/ because I'm trying to prove a point about the dangers of threading. It's possible that if you have a fast computer you will not see this bug for this particular program.)
 
 Btw: 14! = 87178291200
      15! = 1307674368000
