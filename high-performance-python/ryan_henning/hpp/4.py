@@ -7,8 +7,8 @@ between 1 and n.
 Run the script as: `python 4.py <number_to_factorize> <number_of_worker_threads>`
 E.g. `python 4.py 87178291200 4`
 
-Run this command: while :; do python 4.py 87178291200 2; done
-Also try: while :; do python 4.py 1307674368000 2; done
+Run this command: for i in {1..100}; do python 4.py 87178291200 2; done
+Also try: for i in {1..100}; do python 4.py 1307674368000 2; done
 
 What happens? (It /hopefully/ will print the wrong answer sometimes. I say /hopefully/ because I'm trying to prove a point about the dangers of threading. Its possible that if you have a fast computer you will not see this bug for this particular program.)
 
