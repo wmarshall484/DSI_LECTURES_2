@@ -36,12 +36,8 @@ if __name__ == '__main__':
     number = int(argv[1])
     num_threads = int(argv[2])
 
-    #print "Will find factors of", number, "using", num_threads, "threads!"
-
     start = 2
     end = int(floor(sqrt(number))) + 1  # range is [start, end)
-
-    #print "We need to test the range [", start, ',', end, ") for factors."
 
     num_to_test = end - start
 
