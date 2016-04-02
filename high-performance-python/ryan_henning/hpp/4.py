@@ -23,6 +23,18 @@ few reasons:
       destruction.
     - If you need easy & fast access to shared memory. This is needed when
       your threads need to coordinate to get things done.
+
+By the way, multiprocessing and multithreading is hard! E.g. Look at all the
+warnings just about using multiprocessing.Queue on this page:
+    https://docs.python.org/2/library/multiprocessing.html#pipes-and-queues
+
+Keep in mind Donald Knuth's quote:
+    "The real problem is that programmers have spent far too much time worrying
+     about efficiency in the wrong places and at the wrong times; premature
+     optimization is the root of all evil (or at least most of it) in programming."
+        - https://en.wikiquote.org/wiki/Donald_Knuth
+
+Translation: Don't worry about multiprocessing and multithreading until you NEED to.
 '''
 
 import os
