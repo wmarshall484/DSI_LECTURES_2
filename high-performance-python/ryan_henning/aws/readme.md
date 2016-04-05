@@ -6,18 +6,18 @@ Also note, the following is how Ryan likes the use AWS. This is by no means the 
 
 ## Outline:
 
-- [Intro to sh, bash, ssh, scp, sftp]()
-- [Intro to AWS EC2 options and pricing]()
-- [Create an AWS EC2 instance]()
-- [Access your EC2 instance]()
-- [Configure your EC2 instance:]()
-  - [customize the PS1 prompt]()
-  - [install/test Anaconda]()
-  - [use sftp]()
-  - [use Jupyter (over an ssh tunnel)]()
-- [Amazon Machine Image (AMI)]()
-- [Identity and Access Management (IMA)]()
-- [Amazon Simple Storage Service (S3)]()
+- [Intro to sh, bash, ssh, scp, sftp](#Intro_to_sh,_bash,_ssh,_scp,_sftp)
+- [Intro to AWS EC2 options and pricing](#Intro_to_AWS_EC2_options_and_pricing)
+- [Create an AWS EC2 instance](#Create_an_AWS_EC2_instance)
+- [Access your EC2 instance](#Access_your_EC2_instance)
+- [Configure your EC2 instance:](#Configure_your_EC2_instance:)
+  - [customize the PS1 prompt](#customize_the_PS1_prompt)
+  - [install/test Anaconda](#install/test_Anaconda)
+  - [use sftp](#use_sftp)
+  - [use Jupyter (over an ssh tunnel)](#use_Jupyter_(over_an_ssh_tunnel))
+- [Amazon Machine Image (AMI)](#Amazon_Machine_Image_(AMI))
+- [Identity and Access Management (IMA)](#Identity_and_Access_Management_(IMA))
+- [Amazon Simple Storage Service (S3)](#Amazon_Simple_Storage_Service_(S3))
 
 ## Intro to sh, bash, ssh, scp, sftp
 
