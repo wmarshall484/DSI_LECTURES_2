@@ -6,20 +6,22 @@ Also note, the following is how Ryan likes the use AWS. This is by no means the 
 
 ## Outline:
 
-- [Intro to sh, bash, ssh, scp, sftp](#Intro_to_sh,_bash,_ssh,_scp,_sftp)
+- [Intro to sh, bash, ssh, scp, sftp](#Intro_to_sh_bash_ssh_scp_sftp)
 - [Intro to AWS EC2 options and pricing](#Intro_to_AWS_EC2_options_and_pricing)
 - [Create an AWS EC2 instance](#Create_an_AWS_EC2_instance)
 - [Access your EC2 instance](#Access_your_EC2_instance)
-- [Configure your EC2 instance:](#Configure_your_EC2_instance:)
+- [Configure your EC2 instance:](#Configure_your_EC2_instance)
   - [customize the PS1 prompt](#customize_the_PS1_prompt)
-  - [install/test Anaconda](#install/test_Anaconda)
+  - [install/test Anaconda](#install_test_Anaconda)
+  - [use scp](#use_scp)
   - [use sftp](#use_sftp)
-  - [use Jupyter (over an ssh tunnel)](#use_Jupyter_(over_an_ssh_tunnel))
-- [Amazon Machine Image (AMI)](#Amazon_Machine_Image_(AMI))
-- [Identity and Access Management (IMA)](#Identity_and_Access_Management_(IMA))
-- [Amazon Simple Storage Service (S3)](#Amazon_Simple_Storage_Service_(S3))
+  - [use Jupyter (over an ssh tunnel)](#use_Jupyter_over_an_ssh_tunnel)
+  - [conclusion](#conclusion)
+- [Amazon Machine Image (AMI)](#Amazon_Machine_Image_AMI)
+- [Identity and Access Management (IMA)](#Identity_and_Access_Management_IMA)
+- [Amazon Simple Storage Service (S3)](#Amazon_Simple_Storage_Service_S3)
 
-## Intro to sh, bash, ssh, scp, sftp
+## Intro to sh, bash, ssh, scp, sftp <a name="Intro_to_sh_bash_ssh_scp_sftp"></a>
 
 `sh`
 - just a program on your computer
@@ -52,7 +54,7 @@ What is a "terminal" then?
 - The terminal's job in life is to launch your shell (usually `bash`) and provide a window and keyboard IO to/from your shell (usually `bash`).
 - As an experiment, configure your terminal to use the shell `/usr/bin/python`. Open new terminal window, and what happens?
 
-## Intro to AWS EC2 options and pricing
+## Intro to AWS EC2 options and pricing <a name="Intro_to_AWS_EC2_options_and_pricing"></a>
 
 AWS has a subservice named the "Elastic Compute Cloud" (EC2).
 
@@ -68,7 +70,7 @@ As of March 30, 2016, here is a screenshot of the prices for some of the VPS siz
 
 Note: As of March 30, 2016, Amazon offers a "Free Tier" for users and one of the perks is that you get 12 months of free `t2.micro` usage. See: https://aws.amazon.com/free/
 
-## Create an AWS EC2 instance
+## Create an AWS EC2 instance <a name="Create_an_AWS_EC2_instance"></a>
 
 Decide where you want your instance to live (currently, you options are: N. Virginia, N. California, Oregon, Ireland, Frankfurt, Tokyo, Seoul, Singapore, Sydney, Sao Paulo).
 
@@ -96,7 +98,7 @@ You'll be taken back to the EC2 Dashboard where you'll have to wait for about a 
 
 Take note of your new instances IP address. You'll need this later.
 
-## Access your EC2 instance
+## Access your EC2 instance <a name="Access_your_EC2_instance"></a>
 
 In the remainder of this document, I'll use this all-caps word *IP_ADDRESS* to refer to *your* instance's IP address. When you see *IP_ADDRESS*, replace it with *your* instance's IP address before executing the command.
 
@@ -110,11 +112,11 @@ Okay, let's try again to `ssh` into our EC2 instance. Try this command `ssh -i ~
 
 We finally are ready to do this successfully. Run the command `ssh -i ~/Desktop/awskey.pem ec2-user@IP_ADDRESS`. That should work! You should now have a command-line (aka, a shell) access to your EC2 instance. Yay.
 
-## Configure your EC2 instance:
+## Configure your EC2 instance: <a name="Configure_your_EC2_instance"></a>
 
 We now have `ssh` access to our EC2 instance, but it is just a bare-bones computer (server) right now. Let's work on installing stuff and configuring stuff so that we can make this server (rather, VPS) useful.
 
-### customize the PS1 prompt
+### customize the PS1 prompt <a name="customize_the_PS1_prompt"></a>
 
 If you want to use the PS1 prompt that Ryan users, run these commands:
 - `wget https://raw.githubusercontent.com/acu192/bash_stuff/master/linux/Dotbashrc`
@@ -124,7 +126,7 @@ If you want to use the PS1 prompt that Ryan users, run these commands:
 
 Now re-`ssh` into your ECS instance.
 
-### install/test Anaconda
+### install/test Anaconda <a name="install_test_Anaconda"></a>
 
 The first step is to get the link to the most recent version of Anaconda for 64-bit Linux. At the time of writing, that link is https://3230d63b5fc54e62148e-c95ac804525aac4b6dba79b00b39d1d3.ssl.cf1.rackcdn.com/Anaconda2-4.0.0-Linux-x86_64.sh
 
@@ -139,7 +141,7 @@ Now re-`ssh` into your EC2 instance.
 
 Make sure the `python` command will launch Anaconda's version of Python. Run the command `which python` to be sure Anaconda is being used.
 
-### use scp
+### use scp <a name="use_scp"></a>
 
 `scp myfile ec2-user@IP_ADDRESS:project/`
 
@@ -149,7 +151,7 @@ The command above will copy the local file "myfile" to your EC2 instance into th
 
 The command above will copy the remote file at "project/myfile" to the current directory of your local machine.
 
-### use sftp
+### use sftp <a name="use_sftp"></a>
 
 While `scp` works great, it is a very bare-bones command. We can use the `sftp` command to add more pizzazz. Rather, we'll use programs that user `sftp` under the hood.
 
@@ -162,7 +164,7 @@ Note: SSHFS requires you use the Terminal to mount your remote file system. To m
 - Note that the command above will appear to hang--that is normal and it will continue to hang until the remote file system is unmounted.
 - To unmount your remote file system, right click the mounted drive and click "eject". That will make the command above terminate.
 
-### use Jupyter (over an ssh tunnel)
+### use Jupyter (over an ssh tunnel) <a name="use_Jupyter_over_an_ssh_tunnel"></a>
 
 Recall: When you launch Jupyter, it starts a local HTTP server that you can connect to locally in your browser. So... does that mean we can't connect to Jupyter if it's running on our EC2 instance?
 
@@ -170,7 +172,7 @@ We *can* still connect to Jupyter if it's running on our EC2 instance. We can do
 
 Now, you can start Jupyter (on your EC2 instance), and connect to it like normal (on your local machine). Recall: the URL to use in your local browser is http://localhost:8888/
 
-### Conclusion
+### Conclusion <a name="conclusion"></a>
 
 You now can use your EC2 instance much like it is your local machine! This gives the best of two worlds: (1) a powerful machine *in the cloud*, and (2) convenience to move around and develop/test from your laptop.
 
@@ -181,11 +183,11 @@ In conclusion, once you have a running (and configured) EC2 instance, here's wha
 
 The three options above, when combined, ought to make your EC2 instance feel very close.
 
-## Amazon Machine Image (AMI)
+## Amazon Machine Image (AMI) <a name="Amazon_Machine_Image_AMI"></a>
 
 AMIs are re-configured VPS images that you can clone. This is usually more convenient than configuring your own image; e.g. we have a Data-Science-ready AMI that you can clone! See the morning sprint for details.
 
-## Identity and Access Management (IMA)
+## Identity and Access Management (IMA) <name="Identity_and_Access_Management_IMA"></a>
 
 We'll only use IMA enough to allow us to programmatically store things in S3. Here's what you need to do.
 
@@ -195,7 +197,7 @@ Steps:
 3. Create a group, give the group the permission named "AmazonS3FullAccess".
 4. Add the user created above to the group created above.
 
-## Amazon Simple Storage Service (S3)
+## Amazon Simple Storage Service (S3) <a name="Amazon_Simple_Storage_Service_S3"></a>
 
 To motivate S3, `ssh` into your EC2 instance and run `df -h`. Notice how you've already used probably about 50% of your storage capacity, and you haven't even done much! So... we'll need a way to store stuff elsewhere. Enter S3...
 
