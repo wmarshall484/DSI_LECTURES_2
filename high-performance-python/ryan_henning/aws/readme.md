@@ -1,3 +1,11 @@
+# This week: Data Engineering
+
+Data Science and Data Engineering have a lot of overlap. It's hard to draw a hard boundary between the two because Data Scientists will do Data Engineering things sometimes, and Data Engineers will do Data Scientist things sometimes. Here's a good picture of this concept:
+
+![Data Science vs Data Engineering](images/data_spectrum.png)
+
+This week we'll be doing Data Engineering things. The first topic: AWS. See below.
+
 # Amazon Web Services (AWS)
 
 These notes are to supplement the lecture. Don't worry about taking notes during the lecture; I'd rather you just listen and ask questions so that you know what's going on. These notes contain all the commands I'll use along the way, so there's no need to write them down yourself.
