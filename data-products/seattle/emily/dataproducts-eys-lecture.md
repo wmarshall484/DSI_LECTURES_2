@@ -73,7 +73,6 @@ Example files:
 
 ## HTTP methods: GET and POST
 
-HTTP methods
 The two most common HTTP methods are:
 
 * **GET**: Request data from a server. (Default method in http & flask)
@@ -131,7 +130,6 @@ We'll run through these together:
 * example_with_matplotlib.py
 * example_with_template.py
 
-Note, there are more examples in student projects.
 
 
 # AM exercise
@@ -164,7 +162,7 @@ For your reference:
     - add "static" in path name for css, js
 * Create flask app file.
 * Edit content as needed
-    - Probably in '<--! Page content -->' in .html
+    - Probably in `<--! Page content -->` in .html
 
 
 ## Bootstrap to Flask: add new pages
@@ -209,12 +207,14 @@ As of Apr 2016: Version 0.11.1
 
 Need to add the following two lines to the *.html template(s):
 
-* `<link rel="stylesheet" href=
-        "http://cdn.pydata.org/bokeh/release/
-        bokeh-0.11.1.min.css" type="text/css" />`
-* `<script type="text/javascript" src=
-        "http://cdn.pydata.org/bokeh/release/
-        bokeh-0.11.1.min.js"></script>`
+`<link rel="stylesheet" href="http://cdn.pydata.org
+/bokeh/release/bokeh-0.11.1.min.css" type="text/css" />`
+
+`<script type="text/javascript" src="http://cdn.pydata.org
+/bokeh/release/bokeh-0.11.1.min.js"></script>`
+
+
+(Lines got wrapped for space here; unwrap with no spaces for the template.)
 
 
 ## Use Bokeh in bootstrap/flask sites (2/2)

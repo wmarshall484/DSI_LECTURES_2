@@ -19,7 +19,7 @@ def submission_page():
 
 
 # My word counter app
-@app.route('/word_counter', methods=['POST'] )
+@app.route('/word_counter', methods=['POST'])
 def word_counter():
     text = str(request.form['user_input'])
     word_counts = Counter(text.lower().split())
