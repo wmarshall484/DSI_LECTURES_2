@@ -92,16 +92,15 @@ A [python web development microframework](http://flask.pocoo.org/).
 
 Modern web development has a lot of parts:
 
-* HTML
-* CSS
-* JavaScript
-* fonts
-* etc
+* HTML, CSS, JavaScript, fonts, etc
 
-Flask is an easy way to avoid dealing with these elements directly.
+Flask is an easy way to avoid dealing with these elements directly while
+including other python functionality (functions, modeling, etc).
 
-Can include other python functionality (functions, modeling, etc).
 
+ - **Install** using `pip install flask`
+
+ - Uses [jinja2](http://jinja.pocoo.org/) templating engine.
 
 ## Flask: Folder Structure & Running
 
