@@ -6,18 +6,18 @@ Also note, the following is how Ryan likes the use AWS. This is by no means the 
 
 ## Outline:
 
-- Intro to sh, bash, ssh, scp, sftp
-- Intro to AWS EC2 options and pricing
-- Create an AWS EC2 instance
-- Access your EC2 instance
-- Configure your EC2 instance:
-  - customize the PS1 prompt
-  - install/test Anaconda
-  - use sftp
-  - use Jupyter (over an ssh tunnel)
-- Amazon Machine Image (AMI)
-- Identity and Access Management (IMA)
-- Amazon Simple Storage Service (S3)
+- [Intro to sh, bash, ssh, scp, sftp]()
+- [Intro to AWS EC2 options and pricing]()
+- [Create an AWS EC2 instance]()
+- [Access your EC2 instance]()
+- [Configure your EC2 instance:]()
+  - [customize the PS1 prompt]()
+  - [install/test Anaconda]()
+  - [use sftp]()
+  - [use Jupyter (over an ssh tunnel)]()
+- [Amazon Machine Image (AMI)]()
+- [Identity and Access Management (IMA)]()
+- [Amazon Simple Storage Service (S3)]()
 
 ## Intro to sh, bash, ssh, scp, sftp
 
@@ -62,11 +62,11 @@ The number and size of VPSs you need depends on your goal:
 - Need to run a small website? Then create 1 small VPS on EC2 to run your web sever.
 - Need to be Netflix? Then create 10,000 medium sized VPSs, put your custom Netflix software on them, and have EC2 deploy them.
 
-As of March 30, 2016, here is a screenshot of the prices for some of the VPS sizes on EC2. See: [https://aws.amazon.com/ec2/pricing/]()
+As of March 30, 2016, here is a screenshot of the prices for some of the VPS sizes on EC2. See: https://aws.amazon.com/ec2/pricing/
 
 ![EC2 Prices](images/ec2_prices.png "EC2 Prices")
 
-Note: As of March 30, 2016, Amazon offers a "Free Tier" for users and one of the perks is that you get 12 months of free `t2.micro` usage. See: [https://aws.amazon.com/free/]()
+Note: As of March 30, 2016, Amazon offers a "Free Tier" for users and one of the perks is that you get 12 months of free `t2.micro` usage. See: https://aws.amazon.com/free/
 
 ## Create an AWS EC2 instance
 
@@ -126,7 +126,7 @@ Now re-`ssh` into your ECS instance.
 
 ### install/test Anaconda
 
-The first step is to get the link to the most recent version of Anaconda for 64-bit Linux. At the time of writing, that link is [https://3230d63b5fc54e62148e-c95ac804525aac4b6dba79b00b39d1d3.ssl.cf1.rackcdn.com/Anaconda2-4.0.0-Linux-x86_64.sh]().
+The first step is to get the link to the most recent version of Anaconda for 64-bit Linux. At the time of writing, that link is https://3230d63b5fc54e62148e-c95ac804525aac4b6dba79b00b39d1d3.ssl.cf1.rackcdn.com/Anaconda2-4.0.0-Linux-x86_64.sh
 
 `ssh` into your ECS instance.
 
@@ -153,9 +153,9 @@ The command above will copy the remote file at "project/myfile" to the current d
 
 While `scp` works great, it is a very bare-bones command. We can use the `sftp` command to add more pizzazz. Rather, we'll use programs that user `sftp` under the hood.
 
-First up, Cyberduck. Cyberduck is a great free program that can use sftp to connect to your EC2 instance and let you transfer and edit remote file with ease. See: [https://cyberduck.io/]()
+First up, Cyberduck. Cyberduck is a great free program that can use sftp to connect to your EC2 instance and let you transfer and edit remote file with ease. See: https://cyberduck.io/
 
-Next up, OSX Fuse and SSHFS. Together these two programs can mount your remote EC2 instance's file system as a drive on your Mac. The mounted drive looks and works much like a Flash Drive, allowing you to drag-and-drop and edit remote files like they were local. See: [https://osxfuse.github.io/]()
+Next up, OSX Fuse and SSHFS. Together these two programs can mount your remote EC2 instance's file system as a drive on your Mac. The mounted drive looks and works much like a Flash Drive, allowing you to drag-and-drop and edit remote files like they were local. See: https://osxfuse.github.io/
 
 Note: SSHFS requires you use the Terminal to mount your remote file system. To mount your EC2 instance's file system, run
 - `sshfs ec2-user@IP_ADDRESS: ec2server -o IdentityFile=~/Desktop/awskey.pem -f`
@@ -168,7 +168,7 @@ Recall: When you launch Jupyter, it starts a local HTTP server that you can conn
 
 We *can* still connect to Jupyter if it's running on our EC2 instance. We can do it safely too. We'll employ an awesome feature of `ssh`: TCP tunneling. Here's the new `ssh` command you'll need in order to configure a TCP tunnel to use and launch Jupyter: `ssh -L localhost:8888:localhost:8888 -i ~/Desktop/awskey.pem ec2-user@IP_ADDRESS`
 
-Now, you can start Jupyter (on your EC2 instance), and connect to it like normal (on your local machine). Recall: the URL to use in your local browser is [http://localhost:8888/]().
+Now, you can start Jupyter (on your EC2 instance), and connect to it like normal (on your local machine). Recall: the URL to use in your local browser is http://localhost:8888/
 
 ### Conclusion
 
