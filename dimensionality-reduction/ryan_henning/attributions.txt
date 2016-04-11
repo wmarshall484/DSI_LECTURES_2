@@ -1,0 +1,3 @@
+Props to Zach Alexander for "svd-example-blank.ipynb". It's great--I've only modified his version slightly.
+
+Props to Gio for "notes.md". It's also great--and I've only modified it slightly as well.

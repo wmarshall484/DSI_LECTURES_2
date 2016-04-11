@@ -2,7 +2,7 @@
 
 Recommenders have been popularized by Netflix's [$1,000,000 prize](http://www.netflixprize.com/). We've all experienced recommenders. When you go onto Netflix, Amazon or basically any other site where you can buy things, you will see a list of personalized recommendations.
 
-How do they come up with recommendations? One way is a *content based recommender*. This uses the description of the item about the items and user preferences to make recommendations.
+How do they come up with recommendations? One way is a *content based recommender*. This uses the description of the item and user preferences to make recommendations.
 
 Today we will be talking about *collaborative filtering*. The recommendations are based on your and other users' buying and viewing history. In simple terms, you find items that are similar to items you've liked. Items are dubbed similar if the same people like both of them.
 
@@ -48,7 +48,7 @@ A euclidean distance of 0 means the items are identical, and the euclidean dista
 ![euclidean similarity](images/euclidean_similarity.png)
 
 #### Pearson Correlation
-The Pearson Correlation tells us how similar to vectors are. Note that it measures how far the values are from the mean. 
+The Pearson Correlation tells us how similar to vectors are. Note that it measures how far the values are from the mean.
 
 ![pearson correlation](images/pearson_correlation.png)
 
@@ -145,7 +145,7 @@ Take your predicted top n ratings. We calculate the percent of the relevant item
 A collaborative filter doesn't work if you haven't rated any items yet. To get around this, a lot of recommenders will force users to rate some items to get started. If you've ever used Netflix, you'll notice that when you start it asks you to rate a few movies before it gives you any recommendations. This is to overcome the *cold start problem*.
 
 #### Data sparsity
-It's very common for most users to only have only rated a very small percentage of the items. This makes it difficult for the collaborative filter to work since many pairs of items won't have a lot of users who rated both of them.
+It's very common for most users to only have rated a very small percentage of the items. This makes it difficult for the collaborative filter to work since many pairs of items won't have a lot of users who rated both of them.
 
 We can deal with this by using matrix factorization and other dimensionality reduction techniques.
 

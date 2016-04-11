@@ -156,7 +156,7 @@ and date_part('month', v.created_at) = 6;
 --- Example of CASE: how many customers ?
 SELECT id, name,
    CASE WHEN gender = 'F' THEN 'female' ELSE 'male' END AS gender_r
-FROM customers
+FROM customers;
 
 
 --- Products Table ----
@@ -183,7 +183,7 @@ CREATE TABLE PURCHASES (
 INSERT INTO PURCHASES (id, customer_id, product_id, date, quantity) VALUES
     (1, 1, 2, '2015-07-30', 2)
 ,	(2, 2, 3, '2015-06-20', 3)
-,	(3, 1, 3, '2015-04-09', 1)
+,	(3, 1, 3, '2015-04-09', 1);
 
 
 CREATE TABLE purchases_no_key (
