@@ -1,0 +1,12 @@
+<html>
+  <head>
+    {% if title %}
+    <title>{{ title }} - flask example</title>
+    {% else %}
+    <title>flask example</title>
+    {% endif %}
+  </head>
+  <body>
+      {% block content %}{% endblock %}
+  </body>
+</html>
