@@ -52,35 +52,3 @@ class Fraction:
         '''
         return "{0}/{1}".format(self.num, self.denom)
 
-    def __neg__(self):
-        '''
-        Return the negated value of this fraction.
-        '''
-        return Fraction(-self.num, self.denom)
-
-    def __add__(self, other):
-        '''
-        INPUT:
-            - other: Fraction
-        Return the sum of this fraction (i.e. 'self') and the other
-        fraction (i.e. 'other').
-        '''
-        return Fraction(self.num * other.denom + other.num * self.denom,
-                        self.denom * other.denom)
-
-    def __sub__(self, other):
-        '''
-        INPUT:
-            - other: Fraction
-        Return the difference of this fraction (i.e. 'self') and the other
-        fraction (i.e. 'other').
-        '''
-        return self + -other
-
-    def __cmp__(self, other):
-        '''
-        INPUT:
-            - other: Fraction
-        Return 0 if equal, -1 if self < other, +1 if self > other
-        '''
-        return cmp((self - other).num, 0)

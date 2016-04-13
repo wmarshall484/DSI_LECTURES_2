@@ -1,9 +1,14 @@
-my_list = list()
-my_list.append(4)
-my_list.append("ryan")
-my_list.append(3.14)
-print my_list             # my_list = [4, "ryan", 3.14]
-print my_list.pop()
+a = list()
+b = list()
+a.append(4)
+a.append("ryan")
+b.append("bob")
+a.append(3.14)
+b.append((1, 2))
+print a             # a = [4, "ryan", 3.14]
+print a.pop()
+print b             # a = ["bob", (1, 2)]
+print b.pop()
 
 
 my_dict = dict()
