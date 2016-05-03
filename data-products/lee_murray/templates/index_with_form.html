@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}  
+  <h1>Sign In</h1>
+  <form action="" method="post" name="login">
+      {{ form.hidden_tag() }}
+      <p>
+          Please enter your Name:<br>
+          {{ form.user_name(size=80) }}<br>
+      </p>
+      <p>
+          Please enter your favorite Color:<br>
+          {{ form.favorite_color(size=80) }}<br>
+      </p>
+      <p>
+          Are you a real person?:<br>
+          {{ form.real_person(size=80) }}<br>
+      </p>
+      <a href='/'><input type="submit" value="Sign In"></p>
+  </form>
+{% endblock %}

@@ -19,7 +19,7 @@ We recommend using `ipython` rather than the standard python terminal to test ou
 
 1. View the docstring for any python object using `?object`, this is a shorcut for `help(obj)`.
     ```python
-    ?In [5]: ?map
+    In [5]: ?map
     Type:        builtin_function_or_method
     String form: <built-in function map>
     Namespace:   Python builtin
