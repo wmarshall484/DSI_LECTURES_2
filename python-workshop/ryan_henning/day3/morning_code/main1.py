@@ -1,13 +1,31 @@
-from library import Library
+from myset import myset
 
-anza = Library(['Grapes of Wrath', 'Pinocchio', '1984'])
-anza.add_book('Winnie the Poo')
-print 'All books:', anza.all_books()
+s = myset([1, 5, 8])
+s.add('ryan')
+s.discard(5)
+s.add(3)
+s.add('bob')
 
-print 'Holder is', anza.book_holder('Winnie the Poo')
+print s.to_list()
 
-anza.checkout('Winnie the Poo', 'Ryan')
-print 'Holder is', anza.book_holder('Winnie the Poo')
+print (8 in s)
+print (6 in s)
 
-anza.checkin('Winnie the Poo')
-print 'Holder is', anza.book_holder('Winnie the Poo')
+for item in s:
+    print item
+
+t = myset()
+t.add(8)
+t.add(('dog', 'cat'))
+t.add('bob')
+
+union = (s | t)
+inter = (s & t)
+
+print type(inter)
+
+print union.to_list()
+print inter.to_list()
+
+print inter
+
