@@ -1,0 +1,11 @@
+{% extends "bs_base.html" %}
+
+{% block content %}
+  <p> Hello {{ info['name']  }}
+  {% for key,value in info.iteritems() %}
+    {% if key != 'name' %}
+      <p> Your favorite {{ key }} is {{ value }} </p>
+    {% endif %}
+  {% endfor %}
+  <a href="/suggestion/{{ info['color'] }}"><input type="submit" value="Get Suggestion" class="btn btn-default"></a>
+{% endblock %}

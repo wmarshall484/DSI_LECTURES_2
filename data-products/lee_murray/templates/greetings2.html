@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <p> Hello {{ info['name']  }}
+  {% for key,value in info.iteritems() %}
+    {% if key != 'name' %}
+      <p> Your favorite {{ key }} is {{ value }} </p>
+    {% endif %}
+  {% endfor %}
+{% endblock %}
