@@ -1,9 +1,6 @@
 
 def gcd(a, b):
     '''
-    INPUT: int, int
-    OUTPUT: int
-
     Return the greatest common divisor of the two integers given.
     '''
     while a != 0:
@@ -21,9 +18,6 @@ class Fraction:
 
     def __init__(self, numerator, denominator):
         '''
-        INPUT:
-            - numerator: int
-            - denominator: int
         Initialize this fraction to (numerator / denominator).
         '''
         self.num = numerator
@@ -45,6 +39,13 @@ class Fraction:
             self.denom = -self.denom
         if self.num == 0:
             self.denom = 1
+
+    def to_float(self):
+        '''
+        Return a floating point object (approximately)
+        equal to this fraction.
+        '''
+        return float(self.num) / self.denom
 
     def __repr__(self):
         '''
