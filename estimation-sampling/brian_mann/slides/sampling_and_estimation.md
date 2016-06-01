@@ -5,7 +5,7 @@
 
 ## Objectives
 
-This morning we'll talk about estimating statistical distributions from observed data (also known as *statistical inference*)
+This morning we'll talk about estimating statistical distributions from observed data
 
 * Recall what the expected value and variance of a random variable are
 * Use Maximum Likelihood Estimation to estimate a parametric distribution from observed data
@@ -115,3 +115,99 @@ $K$ is a kernel. The parameter $h$ is called the *bandwidth*, and it's analogous
 # Sampling
 
 ## Objectives
+
+## Statistical Discovery in General
+
+1. Ask a question
+2. Design an experiment
+3. Collect data (Sampling)
+4. Analyze data (Estimation/Inference)
+5. Repeat
+
+![Statistical Inference](../images/Sampling.gif){width=200px}
+
+## Make sure you have good data!
+
+Your results are only as good as your data. Garbage in, garbage out.
+
+* Your data should be representative of the population
+* Important to make sure there is no bias when designing your experiment or "randomly" sampling
+* For example, if you want to estimate the average height of a person in the US, but all the people you measure are in the 90th percentile for weight, something is wrong!
+
+
+## Simple Random Sampling
+
+The most common way to sample from a population is called *simple random sampling*
+
+* Each subject has an equal chance of being selected from the population
+* If your population is $x_1, \ldots, x_n$, to sample choose a number uniformly at random from $1, \ldots, n$ and select that observation
+
+## Central Limit Theorem
+
+One of the most important results in classical statistical inference is the *Central Limit Theorem* which says that if $X_1, X_2, \ldots, X_n$ are i.i.d. random variables with mean $\mu$ and variance $\sigma^2$ then their mean $$\bar{X} = \frac{X_1 + \cdots + X_n}{n}$$ is approximately normally distributed with mean $\mu$ and variance $\frac{\sigma^2}{n}$ $$\bar{X} \sim N(\mu, \frac{\sigma}{\sqrt{n}})$$
+
+## Example - CLT
+
+Recall that $Binom(n, p)$ is the sum of $n$ independent Bernoulli trials with parameter $p$. This means that $$Binom(n, p) \sim N\left(np, \sqrt{np(1-p)}\right)$$
+
+Why??
+
+## Confidence Intervals (1/2)
+
+A *confidence interval* is an interval estimate of the true parameter of your population
+
+* An $\alpha$ confidence interval is an interval centered around estimated parameter which contains the true value of that parameter with *confidence* $\alpha$ ($\alpha$ is usually 99\%, 95\%, 90\%, or 80\%)
+* In other words, if you resample or rerun the experiment many times, $\alpha$ percent of the time the true value will be in the computed confidence interval
+* It is *not* a statement that the true value of the parameter is contained in the interval with a certain probability
+
+## Confidence Intervals (2/2)
+
+For $n \geq 30$ a 95\% confidence interval for the mean is $$(\bar{x} - 1.96\frac{\sigma}{\sqrt{n}}, \bar{x} + 1.96\frac{\sigma}{\sqrt{n}})$$
+
+* Why??
+* Since we don't know $\sigma$, use the sample standard deviation $s$ instead
+* If $n$ is small, the central limit theorem does not guarantee normality. We need a $t$-distribution instead $$\bar{x} \pm t_{(\alpha/2, n-1)}\frac{s}{\sqrt{n}}$$
+
+## Check for Mastery
+
+Using Python, sample $100$ times from a normal distribution. Compute the sample mean and a 95\% confidence interval. Is the true mean in your interval?!? Rerun your code several time and see if you find an interval which doesn't contain the true mean.
+
+## Bootstrapping (1/2)
+
+Another way to generate confidence intervals for a population parameter is through a process called bootstrapping
+
+* Simple idea: sample from your observed data *with replacement* $B$ times
+* With these $B$ samples, compute the statistic (i.e. mean, median, variance, etc...) of interest and then estimate the sample variance
+* Computationally expensive
+
+## Bootstrapping (2/2)
+
+How to bootstrap:
+
+Start with $n$ i.i.d. samples $X_1, \ldots, X_n$.
+
+For $i$ from $1$ to $B$:
+
+1. Sample $X_1^*, \ldots, X_n^*$ with replacement from your data
+2. Compute your sample statistic $\theta_i^* = g(X_1^*, \ldots, X_n^*)$
+
+Then compute $$v_{boot} =\frac{1}{B}\sum_{b=1}^B \left( \theta_b^* - \frac{1}{B} \sum_{r=1}^B \theta_r^*\right)^2$$
+
+which is the sample variance of your statistic
+
+## Bootstrap Confidence Intervals (The Normal Interval)
+
+There are a few different ways to build bootstrap confidence intervals that rely of differing assumptions. The first is the *normal interval*
+
+* If your parameter is approximately normally distributed (like the mean of a sample with $n > 30$) your interval will be $$\theta_n \pm z_{\alpha/2} \hat{se}_{boot}$$ where $\theta_n = g(X_1, \ldots, X_n)$ is your estimate of the parameter, $z$ is standard normal (e.g. for 95% it is 1.96), and $\hat{se}_{boot} = \sqrt{v_{boot}}$ is the bootstrap estimated standard error of your parameter
+
+## Bootstrap Confidence Intervals (Percentile Method)
+
+Let $\theta^*_{\beta}$ be the $\beta$ sample quantile of your bootstrap sample statistics $(\theta_1^*, \ldots \theta_B^*)$. Then an $\alpha$ bootstrap percentile interval is $$C_n = (\theta^*_{1-\alpha/2}, \theta^*_{\alpha/2})$$
+
+## Why Bootstrap?
+
+Why would we use bootstrapping over standard confidence intervals?
+
+* Small sample size
+* The distribution of the statistic is complicated or hard to compute
