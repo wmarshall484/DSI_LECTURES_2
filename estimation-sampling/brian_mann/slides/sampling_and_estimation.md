@@ -58,15 +58,27 @@ Assume each data point is drawn independently from the same distribution with de
 
 $$ f(x_1, x_2, \ldots, x_n | \theta) = f(x_1 | \theta) * f(x_2 | \theta) * \cdots * f(x_n | \theta)$$
 
-If we have a formula for $f$ in terms of the parameters $\theta$, we can find the values of theta which maximizes the *likelihood* $$\mathcal{L}(\theta | x_1, x_2, \ldots, x_n) = f(x_1, x_2, \ldots, x_n | \theta) = \prod f(x_i | \theta)$$ or equivalently the *log-likelihood* $$\log \mathcal{L}(\theta | x_1, x_2, \ldots, x_n) = \sum \log f(x_i | \theta)$$
+If we have a formula for $f$ in terms of the parameters $\theta$, we can find the values of theta which maximizes the *likelihood* $$\mathcal{L}(\theta | x_1, x_2, \ldots, x_n) = f(x_1, x_2, \ldots, x_n | \theta) = \prod f(x_i | \theta)$$ or equivalently the *log-likelihood* $$\ell(\theta | x_1, x_2, \ldots, x_n) = \sum \log f(x_i | \theta)$$
 
 $$\hat{\theta} = argmax_\theta \log f(x_1, x_2, \ldots, x_n | \theta)$$
 
-## Example - MLE
+## Example - MLE (1/3)
 
 Suppose we flip a coin $N$ times and get $H$ heads. We want an estimate for how biased the coin is. Each flip is a Bernoulli trial with parameter $p$. The joint distribution is $Binom(N, p)$, so we need to find $p$ which minimizes
 
 $$\log p^H(1-p)^{N-H}$$
+
+## Example - MLE (2/3)
+
+Suppose that $x_1, \ldots, x_n \sim N(\mu, \sigma)$. Ignoring some constants, the likelihood function is $$\mathcal{L}(\mu, \sigma) = \prod \frac{1}{\sigma}\exp\left({-\frac{1}{2\sigma^2}(x_i - \mu)^2}\right)$$ $$ = \frac{1}{\sigma^n}\exp\left({-\frac{1}{2\sigma^2}\sum(x_i- \mu)^2}\right)$$ $$ = \frac{1}{\sigma^n}\exp \left(-\frac{nS^2}{2\sigma^2}\right)\exp \left(-\frac{n(\bar{x} - \mu)^2}{2\sigma^2}\right)$$
+
+where $\bar{x}$ is the sample mean and $S^2 = \frac{1}{n}\sum(x_i - \bar{x})^2$ is a biased estimator for the variance.
+
+## Example = MLE (3/3)
+
+The log-likelihood is $$\ell(\mu, \sigma) = -n \log \sigma - \frac{nS^2}{2\sigma^2} - \frac{n(\bar{x} - \mu)^2}{2\sigma^2}$$
+
+Maximizing this gives estimates $\bar\mu = \bar{x}$ and $\bar\sigma = S$. 
 
 ## Maximum A Posteriori (MAP) (Parametric)
 
@@ -115,6 +127,12 @@ $K$ is a kernel. The parameter $h$ is called the *bandwidth*, and it's analogous
 # Sampling
 
 ## Objectives
+
+This afternoon you will
+
+* Discover the Central Limit Theorem
+* Apply the Central Limit Theorem to construct confidence intervals for the mean of a population
+* Use bootstrapping to construct confidence intervals for any population statistic
 
 ## Statistical Discovery in General
 
