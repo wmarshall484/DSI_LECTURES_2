@@ -100,7 +100,7 @@ Result is a beta distribution with parameters $\alpha$ = $\alpha + k$ and $\beta
 
 # Conjugate Priors
 
-A conjugate prior for a likelyhood is a class of functions $\mid$ if the prior is in the class, so is the posterior. 
+A conjugate prior for a likelyhood is a class of functions such that if the prior is in the class, so is the posterior. 
 
 Likelihood                 | Prior
 ---------------------------|------------
@@ -136,9 +136,21 @@ Frequentist procedure
 
 why doesn't everyone like this better?
 
-# Multi-armed Bandit
+# Objectives
 
-# What is a multi-armed bandit?
+Morning objectives:
+
+ * Define and explain prior, likelihood, and posterior.
+ * Explain what a conjugate prior is and how it applies to A/B testing.
+ * Explain the difference between Frequentist and Bayesian A/B tests.
+ * Analyze an A/B test with the Bayesian approach.
+
+Afternoon Objectives:
+
+ * Explain how multi-armed bandit addresses the tradeoff between exploitation and exploration, and the relationship to regret.
+ * Implement the multi-armed bandit algorithm.
+
+# What is a Multi-Armed Bandit?
 
 Each slot machine (a.k.a. one-armed bandit) has a difference (unknown!) chance of winning
 
@@ -170,7 +182,7 @@ Traditional A/B testing: first find the best bandit (explore) then take advantag
 
 But we will loose money playing bandits we don't *think* are good.
 
-But we do better by exploring and exploiting at the same time?
+Could we do better by exploring and exploiting at the same time?
 
 How would *you* solve this?
 
@@ -182,6 +194,11 @@ No "best" value, but $\epsilon = 0.1$ is typical.
 
 What are the limitations?
 
+# Softmax
+
+Choose a bandit randomly based on
+
+$$ \frac{ \exp{p_A} / \tau }{ \sum_i  \exp{p_i} } $$
 
 # UCB1 Algorithm
 
@@ -195,17 +212,11 @@ where
  * $n_A$ is the number of times bandit $A$ has played
  * N is the total number of trials so far
 
-
-# Softmax
-
-Choose a bandit randomly based on
-
-$$ \frac{ \exp{p_A} / \tau }{ \sum_i  \exp{p_i} } $$
-
+This chooses the bandit for whom the Upper Confidence Bound is the highest.
 
 # Bayesian Bandit
 
-Use Bayesians statistics
+Use Bayesian statistics
 
 * Find probability distribution of payout of each bandit thus far (how?)
 * For each bandit, sample from distribution
