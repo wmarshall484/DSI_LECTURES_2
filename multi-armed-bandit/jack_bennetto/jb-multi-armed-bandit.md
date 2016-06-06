@@ -196,9 +196,14 @@ What are the limitations?
 
 # Softmax
 
-Choose a bandit randomly based on
+Choose a bandit randomly in proportion to the softmax function of the payouts, e.g.
 
-$$ \frac{ \exp{p_A} / \tau }{ \sum_i  \exp{p_i} } $$
+If there are three bandits, A, B, and C, the probability of choosing A is
+
+$$ \frac{ e^{p_A} / \tau }{  e^{p_A /\tau} +  e^{p_B /\tau} + e^{p_C /\tau  } } $$
+
+where $p_A$ is the average of bandit A so far (assume 1.0 to start), and $\tau$ is a constant that controls how random the process is.
+
 
 # UCB1 Algorithm
 
