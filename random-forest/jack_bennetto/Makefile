@@ -5,7 +5,7 @@ PANDOC = pandoc -t beamer --template=./default.beamer
 RM = rm -f
 
 # Files
-TGT = bb-lecture.pdf
+TGT = jb-lecture.pdf
 
 # Rules
 default: $(TGT)
