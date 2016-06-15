@@ -1,6 +1,6 @@
 % Optimization in Data Science
 % [Brian J. Mann](brian.mann@galvanize.com)
-% Feb 29, 2016
+% June 13, 2016
 
 ## Objectives
 
@@ -26,25 +26,24 @@
 
 * Machine learning often involves fitting a model to test data
 * The best fit is often determined using a *cost function* or *likelihood function*
-    * Linear Regression: $$\displaystyle \sum (y_i - \beta^T x_i)^2$$
-    * Logistic Regression: $$\displaystyle \sum y_i \log g(\beta^Tx_i) + (1 - y_i)\log(1 - g(\beta^Tx_i))$$ $\left(g(z) = \frac{1}{1 + e^{-z}}\right)$
+    * Linear Regression: $$\displaystyle \sum (y_i - \beta^T \mathbf{x}_i)^2$$
+    * Logistic Regression: $$\displaystyle \sum y_i \log g(\beta^T\mathbf{x}_i) + (1 - y_i)\log(1 - g(\beta^T\mathbf{x}_i))$$ $\left(g(z) = \frac{1}{1 + e^{-z}}\right)$
 
 ## Linear Regression
 
-* The cost function $\displaystyle \sum (y_i - \beta^T x_i)^2$ can be represented in matrix format:
+* The cost function $\displaystyle \sum (y_i - \beta^T \mathbf{x}_i)^2$ can be represented in matrix format:
 
-$$|| y - X\beta ||^2$$
+$$|| \mathbf{y} - X\beta ||^2$$
 
 * Has a closed-form solution for the minimum
 
-$$\beta = (X^TX)^{-1}X^Ty$$
+$$\beta = (X^TX)^{-1}X^T\mathbf{y}$$
 
-* $(X^TX)^{-1}$ very hard to compute if you have many features (say $>10,000$)
-* Is there a quicker way?
+* Why is this infeasible sometimes?
 
 ## Logistic Regression
 
-* The log-likelihood function $$\displaystyle \sum y_i \log g(\beta^Tx_i) + (1 - y_i)\log(1 - g(\beta^Tx_i))$$
+* The log-likelihood function $$\displaystyle \sum y_i \log g(\beta^T\mathbf{x}_i) + (1 - y_i)\log(1 - g(\beta^T\mathbf{x}_i))$$
 has no such closed form for its maximum.
 * How will you find the maximum?
 
@@ -58,19 +57,19 @@ has no such closed form for its maximum.
 ## Recall
 
 * The *gradient* of a multivariate function $f(x_1, \ldots, x_n)$ is
-$$ \nabla f(a) = \left(\frac{\partial f}{\partial x_1}(a), \ldots, \frac{\partial f}{\partial x_n}(a)\right)$$
-* $\nabla f(a)$ points in the direction of greatest increase of $f$ at $a$
+$$ \nabla f(\mathbf{a}) = \left(\frac{\partial f}{\partial x_1}(\mathbf{a}), \ldots, \frac{\partial f}{\partial x_n}(\mathbf{a})\right)$$
+* $\nabla f(\mathbf{a})$ points in the direction of greatest increase of $f$ at $\mathbf{a}$
 
 ## Gradient Descent
 
 * Minimize $f$
 * Choose:
-    * a starting point $x$
+    * a starting point $\mathbf{x}$
     * *learning rate* $\alpha$
     * threshold $\epsilon$
-* Move in the direction of $-\nabla f(x)$:
-    * Set $y = x - \alpha \nabla f(x)$
-* If $\frac{|f(x) - f(y)|}{|f(x)|} < \epsilon$, return $f(y)$ as the min, and $y$ as the argmin
+* Move in the direction of $-\nabla f(\mathbf{x})$:
+    * Update $\mathbf{x} = \mathbf{x} - \alpha \nabla f(\mathbf{x})$
+* If $\frac{|f(\mathbf{x}) - f(\mathbf{y})|}{|f(\mathbf{x})|} < \epsilon$, return $f(\mathbf{y})$ as the min, and $\mathbf{y}$ as the argmin
 
 ## Gradient Descent
 
@@ -82,7 +81,7 @@ $$ \nabla f(a) = \left(\frac{\partial f}{\partial x_1}(a), \ldots, \frac{\partia
 
 ## Choosing Alpha
 
-* If the value of $$\frac{|\nabla f(x) - \nabla f(y)|}{|x-y|}$$ is bounded above by some number $L(\nabla f)$ then $$\alpha \leq \frac{1}{L(\nabla f)}$$ will converge.
+* If the value of $$\frac{|\nabla f(\mathbf{x}) - \nabla f(\mathbf{y})|}{|\mathbf{x}-\mathbf{y}|}$$ is bounded above by some number $L(\nabla f)$ then $$\alpha \leq \frac{1}{L(\nabla f)}$$ will converge.
 * For example:
     * $f(x) = x^2$
     * $L(\nabla f) = 2$
@@ -92,16 +91,16 @@ $$ \nabla f(a) = \left(\frac{\partial f}{\partial x_1}(a), \ldots, \frac{\partia
 
 * Change $\alpha$ at each iteration
 * Barzilai and Borwein, 1998
-    * Suppose $x_i$ is the value of $x$ at the iteration $i$
-    * $\Delta x = x_{i} - x_{i-1}$
-    * $\Delta g(x) = \nabla f(x_{i}) - \nabla f(x_{i-1})$
-    * At each step $$\alpha = \frac{\Delta g(x)^T \Delta x}{||\Delta g(x)||^2}$$ is a good choice of $\alpha$
+    * Suppose $\mathbf{x}_i$ is the value of $\mathbf{x}$ at the iteration $i$
+    * $\Delta \mathbf{x} = \mathbf{x}_{i} - \mathbf{x}_{i-1}$
+    * $\Delta g(\mathbf{x}) = \nabla f(\mathbf{x}_{i}) - \nabla f(\mathbf{x}_{i-1})$
+    * At each step $$\alpha = \frac{\Delta g(\mathbf{x})^T \Delta \mathbf{x}}{||\Delta g(\mathbf{x})||^2}$$ is a good choice of $\alpha$
 
 ## Convergence Criteria
 
 Choices:
 
-* $\frac{|f(x) - f(y)|}{|f(x)|} < \epsilon$
+* $\frac{|f(\mathbf{x}) - f(\mathbf{y})|}{|f(\mathbf{x})|} < \epsilon$
 * Max number of iterations
 * Magnitude of gradient $|\nabla f| < \epsilon$
 
@@ -109,7 +108,7 @@ Choices:
 
 * To maximize $f$, we can minimize $-f$
 * Still use almost the same algorithm
-    * Just replace $$y = x - \alpha \nabla f(x)$$ with $$y = x + \alpha \nabla f(x)$$
+    * Just replace $$\mathbf{x} = \mathbf{x} - \alpha \nabla f(\mathbf{x})$$ with $$\mathbf{x} = \mathbf{x} + \alpha \nabla f(\mathbf{x})$$
 
 ## Some Examples
 
@@ -132,7 +131,7 @@ Choices:
 ## Back to Logistic Regression
 
 * Trying to maximize the log-likelihood function
-$$\ell(\beta) = \displaystyle \sum y_i \log g(\beta^Tx_i) + (1 - y_i)\log(1 - g(\beta^Tx_i))$$
+$$\ell(\beta) = \displaystyle \sum y_i \log g(\beta^T\mathbf{x}_i) + (1 - y_i)\log(1 - g(\beta^T\mathbf{x}_i))$$
 * To use gradient ascent: need to compute $\nabla \ell(\beta)$
 
 ## More Logistic Regression
@@ -179,9 +178,9 @@ First, let's compute the derivative of the sigmoid function $g$:
 
 * Same as gradient descent except **at each step compute the cost function by using just one observation**
 * For example in linear regression, instead of computing the gradient of
-$$\sum_i (y_i - \beta^Tx_i)^2$$
-randomly select some $x_i, y_i$ and compute the gradient of
-$$ (y_i - \beta^T x_i)^2$$
+$$\sum_i (y_i - \beta^T\mathbf{x}_i)^2$$
+randomly select some $\mathbf{x}_i, y_i$ and compute the gradient of
+$$ (y_i - \beta^T \mathbf{x}_i)^2$$
 
 ## Properties
 
@@ -209,9 +208,9 @@ $$ (y_i - \beta^T x_i)^2$$
 
 ## Higher Dimensions
 
-* $y_{i+1} = y_{i} - H(y_i)^{-1}\nabla f(y_i)$
+* $\mathbf{y}_{i+1} = \mathbf{y}_{i} - H(\mathbf{y}_i)^{-1}\nabla f(\mathbf{y}_i)$
 
-( $H(a) = \left[\frac{\partial f}{\partial x_i \partial x_j}(a)\right]$ is the *Hessian* matrix, the matrix of second partial derivatives at $a$)
+( $H(\mathbf{a}) = \left[\frac{\partial f}{\partial x_i \partial x_j}(\mathbf{a})\right]$ is the *Hessian* matrix, the matrix of second partial derivatives at $\mathbf{a}$)
 
 ## Problems
 

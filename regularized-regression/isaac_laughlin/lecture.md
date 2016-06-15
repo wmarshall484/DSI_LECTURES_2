@@ -2,11 +2,23 @@
 % [Isaac Laughlin](isaac.laughlin@galvanize.com)
 % May 2, 2016
 
+## Today's schedule
+
+11:30 - 12:30 This lecture
+
+12:30 - 3:30 Individual Sprint and Lunch (in whatever order your stomach prefers)
+
+3:30 - 4:30 Afternoon lecture
+
+4:30 - 7? Paired Sprint (cross-cohort pairs are possible!)
+
 
 ## Objectives
 
 At the end of the lecture you should:
+
 AM
+
 *   State the purpose of Cross Validation
 *   Be able to describe the two kinds of model error.
 *   Describe how to select a model using CV
@@ -15,6 +27,7 @@ AM
 *   Explain the training, validation, testing data sets and what they are used for
 
 PM
+
 *   Be able to state the purpose of Lasso and Ridge regression, and compare the two choices
 *   Build test error curves for regularized regression
 *   Build and interpret learning curves
@@ -170,6 +183,12 @@ No.
 ## CV Workflow
 
 ![CV Workflow](images/cv_workflow.png)
+
+## Advanced CV techniques:
+
+* Leave One Out CV (like k-fold, where k=n)
+* Stratified CV (random within subgroups)
+* Time-Series CV (useful for cases when observations are not independent in time)
 
 ## Final Word
 

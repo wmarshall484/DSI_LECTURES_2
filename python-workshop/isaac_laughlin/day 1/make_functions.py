@@ -56,6 +56,6 @@ def value_check(array, value):
 def check_numbers(array, target):
     for number in array:
         if number == target:
-            print "It's a {target}".format(target=target)
+            print "It's a {}".format(target)
         else:
             print "It's not a {target}".format(target=target)
