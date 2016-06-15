@@ -1,35 +1,89 @@
-% Random Forests
-% [Brian Bargh](brian.bargh@gmail.com)
-% March 2, 2016
+% Bagging and Random Forests
+% [Jack Bennetto](jack.bennetto@galvanize.com)
+% June 15, 2016
 
 ## Objectives
 
 Morning Objectives:
 
-*   Explain in terms of bias and variance why a Random Forest is better than a single decision tree
-*   Be able to implement a simple Random Forest model
-*   Explain the benefits of bagging and subspace sampling
+* Thoroughly explain the construction of a random forest (classification or regression) algorithm
+* Explain the relationship and difference between random forest and bagging.
+* Explain why random forests are more accurate than a single decision tree.
 
-##  Bias vs Variance
+Afternoon Objectives:
 
-![(http://scott.fortmann-roe.com/docs/BiasVariance.html).](images/biasvsvariance.png)
+* Explain how to get feature importances from a random forest using an algorithm.
+* Explain how OOB error is calculated and what is it an estimate of.
 
-## Pros and Cons of Random Forest
+## Agenda
 
-* Pros
-    - Often give near state of the art performance
-    - Good 'out of the box' performance.  No feature scaling needed.
-    - Model nonlinear relationships
-* Cons
-    - Can be expensive to train
+Morning Agenda
+
+* Discuss ensemble methods
+* Review bias/variance tradeoff
+* Review decision trees
+* Discuss bagging (bootstrap aggregation)
+* Discuss random forests
+
+Afternoon Agenda
+
+* Discuss feature importance
+* Discuss out-of-bag error
+
+
+## What is an Ensemble Method?
+
+**Ensemble:** many weak learners combined to form a strong learner
+
+Train multiple different models on the data. To predict:
+
+* For regressor, average the predictions of the models
+* For classifier, take the plurality winner
+
+
+## Ensembles: Intuition
+
+Supposed we have 5 *independent* binary classifers each 70% accurate.
+
+Overall accuracy:
+
+$$ \binom{5}{3} 0.7^3 0.3^2 \times \binom{5}{4} 0.7^4 0.3 \times \binom{5}{5} 0.7^5 \approx 0.83 $$
+
+With 101 such classifiers we can achieve 99.9% accuracy.
+
+* Why isn't this easy?
+
+## How to Make Them Independent?
+
+If the learners are all the same, emsembles don't help.
+
+Train each learner on different subset of data.
+
+* Why is this better than a single good model?
+
+## Bias and Variance
+
+**Bias:** Error from failure to match training set
+
+**Variance:** Error from sampling training set
+
+* What accuracy can you expect from a decision tree?
+
+\pause
+
+Decision trees are easy to overfit.
+
 
 ## Review: Classification Trees
 
- * Training:
-    - Iteratively divide the nodes into subnodes such that (entropy/gini impurity) is minimized
-    - Various stopping conditions like a depth limit
- * Inference:
-    - Take the most common class in the leaf node
+Training:
+
+* Iteratively divide the nodes into subnodes such that (entropy/gini impurity) is minimized
+* Various stopping conditions like a depth limit
+
+Inference:
+
+* Take the most common class in the leaf node
 
 ## Review: Classification Trees
 
@@ -37,7 +91,7 @@ Morning Objectives:
 
 ## Regression Trees
 
-Similar to Classification Trees But:
+Similar to Classification Trees but:
 
 * Instead of predicting a class label we're not trying to predict a number
 * We minimize *total squared error* instead of entropy or impurity
@@ -61,35 +115,35 @@ $$ \sum_{i\in R} (y_i - m_R)^2 + \sum_{i\in S} (y_i - m_S)^2$$
 
 ## Decision Tree Summary
 
-* Pros
-    - No feature scaling needed
-    - Model nonlinear relationships
-    - Highly interpretable
-    - Can do both classification and regression
-* Cons
-    - Can be expensive to train
-    - Often poor predictors - high variance
+Pros
 
-## Example Linear Regression vs Decision Tree Regression
+* No feature scaling needed
+* Model nonlinear relationships
+* Highly interpretable
+* Can do both classification and regression
 
-In ipython notebook
+Cons
 
-## Review: Bootstrapping
+* Can be expensive to train
+* Often poor predictors - high variance
 
-Pop Quiz!  Ask your neighbor:
-
-* What is a bootstrap sample?
-* What have we learned that bootstrap samples are good for so far?
 
 ## Review: Bootstrapping
 
-Pop Quiz!  Ask your neighbor:
+Questions:
 
-* What is a bootstrap sample?
-    - Given n data points we select a sample of n points with replacement
-* What have we learned that bootstrap samples are good for so far?
-    - We use bootstrap samples to construct confidence intervals around sample statistics
-    - Ex: If I want a confidence interval around my sample median I could take 200
+What is a bootstrap sample?
+
+\pause
+
+* Given n data points we select a sample of n points with replacement
+
+What have we learned that bootstrap samples are good for so far?
+
+\pause
+
+* We use bootstrap samples to construct confidence intervals around sample statistics
+* Ex: If I want a confidence interval around my sample median I could take 200
       bootstrap samples and take the median of all 200 bootstrap samples.  
       I am about 95% confident that the true population median is between the
       5th from smallest and the 5th from largest.  
@@ -110,7 +164,7 @@ Second slide saying the same thing again to emphasize that Bagging is important.
 * Take a bunch of bootstrap samples - say n
 * Train a high variance, low bias model on each of them
 * Average the results - this can reduce your variance by up to $\sqrt n$
-    - Quiz your neighbor: Why is the reduction in variance less than $\sqrt n$?
+    - Question: Why is the reduction in variance less than $\sqrt n$?
 * This is Bootstrap Aggregation or 'Bagging'
 
 
@@ -136,24 +190,59 @@ Random Forest Parameters
 * Number of features to use at each split
 * Number of points for each bootstrap sample
 * Individual decision tree Parameters
-    - Usually the individual trees are grown to maximum depth to reduce bias.  The Random Forest will average away the variance.
+    - e.g., tree depth, pruning
 
 In general, RF are fairly robust to the choice of parameters and overfitting.
 
-## End of Morning Lecture
+## Pros and Cons of Random Forest
 
-Thank You
+Pros
+
+* Often give near state-of-the-art performance
+* Good out-of-the-box performance.
+* No feature scaling needed.
+* Model nonlinear relationships
+
+Cons
+
+* Can be expensive to train
+* Not interpretable
+
 
 ## Afternoon Lecture
 
 Afternoon Lecture: Interpreting Random Forests
 
+
+
 ## Objectives
+
+Morning Objectives:
+
+* Thoroughly explain the construction of a random forest (classification or regression) algorithm
+* Explain the relationship and difference between random forest and bagging.
+* Explain why random forests are more accurate than a single decision tree.
 
 Afternoon Objectives:
 
-*   Understand OOB error
-*   Rank feature importances in a Random Forest model
+* Explain how to get feature importances from a random forest using an algorithm.
+* Explain how OOB error is calculated and what is it an estimate of.
+
+## Agenda
+
+Morning Agenda
+
+* Discuss ensemble methods
+* Review bias/variance tradeoff
+* Review decision trees
+* Discuss bagging (bootstrap aggregation)
+* Discuss random forests
+
+Afternoon Agenda
+
+* Discuss feature importance
+* Discuss out-of-bag error
+
 
 ## Out Of Bag Error
 
