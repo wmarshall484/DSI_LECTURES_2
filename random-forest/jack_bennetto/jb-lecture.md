@@ -94,7 +94,7 @@ Inference:
 
 Similar to Classification Trees but:
 
-* Instead of predicting a class label we're not trying to predict a number
+* Instead of predicting a class label we're trying to predict a number
 * We minimize *total squared error* instead of entropy or impurity
 $$ \sum_{i\in R} (y_i - m_R)^2 + \sum_{i\in S} (y_i - m_S)^2$$
 
@@ -243,36 +243,54 @@ Afternoon Agenda
 * Discuss feature importance
 * Discuss out-of-bag error
 
+## Out-Of-Bag Error
 
-## Out Of Bag Error
+Measuring error of a bagged model.
 
-* Out Of Bag error is a method of estimating the error of ensemble methods that use Bagging.  
-* About 1/3 of the estimators will not have been trained on each data point.  (Why?)
+* Out-of-bag (OOB) error is a method of estimating the error of ensemble methods that use Bagging.  
+* About 37% of the estimators will not have been trained on each data point.
 * Test each data point only on the estimators that didn't see that data point during training.  
-
-## Out Of Bag Error
-
-* Often we'll use cross validation anyway because we're comparing random forest to other models and we want to measure the accuracy the same way.
+* Often use cross validation anyway because we're comparing with other models and want to measure the accuracy the same way.
 
 ## Feature Importances
+
+Bringing interpretability to random forests
 
 * Determining which features are important in predicting the target variable is often a critically important business question.
 * Example: Churn analysis - it's generally more important to understand *why* customers are churning than to predict which customers are going to churn.
 
+How should we measure it?
+
 ## Feature Importances: Mean Decrease Impurity
+
+How much does each variable decrease the impurity?
+
+To compute the importance of the jth variable:
 
 * For each tree, each split is made in order to reduce the total impurity of the tree (Gini Impurity for classification, mean squared error for regression); we can record the magnitude of the reduction.
 * Then the importance of a feature is the average decrease in impurity across trees in the forest, as a result of splits defined by that feature.  
 * This is implemented in sklearn.
-
+ 
 ## Feature Importances: Mean Decrease Accuracy
+
+How much does randomly mixing values of a feature affect accuracy?
 
 To compute the importance of the jth variable:
 
 * When the bth tree is grown, use it to predict the OOB samples and record accuracy.
 * Scramble the values of the jth variable in the OOB samples and do the prediction again.  Compute the new (lower) accuracy.
-* Average the decrease in entropy across all trees.
+* Average the decrease in accuracy across all trees.
+
+## Feature Importances: Fraction of Samples Affected
+
+What fraction of the data are tested against a given feature?
+
+To compute the importance of the jth variable:
+
+* Find the fraction of data that reaches a node corresponding to the jth variable for each tree.
+* Average those fractions across all trees.
+* This method is used in sklearn
 
 ## Feature Importances: ipython
 
-See example in ipython notebook.  
+See example in ipython notebook.
