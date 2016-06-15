@@ -64,7 +64,7 @@ $$\hat{\theta} = argmax_\theta \log f(x_1, x_2, \ldots, x_n | \theta)$$
 
 ## Example - MLE (1/3)
 
-Suppose we flip a coin $N$ times and get $H$ heads. We want an estimate for how biased the coin is. Each flip is a Bernoulli trial with parameter $p$. The joint distribution is $Binom(N, p)$, so we need to find $p$ which minimizes
+Suppose we flip a coin $N$ times and get $H$ heads. We want an estimate for how biased the coin is. Each flip is a Bernoulli trial with parameter $p$. The joint distribution is $Binom(N, p)$, so we need to find $p$ which maximizes
 
 $$\log p^H(1-p)^{N-H}$$
 
@@ -78,7 +78,7 @@ where $\bar{x}$ is the sample mean and $S^2 = \frac{1}{n}\sum(x_i - \bar{x})^2$ 
 
 The log-likelihood is $$\ell(\mu, \sigma) = -n \log \sigma - \frac{nS^2}{2\sigma^2} - \frac{n(\bar{x} - \mu)^2}{2\sigma^2}$$
 
-Maximizing this gives estimates $\bar\mu = \bar{x}$ and $\bar\sigma = S$. 
+Maximizing this gives estimates $\bar\mu = \bar{x}$ and $\bar\sigma = S$.
 
 ## Maximum A Posteriori (MAP) (Parametric)
 
@@ -221,7 +221,7 @@ There are a few different ways to build bootstrap confidence intervals that rely
 
 ## Bootstrap Confidence Intervals (Percentile Method)
 
-Let $\theta^*_{\beta}$ be the $\beta$ sample quantile of your bootstrap sample statistics $(\theta_1^*, \ldots \theta_B^*)$. Then an $\alpha$ bootstrap percentile interval is $$C_n = (\theta^*_{1-\alpha/2}, \theta^*_{\alpha/2})$$
+Let $\theta^*_{\beta}$ be the $\beta$ sample quantile of your bootstrap sample statistics $(\theta_1^*, \ldots \theta_B^*)$. Then an $1-\alpha$ bootstrap percentile interval is $$C_n = (\theta^*_{\alpha/2}, \theta^*_{1-\alpha/2})$$
 
 ## Why Bootstrap?
 
