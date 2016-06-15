@@ -6,7 +6,7 @@
 
 Morning Objectives:
 
-* Thoroughly explain the construction of a random forest (classification or regression) algorithm
+* Thoroughly explain the construction of a random forest (classification or regression) algorithm.
 * Explain the relationship and difference between random forest and bagging.
 * Explain why random forests are more accurate than a single decision tree.
 
@@ -38,7 +38,7 @@ Afternoon Agenda
 Train multiple different models on the data. To predict:
 
 * For regressor, average the predictions of the models
-* For classifier, take the plurality winner
+* For classifier, take the plurality choice
 
 
 ## Ensembles: Intuition
@@ -80,6 +80,7 @@ Training:
 
 * Iteratively divide the nodes into subnodes such that (entropy/gini impurity) is minimized
 * Various stopping conditions like a depth limit
+* Prune trees by merging nodes
 
 Inference:
 
@@ -165,7 +166,6 @@ Second slide saying the same thing again to emphasize that Bagging is important.
 * Train a high variance, low bias model on each of them
 * Average the results - this can reduce your variance by up to $\sqrt n$
     - Question: Why is the reduction in variance less than $\sqrt n$?
-* This is Bootstrap Aggregation or 'Bagging'
 
 
 ## Correlation Between the Trees
@@ -205,7 +205,7 @@ Pros
 
 Cons
 
-* Can be expensive to train
+* Can be expensive to train (though can be done in parallel)
 * Not interpretable
 
 
