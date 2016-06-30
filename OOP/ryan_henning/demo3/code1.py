@@ -10,6 +10,9 @@ class Fruit(object):
     def grow():
         print "I'm growing!"
 
+    def set_weight(self, weight):
+        self.weight = weight
+
     def calculate_price(self):
         return 2.5 * self.weight
 
@@ -50,7 +53,7 @@ def plot_fruit_prices(fruit, weight_min, weight_max):
     range_ = np.linspace(weight_min, weight_max, 100)
     price = []
     for weight in range_:
-        fruit.weight = weight
+        fruit.set_weight(weight)
         price.append(fruit.calculate_price())
     plt.plot(range_, price)
 
