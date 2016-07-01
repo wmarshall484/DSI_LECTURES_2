@@ -1,6 +1,6 @@
 % Clustering
 % [Jack Bennetto](jack.bennetto@galvanize.com)
-% March 8, 2016
+% June 27, 2016
 
 
 # Objectives
@@ -9,9 +9,9 @@ Today's objectives:
 
 * Explain the difference between **supervised** and **unsupervised** learning
 * Implement a **k-means** algorithm for clustering
+* Discuss how **curse of dimensionality** affects clustering
 * Choose the best k using the **elbow method** or **silhouette scores**
 * Implement and interpret **hierarchical clustering**
-* Discuss how **curse of dimensionality** affects clustering
 
 # Agenda
 
@@ -86,11 +86,11 @@ How do we measure how good the clustering is?
 
 Measures the goodness of a clustering
 
-$$W(C) = \sum_{k=1}^{K} \frac{1}{n_k} \sum_{C(i)=k}  \sum_{C(j)=k} || x_i - x_j ||^2 $$
+$$W(C) = \sum_{k=1}^{K} \frac{1}{K} \sum_{C(i)=k}  \sum_{C(j)=k} || x_i - x_j ||^2 $$
 
-How long will it take to optimize this?
+where $K$ is the number of clusters, $C(i)$ is the cluster label of point $i$, and $x_i$ is the position of point $i$.
 
-\only{<2>}{Do you need to normalize?}
+Do you need to normalize?
 
 # k-means Algorithm
 
@@ -198,16 +198,16 @@ The higher the the average silhouette score, the tigher and more separated the c
 
 # Choosing K -- GAP Statistic
 
-For each k, compare W(k) (within-cluster sum of squares) with that of randomly generated "reference distributions"
+For each $K$, compare $W_K$ (within-cluster sum of squares) with that of randomly generated "reference distributions"
 
 
 Generate B distributions
 
-$$Gap(k) = \frac{1}{B} \sum_{b=1}^B \log{W_{kb}} - \log{W_k}$$
+$$Gap(K) = \frac{1}{B} \sum_{b=1}^B \log{W_{Kb}} - \log{W_K}$$
 
-Choose smallest k such that $Gap(k) \ge Gap(k+1) - s_{k+1}$
+Choose smallest K such that $Gap(K) \ge Gap(K+1) - s_{N+1}$
 
-where $s_{k}$ is the standard error of $Gap(k)$
+where $s_{K}$ is the standard error of $Gap(K)$
 
 # Hierarchical Clustering
 
@@ -230,8 +230,10 @@ Algorithm
 
  * Assign each point to its own cluster
  * Repeat:
+
    * Compute distances between clusters
    * Merge closest clusters
+
  ...until all are merged
 
 How do we define dissimilarity between clusters?
