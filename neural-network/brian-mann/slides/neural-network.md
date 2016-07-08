@@ -129,7 +129,7 @@ We need a way to write down the network mathematically to do anything with it. A
 * For each layer $\ell$:
     * $\mathbf{s}^{(\ell)}$ is the $d^{(\ell)}$-dimensional input vector
     * $\mathbf{x}^{(\ell)}$ is the $d^{(\ell)}+1$-dimensional output vector
-    * $W^{(\ell)}$ is the $d^{(\ell-1)}+1 \times d^{(\ell)}$ matrix of input weights. $W^{(\ell)}_{ij}$ is the weight of the edge from the $i$-th node in layer $\ell -1$ to the $j$-th node in $\ell$
+    * $W^{(\ell)}$ is the $(d^{(\ell-1)}+1) \times d^{(\ell)}$ matrix of input weights. $W^{(\ell)}_{ij}$ is the weight of the edge from the $i$-th node in layer $\ell -1$ to the $j$-th node in $\ell$
 
 ## Notation (2/2)
 
