@@ -477,7 +477,7 @@ $ conda update boto
 
         ```bash
         $ ssh -N -f -L localhost:8888:localhost:8889 \
-            remote_user@remote_host
+            remote_user@remote_host -i ~/.ssh/aws_key.pem
         ```
 
     -   Access notebook via browser at URL localhost:8888
