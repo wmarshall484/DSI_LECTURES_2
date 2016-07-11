@@ -12,6 +12,8 @@ default: $(TGT)
 
 lecture: default
 
+parallel: parallel.pdf
+
 all: default
 
 clean:
