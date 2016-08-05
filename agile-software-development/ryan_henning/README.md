@@ -25,8 +25,11 @@ Then a _sprint planning meeting_ is held, where the instructor (playing the role
 
 After the _sprint backlog_ is created, the student will build themselves a _scrum board_. Here are some example scrum boards:
 
-![Example Scrum Boards](images/student_scrum_board_examples.jpg)
-
+|         | Day 3 | Day 13 |
+|---------|-------|--------|
+| Clay    | <img src="images/clay_day3.JPG"> | <img src="images/clay_day13.JPG"> |
+| Jostine | <img src="images/jostine_day3.JPG"> | <img src="images/jostine_day13.JPG"> |
+| Patrick | <img src="images/pat_day3.JPG"> | <img src="images/pat_day13.JPG"> |
 
 ### Suggested Reading
 
