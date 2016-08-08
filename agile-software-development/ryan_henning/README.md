@@ -1,12 +1,14 @@
 
-### Slide Notes
+### Overview
 
-Ryan's lecture notes for each slide are in the [original Google Slides document](https://docs.google.com/a/galvanize.com/presentation/d/1eT1KkCAmcTigXqQy6eMM7NzfVNby_SvASszQySRgcbU/edit?usp=sharing).
+Look at [these slides](https://docs.google.com/a/galvanize.com/presentation/d/1eT1KkCAmcTigXqQy6eMM7NzfVNby_SvASszQySRgcbU/edit?usp=sharing) first. Specifically the slides titled "The parts of scrum we’ll simulate in your capstone project".
+
+Next, read the remainder of this document! It will give some details about how to simulate Scrum during the student capstone projects.
 
 
 ### Student Capstone Sprint Planning
 
-Here is a __generic__ list of _stories_ and _tasks_ for a student capstone project. Each student should write stories and tasks that are __specific to their own project__.
+Here is a __generic__ list of _stories_ and _tasks_ for a student capstone project. Each student should write stories and tasks that are __specific to their own project__, but it's okay for them to get inspired by this list.
 
 | story name                   | how to demo                                                         | notes                                                                                                                                                                                                                      | tasks                                                                                                                                                                                                                                                                                                                                                                           |
 |------------------------------|---------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -17,6 +19,7 @@ Here is a __generic__ list of _stories_ and _tasks_ for a student capstone proje
 | For-realz modeling           | a few graphs and/or metrics describing the final validation results | The end-goal here is to get the best results possible in the allotted time. Consider doing extra analysis like an ROC or profit curves or something.                                                                       | - find and launch an appropriate AMI - customize the AMI - upload the data - train several models using all the data - pickle the trained model pipeline - package the code & upload to github - document the process & upload to github                                                                                                                                        |
 | Version 1.0.0 API            | via swagger-ui or curl                                              | This should be a drop-in-replacement for the mock-API so that the WDI partner only has to change URLs, not behavior. If done perfectly, it will take the WDI student 1 minute to switch from using the mock-API to v1.0.0. | - write the code - deploy the API alongside the mock-API - test the API - publish the code to github - communicate with WDI partner                                                                                                                                                                                                                                             |
 | Showoff documentation        | ... just show it!                                                   | The purpose of this is to show off your skills and make your project shine like the sun!                                                                                                                                   | - work with WDI partner to finalize the website - brainstorm the best way to tell the story - write a beautiful README.md for github - prepare a slidedeck                                                                                                                                                                                                                      |
+
 Students are encouraged to write as many stories as they can! Write the stories and tasks on sticky notes and/or index cards. These stories become the _product backlog_.
 
 Then a _sprint planning meeting_ is held, where the instructor (playing the role of _product owner_) will prioritize the stories (by moving the story cards around) and help estimate _story points_ (by playing _planning poker_ and writing the estimates on each card) in order to create the _sprint backlog_.
@@ -30,6 +33,8 @@ After the _sprint backlog_ is created, the student will build themselves a _scru
 | Clay    | <img src="images/clay_day3.JPG"> | <img src="images/clay_day13.JPG"> |
 | Jostine | <img src="images/jostine_day3.JPG"> | <img src="images/jostine_day13.JPG"> |
 | Patrick | <img src="images/pat_day3.JPG"> | <img src="images/pat_day13.JPG"> |
+
+The students should update their _scrum boards_ during every _daily scrum meeting_.
 
 ### Suggested Reading
 
