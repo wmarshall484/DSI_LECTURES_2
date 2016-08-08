@@ -1,12 +1,12 @@
 
-### Overview
+# Overview
 
 Look at [these slides](https://docs.google.com/a/galvanize.com/presentation/d/1eT1KkCAmcTigXqQy6eMM7NzfVNby_SvASszQySRgcbU/edit?usp=sharing) first. Specifically the slides titled "The parts of scrum we’ll simulate in your capstone project".
 
 Next, read the remainder of this document! It will give some details about how to simulate Scrum during the student capstone projects.
 
 
-### Student Capstone Sprint Planning
+# Student Capstone Sprint Planning
 
 Here is a __generic__ list of _stories_ and _tasks_ for a student capstone project. Each student should write stories and tasks that are __specific to their own project__, but it's okay for them to get inspired by this list.
 
@@ -30,14 +30,12 @@ After the _sprint backlog_ is created, the student will build themselves a _scru
 
 |         | Day 3 | Day 13 |
 |---------|-------|--------|
+| Patrick | <img src="images/pat_day3.JPG"> | <img src="images/pat_day13.JPG"> |
 | Clay    | <img src="images/clay_day3.JPG"> | <img src="images/clay_day13.JPG"> |
 | Jostine | <img src="images/jostine_day3.JPG"> | <img src="images/jostine_day13.JPG"> |
-| Patrick | <img src="images/pat_day3.JPG"> | <img src="images/pat_day13.JPG"> |
 
 The students should update their _scrum boards_ during every _daily scrum meeting_.
 
-### Suggested Reading
+# Suggested Reading
 
-The book, 'Scrum and XP from the Trenches', is free in PDF form.
-
-See: https://www.infoq.com/minibooks/scrum-xp-from-the-trenches-2
+The book [Scrum and XP from the Trenches](Scrum-and-XP-from-the-Trenches-2nd-edition.pdf) is free in PDF form. To get your own copy, see: https://www.infoq.com/minibooks/scrum-xp-from-the-trenches-2
