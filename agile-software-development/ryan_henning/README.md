@@ -1,7 +1,7 @@
 
 # Overview
 
-Look at [these slides](https://docs.google.com/a/galvanize.com/presentation/d/1eT1KkCAmcTigXqQy6eMM7NzfVNby_SvASszQySRgcbU/edit?usp=sharing) first. Specifically the slides titled "The parts of scrum we’ll simulate in your capstone project".
+Look at [these slides](https://docs.google.com/presentation/d/1eT1KkCAmcTigXqQy6eMM7NzfVNby_SvASszQySRgcbU/edit?usp=sharing) first. Specifically the slides titled "The parts of scrum we’ll simulate in your capstone project".
 
 Next, read the remainder of this document! It will give some details about how to simulate Scrum during the student capstone projects.
 
