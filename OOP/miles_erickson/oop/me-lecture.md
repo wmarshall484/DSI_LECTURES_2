@@ -288,11 +288,11 @@ Make sure your interface is intuitive and friction-free:
 
 ##  Example of first version of a class
 ```python
-class FancyRegression(object):
+class Card(object):
     def __init__(self):
         pass
 
-    def fit(self, X, y):
+    def __str__(self):
         pass
 ```
 
@@ -365,7 +365,7 @@ Use `self` to refer to an instance's own, unique data:
 To inherit from a base class, specify the parent classes instead of `object` when you define the class:
 
 ```python
-class Joker(card):
+class Joker(Card):
     pass
 ```
 
@@ -392,7 +392,7 @@ If a class inherits from another, the derived class must call the base class's c
 ##  Example:    `def __init__(self, ...):`
 
 ```python
-class Joker(card):
+class Joker(Card):
     """
     Optional wild card.
     """
