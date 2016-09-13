@@ -1,2 +1,0 @@
-Props to Zach Alexander for "nmf-example.ipynb". It's great--I added to it
-and renamed it to "nmf_pres.ipynb".
