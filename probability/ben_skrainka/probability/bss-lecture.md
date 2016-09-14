@@ -606,7 +606,7 @@ Models survival, such as the fraction of uranium which has not decayed by time $
 
 *   $T \sim \mathtt{Exp}(\lambda)$
 *   $1 / \lambda$ is the half-life
-*   CDF:    $\Pr[T \leq t] = 1 - \exp(- \lambda \cdot t), x \geq 0, \lambda \geq 0$
+*   CDF:    $\Pr[T \leq t] = 1 - \exp(- \lambda \cdot t), t \geq 0, \lambda \geq 0$
 *   Mean:   $1/\lambda$
 *   Variance:   $1/\lambda^2$
 *   'Memory-less'
@@ -617,7 +617,7 @@ Models survival, such as the fraction of uranium which has not decayed by time $
 A benchmark distribution:
 
 *   $X \sim \mathit{N}(\mu, \sigma^2)$
-*   PDF:    $f(x; \mu, \sigma^2) = \dfrac{1}{\sqrt{2 \pi}} \exp \left(- \dfrac{1}{2} \dfrac{ (x - \mu)^2 }{\sigma^2} \right)$
+*   PDF:    $f(x; \mu, \sigma^2) = \dfrac{1}{\sqrt{2 \pi \sigma^2}} \exp \left(- \dfrac{1}{2} \dfrac{ (x - \mu)^2 }{\sigma^2} \right)$
 *   Often, compute the 'z-statistic':
     -   $z = \dfrac{\overline{x} - \mu}{\sigma / \sqrt{n}}$
     -   Perform a 'z-test' to check probability of observed value
