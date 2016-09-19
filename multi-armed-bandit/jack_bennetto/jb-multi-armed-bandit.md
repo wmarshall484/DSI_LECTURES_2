@@ -43,7 +43,7 @@ where
  * $P(x)$ is the **prior distribution** of $x$, and
  * $P(\theta)$, the **normalizing constant**, is
 
-$$P(\theta) = \sum_x P(\theta|x)$$
+$$P(\theta) = \sum_x P(\theta|x) P(x)$$
 
 # Example: Click-through rates
 
