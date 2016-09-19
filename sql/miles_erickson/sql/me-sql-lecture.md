@@ -80,13 +80,13 @@ With a new data source, your first task is typically to understand the schema (n
 ## Database Table Example
 
 ```
-  CREATE TABLE users {
+  CREATE TABLE users (
       id INTEGER PRIMARY KEY,
       name VARCHAR(255),
       age INTEGER,
       city VARCHAR(255),
       state VARCHAR(2)
-  }
+  )
 ```
 
 The data types available vary from system to system. The above is an example for PostgreSQL where VARCHAR is a string data type.
