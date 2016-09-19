@@ -28,7 +28,7 @@ Morning:
 Afternoon:
 
  * What is a multi-armed bandit?
- * How do we use one to do smarter A/B tests?
+ * How do we use this to do smarter A/B tests?
 
 # Bayes' Theorem
 
@@ -49,21 +49,21 @@ $$P(\theta) = \sum_x P(\theta|x)$$
 
 Consider two version of an ad on a website.
 
-Which produces a higher click-through rate?
-
-Each visit follows a Bernoulli distribution.
-
-Use Bayesian analysis to find probability distributions of effectiveness.
+ * Which produces a higher click-through rate?
+ * Each visit follows a Bernoulli distribution.
+ * Use Bayesian analysis to find probability distributions of effectiveness.
 
 # Binomial Distribution (likelihood)
 
-Likelihood of k successes out of n trials
+Likelihood of k successes out of n trials is
 
 $${n \choose k} p^k (1-p)^{n-k}$$
 
-* $p$: conversion rate (between 0 and 1)
-* $n$: number of visitors
-* $k$: number of conversions
+where
+
+* $p$ is the conversion rate (between 0 and 1),
+* $n$ is the number of visitors, and
+* $k$ is the number of conversions.
 
 # Beta Distribution
 
@@ -73,13 +73,13 @@ $$\frac{p^{\alpha - 1}(1 - p)^{\beta - 1}}{B(\alpha, \beta)}$$
 
 where
 
-* $p$: conversion rate (**between 0 and 1**)
-* $\alpha$, $\beta$: shape parameters
-    * $\alpha$ = 1 + number of conversions
-    * $\beta$ = 1 + number of non-conversions
-* Beta Function ($B$) is a normalizing constant
-* $\alpha = \beta = 1$ gives the *uniform distribution*
-* mean is $\frac{\alpha}{\alpha + \beta}$
+* $p$ is the conversion rate (**between 0 and 1**) and
+* $\alpha$, $\beta$ are the shape parameters:
+    * $\alpha$ = 1 + number of conversions and
+    * $\beta$ = 1 + number of non-conversions.
+* Beta Function ($B$) is a normalizing constant.
+* $\alpha = \beta = 1$ gives the *uniform distribution*.
+* Mean is $\frac{\alpha}{\alpha + \beta}$.
 
 # Beta Distribution
 
@@ -114,7 +114,7 @@ How important are these to do Bayesian statistics?
 
 In both cases, we consider an ensemble of possible randomly generated universes.
 
-Frequentist: The hypothesis is a fixed (though unknown) reality; we the observed data follows some random distribution
+Frequentist: The hypothesis is a fixed (though unknown) reality; the observed data follows some random distribution
 
 Bayesian: The observed data is a fixed reality; the hypotheses follow some random distribution.
 
@@ -131,6 +131,8 @@ Frequentist procedure
 (aside: Wald sequential analysis)
 
 # Bayesian A/B testing
+
+Bayesian procedure
 
 * No need to choose n beforehand.
 * Update knowledge as the experiment runs.
@@ -154,7 +156,7 @@ Afternoon Objectives:
 
 # What Is a Multi-Armed Bandit?
 
-Each slot machine (a.k.a. one-armed bandit) has a difference (unknown!) chance of winning.
+Each slot machine (a.k.a. one-armed bandit) has a different (unknown!) chance of winning.
 
 How do you maximize your total payout after a finite number of plays?
 
