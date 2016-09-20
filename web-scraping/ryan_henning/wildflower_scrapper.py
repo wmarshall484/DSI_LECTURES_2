@@ -1,3 +1,10 @@
+'''
+This script scrapes images from www.wildflower.org
+
+E.g. run: `python wildflower_scrapper.py LUTE` to get all the Bluebonnets.
+'''
+
+
 import requests
 from bs4 import BeautifulSoup
 import urlparse
