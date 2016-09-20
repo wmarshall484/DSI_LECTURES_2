@@ -1,6 +1,6 @@
 % Bayesian A/B Testing and the Multi-Armed Bandit
 % [Jack Bennetto](jack.bennetto@galvanize.com)
-% June 6, 2016
+% September 19, 2016
 
 # Objectives
 
@@ -28,7 +28,7 @@ Morning:
 Afternoon:
 
  * What is a multi-armed bandit?
- * How do we use one to do smarter A/B tests?
+ * How do we use this to do smarter A/B tests?
 
 # Bayes' Theorem
 
@@ -39,31 +39,31 @@ $$P(x|\theta) = \frac{P(\theta | x) P(x)}{P(\theta)}$$
 where
 
  * $P(x|\theta)$ is the **posterior probability distribution** of hypothesis $x$ being true, given observed data $\theta$,
- * $P(\theta|x)$ is the **likelihood** of observing $\theta$ given $x$
- * $P(x)$ is the **prior distribution** of $x$
+ * $P(\theta|x)$ is the **likelihood** of observing $\theta$ given $x$,
+ * $P(x)$ is the **prior distribution** of $x$, and
  * $P(\theta)$, the **normalizing constant**, is
 
-$$P(\theta) = \sum_x P(\theta|x)$$
+$$P(\theta) = \sum_x P(\theta|x) P(x)$$
 
 # Example: Click-through rates
 
 Consider two version of an ad on a website.
 
-Which produces a higher click-through rate?
-
-Each visit follows a Bernoulli distribution.
-
-Use Bayesian analysis to find probability distributions of effectiveness.
+ * Which produces a higher click-through rate?
+ * Each visit follows a Bernoulli distribution.
+ * Use Bayesian analysis to find probability distributions of effectiveness.
 
 # Binomial Distribution (likelihood)
 
-Likelihood of k successes out of n trials
+Likelihood of k successes out of n trials is
 
 $${n \choose k} p^k (1-p)^{n-k}$$
 
-* $p$: conversion rate (between 0 and 1)
-* $n$: number of visitors
-* $k$: number of conversions
+where
+
+* $p$ is the conversion rate (between 0 and 1),
+* $n$ is the number of visitors, and
+* $k$ is the number of conversions.
 
 # Beta Distribution
 
@@ -73,13 +73,13 @@ $$\frac{p^{\alpha - 1}(1 - p)^{\beta - 1}}{B(\alpha, \beta)}$$
 
 where
 
-* $p$: conversion rate (**between 0 and 1**)
-* $\alpha$, $\beta$: shape parameters
-    * $\alpha$ = 1 + number of conversions
-    * $\beta$ = 1 + number of non-conversions
-* Beta Function ($B$) is a normalizing constant
-* $\alpha = \beta = 1$ gives the *uniform distribution*
-* mean is $\frac{\alpha}{\alpha + \beta}$
+* $p$ is the conversion rate (**between 0 and 1**) and
+* $\alpha$, $\beta$ are the shape parameters:
+    * $\alpha$ = 1 + number of conversions and
+    * $\beta$ = 1 + number of non-conversions.
+* Beta Function ($B$) is a normalizing constant.
+* $\alpha = \beta = 1$ gives the *uniform distribution*.
+* Mean is $\frac{\alpha}{\alpha + \beta}$.
 
 # Beta Distribution
 
@@ -114,7 +114,7 @@ How important are these to do Bayesian statistics?
 
 In both cases, we consider an ensemble of possible randomly generated universes.
 
-Frequentist: The hypothesis is a fixed (though unknown) reality; we the observed data follows some random distribution
+Frequentist: The hypothesis is a fixed (though unknown) reality; the observed data follows some random distribution
 
 Bayesian: The observed data is a fixed reality; the hypotheses follow some random distribution.
 
@@ -123,18 +123,22 @@ Bayesian: The observed data is a fixed reality; the hypotheses follow some rando
 
 Frequentist procedure
 
-* Choose n (number of experiments/samples) based on expected size of effect
+* Choose n (number of experiments/samples) based on expected size of effect.
 * Run **all** experiments and observe the data.
-* The significance is probability of getting result (or more extreme) assuming no effect
-* Doesn't tell you how likely it is that a is better than b
+* The significance is probability of getting result (or more extreme) assuming no effect.
+* Doesn't tell you how likely it is that a is better than b.
+
+(aside: Wald sequential analysis)
 
 # Bayesian A/B testing
 
-* No need to choose n beforehand
-* Update knowledge as the experiment runs
-* Gives probability of *anything you want*
+Bayesian procedure
 
-why doesn't everyone like this better?
+* No need to choose n beforehand.
+* Update knowledge as the experiment runs.
+* Gives probability of *anything you want*.
+
+Why doesn't everyone like this better?
 
 # Objectives
 
@@ -150,15 +154,15 @@ Afternoon Objectives:
  * Explain how multi-armed bandit addresses the tradeoff between exploitation and exploration, and the relationship to regret.
  * Implement the multi-armed bandit algorithm.
 
-# What is a Multi-Armed Bandit?
+# What Is a Multi-Armed Bandit?
 
-Each slot machine (a.k.a. one-armed bandit) has a difference (unknown!) chance of winning
+Each slot machine (a.k.a. one-armed bandit) has a different (unknown!) chance of winning.
 
 How do you maximize your total payout after a finite number of plays?
 
-Assume all have the same payoff ("binary bandits")
+Assume all have the same payoff. ("binary bandits")
 
-# Why is this an interesting problem?
+# Why Is This Interesting?
 
 \pause
 
@@ -202,35 +206,40 @@ If there are three bandits, A, B, and C, the probability of choosing A is
 
 $$ \frac{ e^{p_A/\tau} }{  e^{p_A /\tau} +  e^{p_B /\tau} + e^{p_C /\tau  } } $$
 
-where $p_A$ is the average of bandit A so far (assume 1.0 to start)
+where
 
-$\tau$ is a constant that can be seen as the temperature of the system
+* $p_A$ is the average payoff of bandit A so far (assume 1.0 to start).
+* $\tau$ is the "temperature" (generally constant).
 
-* As $\tau \to \infty$, the algorithm will choose bandits equally
-* As $\tau \to 0$, it will choose the most successful so far
+How does this behave in the extremes?
 
+\pause
+
+* As $\tau \to \infty$, the algorithm will choose bandits equally.
+* As $\tau \to 0$, it will choose the most successful so far.
+
+What are the limitations?
 
 # UCB1 Algorithm
 
 Choose a bandit to maximize
 
-$$p_A + \sqrt{\frac{2 \log{N}}{n_A}} $$
+$$p_A + \sqrt{\frac{2 \ln{N}}{n_A}} $$
 
 where
 
- * $p_A$ is the expected payout of bandit $A$
- * $n_A$ is the number of times bandit $A$ has played
- * N is the total number of trials so far
+ * $p_A$ is the expected payout of bandit $A$.
+ * $n_A$ is the number of times bandit $A$ has played.
+ * N is the total number of trials so far.
 
 This chooses the bandit for whom the Upper Confidence Bound is the highest.
 
 # Bayesian Bandit
 
-Use Bayesian statistics
+Use Bayesian statistics:
 
-* Find probability distribution of payout of each bandit thus far (how?)
-* For each bandit, sample from distribution
-* Choose bandit for whom the sample has highest expected payout
-
+* Find probability distribution of payout of each bandit thus far. (how?)
+* For each bandit, sample from distribution.
+* Choose bandit for whom the sample has highest expected payout.
 
 

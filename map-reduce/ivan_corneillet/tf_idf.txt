@@ -1,0 +1,3 @@
+3 0 student learn other student
+3 1 teach galvanize
+3 2 student learn galvanize

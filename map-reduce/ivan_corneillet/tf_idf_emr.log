@@ -1,0 +1,230 @@
+Tue Sep 20 19:14:41 UTC 2016
+Using configs in /home/ec2-user/.mrjob.conf
+Using s3://mrjob-9db22d2fe4dc2506/tmp/ as our temp dir on S3
+Creating temp directory /tmp/tf_idf.ec2-user.20160920.191441.765326
+Copying local files to s3://mrjob-9db22d2fe4dc2506/tmp/tf_idf.ec2-user.20160920.191441.765326/files/...
+Adding our job to existing cluster j-35BQ2L91DLRWZ
+Waiting for step 1 of 3 (s-5R1VUXPSU9BG) to complete...
+  PENDING (cluster is WAITING: Cluster ready after last step completed.)
+  RUNNING for 30.5s
+  RUNNING for 61.0s
+  COMPLETED
+Attempting to fetch counters from logs...
+Waiting 10 minutes for logs to transfer to S3... (ctrl-c to skip)
+
+To fetch logs immediately next time, set up SSH. See:
+https://pythonhosted.org/mrjob/guides/emr-quickstart.html#configuring-ssh-credentials
+
+Looking for step log in s3://mrjob-9db22d2fe4dc2506/tmp/logs/j-35BQ2L91DLRWZ/steps/s-5R1VUXPSU9BG...
+  Parsing step log: s3://mrjob-9db22d2fe4dc2506/tmp/logs/j-35BQ2L91DLRWZ/steps/s-5R1VUXPSU9BG/syslog.gz
+Counters: 54
+	File Input Format Counters 
+		Bytes Read=200
+	File Output Format Counters 
+		Bytes Written=188
+	File System Counters
+		FILE: Number of bytes read=231
+		FILE: Number of bytes written=725226
+		FILE: Number of large read operations=0
+		FILE: Number of read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=556
+		HDFS: Number of bytes written=188
+		HDFS: Number of large read operations=0
+		HDFS: Number of read operations=17
+		HDFS: Number of write operations=6
+		S3: Number of bytes read=200
+		S3: Number of bytes written=0
+		S3: Number of large read operations=0
+		S3: Number of read operations=0
+		S3: Number of write operations=0
+	Job Counters 
+		Data-local map tasks=4
+		Launched map tasks=4
+		Launched reduce tasks=3
+		Total megabyte-seconds taken by all map tasks=24585728
+		Total megabyte-seconds taken by all reduce tasks=13983744
+		Total time spent by all map tasks (ms)=48019
+		Total time spent by all maps in occupied slots (ms)=96038
+		Total time spent by all reduce tasks (ms)=27312
+		Total time spent by all reduces in occupied slots (ms)=54624
+		Total vcore-seconds taken by all map tasks=48019
+		Total vcore-seconds taken by all reduce tasks=27312
+	Map-Reduce Framework
+		CPU time spent (ms)=26720
+		Combine input records=0
+		Combine output records=0
+		Failed Shuffles=0
+		GC time elapsed (ms)=2240
+		Input split bytes=556
+		Map input records=3
+		Map output bytes=212
+		Map output materialized bytes=370
+		Map output records=9
+		Merged Map outputs=12
+		Physical memory (bytes) snapshot=1460506624
+		Reduce input groups=8
+		Reduce input records=9
+		Reduce output records=8
+		Reduce shuffle bytes=370
+		Shuffled Maps =12
+		Spilled Records=18
+		Total committed heap usage (bytes)=607993856
+		Virtual memory (bytes) snapshot=6941646848
+	Shuffle Errors
+		BAD_ID=0
+		CONNECTION=0
+		IO_ERROR=0
+		WRONG_LENGTH=0
+		WRONG_MAP=0
+		WRONG_REDUCE=0
+Waiting for step 2 of 3 (s-9PDKJ97SOS42) to complete...
+  COMPLETED
+Attempting to fetch counters from logs...
+Waiting 10 minutes for logs to transfer to S3... (ctrl-c to skip)
+
+To fetch logs immediately next time, set up SSH. See:
+https://pythonhosted.org/mrjob/guides/emr-quickstart.html#configuring-ssh-credentials
+
+Looking for step log in s3://mrjob-9db22d2fe4dc2506/tmp/logs/j-35BQ2L91DLRWZ/steps/s-9PDKJ97SOS42...
+  Parsing step log: s3://mrjob-9db22d2fe4dc2506/tmp/logs/j-35BQ2L91DLRWZ/steps/s-9PDKJ97SOS42/syslog.gz
+Counters: 49
+	File Input Format Counters 
+		Bytes Read=235
+	File Output Format Counters 
+		Bytes Written=228
+	File System Counters
+		FILE: Number of bytes read=233
+		FILE: Number of bytes written=725134
+		FILE: Number of large read operations=0
+		FILE: Number of read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=843
+		HDFS: Number of bytes written=228
+		HDFS: Number of large read operations=0
+		HDFS: Number of read operations=21
+		HDFS: Number of write operations=6
+	Job Counters 
+		Data-local map tasks=4
+		Launched map tasks=4
+		Launched reduce tasks=3
+		Total megabyte-seconds taken by all map tasks=17518592
+		Total megabyte-seconds taken by all reduce tasks=14023680
+		Total time spent by all map tasks (ms)=34216
+		Total time spent by all maps in occupied slots (ms)=68432
+		Total time spent by all reduce tasks (ms)=27390
+		Total time spent by all reduces in occupied slots (ms)=54780
+		Total vcore-seconds taken by all map tasks=34216
+		Total vcore-seconds taken by all reduce tasks=27390
+	Map-Reduce Framework
+		CPU time spent (ms)=9860
+		Combine input records=0
+		Combine output records=0
+		Failed Shuffles=0
+		GC time elapsed (ms)=1102
+		Input split bytes=608
+		Map input records=8
+		Map output bytes=204
+		Map output materialized bytes=388
+		Map output records=8
+		Merged Map outputs=12
+		Physical memory (bytes) snapshot=1380581376
+		Reduce input groups=3
+		Reduce input records=8
+		Reduce output records=8
+		Reduce shuffle bytes=388
+		Shuffled Maps =12
+		Spilled Records=16
+		Total committed heap usage (bytes)=607993856
+		Virtual memory (bytes) snapshot=6911946752
+	Shuffle Errors
+		BAD_ID=0
+		CONNECTION=0
+		IO_ERROR=0
+		WRONG_LENGTH=0
+		WRONG_MAP=0
+		WRONG_REDUCE=0
+Waiting for step 3 of 3 (s-2Z9FA376G3M9N) to complete...
+  COMPLETED
+Attempting to fetch counters from logs...
+Waiting 10 minutes for logs to transfer to S3... (ctrl-c to skip)
+
+To fetch logs immediately next time, set up SSH. See:
+https://pythonhosted.org/mrjob/guides/emr-quickstart.html#configuring-ssh-credentials
+
+Looking for step log in s3://mrjob-9db22d2fe4dc2506/tmp/logs/j-35BQ2L91DLRWZ/steps/s-2Z9FA376G3M9N...
+  Parsing step log: s3://mrjob-9db22d2fe4dc2506/tmp/logs/j-35BQ2L91DLRWZ/steps/s-2Z9FA376G3M9N/syslog.gz
+Counters: 55
+	File Input Format Counters 
+		Bytes Read=284
+	File Output Format Counters 
+		Bytes Written=291
+	File System Counters
+		FILE: Number of bytes read=220
+		FILE: Number of bytes written=828632
+		FILE: Number of large read operations=0
+		FILE: Number of read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=1044
+		HDFS: Number of bytes written=0
+		HDFS: Number of large read operations=0
+		HDFS: Number of read operations=10
+		HDFS: Number of write operations=0
+		S3: Number of bytes read=0
+		S3: Number of bytes written=291
+		S3: Number of large read operations=0
+		S3: Number of read operations=0
+		S3: Number of write operations=0
+	Job Counters 
+		Data-local map tasks=4
+		Launched map tasks=5
+		Launched reduce tasks=3
+		Rack-local map tasks=1
+		Total megabyte-seconds taken by all map tasks=31106560
+		Total megabyte-seconds taken by all reduce tasks=17214464
+		Total time spent by all map tasks (ms)=60755
+		Total time spent by all maps in occupied slots (ms)=121510
+		Total time spent by all reduce tasks (ms)=33622
+		Total time spent by all reduces in occupied slots (ms)=67244
+		Total vcore-seconds taken by all map tasks=60755
+		Total vcore-seconds taken by all reduce tasks=33622
+	Map-Reduce Framework
+		CPU time spent (ms)=7130
+		Combine input records=0
+		Combine output records=0
+		Failed Shuffles=0
+		GC time elapsed (ms)=3277
+		Input split bytes=760
+		Map input records=8
+		Map output bytes=228
+		Map output materialized bytes=457
+		Map output records=8
+		Merged Map outputs=15
+		Physical memory (bytes) snapshot=1717628928
+		Reduce input groups=5
+		Reduce input records=8
+		Reduce output records=8
+		Reduce shuffle bytes=457
+		Shuffled Maps =15
+		Spilled Records=16
+		Total committed heap usage (bytes)=739790848
+		Virtual memory (bytes) snapshot=7905157120
+	Shuffle Errors
+		BAD_ID=0
+		CONNECTION=0
+		IO_ERROR=0
+		WRONG_LENGTH=0
+		WRONG_MAP=0
+		WRONG_REDUCE=0
+Streaming final output from s3://mrjob-9db22d2fe4dc2506/tmp/tf_idf.ec2-user.20160920.191441.765326/output/...
+["teach", "1"]	0.54930614433405489
+["learn", "2"]	0.13515503603605478
+["learn", "0"]	0.1013662770270411
+["other", "0"]	0.27465307216702745
+["student", "0"]	0.20273255405408219
+["student", "2"]	0.13515503603605478
+["galvanize", "1"]	0.20273255405408219
+["galvanize", "2"]	0.13515503603605478
+Removing s3 temp directory s3://mrjob-9db22d2fe4dc2506/tmp/tf_idf.ec2-user.20160920.191441.765326/...
+Removing temp directory /tmp/tf_idf.ec2-user.20160920.191441.765326...
+Tue Sep 20 19:48:26 UTC 2016

@@ -487,7 +487,7 @@ Take a moment to think of how absurd this is. A document that contains the word 
 
 ## The Algorithm
 
-![](http://nlp.stanford.edu/IR-book/html/htmledition/img897.png)
+![](images/naive-bayes.png)
 
 For every document, we calculate the probability that the document belongs to each class and chose the class with the highest probability.
 
