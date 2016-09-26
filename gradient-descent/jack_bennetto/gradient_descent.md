@@ -4,6 +4,8 @@
 
 ## Objectives
 
+Today's objectives:
+
 * Explain how **gradient descent** works
 * Use gradient descent to optimize the cost function for logistic regression
 * Explain the advantage of **stochastic gradient descent**
@@ -78,19 +80,21 @@ To minimize $f$
 
 ## Gradient Descent
 
-* `alpha` is called the *step-size* or *learning rate*
-    * If 'alpha' is too small, convergence takes a long time
-    * If 'alpha' is too big, can overshoot the minimum
+`alpha` $\alpha$ is called the *step-size* or *learning rate*
+
+* If $\alpha$ is too small, convergence takes a long time
+* If $\alpha$ is too big, can overshoot the minimum
 
 ![`alpha` too large](./images/learning_rate_divergence.gif)
 
 ## Choosing Alpha
 
-* If the value of $$\frac{|\nabla f(\mathbf{x}_i) - \nabla f(\mathbf{x}_{i+1})|}{|\mathbf{x}_i-\mathbf{x}_{i+1}|}$$ is bounded above by some number $L(\nabla f)$ then $$\alpha \leq \frac{1}{L(\nabla f)}$$ will converge.
-* For example:
-    * $f(x) = x^2$
-    * $L(\nabla f) = 2$
-    * $\alpha = 1/2$ will be the best value
+If the value of $$\frac{|\nabla f(\mathbf{x}_i) - \nabla f(\mathbf{x}_{i+1})|}{|\mathbf{x}_i-\mathbf{x}_{i+1}|}$$ is bounded above by some number $L(\nabla f)$ then $$\alpha \leq \frac{1}{L(\nabla f)}$$ will converge.
+For example:
+
+  * $f(x) = x^2$
+  * $L(\nabla f) = 2$
+  * $\alpha = 1/2$ will be the best value
 
 ## Adaptive Step Size
 
@@ -111,17 +115,19 @@ Choices:
 
 ## Gradient Ascent
 
-* To maximize $f$, we can minimize $-f$
-* Still use almost the same algorithm
-    * Just replace $$\mathbf{x} = \mathbf{x} - \alpha \nabla f(\mathbf{x})$$ with $$\mathbf{x} = \mathbf{x} + \alpha \nabla f(\mathbf{x})$$
+To maximize $f$, we can minimize $-f$
+
+Still use almost the same algorithm
+
+   * Just replace $$\mathbf{x} = \mathbf{x} - \alpha \nabla f(\mathbf{x})$$ with $$\mathbf{x} = \mathbf{x} + \alpha \nabla f(\mathbf{x})$$
 
 ## Some Examples
 
-* [Examples](http://vis.supstat.com/2013/03/gradient-descent-algorithm-with-r/)
+[Examples](http://vis.supstat.com/2013/03/gradient-descent-algorithm-with-r/)
 
 ## What Can Go Wrong
 
-* Where do you think gradient descent fails?
+Where do you think gradient descent fails?
 
 ## Example
 
@@ -160,19 +166,19 @@ $$
 
 ## More Logistic Regression
 
-Using this and the chain rule, and writing $g = g(\beta^T\mathbf{x}_i)$ compute $\frac{\partial \ell}{\partial \beta_i}$, 
+Using this and the chain rule, and writing $g = g(\beta^T\mathbf{x}_i)$ compute $\frac{\partial \ell}{\partial \beta_j}$, 
 
 $$
 \begin{aligned}
-\frac{\partial \ell}{\partial \beta_j} &= \frac{\partial}{\partial \beta_i}  \sum_i y_i \log g(\beta^T\mathbf{x}_i) + (1 - y_i)\log(1 - g(\beta^T\mathbf{x}_i)) \\
+\frac{\partial \ell}{\partial \beta_j} &= \frac{\partial}{\partial \beta_j}  \sum_i y_i \log g(\beta^T\mathbf{x}_i) + (1 - y_i)\log(1 - g(\beta^T\mathbf{x}_i)) \\
   &= \frac{\partial}{\partial \beta_j}  \sum_i y_i \log g + (1 - y_i)\log(1 - g) \\
-  &= \sum_i y_i \frac{1}{g} g (1-g) \mathbf{x}_i - (1 - y_i) \frac{1}{1-g} g (1-g)  x_{ij} \\
+  &= \sum_i y_i \frac{1}{g} g (1-g) x_{ij} - (1 - y_i) \frac{1}{1-g} g (1-g)  x_{ij} \\
   &= \sum_i ( y_i - y_i g - g + y_i g ) x_{ij} \\
   &= \sum_i ( y_i - g(\beta^T\mathbf{x}_i) ) x_{ij}
 \end{aligned}
 $$
 
-This is what you'll use to update the value of $\beta$ in each iteration of gradient descent
+This is what you'll use to update the value of $\beta$ in each iteration of gradient descent.
 
 # Stochastic Gradient Descent
 
