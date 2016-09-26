@@ -22,8 +22,7 @@
 \definecolor{goldenrod}{rgb}{.9,0.6,0.1}
 
 %Information to be included in the title page:
-\title{Bayesian A/B Testing}
-\subtitle{Conjugate Priors}
+\title{Multi-Arm Bandit}
 \author{Cary Goltermann}
 \institute{Galvanize}
 \date{2016}
@@ -207,7 +206,7 @@
   The softmax creates a probability distribution over all the levers in proportion to how good we think each lever is. \pause
 
   \begin{center}
-    $P_t(choosing\, bandit\, j) = \frac{e^{\hat{\mu}_j(t)/\tau}}{\sum\limits_{j=1}^{K}e^{\hat{\mu}_j(t)\tau}}$
+    $P_t(choosing\, bandit\, j) = \frac{e^{\hat{\mu}_j(t)/\tau}}{\sum\limits_{j=1}^{K}e^{\hat{\mu}_j(t)/\tau}}$
   \end{center}
 
   \begin{description}
