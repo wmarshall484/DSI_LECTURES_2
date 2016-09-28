@@ -1,6 +1,6 @@
-% Bagging and Random Forests
-% [Jack Bennetto](jack.bennetto@galvanize.com)
-% September 28, 2016
+# Bagging and Random Forests
+### [Jack Bennetto](jack.bennetto@galvanize.com)
+### September 28, 2016
 
 ---
 
@@ -8,15 +8,13 @@
 
 Morning Objectives
 
-$$x_{ij}$$
-
- * Explain & construct the random forest (classification or regression) algorithm.
+ * Explain & construct a random forest (classification or regression).
  * Explain the relationship and difference between random forest and bagging.
  * Explain why random forests are more accurate than a single decision tree.
 
 Afternoon Objectives
 
- * Get feature importances from a random forest using an algorithm.
+ * Get feature importances from a random forest.
  * Explain how OOB error is calculated and what is it an estimate of.
 
 ---
@@ -44,8 +42,10 @@ Afternoon Agenda:
 
 Train multiple different models on the data. The overall prediction is
 
-* the average predictions, for a regressor, or
-* the plurality choice, for a classifier (fraction of models is probability).
+ * the average prediction, for a regressor, or
+ * the plurality choice, for a classifier (fraction of models is probability).
+
+Note: ask why probability is important
 
 ---
 
@@ -55,13 +55,19 @@ Supposed we have 5 *independent* binary classifers each 70% accurate.
 
  * What's the overall accuracy?
 
-\pause
+
+<p class="fragment">
 
 $$ \binom{5}{5} 0.7^5 \times \binom{5}{4} 0.7^4 0.3 \times \binom{5}{3} 0.7^3 0.3^2 \approx 0.83 $$
 
 With 101 such classifiers we can achieve 99.9% accuracy.
 
- * Why isn't this easy?
+<br>
+<br>
+<br>
+What's the limitation?
+
+</p>
 
 ---
 
@@ -81,10 +87,11 @@ Train each learner on different subset of data.
 
 **Variance:** Error from sampling training set
 
- * What accuracy can you expect from a decision tree on the training set?
+ * What is the bias of an unpruned decision tree?
 
-\pause
+<p class="fragment">
 Decision trees are easy to overfit.
+</p>
 
 ---
 
@@ -92,7 +99,7 @@ Decision trees are easy to overfit.
 
 Training:
 
-* Iteratively divide the nodes into subnodes such that (entropy/gini impurity) is minimized
+* Iteratively divide the nodes such that (entropy/gini impurity) is minimized
 * Various stopping conditions like a depth limit
 * Prune trees by merging nodes
 
@@ -108,16 +115,22 @@ Inference:
 
 ---
 
-## Regression Trees
+## Review: Regression Trees
 
-Similar to Classification Trees but:
+Predicting a number, not a class
 
- * Instead of predicting a class label we're trying to predict a number
- * We minimize *total squared error* instead of entropy or impurity
+Training:
 
-`$$\sum_{i \in R} (y_i - m_R)^2 + \sum_{i\in S} (y_i - m_S)^2$$`
+* Iteratively divide the nodes such that *total squared error* is minimized
 
- * For inference take the mean of the leaf node
+`$$\sum_{i \in L} (y_i - m_L)^2 + \sum_{i\in R} (y_i - m_R)^2$$`
+
+* Various stopping conditions like a depth limit
+* Prune trees by merging nodes
+
+Inference:
+
+* Take the most average value of samples the leaf node
 
 ---
 
@@ -131,25 +144,29 @@ Similar to Classification Trees but:
  0     |    1    |   4
 
  Prior to the split we guess the mean, 2.5, for everything, giving total squared error:
- $$ E = (1-2.5)^2 + (2-2.5)^2 + (3-2.5)^2 + (4-2.5)^2  = 5$$
+ `$$ E = (1-2.5)^2 + (2-2.5)^2 + (3-2.5)^2 + (4-2.5)^2  = 5$$`
  After we split on $x_1$ we guess 2 for rows 1 & 3 and 3 for rows 2 & 4:
- $$ E = (1-2)^2 + (3-2)^2 + (2-3)^2 + (4-3)^2 = 4 $$
+ `$$ E = (1-2)^2 + (3-2)^2 + (2-3)^2 + (4-3)^2 = 4 $$`
 
 ---
 
 ## Decision Tree Summary
 
+What are the pros and cons?
+
 Pros
+ * No feature scaling needed
+ * Model nonlinear relationships
+ * Can do both classification and regression
+ * Robust
+ * Highly interpretable
 
-* No feature scaling needed
-* Model nonlinear relationships
-* Highly interpretable
-* Can do both classification and regression
-
+<!-- .element: class="fragment" data-fragment-index="1" -->
 Cons
+ * Can be expensive to train
+ * Often poor predictors - high variance
 
-* Can be expensive to train
-* Often poor predictors - high variance
+<!-- .element: class="fragment" data-fragment-index="2" -->
 
 ---
 
@@ -159,21 +176,25 @@ Questions:
 
  * What is a bootstrap sample?
 
-\pause
 
 Given n data points we select a sample of n points with replacement
-
+<!-- .element: class="fragment" data-fragment-index="1" -->
  * What have we learned that bootstrap samples are good for so far?
-
-\pause
+<!-- .element: class="fragment" data-fragment-index="1" -->
 
 We use bootstrap samples to construct confidence intervals around sample statistics.
+<!-- .element: class="fragment" data-fragment-index="2" -->
 
 Example: get a confidence interval around sample median
+<!-- .element: class="fragment" data-fragment-index="2" -->  
 
-   * Take 1000 bootstrap samples.
-   * Take the median of each sample.
-   * The 95% confidence inverval for the median is between the 25th and 975th largest samples.
+  * Take 1000 bootstrap samples.
+  * Take the median of each sample.
+  * The 95% confidence inverval for the median is between the 25th and 975th largest samples.
+
+<!-- .element: class="fragment" data-fragment-index="2" -->
+
+
 
 ---
 
@@ -189,7 +210,7 @@ models and averaging the results.  But we only have one sample.
 
 ## Bagging
 
-Second slide saying the same thing again to emphasize that Bagging is important.
+In a bit more detail:
 
  * Take a bunch of bootstrap samples - say n
  * Train a high variance, low bias model on each of them
@@ -204,7 +225,7 @@ Why is the reduction in variance less than $\sqrt n$?
 
  * We are thinking about the population of all possible decision tree models on our data.
  * If I take $n$ samples *iid* from this distribution and average them the variance goes down by $\sqrt n$
- * There is some correlation between my models because they are all trained on bootstrap samples from the same draw.
+ * There is some correlation between models because they are all trained on bootstrap samples from the same draw.
 
 ---
 
@@ -253,15 +274,15 @@ Cons
 
 ## Objectives
 
-Morning Objectives:
+Morning Objectives
 
- * Thoroughly explain the construction of a random forest (classification or regression) algorithm
+ * Explain & construct a random forest (classification or regression).
  * Explain the relationship and difference between random forest and bagging.
  * Explain why random forests are more accurate than a single decision tree.
 
-Afternoon Objectives:
+Afternoon Objectives
 
- * Explain how to get feature importances from a random forest using an algorithm.
+ * Get feature importances from a random forest.
  * Explain how OOB error is calculated and what is it an estimate of.
 
 ---
@@ -307,11 +328,11 @@ How should we measure it?
 
 ## Feature Importances: Mean Decrease Impurity
 
-How much does each variable decrease the impurity?
+How much does each feature decrease the impurity?
 
-To compute the importance of the $j^{th}$ variable:
+To compute the importance of the $j^{th}$ feature:
 
- * For each tree, each split is made in order to reduce the total impurity of the tree (Gini Impurity for classification, mean squared error for regression); we can record the magnitude of the reduction.
+ * For each tree, each split is made in order to reduce the total impurity of the tree (Gini/entropy/MSE); we can record the magnitude of the reduction.
  * Then the importance of a feature is the average decrease in impurity across trees in the forest, as a result of splits defined by that feature.  
  * This is implemented in sklearn.
 
@@ -321,23 +342,11 @@ To compute the importance of the $j^{th}$ variable:
 
 How much does randomly mixing values of a feature affect accuracy?
 
-To compute the importance of the $j^{th}$ variable:
+To compute the importance of the $j^{th}$ feature:
 
  * When the $b^{th}$ tree is grown, use it to predict the OOB samples and record accuracy.
- * Scramble the values of the $j^{th}$ variable in the OOB samples and do the prediction again.  Compute the new (lower) accuracy.
+ * Scramble the values of the $j^{th}$ feature in the OOB samples and do the prediction again.  Compute the new (lower) accuracy.
  * Average the decrease in accuracy across all trees.
-
----
-
-## Feature Importances: Fraction of Samples Affected
-
-What fraction of the data are tested against a given feature?
-
-To compute the importance of the $j^{th}$ variable:
-
- * Find the fraction of data that reaches a node corresponding to the $j^{th}$ variable for each tree.
- * Average those fractions across all trees.
- * This method is used in sklearn
 
 ---
 
