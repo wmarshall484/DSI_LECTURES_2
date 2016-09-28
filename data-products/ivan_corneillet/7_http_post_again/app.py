@@ -7,7 +7,7 @@ app = Flask(__name__)
 def index():
 	return render_template('index.html')
 
-@app.route('/welcome', methods = ['POST'])
+@app.route('/welcome', methods = ['GET', 'POST'])
 def welcome():
 	name = request.form.get('name')
 	return render_template('welcome.html', name = name)

@@ -5,7 +5,7 @@
 		<title>Flask - HTTP POST (again)</title>
 	</head>
 	<body>
-		<form action='/welcome' method='POST'>
+		<form action='{{ url_for('welcome') }}' method='POST'>
 			<input type='text' name='name' placeholder='Your Name' />
 			<input type='submit' value='Submit' />
 		</form>
