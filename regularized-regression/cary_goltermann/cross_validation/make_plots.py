@@ -10,9 +10,9 @@ def add_noise(x):
 def plot_fit(x, y, degree, ax, oos_y):
     fit_fun = np.poly1d(np.polyfit(x, y, degree))
     fit_x = np.linspace(min(x)-0.1, max(x)+0.2, 100)
-    ax.plot(fit_x, fit_fun(fit_x), '-', label='Fit')
+    ax.plot(fit_x, fit_fun(fit_x), '-', lw=5, label='Fit')
     if oos_y is not None:
-        ax.plot(x, oos_y, 'ms', label='New Data')
+        ax.plot(x, oos_y, 'ms', markersize=10, label='New Data')
     ax.tick_params(axis='x',    
                    which='both',
                    bottom='off',
@@ -32,7 +32,7 @@ def plot_fits(oos=False):
     fig, axs = plt.subplots(1, 3, figsize=(24, 8), sharey=True)
     axs[0].set_ylabel('y', fontsize=20)
     for d, ax in zip([1, 2, 6], axs):
-        ax.plot(x, y, 'ro', label='Data')
+        ax.plot(x, y, 'ro', markersize=6 if oos else 10, label='Data')
         ax.plot(fine_x, true_f(fine_x), 'g-', lw=3, alpha=0.5, label='Truth')
         plot_fit(x, y, d, ax, oos_y)
     plt.show()
@@ -72,4 +72,4 @@ def plot_train_test_curves():
     plt.show()
 
 if __name__ == '__main__':
-    plot_train_test_curves()
+    plot_fits()
