@@ -1,0 +1,66 @@
+\begin{frame}
+  Boosting encompasses an \textbf{entire family} highly successful learning algorithms.
+\end{frame}
+%
+\begin{frame}
+Boosting can adapt itself effortlessly to very non-linear objectives
+  \only<1>{
+    \begin{figure}
+      \includegraphics[scale=0.50]{sin-with-data}
+    \end{figure}
+   }
+   \only<2>{
+    \begin{figure}
+      \includegraphics[scale=0.50]{sin-with-data-and-booster}
+    \end{figure}
+   }
+   \only<3>{
+    \begin{figure}
+      \includegraphics[scale=0.50]{broken-sin-with-booster}
+    \end{figure}
+   }
+\end{frame}
+%
+\begin{frame}
+Boosting accomplishes this by \textit{growing the model gradually}
+  \begin{figure}
+    \includegraphics[scale=0.40]{boosting-over-time-multiple-plots}
+  \end{figure}
+\end{frame}
+%
+\begin{frame}
+At each stage of the growth, the next model is built as a \textbf{small adjustment} to the previous model
+  \begin{figure}
+    \includegraphics[scale=0.50]{boosting-over-time-single-plot}
+  \end{figure}
+\end{frame}
+%
+\begin{frame}
+
+\only<2->{  
+\textbf{Compared to}:\\~\\
+}
+
+\only<1>{
+\textbf{Boosting}: \\~\\
+Lowers variance by growing the model slowly over time (along with a few other tricks).\\~\\
+
+Lowers bias by stacking many small models into the final result.
+}
+
+\only<2-3>{
+\textbf{Linear Models}: \\~\\
+Lowers variance by \only<3->{using a regularization penalty.}\\~\\
+
+Lowers bias by \only<3->{including more features.}
+}
+
+\only<4-5>{
+\textbf{Random Forest}: \\~\\
+
+Lowers variance by \only<5>{growing many learners on different subsamples of the data and predictors, then averaging them.}\\~\\
+
+Lowers bias by \only<5>{growing really big trees.}
+}
+
+\end{frame}
