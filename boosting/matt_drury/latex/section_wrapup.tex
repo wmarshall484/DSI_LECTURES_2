@@ -1,0 +1,59 @@
+\section{Final Words About Boosting}
+
+\begin{frame}
+Gradient Boosting is the best off-the-shelf learning algorithm available today.\\~\\
+It effortlessly produces accurate models.\\~\\
+\end{frame}
+%
+\begin{frame}
+Nonetheless, it has drawbacks.
+\end{frame}
+%
+\begin{frame}{Drawbacks of Gradient Boosting}
+\begin{itemize}
+
+\only<1>{
+  \item Boosting creates very complex models.  It can be difficult to extract intuitive, conceptual, or inferential information from them.
+}
+
+\only<2>{
+  \item Boosting is difficult to explain (maybe you just learned this through experience).  It can be hard to convince business leader to accept such a black box model.
+}
+
+\only<3>{
+  \item Boosted models can be difficult to implement in production environments due to their complexity.
+}
+
+\only<4>{
+  \item The sequential nature of the standard boosting algorithm makes it very difficult to parallelize (compared to, for example, random forest).  Recently, there has been great progress (xgboost).
+}
+\end{itemize}
+\end{frame}
+%
+
+\begin{frame}{Software Options For Boosting}
+
+\begin{itemize}
+  \item There are many quality open source implementations of gradient boosting algorithms:
+  \begin{itemize}
+    \item Sklearn, obviously :)
+    \item R's \texttt{gbm} is great.  It offers many different loss functions
+    and is feature rich.
+    \item \texttt{xgboost} is a modern interpretation of gradient boosting, with
+    many algorithmic innovations that make it faster and more accurate.  State of the art, with python interface.
+    \item \texttt{H2O} offers a distributed gradient booster that can handle
+    massive data sets.  Also offers a python interface.
+  \end{itemize}
+\end{itemize}
+
+\end{frame}
+%
+\begin{frame}{Q\&A}
+  \begin{itemize}
+    \item Understand the conceptual foundation of Boosting
+    \item Understand the algorithm's hyperparameters, and how to tune them.
+    \item Understand some basic strategies for interpreting a booster.
+    \item Understand the drawbacks of boosting.
+    \item Be aware of the possibility of creating your own loss function.
+  \end{itemize}
+\end{frame}

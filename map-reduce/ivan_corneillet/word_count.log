@@ -1,0 +1,10 @@
+No configs found; falling back on auto-configuration
+Creating temp directory /var/folders/tl/51cj5sw55rv3b4h9wcrq8g580000gn/T/word_count.ivan.20160919.205622.224228
+Running step 1 of 1...
+Streaming final output from /var/folders/tl/51cj5sw55rv3b4h9wcrq8g580000gn/T/word_count.ivan.20160919.205622.224228/output...
+"a"	1
+"another"	1
+"document"	2
+"is"	2
+"this"	2
+Removing temp directory /var/folders/tl/51cj5sw55rv3b4h9wcrq8g580000gn/T/word_count.ivan.20160919.205622.224228...

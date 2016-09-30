@@ -1,0 +1,12 @@
+{% extends 'bootstrap/base.html' %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+	<h1>Hello {{ name }}!</h1>
+	<p>Your email is {{ email }}</p>
+	{% if remember_me == 'on' %}
+	<p>You asked to be remembred</p>
+	{% else %}
+	<p>You asked not to be remembred</p>
+	{% endif %}
+{% endblock %}

@@ -106,7 +106,7 @@ But, sometimes, we expect an effect to be in only one direction:
 
 *   Example:    advertising should not decrease sales
 *   Use *one-sided* test
-*   $H_0: \theta \leq \theta_0$  vs. $H_A: \theta > \theta_0$
+*   $H_0: \theta = \theta_0$  vs. $H_A: \theta > \theta_0$
 *   Reject $H_0$ if test statistic is in the wrong tail
 *   Compute p-value using the probability of being in only one tail
 
@@ -297,7 +297,7 @@ Use a z-test when the variance is known:
 
 $$z = \dfrac{\overline{x} - \mu}{\sigma / \sqrt{n}}$$
 
-*   Sample variance is known: $\sigma^2$
+*   Population variance is known: $\sigma^2$
 *   Compute p-value using Normal(0, 1)
 
 
