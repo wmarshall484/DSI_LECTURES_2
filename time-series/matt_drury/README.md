@@ -23,7 +23,7 @@ I used the following objectives for my lecture:
   - Use the classical decomposition to decompose and then describe a time series.
   - Define stationarity, contrast with independence.
   - Identify a stationary time series.
-  - Fit ARIMA models to forecast a stationary time series.`:w
+  - Fit ARIMA models to forecast a stationary time series.
 
 
 Morning and Afternoon
@@ -52,6 +52,6 @@ Key Points for Student Interaction
 
 The notebook has cells that are built in to provide interaction with students.  These are labeled:
 
-  - Activity: An oppurtunity for students to write some code using templates and functions provided earlier in the notebook.
-  - Question: A simple question for students.  Ask, pause for a few moments, then call on a random student.
-  - Discussion: A deeper, more conceptual question.  Have students discuss amongst themselves, then call on a willing student.  You will not have time to do all of these, so be selective of what you think is important.
+  - **Activity**: An oppurtunity for students to write some code using templates and functions provided earlier in the notebook.
+  - **Question**: A simple question for students.  Ask, pause for a few moments, then call on a random student.
+  - **Discussion**: A deeper, more conceptual question.  Have students discuss amongst themselves, then call on a willing student.  You will not have time to do all of these, so be selective of what you think is important.
