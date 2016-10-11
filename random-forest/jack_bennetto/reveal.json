@@ -1,0 +1,7 @@
+{
+"progress": true,
+"slideNumber": true,
+"transition": "slide",
+"backgroundTransition": "slide",
+"center": false
+}
