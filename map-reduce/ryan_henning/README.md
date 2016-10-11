@@ -27,6 +27,8 @@ db.log.mapReduce(
 )
 
 db.city_count.find()
+
+db.city_count.find({"_id": "San Francisco"})
 ```
 
 Load the `nyt_dump` data from [this exercise](https://github.com/zipfian/nlp/blob/master/individual.md). Run this code to do a bag-of-words on the NYT articles:
@@ -91,28 +93,152 @@ if __name__ == '__main__':
 
 Let's do _some_ relational algebra with MapReduce. Recall, SQL implements the relational algebra concepts, so essentially we are learning how to do SQL things with MapReduce.
 
-**Selection**
-
-```python
-
-```
-
-**Projection**
-
-```python
-
-```
-
 **Union**
 
-```python
+Run the code with `python union.py data/words_*.txt`
 
+```python
+"""
+How to do a union (from relational algebra) using MapReduce.
+"""
+
+from mrjob.job import MRJob
+
+class UnionJob(MRJob):
+
+    def mapper(self, _, line):
+        yield (line, 0)
+
+    def reducer(self, key, values):
+        yield (key, None)
+
+if __name__ == '__main__':
+     UnionJob.run()
 ```
 
 **Intersection**
 
-```python
+Run the code with `python intersection.py data/words_*.txt`
 
+```python
+"""
+How to do a intersection (from relational algebra) using MapReduce.
+"""
+
+from mrjob.job import MRJob
+
+class IntersectionJob(MRJob):
+
+    def mapper(self, _, line):
+        yield (line, 0)
+
+    def reducer(self, key, values):
+        if len(list(values)) >= 2:
+            yield (key, None)
+
+if __name__ == '__main__':
+     IntersectionJob.run()
+```
+
+**Difference**
+
+Run the code with `python difference.py data/words_*.txt`
+
+```python
+"""
+How to do a difference (from relational algebra) using MapReduce.
+"""
+
+import os
+from mrjob.job import MRJob
+
+class DifferenceJob(MRJob):
+
+    def mapper(self, _, line):
+        file_path = os.environ['map_input_file']
+        yield (line, '1' in file_path)
+
+    def reducer(self, key, values):
+        values = list(values)
+        if values == [1]:
+            yield (key, None)
+
+if __name__ == '__main__':
+     DifferenceJob.run()
+```
+
+**Selection**
+
+Run the code with `python selection.py data/golf_features.csv`
+
+```python
+"""
+How to do a selection (from relational algebra) using MapReduce.
+"""
+
+from mrjob.job import MRJob
+
+class SelectionJob(MRJob):
+
+    def mapper(self, _, line):
+        date, outlook, temperature, humidity, windy = line.split(',')
+        if outlook == 'sunny':
+            yield ((date, outlook, temperature, humidity, windy), 0)
+
+    def reducer(self, key, values):
+        yield key, None
+
+if __name__ == '__main__':
+     SelectionJob.run()
+```
+
+**Projection**
+
+Run the code with `python projection.py data/golf_features.csv`
+
+```python
+"""
+How to do a projection (from relational algebra) using MapReduce.
+"""
+
+from mrjob.job import MRJob
+
+class ProjectionJob(MRJob):
+
+    def mapper(self, _, line):
+        date, outlook, temperature, humidity, windy = line.split(',')
+        yield ((date, outlook), 0)
+
+    def reducer(self, key, values):
+        yield (key, None)
+
+if __name__ == '__main__':
+     ProjectionJob.run()
+```
+
+**Grouping / Aggregation**
+
+Run the code with `python groupby.py data/golf_features.csv`
+
+```python
+"""
+How to do a group-by / aggregation (from relational algebra) using MapReduce.
+"""
+
+import numpy as np
+from mrjob.job import MRJob
+
+class GroupByJob(MRJob):
+
+    def mapper(self, _, line):
+        date, outlook, temperature, humidity, windy = line.split(',')
+        yield (outlook, float(temperature))
+
+    def reducer(self, key, values):
+        yield (key, np.mean(list(values)))
+
+if __name__ == '__main__':
+     GroupByJob.run()
 ```
 
 **Join**
@@ -140,7 +266,9 @@ class JoinJob(MRJob):
     def reducer(self, key, values):
         values = list(values)
         file_paths = list(set([v[0] for v in values]))
-        if len(file_paths) != 2:
+        if len(file_paths) < 2:
+            return  # no match-up between the two relations
+        if len(file_paths) > 2:
             raise Exception('A join must operate on exactly two relations.')
         left_values  = [v[1] for v in values if v[0] == file_paths[0]]
         right_values = [v[1] for v in values if v[0] == file_paths[1]]
@@ -149,10 +277,4 @@ class JoinJob(MRJob):
 
 if __name__ == '__main__':
      JoinJob.run()
-```
-
-**Grouping / Aggregation**
-
-```python
-
 ```
