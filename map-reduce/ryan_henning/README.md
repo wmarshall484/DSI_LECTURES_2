@@ -62,7 +62,7 @@ The Hadoop library is all written in Java, but there's a great Python library na
 MRJob makes writing MapReduce jobs pretty easy. Combine that with how powerful the MapReduce programming model is, plus the ability to launch a cluster on AWS and pay by-the-hour, and we can see we are in a very good situation. :) Here's a quote from the book _[Data-Intensive Text Processing with MapReduce](http://lintool.github.io/MapReduceAlgorithms/MapReduce-book-final.pdf)_ by Jimmy Lin and Chris Dyer (top of page 16):
 > Anyone can download the open source Hadoop implementation of MapReduce, pay a modest fee to rent a cluster from a utility cloud provider, and be happily processing terabytes upon terabytes of data within the week.
 
-So, let's write a MapReduce in Python using MRJob, and let's talk about what it's doing. Run the code with `python <script_name> <documents_file>`
+So, let's write a MapReduce in Python using MRJob, and let's talk about what it's doing. Run the code with `python word_counter.py data/sample_documents.txt`
 
 ```python
 """
@@ -88,3 +88,21 @@ if __name__ == '__main__':
 ```
 
 **END OF MORNING LESSON**
+
+Let's do relational algebra with MapReduce. Recall, SQL implements all those relational algebra concepts, so essentially we are learning how to do SQL things with MapReduce.
+
+**Selection**
+
+```python
+
+```
+
+**Projection**
+
+**Union**
+
+**Intersection**
+
+**Join**
+
+**Grouping / Aggregation**
