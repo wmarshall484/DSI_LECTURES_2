@@ -96,7 +96,7 @@
   \frametitle{Factorization Problem}
   \begin{itemize}
     \item \textbf{Problem:} PCA, SVD and NMF \textbf{all} must be computed on a \textbf{dense} data matrix, $X$. \vspace{2mm}
-    \item Potential Soluation: inpute missing values, naively, with something like the mean of the known values. \textit{Note: This is what sklearn does when it says it factorizes sparse matrices.}
+    \item Potential Solution: inpute missing values, naively, with something like the mean of the known values. \textit{Note: This is what sklearn does when it says it factorizes sparse matrices.}
   \end{itemize}
 \end{frame}
 
@@ -236,7 +236,7 @@
   
   The most frequently used metric is Root Mean Squared Error (RMSE) on the known data:
 
-  $$ RMSE = \sqrt{\sum\limits_{(1,j) \in K} (X_{i,j} - \hat{X}_{i,j})^2} $$
+  $$ RMSE = \sqrt{\sum\limits_{(i,j) \in K} (X_{i,j} - \hat{X}_{i,j})^2} $$
 \end{frame}
 
 \begin{frame}
