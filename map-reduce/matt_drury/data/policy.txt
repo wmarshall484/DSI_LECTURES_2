@@ -1,0 +1,3 @@
+{"date": "01211983", "table": "POLICY", "policy_data": 0, "key": "01"}
+{"date": "02161983", "table": "POLICY", "policy_data": 0, "key": "01"}
+{"date": "02161983", "table": "POLICY", "policy_data": 1, "key": "02"}
