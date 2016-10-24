@@ -1,0 +1,7 @@
+cat
+hat
+bat
+mat
+flat
+sat
+rat
