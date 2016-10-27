@@ -172,6 +172,13 @@
 \end{frame}
 
 \begin{frame}
+  \frametitle{Choosing $k$}
+  Unfortunately, choosing $k$ is more of an art than a science. We can look at how ``good'' of an approximation $WH$ is for $X$ and try to find the smallest $k$ that makes it suitably small. \vspace{4mm}
+
+  At the end of the day, though, $k$, is likely going to be chosen based on intuition that you derive from inspecting the topics and possibly from some domain knowledge.
+\end{frame}
+
+\begin{frame}
   \frametitle{Reflection}
     \textbf{\textcolor{blue}{Time}}: 2 minutes \vspace{4mm}
 
@@ -182,7 +189,12 @@
   \frametitle{Thinking About Matrix Factorizations}
   We have already explored two other factorization techniques, PCA and SVD. What's the difference between those and NMF? \vspace{4mm} \pause
 
-  Apart from the obvious that PCA and SVD decompose into three matrices and NMF only two; the main difference is the non-negativity constraint.
+  Apart from the obvious that PCA and SVD decompose into three matrices and NMF only two; the main difference is the non-negativity constraint. \vspace{6mm}
+
+  \begin{columns}
+    \column{0.8\textwidth}
+    \textit{Note: the other, oft-forgotten difference is that the bases in NMF are not orthogonal like in PCA/SVD.}
+  \end{columns}
 \end{frame}
 
 \begin{frame}
@@ -306,7 +318,7 @@
   \frametitle{Gradient Descent}
   Let the Frobenius norm of the reconstruction error be the quantity that we are trying to minimize:
 
-  $$ \underset{W, H}{argmin} \; \big\Vert X - W H \big\Vert^2_{F} $$ \vspace{0.5mm}
+  $$ \underset{W, H}{min} \; \big\Vert X - W H \big\Vert^2_{F} $$ \vspace{0.5mm}
 
   From this, with a little be of matrix calculus we can determine that the update rules for a single entry in $W$ and $H$ are: \vspace{-1mm}
 
