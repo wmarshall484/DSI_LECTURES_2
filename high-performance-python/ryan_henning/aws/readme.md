@@ -127,7 +127,7 @@ We now have `ssh` access to our EC2 instance, but it is just a bare-bones comput
 ### customize the PS1 prompt <a name="customize_the_PS1_prompt"></a>
 
 If you want to use the PS1 prompt that Ryan users, run these commands:
-- `wget https://raw.githubusercontent.com/acu192/bash_stuff/master/linux/Dotbashrc`
+- `wget https://raw.githubusercontent.com/acu192/config-bash/master/linux/Dotbashrc`
 - `cat Dotbashrc >> .bashrc`
 - `rm Dotbashrc`
 - `exit`
