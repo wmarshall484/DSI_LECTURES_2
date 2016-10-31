@@ -18,6 +18,8 @@ The general outline of the lesson is
   - Send and recieve json from the server, display results to user.
   - Optionally, style the html with bootstrap.
 
+A html document created with remark.js is included that you can use to quickly introdue all of the technologies we will be using to the students.  I chose remark for this document because you can use the document itself to show students the power fo html and javascript.
+
 Prerequisites
 -------------
 
