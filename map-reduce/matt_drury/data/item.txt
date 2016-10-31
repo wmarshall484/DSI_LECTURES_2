@@ -1,0 +1,5 @@
+{"date": "01211983", "table": "ITEM", "key": "01", "item_data": "a"}
+{"date": "02121983", "table": "ITEM", "key": "01", "item_data": "a"}
+{"date": "02161983", "table": "ITEM", "key": "01", "item_data": "b"}
+{"date": "01211983", "table": "ITEM", "key": "02", "item_data": "c"}
+{"date": "02161983", "table": "ITEM", "key": "02", "item_data": "c"}
