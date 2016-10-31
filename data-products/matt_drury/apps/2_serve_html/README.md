@@ -1,7 +1,7 @@
 Step 2: HTML Document Only
 ==========================
 
-Now the HTML is served from a single sting in a flask view.
+Now the HTML is served from a single string in a flask view.
 
 Start the app by running:
 
