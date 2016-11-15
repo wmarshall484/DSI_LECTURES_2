@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+# A Quick Overview of Web Application Technologies
+
+---
+
+# Agenda
+
+1. Clinet-Server Architecture
+2. HTTP
+3. HTML
+3. Javascript
+4. Flask
+
+---
+class: middle, center
+
+# Client Server Architecture
+
+---
+class: middle, center
+
+Pictures on Whiteboard.
+
+---
+class: middle, center
+
+# HTTP
+
+---
+class: middle, center
+
+HTTP is the communication *protocall* used to send messages between computers on the world wide web.
+
+---
+class: middle, center
+
+The *client* sends a request.
+
+The *server* sends a response.
+
+---
+class: middle, center
+
+### Request Verbs:
+
+.left[
+  - **GET**: Requests some data.  Should only retrieve data and have no other effect.
+
+  - **POST** Sends some data.  Requests that the server accept and process the data, possibly sending a response.
+  - Others...
+]
+
+---
+class: middle, center
+
+### Response Codes:
+
+.left[
+  - **200**: Ok.  The request was processed successfully.
+  - **401**: Unauthorized.
+  - **404**: Not found.
+]
+
+---
+class: middle, center
+
+# HTML
+
+---
+class: middle, center
+
+### Hypertext Markup Language
+
+HTML is a language for creating an annotated text document, which web browsers interpret and display.
+
+*Tags* are used to give semantic meaning to the different parts of the document.
+
+---
+class: middle, center
+
+### HTML Tags
+
+.left[
+  - `<head>`: Contains other tags giving overview information on the document, title, author, etc.
+  - `<p>`: A paragraph of text.
+  - `<span>`: A short segment of text with a distinct semantic meaning.
+  - `<div>`: A section of the document with a distinct semantic meaning.
+  - `<input>`: <input value="A place for the user to type input.">
+  - `<button>`: <button>A button for the user to click.</button>
+]
+
+---
+class: middle, center
+
+Tags can have attributes attached.
+
+The `class` attribute is used to attach visual style to the element.
+
+```html
+<button class="btn-primary btn-real-big">A Really Big Button</button>
+```
+
+The `id` attribute should uniquly identify the element, and is used to attach *behaviour* to the element:
+
+```html
+<input id="username" value="What is your username?">
+```
+
+---
+class: middle, center
+
+# Javascript
+
+---
+class: middle, center
+
+*Javascript* is a programming language that runs in web browsers.
+
+It is used to associate dynamic bahviour with HTML elements.
+
+---
+class: middle, center
+
+*jQuery* is a very useful javascript library that makes manipulating HTML elements much easier.
+
+.left[
+```javascript
+// Grab the vlaue of the input element with id username
+$("input#username").val()
+```
+
+```javascript
+// Associte an event to clicking on the button with id message
+$("button#message").click(function() {console.log("You clicked it!");}
+```
+]
+
+---
+class: middle, center
+
+# Flask
+
+---
+class: middle, center
+
+*Flask* is a python library for handling web requests on the server.
+
+---
+class: middle, center
+
+Flask works by attaching python functions to urls.  These "functions attached to url"'s are called *views*.
+
+.left[
+```python
+@app.route('/respond-to-message'):
+    users_message = request.json['message']
+    return jsonify({"message": "I am responding to: {}".format(users_message)})
+```
+]
+
+    </textarea>
+    <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>

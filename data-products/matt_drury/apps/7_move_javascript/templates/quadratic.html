@@ -1,0 +1,39 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Quadratic Equation Solver</title>
+  <meta name="description" content="Quadratic Equation Solver">
+  <meta name="author" content="Galvanize DSI">
+
+    <script type="text/javascript" src="{{ url_for('static', filename='jquery.js') }}">  
+    </script>
+    <script type="text/javascript" src="{{ url_for('static', filename='app.js') }}">  
+    </script>
+
+</head>
+
+<body>
+
+    <h1>The DSI Quadratic Equation Solver</h1>
+    <p>This app will solve quadratic equations for you!</p>
+    <p>Please enter the coefficients below!</p>
+
+    <div>
+        <!-- These have id's so that later we can pull out data using js. -->
+        <span>a:</span> <input id="a"></input>
+        <span>b:</span> <input id="b"></input>
+        <span>c:</span> <input id="c"></input>
+    </div>
+
+    <div>
+        <button type="button" id="solve">Solve!</button>
+    </div>
+
+    <div>
+        <!-- The span has an id so that later we can fill in the solution
+             using js. -->
+        <p> The solution is: <span id="solution"></span> </p>
+
+</body>
+</html>

@@ -21,7 +21,7 @@ Morning:
  * Install and configure AWS CLI
  * Configure and use SSH
  * Access EC2
- * Access S2
+ * Access S3
  * Advanced topics
 
 Afternoon:
@@ -52,7 +52,7 @@ AWS skills are much in demand
 
 AWS core services:
 
- * Elastic compute cloud (EC2): computers fo diverse problems
+ * Elastic compute cloud (EC2): computers for diverse problems
  * Elastic block store (EBS): virtual hard disks to use with EC2
  * Simple storage solution (S3): long-term bulk storage
  * DynamoDB: NoSQL database
@@ -98,10 +98,12 @@ Use the AWS command-line interface (CLI):
 # Install AWS CLI
 
 If you're using Anaconda:
+
  * pip install awscli
 
-<del>If you're using system Python:</del>
- * <del>sudo pip install awscli>/del>
+If you're using system Python (you're not):
+ * <s>sudo pip install awscli</s>
+
 
 # Obtain your AWS credentials
 
@@ -115,8 +117,6 @@ If you're using Anaconda:
 
 Make sure you choose Oregon (us-west-2) as your region.
 
-# AWS credentials
-![](images/AWS.png)
 
 # Configure AWS CLI (1/3)
 
@@ -165,7 +165,6 @@ $ aws s3 ls
 $ aws s3 ls s3://seattle-dsi
         PRE cohort1/
         PRE dsi_interviews/
-        PRE skrainka/
 ```
 
 Check EC2:
@@ -282,30 +281,12 @@ DNS** (Shown in EC2 Dashboard):
 
 ```bash
 $ ssh -i ~/.ssh/aws-master.pem \
-    ubuntu@ec2-54-186-136-57.us-west-2.compute.amazonaws.co
+    ubuntu@ec2-54-186-136-57.us-west-2.compute.amazonaws.com
 ```
-
-or
-
-```bash
-$ ssh -i ~/.ssh/aws-master.pem \
-    ec2user@ec2-54-186-136-57.us-west-2.compute.amazonaws
-```
-
 
 # Example: `ssh` to EC2
 
-```bash
-$ ssh -i ~/.ssh/aws-master.pem ubuntu@ec2-54-186-136-57
-The authenticity of host 'ec2-54-186-136-57.us-west-2.compu RSA key fingerprint is b9:05:ff:da:34:7d:82:20:15:d1:c3:80:
-Are you sure you want to continue connecting (yes/no)? yes
-Warning: Permanently added 'ec2-54-186-136-57.us-west-2.com
-Welcome to Ubuntu 14.04.2 LTS (GNU/Linux 3.13.0-48-generic
-* Documentation:  https://help.ubuntu.com/
-System information as of Tue Aug 25 21:58:16 UTC 2015
-System load: 0.0              Memory usage: 5%   Processes
-Usage of /:  9.8% of 7.74GB   Swap usage:   0%   Users log
-```
+[Demonstration]
 
 . . .
 
@@ -316,7 +297,7 @@ To copy files between machines, use `scp`:
 
  * Works just like regular copy
  * Good for simple operations
- * ...if you specify remote user and machine (IP,DNS) correctly
+ * ...if you specify remote user and machine correctly
  * Reference remote location as *user@host:path*
 
 ```bash
@@ -348,10 +329,6 @@ Use `tmux` to persist jobs across multiple sessions:
  * See `tmux` exercise
 
 
-# Launching an EC2 instance
-
-* Class exercise: Launch a t2.micro instance running Ubuntu`
-
 # EC2 pro-tips
 A few tips to make EC2 easier to deal with:
 
@@ -362,6 +339,11 @@ A few tips to make EC2 easier to deal with:
  * Be paranoid: sometimes Amazon will reboot or reclaim your instances
  * Put data you need to persist in EBS or a database
  * Never put AWS keys in GitHub because someone will steal them
+
+
+# Launching an EC2 instance
+
+* Class exercise: Launch a t2.micro instance running Ubuntu
 
 
 # S3
@@ -394,7 +376,7 @@ $ conda update boto
  * On remote host:
 
 ```bash
-$ ipython notebook --no-browser --port=8889
+$ jupyter notebook --no-browser --port=8889
 ```
 
  * On local machine:
