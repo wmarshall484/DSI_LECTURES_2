@@ -1,0 +1,1 @@
+Note: These lecture notebooks are modified from versions originally created by Zach Alexander.
