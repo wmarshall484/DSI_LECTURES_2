@@ -1,0 +1,106 @@
+
+psql
+\l
+\c 
+\d
+\d friends
+\d logins
+SELECT * FROM logins LIMIT 10;
+SELECT type, COUNT(*) FROM logins 
+GROUP BY type;
+\d
+\d messages
+SELECT * FROM messages LIMIT 2;
+\d optout
+\d registrations
+SELECT type, COUNT(*) FROM registrations 
+GROUP BY type;
+\d
+\d test_group
+SELECT grp, COUNT(*) FROM test_group 
+GROUP BY grp;
+
+“How did we randomize?”
+
+- - looks random
+SELECT date_trunc(‘day’, tmstmp), grp FROM registrations r 
+JOIN test_group ab ON (r.userid = ab.userid)
+ORDER BY tmstmp;
+
+- - looks random
+SELECT date_part('d', tmstmp), date_part('m', tmstmp),
+               date_part('yr', tmstmp), grp FROM registrations r                               
+	       JOIN test_group ab ON (r.userid = ab.userid)                                    
+	       ORDER BY tmstmp;
+
+“How many times did each user visit?”
+
+- - join users/logins
+SELECT * FROM registrations r JOIN logins l ON (r.userid = l.userid) 
+
+- - get count of total user logins
+SELECT r.userid, COUNT(*) as total_logins FROM registrations r 
+JOIN logins l ON (r.userid = l.userid) 
+GROUP BY r.userid ORDER BY r.userid;
+
+- - use that inside to make a histogram
+SELECT total_logins, COUNT(*) FROM
+(SELECT r.userid, COUNT(*) as total_logins FROM registrations r 
+    JOIN logins l ON (r.userid = l.userid) 
+    GROUP BY r.userid ORDER BY r.userid) total_logins_table
+GROUP BY total_logins ORDER BY total_logins;
+
+- - save that file name so it’s nice
+CREATE TABLE total_logins_table AS 
+SELECT r.userid, COUNT(*) as total_logins FROM registrations r 
+JOIN logins l ON (r.userid = l.userid) 
+GROUP BY r.userid ORDER BY r.userid;
+
+- - see now it’s nice and easy
+SELECT total_logins, COUNT(*) FROM total_logins_table
+GROUP BY total_logins ORDER BY total_logins;
+
+- - make a histogram
+CREATE TABLE logins_histogram AS 
+SELECT total_logins, COUNT(*) FROM total_logins_table
+GROUP BY total_logins ORDER BY total_logins;
+
+- - now we’ll do a hack to see a left join
+- - to make a proper histogram
+SELECT index.id, COALESCE(count, 0) FROM 
+(SELECT userid as id FROM REGISTRATIONS ORDER BY userid LIMIT 275) index
+LEFT JOIN logins_histogram ON (id = total_logins);
+
+- - total log ins seems to be maybe different?
+SELECT grp, AVG(total_logins) FROM total_logins_table tl 
+JOIN test_group ab ON (tl.userid = ab.userid)
+GROUP BY grp;
+
+# total number of friends?
+
+SELECT r.userid, f.userid1, f.userid2 FROM registrations r JOIN friends f (r.userid = f.userid1 OR r.userid = f.userid2)
+
+SELECT * FROM table
+
+CREATE TABLE friends_by_user AS
+SELECT DISTINCT r.userid, 
+CASE WHEN r.userid = f.userid1 THEN f.userid2 ELSE f.userid1 END AS friends
+FROM registrations r JOIN friends f ON (r.userid = f.userid1 OR r.userid = f.userid2)
+ORDER BY r.userid;
+
+SELECT grp, AVG(count) AS average_number_friends FROM 
+(SELECT userid, COUNT(*) FROM friends_by_user GROUP BY userid) total_friends 
+JOIN test_group ab ON (total_friends.userid = ab.userid)
+GROUP BY grp;
+
+
+
+
+
+
+
+# optout different?
+# web/phone type different?
+# 
+
+
