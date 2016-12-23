@@ -2,3 +2,23 @@
 .ipynb_checkpoints/
 tmp-*
 tmp/
+
+## latex
+*.bak
+*.bbl
+*.out
+*.blg
+*.aux
+*.backup
+*.bk
+*.dvi
+*.nav
+*.snm
+*.toc
+*.vrb
+
+## sphinx
+*_build
+*_static
+
+
