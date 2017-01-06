@@ -1,4 +1,4 @@
-This is all setup on the Zipfian workstations, but if you'd like to use your home computer, you can install all the same packages.
+This is all setup on the Galvanize DSI workstations, but if you'd like to use your home computer, you can install all the same packages.
 
 #### Step 1: Install Anaconda
 
