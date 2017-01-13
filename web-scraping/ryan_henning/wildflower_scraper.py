@@ -2,6 +2,8 @@
 This script scrapes images from www.wildflower.org
 
 E.g. run: `python wildflower_scraper.py LUTE` to get all the Bluebonnets.
+
+Others: RUHI2, GAPU, CITE2, COGR5
 '''
 
 
