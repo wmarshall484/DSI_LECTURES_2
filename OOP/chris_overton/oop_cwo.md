@@ -33,11 +33,9 @@ Afternoon objectives:
 *   More practice with OOP in python
 *   List
 key magic methods
-*   (Optional): use basic decorators
-*   Arguments to python
-functions via \*args and \**kwargs
-*   Verify code using test-driven development
-(TDD) and the Python debugger (PDB)
+*   Use basic decorators
+*   Verify code using test-driven
+development (TDD) and the Python debugger (PDB)
 
 ## Agenda
 
@@ -143,10 +141,9 @@ Sometimes, OOP is not the best fit for doing science:
 Science processing is often linear:
     -   Projects tend to build a pipeline
 -   Most applications:
-        * Load data
-        * Compute something
-        *
-Serialize result to disk
+        #.  Load data
+        #.  Compute something
+#.  Serialize result to disk
     -   Should be able to combine steps, similar to
 Unix's filters + pipes model
 *   But, need to know OOP:
@@ -195,13 +192,13 @@ cognitive load
 *   Other tools (GridSearch, Pipeline) can use them
 interchangeably
 
-##  The big three$+ \frac{1}{2}$
+##  The big three.5
 
 OO revolves around three key concepts:
 
+*   Encapsulation
 *
-Encapsulation
-*   Inheritance
+Inheritance
 *   Polymorphism  
 <br>
 - Also: Composition
@@ -423,11 +420,9 @@ Afternoon objectives:
 *   More practice with OOP in python
 *
 List key magic methods
-*   (Optional): use basic decorators
-*   Arguments to
-python functions via \*args and \**kwargs
-*   Verify code using test-driven
-development (TDD) and the Python debugger (PDB)
+*   Use basic decorators
+*   Verify code using test-
+driven development (TDD) and the Python debugger (PDB)
 
 ##  Very basic OOP design
 
@@ -595,31 +590,26 @@ Plus methods for order relations (==, !=, <, >), attribute access, math, type
 conversion,
 custom containers, context managers, ...
 
-##  Decorators - prefixed by '@'  
+##  Decorators - prefixed by '@'
 
-## CAUTION: DECORATORS ARE A PYTHON
-WEIRDNESS. THEY'RE HANDY, BUT DON'T GET TOO CONCERNED BY THEM
+A *decorator* is a function which wraps
+another function:
 
-A *decorator* is
-a function which wraps another function:
-
-*   Looks like the original function,
-i.e., `help(myfunc)` works correctly
-*   But, decorator code runs before and
-after decorated function
-*   Here, we focus on using existing decorators
-*   To
-write a custom decorator:
-    -   See [Effective
-Python](http://www.effectivepython.com)
-    -   Use `functools.wrap` to get
-correct behavior
+*   Looks like the original function, i.e., `help(myfunc)`
+works correctly
+*   But, decorator code runs before and after decorated function
+*   Lecture focuses on using existing decorators
+*   To write a custom
+decorator:
+    -   See [Effective Python](http://www.effectivepython.com)
+    -
+Use `functools.wrap` to get correct behavior
 
 ## Decorators: a nice tutorial
 https://realpython.com/blog/python/primer-on-
 python-decorators/
 
-```{.python .input  n=19}
+```{.python .input}
 def my_decorator(some_function):
     def wrapper():
         print("Something is happening before some_function() is called.")
@@ -633,16 +623,6 @@ def just_some_function():
 just_some_function = my_decorator(just_some_function)
 
 just_some_function()
-```
-
-```{.json .output n=19}
-[
- {
-  "name": "stdout",
-  "output_type": "stream",
-  "text": "Something is happening before some_function() is called.\nWheee!\nSomething is happening after some_function() is called.\n"
- }
-]
 ```
 
 ```{.python .input  n=4}
@@ -723,7 +703,7 @@ except in a method which already refers to instance data
 
 ##  Example
 
-```{.python .input  n=23}
+```{.python .input}
 class ObjCounter(object):
     obj_list = []
     def __init__(self):
@@ -732,22 +712,6 @@ class ObjCounter(object):
     @classmethod
     def n_created(cls):
         return len(cls.obj_list)
-
-a = ObjCounter()
-ObjCounter.n_created()
-```
-
-```{.json .output n=23}
-[
- {
-  "data": {
-   "text/plain": "1"
-  },
-  "execution_count": 23,
-  "metadata": {},
-  "output_type": "execute_result"
- }
-]
 ```
 
 ```{.python .input}
@@ -829,36 +793,16 @@ my_args(10, 20, 30)
 ]
 ```
 
-```{.python .input  n=30}
+```{.python .input}
 x = [10, 20, 30]
 my_args(*x)
 ```
 
-```{.json .output n=30}
-[
- {
-  "name": "stdout",
-  "output_type": "stream",
-  "text": "* a = 10\n* b = 20\n* c = 30\n"
- }
-]
-```
-
-```{.python .input  n=35}
+```{.python .input}
 def my_args2(*args):
     for i in args:
         print '*', i
 my_args2(10, 20, 30, 40, 50, 60, 70)
-```
-
-```{.json .output n=35}
-[
- {
-  "name": "stdout",
-  "output_type": "stream",
-  "text": "* 10\n* 20\n* 30\n* 40\n* 50\n* 60\n* 70\n"
- }
-]
 ```
 
 ```{.python .input}
@@ -868,38 +812,18 @@ my_args2(*x)
 
 ## **kwargs
 
-```{.python .input  n=40}
+```{.python .input}
 def my_kwargs(**kwargs):
     for key in kwargs:
         value = kwargs[key]
-        print '->', key, '=', value
+        print '*', key, '=', value
 
 my_kwargs(a = 1, b = 2, c = 3)
 ```
 
-```{.json .output n=40}
-[
- {
-  "name": "stdout",
-  "output_type": "stream",
-  "text": "-> a = 1\n-> c = 3\n-> b = 2\n"
- }
-]
-```
-
-```{.python .input  n=41}
+```{.python .input}
 h = {'a': 1, 'b': 2, 'c': 3}
 my_kwargs(**h)
-```
-
-```{.json .output n=41}
-[
- {
-  "name": "stdout",
-  "output_type": "stream",
-  "text": "-> a = 1\n-> c = 3\n-> b = 2\n"
- }
-]
 ```
 
 ## *args and kwargs
@@ -927,7 +851,7 @@ my_args_and_kwargs(1, 2, 3, x = 1, y = 2, z = 3)
 ]
 ```
 
-```{.python .input  n=47}
+```{.python .input  n=18}
 #*args and **kwargs capture **remaining** variables
 def my_args_and_kwargs2(a, *args, **kwargs):
     for arg in args:
@@ -940,7 +864,7 @@ def my_args_and_kwargs2(a, *args, **kwargs):
 my_args_and_kwargs2(1, 2, 3, x = 1, y = 2, z = 3)
 ```
 
-```{.json .output n=47}
+```{.json .output n=18}
 [
  {
   "name": "stdout",
