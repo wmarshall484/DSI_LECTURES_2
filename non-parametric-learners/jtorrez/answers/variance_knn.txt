@@ -1,0 +1,5 @@
+As k increases, variance decreases.
+    More generalizable, majority votes win.
+    Decision boundary stays consistent from sample to sample.
+As k decreases, variance increases.
+    Decision boundary will vary significantly based on sample.
