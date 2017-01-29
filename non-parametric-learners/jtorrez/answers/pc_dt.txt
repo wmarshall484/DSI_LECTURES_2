@@ -8,6 +8,7 @@ Pros:
     * Follows a flowchart
 * Can handle missing values and outliers
 * Can handle irrelevant features
+* Provides information about structure of data: set of rules
 Cons:
 -----
 * Slow (and costly) to train.
