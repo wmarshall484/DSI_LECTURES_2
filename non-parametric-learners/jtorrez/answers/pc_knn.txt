@@ -10,6 +10,7 @@ Pros:
 * Few hyperparameters to tune.
     * k
     * distance metric
+* Insensitive to outliers
 Cons:
 -----
 * Slow (and costly) to predict.
