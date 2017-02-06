@@ -1,0 +1,20 @@
+{name: 'TwilightSparkle',
+friends: ['Applejack', 'Fluttershy'],
+age: 16,
+gender: 'f',
+wings: true,
+horn: true,
+residence: {
+    town: 'Ponyville',
+    address: '15 Gandolfini Lane'}
+}
+{name: 'PrincessCelestia',
+age: 34,
+friends: ['TwilightSparkle'],
+wings: true,
+horn: true}
+{name: 'Nightmare Moon',
+friends: [],
+age: 34,
+wings: true,
+horn: true}
