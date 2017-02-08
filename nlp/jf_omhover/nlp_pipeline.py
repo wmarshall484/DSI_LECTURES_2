@@ -1,8 +1,5 @@
  #!/usr/bin/python
  # -*- coding: utf-8 -*-
-import pyspark as ps    # for the pyspark suite
-from pyspark.sql.functions import udf, col
-from pyspark.sql.types import ArrayType, StringType
 import string
 import unicodedata
 
@@ -17,8 +14,6 @@ from nltk.util import ngrams
 from nltk import pos_tag
 from nltk import RegexpParser
 
-from pyspark.ml.feature import CountVectorizer
-from pyspark.ml.feature import IDF
 
 
 def extract_bow_from_raw_text(text_as_string):
@@ -68,51 +63,3 @@ def extract_bow_from_raw_text(text_as_string):
     #tokens_lower = [map(string.lower, sent) for sent in tokens]
 
     return(ret_tokens)
-
-
-def indexing_pipeline(input_df, **kwargs):
-    """Runs a full text indexing pipeline on a collection of texts contained in a DataFrame.
-
-    Parameters
-    ----------
-    input_df (DataFrame): a DataFrame that contains a field called 'text'
-
-    Returns
-    -------
-    df : the same DataFrames with a column called 'features' for each document
-    wordlist : the list of words in the vocabulary with their corresponding IDF
-    """
-    inputCol_ = kwargs.get("inputCol", "text")
-    vocabSize_ = kwargs.get("vocabSize", 5000)
-    minDF_ = kwargs.get("minDF", 2.0)
-
-    # ugly: to add that to our slave nodes so that it finds the bootstrapped nltk_data
-    nltk.data.path.append('/home/hadoop/nltk_data')
-
-    extract_bow_from_raw_text("")  # ugly: for instanciating all dependencies of this function
-    tokenizer_udf = udf(extract_bow_from_raw_text, ArrayType(StringType()))
-    df_tokens = input_df.withColumn("bow", tokenizer_udf(col(inputCol_)))
-
-    cv = CountVectorizer(inputCol="bow", outputCol="vector_tf", vocabSize=vocabSize_, minDF=minDF_)
-    cv_model = cv.fit(df_tokens)
-    df_features_tf = cv_model.transform(df_tokens)
-
-    idf = IDF(inputCol="vector_tf", outputCol="features")
-    idfModel = idf.fit(df_features_tf)
-    df_features = idfModel.transform(df_features_tf)
-
-    return(df_features, cv_model.vocabulary)
-
-
-if (__name__ == "__main__"):
-    spark = ps.sql.SparkSession.builder \
-                .master("local[4]") \
-                .appName("df lecture") \
-                .getOrCreate()
-
-    dfMusical = spark.read.json('data/reviews_Musical_Instruments_5.json.gz')
-    df = dfMusical.select('reviewText', 'overall').withColumnRenamed("reviewText", "text").limit(100)
-
-    df, wordlist = indexing_pipeline(df)
-
-    print("wordlist={}".format(wordlist[0:10]))
