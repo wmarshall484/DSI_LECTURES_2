@@ -102,6 +102,18 @@ class Students(object):
         return stats.t.cdf(t, self._df)
 
 
+class ChiSquared(object):
+
+    def __init__(self, df):
+        self._df = df
+
+    def pdf(self, t):
+        return stats.chi2.pdf(t, self._df)
+
+    def cdf(self, t):
+        return stats.chi2.cdf(t, self._df)
+
+
 def sample_from_sum(n, *samplers):
     """Sample from the sum of a varaible number of random varaibles."""
     n_samplers = len(samplers)
