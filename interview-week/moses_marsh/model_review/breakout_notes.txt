@@ -1,0 +1,21 @@
+Pair up and give a brief definition of each of the following terms:
+	Supervised vs. unsupervised
+	Regression vs. classification
+
+
+Here are some data with clear decision boundaries. How do different models handle these?
+
+
+When should I update my model?
+
+
+When do I need to scale my features?
+
+
+What are some models with long training time? Short training time? Long prediction time? Short prediction time?
+
+
+How do I use cross-validation to pick a model? What scores can I use across models?
+
+
+When might it be useful to use a less interpretable model if it gives better predictions?
