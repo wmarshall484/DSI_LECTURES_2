@@ -1,6 +1,6 @@
 % High-Performance Programming
 % [Miles Erickson](miles.erickson@galvanize.com)
-% October 24, 2016
+% February 27, 2017
 
 # Afternoon Objectives
 
@@ -114,18 +114,19 @@ Useful when the program has to wait on resources outside of the python code
 ```python
 import threading
 
-jobs = []
+def target_function(url, results):
+    results.append(scrape_text(url))  # Thread-safe
+
+threads = []  # List to keep track of threads
+results = []  # Shared list to collect results
 for i in range(num_threads):
     t = threading.Thread(target=target_function,
-                         args=(arg1, arg2))
-    jobs.append(t)
-    t.start
+                         args=(url, results))
+    threads.append(t)
+    t.start()
+for t in threads:
+    t.join()  # Wait until each thread finishes
 
-# "join" will wait until the thread terminates
-results = []
-    t.join()
-    # Access the result of the thread (if any) and append
-    results.append(t.result)
 ```
 
 # Summary
