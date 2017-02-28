@@ -1,21 +1,19 @@
 # Build lecture slides
 
 # Commands
-PANDOC = pandoc -t beamer --template=../config/default.beamer
+PANDOC = pandoc -t beamer --template=config/g.beamer
 RM = rm -f
 
 # Files
-TGT = me-lecture.pdf
+HPP = me-hpp.pdf
+AWS = me-aws.pdf
 
 # Rules
-default: $(TGT)
+default: $(HPP) $(AWS)
 
 lecture: default
 
 all: default
-
-clean:
-	$(RM) $(TGT)
 
 %.pdf : %.md
 	$(PANDOC) $< -o $@
