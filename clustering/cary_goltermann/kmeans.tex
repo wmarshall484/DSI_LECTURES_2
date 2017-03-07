@@ -1,0 +1,469 @@
+\documentclass{beamer}
+\usepackage{comment}
+
+\usepackage{listings}
+\usepackage{tabulary}
+\usepackage[utf8]{inputenc}
+\usetheme{Madrid}
+\setbeamersize{text margin left=0.1\textwidth,text margin right=0.1\textwidth}
+\setbeamertemplate{section in toc}{\inserttocsection}
+\lstset{language=python,
+        keywordstyle=\color{red},
+        basicstyle=\ttfamily,
+        basicstyle=\small,
+        frame = single,
+        framexleftmargin=15pt,
+        numbers=left, 
+        numberstyle=\small, 
+        numbersep=5pt, 
+        xleftmargin=0.05\textwidth,
+        columns=fullflexible}
+
+%Information to be included in the title page:
+\title{Clustering}
+\subtitle{The $k$-Means Algorithm}
+\author{Cary Goltermann}
+\institute{Galvanize}
+\date{2017}
+
+\AtBeginSubsection[]
+{
+  \begin{frame}
+    \frametitle{Overview}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+ 
+\begin{document}
+ 
+\frame{\titlepage}
+ 
+\begin{frame}
+  \frametitle{Overview}
+  \tableofcontents[]
+\end{frame}
+
+\section{Supervised vs. Unsupervised Learning}
+\begin{frame}
+  \frametitle{Supervised vs. Unsupervised Learning}
+  \begin{columns}[T]
+    \column{0.5\textwidth}
+    \qquad \underline{\LARGE Supervised} \vspace{3mm}
+    \begin{itemize}
+      \item Have a target / label that we model.
+      \item Models look like functions that take in data and create prediction.
+      \item Have an error metric that we can use to compare models.
+    \end{itemize} \pause
+
+    \column{0.5\textwidth}
+    \qquad \underline{\LARGE Unsupervised} \vspace{3mm}
+    \begin{itemize}
+      \item No labels $\rightarrow$ no target!
+      \item No stark error metric to compare models with.
+      \item It's easy to be wrong, but it's hard to prove you're right.
+      \item Trying to uncover/ \textbf{discover hidden structure} in our data.
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+\section{Clustering}
+\subsection{Intuition}
+\begin{frame}
+  \frametitle{What Is a Cluster?}
+  \centering
+  \includegraphics[width=0.6\textwidth]{images/cluster_questions.png}
+  \vspace{-4mm}
+  \begin{itemize}
+    \item How many clusters do you see?
+    \item What makes something a cluster?
+    \item What makes something not a cluster?
+  \end{itemize}
+\end{frame}
+
+\subsection{Definition}
+\begin{frame}
+  \frametitle{Defining ``Cluster"}
+  \begin{itemize}
+    \item A partition of the dataset - not necessarily crisp.
+    \item A strong internal similarity - small intra/within cluster distance.
+    \item A strong external dissimilarity - large extra cluster distance.
+  \end{itemize}
+\end{frame}
+
+\section{$k$-Means Algorithm}
+\subsection{Pseudocode}
+\begin{frame}
+  \frametitle{$k$-Means}
+  The algorithm in all its glory: \vspace{4mm}
+  \begin{enumerate}
+    \item Initialize centroids. \vspace{2mm}
+    \item While stopping condition not met: \vspace{2mm}
+    \begin{enumerate}
+      \item Find closest centroid to each point. \vspace{1mm}
+      \item Move centroids to the average of all the points closest to them.
+    \end{enumerate}
+  \end{enumerate} \vspace{4mm} \pause
+
+  This training algorithm may look pretty simple... \pause and that's because it is.
+
+\end{frame}
+
+\subsection{Centroid Initialization}
+\begin{frame}
+  \frametitle{Centroid Initialization}
+  \begin{itemize}[<+->]
+    \item The simplest way to do this is to randomly choose $k$ points from your data and make their locations your initial centroid locations. \vspace{4mm}
+    \item Another straightforward method is to randomly assign each data point a number 1-$k$, and start the initialize the $k^{th}$ centroid to the average of the points with the $k^{th}$ label (in each dimension).
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{$k$-Means++}
+    A more advanced centroid initialization method, known as $k$-Means++, chooses well spread initial centroids. \\ \qquad $\rightarrow$ \textcolor{blue}{sklearn: init='k-means++'}, set as default.
+
+   \vspace{2mm} 
+    $k$-Means++ follows the procedure:
+    \vspace{2mm}
+    \begin{enumerate}
+      \item Choose the first centroid to be the location of a data point chosen at random.
+      \item For each remaining centroid, choose the location of a data point with probability proportional to its squared distance from the point's closest existing centroid (points further from existing centroids have higher probability of being chosen as the next centroid).
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Initialization - Visual Comparison}
+    \begin{columns}
+      \column{\dimexpr\paperwidth-20pt}
+      \includegraphics[width=\textwidth]{images/initialization_comparison.png}
+    \end{columns}
+    \vspace{2mm}
+    \begin{columns}
+      \column{0.36\textwidth}
+        \centering
+        More even spread to start with.
+      \column{0.35\textwidth}
+        \centering
+        All start close to the center.
+      \column{0.34\textwidth}
+        \centering
+        Who the eff knows... could be anything!
+    \end{columns}
+\end{frame}
+
+\subsection{Stopping Criteria}
+\begin{frame}
+  \frametitle{Stopping Criteria}
+  We can update... \vspace{4mm}
+  \begin{itemize}[<+->]
+    \item for a pre-specified number of iterations. \\
+      \qquad $\rightarrow$ \textcolor{blue}{sklearn: $max\_iter$=1000}.
+    \item until the centroids don’t change at all - may take a ton of iterations.
+    \item until the centroids don’t move very much - takes fewer iterations. \\
+      \qquad $\rightarrow$ \textcolor{blue}{sklearn: $tol$=0.0001}, for tolerance of ``how much".
+  \end{itemize}
+\end{frame}
+
+%\begin{comment}
+\subsection{Step-through}
+\begin{frame}
+  \frametitle{Step-by-step Execution: DATA!!}
+  \begin{columns}
+    \column{0.35\textwidth}
+    \column{0.02\textwidth}
+    \column{0.63\textwidth}
+    \includegraphics[width=1.1\textwidth]{images/kmeans_initialize.png}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Step-by-step Execution: Initialize}
+  \begin{columns}
+    \column{0.35\textwidth}
+      \begin{enumerate}
+        \item Initialize centroids. \vspace{2mm}
+        \item While not stopping condition: \vspace{2mm}
+        \begin{enumerate}
+          \item Assign points to centroid \vspace{2mm}
+          \item Move centroids to new average location
+        \end{enumerate}
+      \end{enumerate}
+    \column{0.02\textwidth}
+      $\Longleftarrow$ \vspace{38mm}
+    \column{0.63\textwidth}
+      \includegraphics[width=1.1\textwidth]{images/kmeans_iteration1_step1.png}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Step-by-step Execution: Iteration 1 - Step 1}
+  \begin{columns}
+    \column{0.35\textwidth}
+      \begin{enumerate}
+        \item Initialize centroids. \vspace{2mm}
+        \item While not stopping condition: \vspace{2mm}
+        \begin{enumerate}
+          \item Assign points to centroid \vspace{2mm}
+          \item Move centroids to new average location
+        \end{enumerate}
+      \end{enumerate}
+    \column{0.02\textwidth}
+      \vspace{11mm} $\Longleftarrow$
+    \column{0.63\textwidth}
+      \includegraphics[width=1.1\textwidth]{images/kmeans_iteration1_step2.png}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Step-by-step Execution: Iteration 1 - Prep Step 2 }
+  \begin{columns}
+    \column{0.35\textwidth}
+      \begin{enumerate}
+        \item Initialize centroids. \vspace{2mm}
+        \item While not stopping condition: \vspace{2mm}
+        \begin{enumerate}
+          \item Assign points to centroid \vspace{2mm}
+          \item Move centroids to new average location
+        \end{enumerate}
+      \end{enumerate}
+    \column{0.02\textwidth}
+      \vspace{22mm} $\Longleftarrow$
+    \column{0.63\textwidth}
+      \includegraphics[width=1.1\textwidth]{images/kmeans_iteration1_step3.png}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Step-by-step Execution: Iteration 1 - Step 2 }
+  \begin{columns}
+    \column{0.35\textwidth}
+      \begin{enumerate}
+        \item Initialize centroids. \vspace{2mm}
+        \item While not stopping condition: \vspace{2mm}
+        \begin{enumerate}
+          \item Assign points to centroid \vspace{2mm}
+          \item Move centroids to new average location
+        \end{enumerate}
+      \end{enumerate}
+    \column{0.02\textwidth}
+      \vspace{39mm} $\Longleftarrow$
+    \column{0.63\textwidth}
+      \includegraphics[width=1.1\textwidth]{images/kmeans_iteration1_step4.png}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Step-by-step Execution: Iteration 2 - Prep Step 1}
+  \begin{columns}
+    \column{0.35\textwidth}
+      \begin{enumerate}
+        \item Initialize centroids. \vspace{2mm}
+        \item While not stopping condition: \vspace{2mm}
+        \begin{enumerate}
+          \item Assign points to centroid \vspace{2mm}
+          \item Move centroids to new average location
+        \end{enumerate}
+      \end{enumerate}
+    \column{0.02\textwidth}
+      \vspace{1mm} $\Longleftarrow$
+    \column{0.63\textwidth}
+      \includegraphics[width=1.1\textwidth]{images/kmeans_iteration2_step1.png}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Step-by-step Execution: Iteration 2 - Step 1}
+  \begin{columns}
+    \column{0.35\textwidth}
+      \begin{enumerate}
+        \item Initialize centroids. \vspace{2mm}
+        \item While not stopping condition: \vspace{2mm}
+        \begin{enumerate}
+          \item Assign points to centroid \vspace{2mm}
+          \item Move centroids to new average location
+        \end{enumerate}
+      \end{enumerate}
+    \column{0.02\textwidth}
+      \vspace{11mm} $\Longleftarrow$
+    \column{0.63\textwidth}
+      \includegraphics[width=1.1\textwidth]{images/kmeans_iteration2_step2.png}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Step-by-step Execution: Iteration 2 - Prep Step 2 }
+  \begin{columns}
+    \column{0.35\textwidth}
+      \begin{enumerate}
+        \item Initialize centroids. \vspace{2mm}
+        \item While not stopping condition: \vspace{2mm}
+        \begin{enumerate}
+          \item Assign points to centroid \vspace{2mm}
+          \item Move centroids to new average location
+        \end{enumerate}
+      \end{enumerate}
+    \column{0.02\textwidth}
+      \vspace{22mm} $\Longleftarrow$
+    \column{0.63\textwidth}
+      \includegraphics[width=1.1\textwidth]{images/kmeans_iteration2_step3.png}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Step-by-step Execution: Iteration 2 - Step 2 }
+  \begin{columns}
+    \column{0.35\textwidth}
+      \begin{enumerate}
+        \item Initialize centroids. \vspace{2mm}
+        \item While not stopping condition: \vspace{2mm}
+        \begin{enumerate}
+          \item Assign points to centroid \vspace{2mm}
+          \item Move centroids to new average location
+        \end{enumerate}
+      \end{enumerate}
+    \column{0.02\textwidth}
+      \vspace{39mm} $\Longleftarrow$
+    \column{0.63\textwidth}
+      \includegraphics[width=1.1\textwidth]{images/kmeans_iteration2_step4.png}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Step-by-step Execution: Iteration 3 - Prep Step 1}
+  \begin{columns}
+    \column{0.35\textwidth}
+      \begin{enumerate}
+        \item Initialize centroids. \vspace{2mm}
+        \item While not stopping condition: \vspace{2mm}
+        \begin{enumerate}
+          \item Assign points to centroid \vspace{2mm}
+          \item Move centroids to new average location
+        \end{enumerate}
+      \end{enumerate}
+    \column{0.02\textwidth}
+      \vspace{1mm} $\Longleftarrow$
+    \column{0.63\textwidth}
+      \includegraphics[width=1.1\textwidth]{images/kmeans_iteration3_step1.png}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Step-by-step Execution: Iteration 3 - Step 1}
+  \begin{columns}
+    \column{0.35\textwidth}
+      \begin{enumerate}
+        \item Initialize centroids. \vspace{2mm}
+        \item While not stopping condition: \vspace{2mm}
+        \begin{enumerate}
+          \item Assign points to centroid \vspace{2mm}
+          \item Move centroids to new average location
+        \end{enumerate}
+      \end{enumerate}
+    \column{0.02\textwidth}
+      \vspace{11mm} $\Longleftarrow$
+    \column{0.63\textwidth}
+      \includegraphics[width=1.1\textwidth]{images/kmeans_iteration3_step2.png}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Step-by-step Execution: Iteration 3 - Prep Step 2 }
+  \begin{columns}
+    \column{0.35\textwidth}
+      \begin{enumerate}
+        \item Initialize centroids. \vspace{2mm}
+        \item While not stopping condition: \vspace{2mm}
+        \begin{enumerate}
+          \item Assign points to centroid \vspace{2mm}
+          \item Move centroids to new average location
+        \end{enumerate}
+      \end{enumerate}
+    \column{0.02\textwidth}
+      \vspace{22mm} $\Longleftarrow$
+    \column{0.63\textwidth}
+      \includegraphics[width=1.1\textwidth]{images/kmeans_iteration3_step3.png}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Step-by-step Execution: Iteration 3 - Step 2 }
+  \begin{columns}
+    \column{0.35\textwidth}
+      \begin{enumerate}
+        \item Initialize centroids. \vspace{2mm}
+        \item While not stopping condition: \vspace{2mm}
+        \begin{enumerate}
+          \item Assign points to centroid \vspace{2mm}
+          \item Move centroids to new average location
+        \end{enumerate}
+      \end{enumerate}
+    \column{0.02\textwidth}
+      \vspace{39mm} $\Longleftarrow$
+    \column{0.63\textwidth}
+      \includegraphics[width=1.1\textwidth]{images/kmeans_iteration3_step4.png}
+  \end{columns}
+\end{frame}
+%\end{comment}
+
+\subsection{Evaluation}
+\begin{frame}
+  \frametitle{Evaluating $k$-Means}
+  \begin{itemize}
+    \item How can we quantify how ``good" our clustering is? \vspace{2mm} \pause
+    \item A good measure should quantify how similar things are in a cluster. \vspace{2mm} \pause
+    \item The metric that we will use is called intra-cluster or within cluster variance: \\
+      $$ WCV = \sum_{k=1}^K \frac{1}{\vert C_k \vert} \sum_{i,i'\in C_k} \sum_{j=1}^p (x_{ij}-x_{i'j})^2 $$
+  \end{itemize}
+\end{frame}
+
+\subsection{Problems}
+\begin{frame}
+  \frametitle{Problems}
+  \begin{itemize}
+    \item Centroids that are ``discovered" will likely be different depending on initialization. \pause \\
+      \qquad $\longrightarrow$ Run algorithm more than once and choose the run \\
+      \qquad \qquad that yields the smallest intra-cluster variance. \vspace{2mm} \pause
+    \item $k$-Means is highly dependent on distance as a metric. \pause \\
+      \qquad $\longrightarrow$ Normalize features before clustering. \pause \\
+      \qquad $\longrightarrow$ Have to think about the curse of dimensionality.
+  \end{itemize}
+\end{frame}
+
+\subsection{Choosing $k$}
+\begin{frame}
+  \frametitle{Choosing $k$}
+  \begin{alertblock}{Unsupervised}
+    Choosing $k$ is HARD!!! It usually takes some work and you're never quite sure if you're ``right".
+  \end{alertblock} \vspace{4mm} \pause
+  There are a number of ways you can go about choosing $k$:
+  \begin{itemize}
+    \item Domain knowledge
+    \item Elbow method
+    \item Silhouette score
+    \item GAP Statistic
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Elbow Method}
+  \begin{itemize}
+    \item Looks at the total amount of within-cluster sum of squares (WCSS) across all the clusters for different values of $k$.
+    $$ WCSS = \sum_{k=1}^K \sum_{i,i'\in C_k} \sum_{j=1}^p (x_{ij}-x_{i'j})^2 $$ \pause
+    \item Chooses the $k$ such that adding one more cluster doesn't decrease the WCSS by much more. Leads us to look for an elbow in the $k$ vs. $WCSS$ plot.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Elbow Method}
+  \includegraphics[width=\textwidth]{images/elbow_method.png} \vspace{2mm} \pause
+  \centering
+  Question: Do you think the elbow will always be so obvious?
+\end{frame}
+
+\begin{frame}
+  \frametitle{Elbow Method - Not Always So Clear}
+  \includegraphics[width=\textwidth]{images/elbow_method_bad.png} \vspace{2mm} \pause
+  \centering
+  Question: How is this related to the curse of dimensionality?
+\end{frame}
+
+\end{document}

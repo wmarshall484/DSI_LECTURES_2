@@ -1,21 +1,25 @@
 from IPython.core.display import HTML
 from pymongo import MongoClient
-from bs4 import BeautifulSoup, UnicodeDammit
-from requests import get
+from bs4 import BeautifulSoup
+import requests
 
 
 def query_indeed(job_title, city, state):
-    '''
-    INPUT:
-        job_title: str
-        city: str
-        state: str
-    OUTPUT:
-        requests.models.Response
+    ''' Query Indeed for jobs matching job_title in city, state
+
+    Parameters
+    -----------
+    job_title: str
+    city: str
+    state: str
+
+    Returns
+    --------
+    requests.models.Response
     '''
     job_title = job_title.replace(' ', '+')
     url = 'http://www.indeed.com/jobs?q={0}&l={1}%2C+{2}'.format(job_title, city, state)
-    response = get(url)
+    response = requests.get(url)
     if response.status_code != 200:
         print 'WARNING', response.status_code
     else:
@@ -23,11 +27,17 @@ def query_indeed(job_title, city, state):
 
 
 def extract_post(post):
-    '''
-    INPUT:
-        post: bs4.element.Tag
-    OUTPUT:
-        insert: dict
+    ''' Extract a single post
+
+    Parameters
+    -----------
+    post: bs4.element.Tag
+        BeautifulSoup Tag element containing a single job post
+
+    Returns
+    --------
+    dict
+        Dictionary containing the job title, job location, and job description
     '''
     try:
         title = post.find('a', attrs={'data-tn-element': 'jobTitle'}).text

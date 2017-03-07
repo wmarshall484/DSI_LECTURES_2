@@ -1,4 +1,4 @@
-# Build lecture slides for time series
+# Build lecture slides
 
 # Commands
 PANDOC = pandoc -t beamer --template=../config/default.beamer
