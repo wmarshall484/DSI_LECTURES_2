@@ -1,0 +1,267 @@
+# coding: utf-8
+
+'''
+Objectives
+
+- Explain/use the relationship between DataFrame and Series
+- Know how to set,reset indexes
+- Use index alignment and know when it applies
+- Use Split-Apply-Combine Methods
+- Be able to read and write data to pandas
+- Recognize problems that can probably be solved with Pandas (as opposed to writing vanilla Python functions)
+- Use basic DateTimeIndex functionality
+'''
+
+# pandas is a Python library providing data structures (lists, dictionaries, sets) and data analysis tools.  Almost anything you want to do is already a built-in function in pandas
+# before you decide to write a function on a pandas object, scour the docs
+# http://pandas.pydata.org/pandas-docs/stable/index.html
+
+# by convention import pandas like:
+import pandas as pd
+
+# http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.html
+# (think of a Series as a (1D) single column table)
+
+prices = pd.Series([1,1,2,3,5])
+
+# http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Index.html
+prices.index # labels for rows
+
+prices = pd.Series([1,1,2,3,5.],index=['apple','pear','banana','mango','jackfruit'])
+
+prices.index
+
+# http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.values.html
+prices.values # a numpy array; labels are gone
+
+# integer-based indexing
+# http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.iloc.html
+prices.iloc[1] # scalar
+prices.iloc[1:3] # Series; upper bound (3) is excluded
+prices.iloc[[1,2]] # Series
+prices.iloc[[1]] # Series of ONE element
+prices.iloc[1:] # Series
+prices.iloc[[False,False,True,True,True]] # "mask selection"
+
+# label-based indexing
+# http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.loc.html
+prices.loc['pear']
+prices.loc['pear':'mango'] # upper-bound (mango) is included
+prices.loc[['pear']]
+prices.loc[['pear','banana']]
+prices.loc['pear':]
+
+# label-based indexing; with integer-based indexing fallback
+# http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.ix.html
+# (when an axis is integer based, ONLY label based access and not positional access is supported)
+prices.ix[1:4] # again, 4 excluded
+prices.ix['pear':'mango'] # again, mango included
+
+foo = pd.Series([123,789,456])
+foo
+
+# http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.sort_values.html
+foo = foo.sort_values()
+
+foo.iloc[1] # 456
+foo.loc[1] # 789
+
+foo.sort_values(ascending=False)
+
+foo = pd.Series([123,789,456],index=[10,20,30])
+
+'''
+foo.ix[0] # -> Error
+'''
+
+foo.ix[10] # 123
+
+prices.loc['banana']
+prices['banana'] # shortcut; you can loose the ".loc"
+prices.banana # another shortcut; index as a property
+
+prices.iloc[3]
+prices[3] # shortcut again; you can also loose the ".loc" here
+
+'''
+foo[0] # -> Error
+'''
+
+foo[10] # 123
+
+# http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.mean.html
+# http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.std.html
+# http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.median.html
+# http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.min.html
+# http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.quantile.html
+# http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.describe.html
+
+prices
+
+prices.mean()
+prices.std()
+prices.median()
+prices.min()
+prices.quantile(.25)
+prices.describe()
+
+for price in prices:
+    print price
+
+# http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.apply.html
+discount_prices = prices.apply(lambda x: .9*x if x>3 else x)
+discount_prices
+
+len(prices)
+
+# http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.empty.html
+prices.empty
+
+inventory = pd.Series([10,50,41,22])
+inventory
+
+# http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html
+# (think of a DataFrame as a (2D) table)
+
+produce = pd.DataFrame({'price':prices,
+	'discount_price':discount_prices,
+	'inventory':inventory})
+produce
+
+produce.index
+produce.columns
+
+# http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.describe.html
+produce.describe()
+
+# http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.info.html
+produce.info()
+
+inventory = pd.Series([50,10,41,22],index=['pear','apple','banana','mango'])
+inventory
+
+produce = pd.DataFrame({'price':prices,
+	'discount_price':discount_prices,
+	'inventory':inventory})
+produce
+
+prices,inventory
+
+prices*inventory
+
+# non-unique indices
+inventory2 = pd.Series([50,10,41,22,20],index=['pear','apple','banana','mango','mango'])
+inventory2
+
+prices*inventory2
+
+'''
+produce2 = pd.DataFrame({'price':prices,
+	'discount_price':discount_prices,
+	'inventory':inventory2})
+# -> cannot reindex from a duplicate axis
+'''
+
+inventory>20 # mask
+
+inventory[inventory>20] # mask selection
+
+# label-based indexing
+# http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.loc.html
+produce.loc['banana'] # Series
+produce.loc['banana','price'] # scalar
+produce.loc['banana':,'price'] # Series
+produce.loc['banana':,'price':] # DataFrame
+
+produce.loc['banana']
+
+'''
+produce['banana'] # -> Error; indexing is not by row
+'''
+
+produce['price'] # but by column
+produce.price # shortcut; property
+
+# http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.iloc.html
+produce.iloc[1] # banana
+produce.iloc[1,2] # banana, price
+produce.iloc[1:,2]
+produce.iloc[1:,2:]
+
+# http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.ix.html
+produce.ix[1:4]
+produce.ix['banana':'mango']
+
+# http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.transpose.html
+produce.transpose()
+produce.T # shortcut
+
+produce.ix[[0,2,3],['discount_price']] # DataFrame
+produce.ix[[0,2,3],'discount_price'] # Series
+
+produce.loc[produce.discount_price>=3,:]
+produce.loc[:,produce.max()>5]
+
+produce['inventory_value'] = produce['inventory']*produce['price']
+
+produce.drop(['inventory_value'],axis=1,inplace=True)
+
+discount_inventory_value = produce['inventory']*produce['discount_price']
+discount_inventory_value = pd.Series(discount_inventory_value, name='discount_inventory_value')
+
+# http://pandas.pydata.org/pandas-docs/stable/generated/pandas.concat.html
+pd.concat([produce,discount_inventory_value],axis=1)
+
+# http://pandas.pydata.org/pandas-docs/stable/generated/pandas.read_csv.html
+df = pd.read_csv('playgolf.csv')
+
+# http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.head.html
+df.head()
+df.head(7)
+
+# http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.tail.html
+df.tail(5)
+
+# Feature Engineering
+#######################
+
+df['temp_sq'] = df['temp']**2
+
+# http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.apply.html
+df['temp_sq_again'] = df.apply(lambda row: row['temp']**2,axis=1)
+
+df.date
+
+df.date = pd.to_datetime(df.date)
+
+'''
+pd.date.year # -> Error
+'''
+
+df['year'] = df.apply(lambda row: row['date'].year,axis=1)
+
+df = df.set_index('date')
+
+df = df.reset_index('date')
+
+# Grouping (split-apply-combine)
+# http://pandas.pydata.org/pandas-docs/stable/groupby.html
+
+# http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.groupby.html
+df.groupby('outlook').temp.mean()
+
+df.groupby(['outlook', 'windy']).temp.mean()
+
+# http://pandas.pydata.org/pandas-docs/stable/generated/pandas.core.groupby.GroupBy.aggregate.html
+df.groupby(['outlook', 'windy']).temp.aggregate(sum)
+
+df.groupby(['outlook', 'windy']).temp.aggregate(lambda x: 1. * sum(x) / len(x))
+
+# http://pandas.pydata.org/pandas-docs/stable/generated/pandas.core.groupby.GroupBy.transform.html
+zscore = lambda x: (x - x.mean()) / x.std()
+
+df.groupby('outlook').transform(zscore)
+
+# cross-comparison
+# http://pandas.pydata.org/pandas-docs/stable/generated/pandas.crosstab.html
+pd.crosstab(df.outlook, df.result)
