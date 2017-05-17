@@ -1,17 +1,5 @@
 % Cross-Validation, Regularized Regression & Bias-Variance Tradeoff
 % [Isaac Laughlin](isaac.laughlin@galvanize.com)
-% May 2, 2016
-
-## Today's schedule
-
-11:30 - 12:30 This lecture
-
-12:30 - 3:30 Individual Sprint and Lunch (in whatever order your stomach prefers)
-
-3:30 - 4:30 Afternoon lecture
-
-4:30 - 7? Paired Sprint (cross-cohort pairs are possible!)
-
 
 ## Objectives
 
@@ -20,7 +8,7 @@ At the end of the lecture you should:
 AM
 
 *   State the purpose of Cross Validation
-*   Be able to describe the two kinds of model error.
+*   Be able to describe the three kinds of model error.
 *   Describe how to select a model using CV
 *   Give the reason for using k-fold CV
 *   Explain k-fold Cross Validation
@@ -29,13 +17,12 @@ AM
 PM
 
 *   Be able to state the purpose of Lasso and Ridge regression, and compare the two choices
-*   Build test error curves for regularized regression
-*   Build and interpret learning curves
+*   Build validation error curves for regularized regression
 
 ##  The (two) purposes of CV
 
 1. Find the best model to use.
-1. Predict how well that model will perform on unseen data.
+1. Estimate how well that model will perform on unseen data.
 
 ## Our general problem:
 
@@ -50,19 +37,16 @@ Imagine we have just a single variable $x_1$.
 
 We can create a linear regression
 
-$$ y^{(1)} = \beta_0 + \beta_1 x_1 $$
+$$ \hat{y}^{(1)} = \beta_0 + \beta_1 x_1 $$
 
 or
 
-$$ y^{(2)} = \beta_0 + \beta_1 x_1 $$
+$$ \hat{y}^{(2)} = \beta_0 + \beta_1 x_1 $$
 
 or
 
-$$ y^{(3)} = \beta_0 + \beta_1 x_1 + \beta_2 x_1^2 + \beta_2 x_1^3 + ... $$
+$$ \hat{y}^{(3)} = \beta_0 + \beta_1 x_1 + \beta_2 x_1^2 + \beta_2 x_1^3 + ... $$
 
-
-## Poll:
-http://pollev.com/galvanizedsi351
 
 ## Business
 
