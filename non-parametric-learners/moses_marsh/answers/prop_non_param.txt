@@ -1,0 +1,2 @@
+1. Makes no strong assumptions about the underlying form of the data.
+2. Describes the form of the data with a (potentially) infinite number of parameters.
