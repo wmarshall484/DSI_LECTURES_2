@@ -1,0 +1,13 @@
+Pros:
+-----
+1. Simpler:
+    * Easier to understand and interpret results
+2. Less data:
+    * Don't require as much training data (since you assume a form)
+Cons:
+-----
+1. Strong Assumptions:
+    * By assuming a form, data must match that form for a good fit
+2. Limited Complexity:
+    * Number of parameters to describe data is fixed
+    * Could fail to match the signal of the data
