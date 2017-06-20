@@ -11,7 +11,7 @@ class MostUsedWords(MRJob):
             yield (word.lower(), 1)
 
     def reducer_count_words(self, word, counts):
-        count_sum = sum(counts)
+        count_sum = '{:0>5}'.format(sum(counts))
         yield (count_sum, word)
 
     def reducer_sort(self, count, words):
