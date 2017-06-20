@@ -12,7 +12,7 @@ class SaleCount(MRJob):
        yield (state, amount)
 
    def reducer1(self, state, amounts):
-       amount = '{amt:07.2f}'.format(amt=sum(amounts)) 
+       amount = '{amt:09.2f}'.format(amt=sum(amounts)) 
        yield (state, amount)
    
    def mapper2(self, state, amount):
