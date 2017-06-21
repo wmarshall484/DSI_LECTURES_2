@@ -4,7 +4,6 @@
 
 -- number of meals above the average price
 
--- (subquery)
 -- (can do a subquery as part of a comparison)
 
 SELECT COUNT(*)
@@ -64,12 +63,36 @@ SELECT type, AVG(price) AS avg_price
 
 -- same without HAVING
 
-WITH average_by_type AS (SELECT type, AVG(price) AS avg_price FROM meals GROUP BY type),
-	overall_average AS (SELECT AVG(price) AS avg_price FROM meals)
+WITH average_by_type AS (
+            SELECT type, AVG(price) AS avg_price 
+            FROM meals 
+            GROUP BY type
+                        ),
+     overall_average AS (
+            SELECT AVG(price) AS avg_price 
+            FROM meals
+                        )
 
 SELECT average_by_type.type, average_by_type.avg_price
 	FROM average_by_type, overall_average
 	WHERE average_by_type.avg_price > overall_average.avg_price;
+
+-- find all the meals from that are above the average price of the previous 7 days.
+
+SELECT a.meal_id
+    FROM meals a
+    JOIN meals b
+        ON b.dt <= a.dt AND b.dt > (a.dt - 7)
+    GROUP BY a.meal_id, a.price
+    HAVING a.price > AVG(b.price);
+
+
+SELECT *
+    FROM meals a
+    JOIN meals b
+        ON b.dt <= a.dt AND b.dt > (a.dt - 7);
+
+
 
 -- create table from query
 
