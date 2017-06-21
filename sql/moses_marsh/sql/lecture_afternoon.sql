@@ -11,6 +11,26 @@ SELECT COUNT(*)
 		WHERE price > (SELECT AVG(price) FROM meals);
 
 -- meals above their types (e.g., french, italian, ...) average price
+SELECT type, AVG(price) as avg_price 
+FROM meals
+GROUP BY type;
+
+SELECT meals.*, average.avg_price FROM meals
+JOIN
+    (SELECT type, AVG(price) as avg_price 
+    FROM meals
+    GROUP BY type) AS average
+ON meals.type=average.type AND meals.price > average.avg_price;
+
+
+
+
+
+
+
+
+
+
 
 SELECT meal_id, meals.type, price, average.avg_price
 	FROM meals 
@@ -28,7 +48,7 @@ WITH average AS (
 	SELECT type, AVG(price) AS avg_price
 		FROM meals
 		GROUP BY type
-)
+                )
 
 SELECT meal_id, meals.type, price, average.avg_price
 	FROM meals
@@ -77,7 +97,7 @@ SELECT average_by_type.type, average_by_type.avg_price
 	FROM average_by_type, overall_average
 	WHERE average_by_type.avg_price > overall_average.avg_price;
 
--- find all the meals from that are above the average price of the previous 7 days.
+-- find all the meals that are above the average price of the previous 7 days.
 
 SELECT a.meal_id
     FROM meals a
