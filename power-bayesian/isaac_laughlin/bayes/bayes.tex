@@ -1,0 +1,178 @@
+\documentclass{beamer}
+
+\usepackage{listings}
+\usepackage{tabulary}
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\usetheme{Madrid}
+\setbeamersize{text margin left=0.1\textwidth,text margin right=0.1\textwidth}
+\setbeamertemplate{section in toc}{\inserttocsection}
+\lstset{language=python,
+        keywordstyle=\color{red},
+        basicstyle=\ttfamily,
+        basicstyle=\small,
+        frame = single,
+        framexleftmargin=15pt,
+        numbers=left,
+        numberstyle=\small,
+        numbersep=5pt,
+        xleftmargin=0.05\textwidth,
+        columns=fullflexible}
+\definecolor{dgreen}{rgb}{0.,0.6,0.}
+\definecolor{goldenrod}{rgb}{.9,0.6,0.1}
+
+%Information to be included in the title page:
+\title{Bayesian Inference}
+\subtitle{Hypothesis Testing w/ a Fresh New Flavor}
+\author{Isaac Laughlin}
+\institute{Galvanize}
+\date{2017}
+
+\AtBeginSubsection[]
+{
+  \begin{frame}
+    \frametitle{Overview}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}
+  \frametitle{Overview}
+  \tableofcontents[]
+\end{frame}
+
+\section{Objectives}
+\begin{frame}
+  \frametitle{Objectives}
+  At the end of this lecture you should be able to:
+  \begin{itemize}
+  \item Describe the parts of Bayes theorem.
+  \item Compute discrete probabilities using Bayes theorem.
+  \item Use continuous Bayes to describe and solve hard problems.
+  \item Contrast Bayes and Frequentist approaches in terms of fixed parameters and prior beliefs, and the nature of probabilities that result from both approaches.
+  \end{itemize}
+\end{frame}
+
+\section{Inference}
+\subsection{Bayes vs. Frequentist}
+\begin{frame}
+  \frametitle{Comparing two paradigms}
+  \begin{itemize}
+  \item Frequentist Probability: ``Long Run'' frequency of an outcome
+  \item Subjective Probability: A measure of degree of belief
+  \end{itemize}
+  
+\end{frame}
+
+\subsection{Bayes Theorem}
+\begin{frame}
+  \frametitle{Deriving Bayes Theoryem}
+  Recalling that $P(A|B)P(B) = P(A \cap B)$.
+
+  \begin{block}
+    {Exercise}
+    Take 3 minutes and use this information to derive Bayes Theorem?
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Discuss the difference:}
+  \begin{block}{Example 1}
+    A fine classical musician says she’s able to distinguish Haydn from Mozart. Small excerpts are selected at random and played for the musician. Musician makes 10 correct guesses in exactly 10 trials.
+  \end{block}
+  \begin{block}{Example 2}
+    Drunken man says he can correctly guess what face of the coin will fall down, mid air. Coins are tossed and the drunken man shouts out guesses while the coins are mid air. Drunken man correctly guesses the outcomes of the 10 throws. Is he a psychic?
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \begin{block}{Frequentist}
+    ``I have as much belief in the musicians ability to distinguish the artists as I do the drunk's ability to predict coin flips.''
+  \end{block}
+  \begin{block}
+    {Bayesian}
+    ``I'm skeptical of the drunken man because of my earlier subjective belief.''
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Bayes Theorem Exploded Diagram}
+  \begin{itemize}
+  \item Posterior probability: The probability of a hypothesis in light of observations.
+  \item Likelihood: The probability of the evidence given the parameters.
+  \item Prior probability: Expresses belief about parameters outside of observations.
+  \end{itemize}
+
+  Take 1 minute and label each of the terms of Bayes Theorem with one of the names above.
+\end{frame}
+
+\subsection{Hypothesis Testing}
+\begin{frame}
+  \frametitle{Hypothesis Testing w/ Bayes}
+  \begin{block}
+    {Discuss in Pairs}
+    \begin{itemize}
+    \item How might we use Bayes Theorem for Hypothesis Testing?
+    \item How might the information available in an experiment map to the ``parts'' of Bayes Theorem?
+    \item How does this differ from the frequentist approach?
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Continuous Bayes}
+  We have a coin. We would like to know how biased it is. 
+
+
+
+  The bias is a value between 0 and 1 of the probability of flipping heads. Our prior is that all biases are equally likely.
+
+
+  \begin{block}{Individually}
+    How can we frame our problem with Bayes?    
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Continuous Bayes}
+  We have a coin. We would like to know how biased it is. 
+
+  The bias is a value between 0 and 1 of the probability of flipping heads. Our prior is that all biases are equally likely.
+
+  \begin{block}
+    {Individually}
+    How can we frame our problem with Bayes?
+  \end{block}
+
+  Now flip the coin and observe that it comes up H. What could we do with this info? \pause
+
+  \begin{block}
+    {In groups}
+    How do you express the prior density in this problem?
+    How do you calculate the posterior density in this problem?
+  \end{block} \pause
+
+  Now flip the coin again and observe that it comes up T. Incorporate this info!
+\end{frame}
+
+\begin{frame}
+  \frametitle{Conjugate Priors}
+  In general, it might be very difficult to compute the posterior from:
+
+
+
+  \begin{math}
+    P(\theta|X) = \frac{P(X|\theta)P(\theta)}{P(X)}
+  \end{math}
+
+
+
+  But oftentimes there will be a helpful, simple relationship between different families of priors. When this happens, they are known as conjugate priors.
+\end{frame}
+
+
+\end{document}
