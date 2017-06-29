@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 
 
 class Bayes(object):
+    def __init__(self, prior, likelihood_func):
     '''
     INPUT:
         prior (dict): key is the value (e.g. 4-sided die),
@@ -10,7 +11,6 @@ class Bayes(object):
         likelihood_func (function): takes a new piece of data and the value and
                                     outputs the likelihood of getting that data
     '''
-    def __init__(self, prior, likelihood_func):
         self.prior = prior
         self.likelihood_func = likelihood_func
 
@@ -46,7 +46,7 @@ class Bayes(object):
         '''
         sorted_keys = sorted(self.prior.keys())
         for key in sorted_keys:
-            print "%s:%s" % (str(key), str(self.prior[key]))
+            print "{}: {}".format(key, self.prior[key])
 
     def plot(self, color=None, title=None, label=None):
         '''
