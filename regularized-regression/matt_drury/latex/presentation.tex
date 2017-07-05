@@ -1,0 +1,49 @@
+\documentclass{beamer}
+\mode<presentation>{}
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+\graphicspath{ {/Users/matthew.drury/Projects/model-validation/plots/} }
+
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}\insertsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
+
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\bias}{bias}
+\DeclareMathOperator*{\A}{\mathcal{A}}
+\DeclareMathOperator*{\F}{\mathcal{F}}
+\DeclareMathOperator*{\D}{\mathcal{D}}
+\DeclareMathOperator*{\T}{\mathcal{T}}
+\DeclareMathOperator*{\Holdout}{\mathcal{H}}
+\DeclareMathOperator*{\ESE}{\mathbf{ESE}}
+\DeclareMathOperator*{\ETE}{\mathbf{ETE}}
+\DeclareMathOperator*{\IESE}{\mathbf{IESE}}
+\DeclareMathOperator*{\RESE}{\mathbf{RESE}}
+\DeclareMathOperator*{\BIAS}{\mathbf{BIAS}}
+\DeclareMathOperator*{\VAR}{\mathbf{VAR}}
+\DeclareMathOperator*{\LinReg}{\text{LinReg}}	
+
+\title{Statistical Learning Theory and Model Validation}
+\author{Matthew Drury}
+
+\begin{document}
+%
+\begin{frame}
+  \titlepage
+\end{frame}
+%
+\include{introduction}
+\include{section_framework} % A Framework for Statistical Learning
+\include{section_bias_variance_decomposition} % The Bias-Variance Decomposition
+\include{section_toy_model} % A Toy Model
+\include{section_out_of_sample_error_rate} % Out of Sample Error Rate
+%
+\end{document}
