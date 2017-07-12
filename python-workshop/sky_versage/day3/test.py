@@ -17,6 +17,13 @@ class Dog(Animal):
     def make_noise(self):
         print('Ruff!')
 
+class Testing(object):
+
+    def __init__(self, message):
+        self.message = message
+
+    @classmethod
+    def message
 
 
 if __name__ == '__main__':

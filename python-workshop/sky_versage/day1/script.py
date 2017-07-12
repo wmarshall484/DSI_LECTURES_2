@@ -6,6 +6,4 @@ def foo():
 def bar():
     print 'bar'
 
-
-foo()
-bar()
+print(__name__)
