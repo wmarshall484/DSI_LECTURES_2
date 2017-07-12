@@ -331,14 +331,61 @@ def plot_logistic(X, y, X_test, y_test, ts=20, ls=15, prob_gradient=False,
     plt.show()
 
 
-if __name__ == '__main__':
-    X, y = make_data(n_points=100, state=3)
-    X_test, y_test = make_data(n_points=100, state=5)
-    plot_one_tree(X, y, X_test, y_test)
-    plot_naive_tree_ensemble(X, y, X_test, y_test)
-    plot_tree_ensemble(X, y, X_test, y_test, only_bagging=True)
-    plot_tree_ensemble(X, y, X_test, y_test, only_bagging=True,
-                        n_estimators=1000, n_jobs=-1)
-    plot_tree_ensemble(X, y, X_test, y_test)
-    plot_tree_ensemble(X, y, X_test, y_test, n_estimators=1000, n_jobs=-1)
-    plot_logistic(X, y, X_test, y_test)
+def plot_tree_ensemble_train_test(X, y, color, n_estimators,
+                                  ax=None, only_bagging=False):
+    """Plots the train error and the test error, estimated by OOB error,
+    for a tree ensemble.
+
+    Parameters
+    ----------
+    X : ndarray, 2D data points
+    y : ndarray, 1D labels
+    color : str, matplotlib compatible color setting for adding to style
+    n_estimators : int, number of trees to train in ensemble
+    ax : matplotlib axis object
+    only_bagging : bool, set to true if want to show only bagged version
+                         of ensemble
+    """
+    tree_ensemble = RandomForestClassifier(warm_start=True, oob_score=True,
+                                           max_features=1+only_bagging)
+    train_errors = np.empty(n_estimators)
+    test_errors = np.empty(n_estimators)
+    tree_nums = np.arange(1, n_estimators+1)
+
+    for i in range(n_estimators):
+        tree_ensemble.set_params(n_estimators=i+1).fit(X, y)
+        train_errors[i] = 1 - tree_ensemble.score(X, y)
+        test_errors[i] = 1 - tree_ensemble.oob_score_
+    
+    if not ax:
+        fig, ax = plt.subplots(figsize=(10, 10))
+
+    ensemble_type_string = 'Bagging' if only_bagging else 'Random Forest'
+
+    ax.plot(tree_nums, train_errors, color + '--',
+            label='{} Training Error'.format(ensemble_type_string))
+    ax.plot(tree_nums, test_errors, color + '-',
+            label='{} Testing Error'.format(ensemble_type_string))
+    ax.legend(loc='best', fontsize=15)
+
+    if not ax:
+        plt.show()
+
+
+def plot_train_test_bagging_vs_rf(X, y, n_estimators, title):
+    """Plots the train error and the test error, estimated by OOB error,
+    for a bagged and random forest tree ensemble.
+
+    Parameters
+    ----------
+    X : ndarray, 2D data points
+    y : ndarray, 1D labels
+    n_estimators : int, number of trees to train in ensemble
+    """
+    fig, ax = plt.subplots(figsize=(10, 10))
+    plot_tree_ensemble_train_test(X, y, 'b', n_estimators,
+                                  only_bagging=True, ax=ax)
+    plot_tree_ensemble_train_test(X, y, 'r', n_estimators, ax=ax)
+    ax.set_xlabel('Number of Trees', fontsize=20)
+    fig.suptitle(title, fontsize=25)
+    plt.show()
