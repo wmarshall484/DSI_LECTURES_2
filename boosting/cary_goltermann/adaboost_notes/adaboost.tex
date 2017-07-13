@@ -38,8 +38,8 @@ Here we will label $y \in \{-1, 1\}$, different than the usual $y \in \{0, 1\}$,
 where $w_{i,m} = e^{-y f_{m-1}(x_i)}$ is a weight applied to observation $i$. This objective can be rewritten as:
 
 \begin{align*}
-  L_m &= e^{-\beta} \sum_{y_i=\phi{x_i}} w_{i,m} = e^\beta \sum{y_i \ne \phi{x_i}} w_{i,m} \\
-      &= (e^\beta - e^-\beta) \sum_{i=1}^N w_{i,m} {\rm I\!I}(y \ne \phi(x_i)) + e^{-\beta} \sum_{i=1}^N w_{i,m}
+  L_m &= e^{-\beta} \sum_{y_i=\phi(x_i)} w_{i,m} - e^\beta \sum_{y_i \ne \phi(x_i)} w_{i,m} \\
+      &= (e^\beta - e^{-\beta}) \sum_{i=1}^N w_{i,m} {\rm I\!I}(y \ne \phi(x_i)) + e^{-\beta} \sum_{i=1}^N w_{i,m}
 \end{align*}
 
 Consequently the optimal function to add is:
@@ -52,7 +52,7 @@ This can be found by fitting $\phi$ to a weighted version of the dataset, with w
 
 where
 
-  $$ err_m = \frac{\sum_{i=1}^N w_i {\rm I\!I}(y \ne \phi(x_i))}{\sum_{i=1}^N w_{i,m}} $$
+  $$ err_m = \frac{\sum_{i=1}^N w_{i,m} {\rm I\!I}(y \ne \phi(x_i))}{\sum_{i=1}^N w_{i,m}} $$
 
 The overall update becomes:
 
