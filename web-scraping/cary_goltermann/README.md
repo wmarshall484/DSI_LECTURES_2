@@ -6,6 +6,8 @@ Once set up you can live code in class, performing queries on the remote databas
 
 ## Setup Script
 
+**Note: both the setup script and the coffee-tweets.json files should be copied to the EC2 instance before proceeding.**
+
 The script, `remoteMongoSetup.sh`, to be run on an EC2 instance, accepts three arguments. The first is to name the database it will create, the second and third are to create a user and password, respectively, for remote login.
 
 Usage:

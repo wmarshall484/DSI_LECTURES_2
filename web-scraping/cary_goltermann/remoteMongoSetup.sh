@@ -15,7 +15,9 @@ sudo apt-get update
 sudo apt-get install -y --allow-unauthenticated mongodb-org
 
 sudo service mongod start
-sleep 3
+sleep 2
+mongoimport --db tweets --collection coffee --file coffee-tweets.json
+mongo tweets --eval "db.createUser({user:'$2',pwd:'$3',roles:[{role:'readWrite',db:'tweets'}]})"
 mongo $1 --eval "db.createUser({user:'$2',pwd:'$3',roles:[{role:'readWrite',db:'$1'}]})"
 
 sudo tee /etc/mongod.conf >/dev/null <<EOF
