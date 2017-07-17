@@ -1,0 +1,18 @@
+1. A python program that deletes all the .DS_Store files on your Mac's file system.
+
+2. Given a string of words without spaces, return a string of words with the proper spaces inserted.
+
+3. Create unique pairs for pair programming s.t. every student pairs with every other student before any pairs repeat.
+
+4. Probability trees: What's the probability a dealer in blackjack busts if the upcard is a ___?
+
+5. """
+Given a list of strings, return a list of lists of strings where each inner list contains no duplicates.
+For example:
+["a", "b", "c", "a", "a", "b"] -> [ ["a", "b", "c"], ["a", "b"], ["a"] ]
+Your solution should minimize the number of inner lists.
+For example:
+[ ["a"], ["a"], ["b"] ] would not be a correct solution for ["a", "a", 'b"].
+The correct solution would be [ ["a", "b"], ["a"] ]
+"""
+
