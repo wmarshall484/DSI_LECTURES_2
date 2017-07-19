@@ -54,16 +54,10 @@ SELECT
 FROM visits
 GROUP BY customer_id
 ORDER BY cnt DESC;
+-- try ASC instead of DESC!
 
-----
-SELECT
-    id,
-    name,
-    state,
-    avg(age) as avg_age
-FROM customers
-GROUP BY id, name, state
-HAVING avg(age) > 30;
+
+---BACK TO SLIDES THEN DO THE FOLLOWING---
 
 
 --- Return the customer_ids of all customers who visited in June ---
@@ -84,6 +78,7 @@ FROM customers as c
 LEFT JOIN visits as v
 ON c.id = v.customer_id
 WHERE date_part('month', v.created_at) = 6;
+--DO BOTH WITHOUT THE WHERE CLAUSE TO SEE THE DIFFERENCE!--
 
 
 --- Alternate way of doing an INNER JOIN ----
@@ -95,7 +90,7 @@ WHERE c.id = v.customer_id
 and date_part('month', v.created_at) = 6;
 
 
---- Example of CASE: how many customers ?
+--- Example of CASE: (same as if/else)
 SELECT id, name,
    CASE WHEN gender = 'F' THEN 'female' ELSE 'male' END AS gender_r
 FROM customers;
