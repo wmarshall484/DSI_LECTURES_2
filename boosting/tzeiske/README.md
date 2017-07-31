@@ -1,3 +1,5 @@
+[Tim'z slides](https://docs.google.com/presentation/d/1LDDruR0VSbTina2RQwZK-7xsRdqiPFh30llzJUHkTJk/) modeled after Matt's
+
 Matt Drury's Boosting Lecture
 =============================
 
