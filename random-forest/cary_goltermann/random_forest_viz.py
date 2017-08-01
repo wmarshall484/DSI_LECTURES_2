@@ -103,7 +103,7 @@ def plot_test_data_boundary(X_test, y_test, classifier, ax, ls, label,
     ax.set_title('Accuracy: {}'.format(accuracy_score(y_test, y_test_pred)), fontsize=ls)
 
 
-def plot_boundary_lines(ax, node_id, ftb, bounds, leaf,
+def get_boundary_lines(ax, node_id, ftb, bounds, leaf,
                         features, thresholds, children_left, children_right):
     """Recursively plot the boundary lines for the nodes in an sklearn
     decision tree.
@@ -150,9 +150,9 @@ def plot_boundary_lines(ax, node_id, ftb, bounds, leaf,
     else:
         right_bounds = left_bounds = bounds
 
-    plot_boundary_lines(ax, left_child, ftb, left_bounds, left_child == node_id,
+    get_boundary_lines(ax, left_child, ftb, left_bounds, left_child == node_id,
                         features, thresholds, children_left, children_right)
-    plot_boundary_lines(ax, right_child, ftb, right_bounds, right_child == node_id,
+    get_boundary_lines(ax, right_child, ftb, right_bounds, right_child == node_id,
                         features, thresholds, children_left, children_right)
 
 
@@ -167,7 +167,7 @@ def plot_split_lines(tree, ax):
     ax : matplotlib Axis object
     """
     feats_threshs_bounds = []
-    plot_boundary_lines(ax, 0, feats_threshs_bounds, 
+    get_boundary_lines(ax, 0, feats_threshs_bounds, 
                         (ax.get_xlim(), ax.get_ylim()),
                         False, tree.feature, tree.threshold,
                         tree.children_left, tree.children_right)
