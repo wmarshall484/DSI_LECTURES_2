@@ -1,0 +1,13 @@
+Pros:
+-----
+1. Flexibility:
+    * Can conform to many different (and exotic) signals in the data
+2. No (or Weak) Assumptions:
+    * Lets the data's form speak for itself
+Cons:
+-----
+1. More Data:
+    * Needs a lot of training data to find signal
+2. Complexity:
+    * Tendency to overfit since it takes exact form of data
+    * Hard to explain and interpret results
