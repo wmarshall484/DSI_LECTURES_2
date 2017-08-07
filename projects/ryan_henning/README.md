@@ -24,5 +24,5 @@ Talk through what strengths they each have:
 
 ### Also see:
 
-https://github.com/zipfian/project-proposals/blob/master/past_student_projects.md
+https://github.com/gSchool/dsi-project-proposals/blob/master/past_student_projects.md
 
