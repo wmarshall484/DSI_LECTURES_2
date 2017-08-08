@@ -1,6 +1,7 @@
 \documentclass{beamer}
 
 \usepackage{listings}
+\usepackage{color}
 \usepackage{tabulary}
 \usepackage[utf8]{inputenc}
 \usetheme{Madrid}
@@ -23,7 +24,7 @@
 \subtitle{Introduction to Distributed Systems and MapReduce}
 \author{Cary Goltermann}
 \institute{Galvanize}
-\date{2016}
+\date{2017}
 
 \AtBeginSubsection[]
 {
@@ -146,7 +147,7 @@
   \frametitle{Should I Use Distributed Computing Solutions?}
   \begin{itemize}
     \item Because of the overhead involved with having multiple computers in a network communicate with each other, and the restrained set of problems that can readily be solved in a parallelizable way, it's not a good enough reason to choose a distributed solution just because things are ``taking awhile'' on your local machine.
-    \item However, if you'd like to get practice with the Big Data tools so that you feel comfortable with them and can have them on your resume, then it may be worthwhile to use these solutions, even on data this isn't ``\alert{Big}''.
+    \item However, if you'd like to get practice with the Big Data tools so that you feel comfortable with them and can have them on your resume, then it may be worthwhile to use these solutions, even on data this isn't ``\textcolor{blue}{Big}".
   \end{itemize}
 \end{frame}
 
@@ -213,7 +214,7 @@
 
   \vspace{4mm}
   \centering   
-  Enter \alert{\LARGE MapReduce} ({\LARGE duce...}{\large duce...}{\small duce}).
+  Enter \textcolor{blue}{\LARGE MapReduce} ({\LARGE duce...}{\large duce...}{\small duce}).
 \end{frame}
 
 \begin{frame}
