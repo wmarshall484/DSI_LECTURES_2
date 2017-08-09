@@ -1,6 +1,7 @@
 \documentclass{beamer}
 
 \usepackage{listings}
+\usepackage{color}
 \usepackage[utf8]{inputenc}
 \usetheme{Madrid}
 \setbeamersize{text margin left=0.1\textwidth,text margin right=0.1\textwidth}
@@ -21,7 +22,7 @@
 \title{Advanced MapReduce}
 \author{Cary Goltermann}
 \institute{Galvanize}
-\date{2016}
+\date{2017}
 
 \AtBeginSubsection[]
 {
@@ -56,7 +57,9 @@
 \subsection{Shuffle and Sort}
 \begin{frame}
   \frametitle{Shuffle and Sort}
-  \parbox{\linewidth}{How data is re-distributed during a MapReduce job to continually take advantage of all the worker nodes.} \vspace{2mm}
+  \parbox{\linewidth}{Data is re-distributed during a MapReduce job to continually take advantage of all the worker nodes.}
+  \vspace{2mm}
+
   \begin{columns}
     \column{0.5\textwidth}
     \begin{center}
@@ -64,18 +67,26 @@
     \end{center}
     \column{0.5\textwidth}
     \begin{itemize}
-      \item \alert{Shuffle Step}: Process of deciding how and where data from mappers will go to the reducers.
+      \item \textcolor{blue}{Shuffle Step}: Process of deciding how and where data from mappers will go to the reducers.
       \vspace{1mm}
-      \item \alert{Sort Step}: Sorts data it gets from the mappers by key.
+    \item \textcolor{blue}{Sort Step}: Sorts data it gets from the mappers by key.
     \end{itemize}
   \end{columns}
 \end{frame}
 
 \begin{frame}
   \frametitle{Tracking}
-  \begin{center}
-    \includegraphics[width=\textwidth]{../images/tracking.png}
-  \end{center}
+  Keeping track of a MapReduce job involves two parts, the data and the steps. The location of all the data is registered with the \textcolor{blue}{name node}. The status of a job is kept track of by \textcolor{blue}{job tracker}, frequently this is on the name node.
+  \vspace{2mm}
+
+  \begin{columns}
+    \column{0.6\textwidth}
+      \includegraphics[width=\textwidth]{../images/tracking.png}
+    \column{0.4\textwidth}
+      Each of the nodes has as \textcolor{blue}{task tracker} that communicates with the job track about its status on its assigned job. \vspace{2mm}
+
+      The location of the data is registered with each node, known as a \textcolor{blue}{data node}, with the name node.
+  \end{columns}
 \end{frame}
 
 \begin{frame}
@@ -137,7 +148,7 @@
   \frametitle{Combiners}
   \begin{itemize}
     \item Help decrease the amount of data that needs to be passed from mappers to reducers.
-    \item Frequently look like reducers that aggregate like data on the mapper so that there is "less" of it to copy to the reducers.
+    \item Frequently look like reducers that aggregate like data on the mapper so that there is ``less" of it to copy to the reducers.
     \item \alert{Note}: The same information needs to get passed to the reducers no matter what, combiners generally find a way to achieve this while using fewer bits to represent that information.
   \end{itemize}
 \end{frame}
@@ -171,6 +182,43 @@
   \alert{Note}: While the combiner and the reducer implement the same function in this example, this is not generally the case when using a combiner.
 \end{frame}
 
+\subsection{Multi-step Jobs}
+\begin{frame}
+  \frametitle{More than One Step}
+  Sometimes we need more than map-reduce pass to answer the question we're interested in.
+  \vspace{2mm}
+
+  These cases are called \textcolor{blue}{multi-step} jobs. Creating a multi-step job with MRJob is really easy! \pause
+  \vspace{2mm}
+
+  Consider trying to answer the question:
+  \begin{block}{In Need of Multiple Steps}
+    What is the most common word per letter in a document?
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Multiple Steps in MRJob}
+  \begin{lstlisting}
+    class MRMostFrequentWord(MRJob):
+        def mapper1(self, _, line):
+            clean_line = ''.join(c for c in line if c not in PUNCT)
+            for word in clean_line.lower().split():
+                yield word, 1
+        def reducer1(self, word, counts):
+            yield word, sum(counts)
+        def mapper2(self, word, count):
+            yield word[0], (word, count)
+        def reducer2(self, letter, word_lengths):
+            yield letter, max(word_lengths, key=lambda x: x[1])
+        def steps(self):
+            return [MRStep(mapper=self.mapper1,
+                           reducer=self.reducer1),
+                   MRStep(mapper=self.mapper2,
+                           reducer=self.reducer2)]
+  \end{lstlisting}
+\end{frame}
+
 \section{Hadoop Ecosystem Tools}
 \subsection{Hbase, Hive, Pig}
 \begin{frame}
@@ -198,8 +246,6 @@
     \item[Hbase] A mutable big data storage system on top of HDFS. \alert{Note}: HDFS is mutable, batch oriented.
     \item[Hive] A high level language for writing MapReduce jobs in an SQL style.
     \item[Pig] Another high level language for writing MapReduce jobs in. Kind of like Hive, but with less structure and less familiarity from SQL.
-
-
   \end{description}
 \end{frame}
 
