@@ -54,10 +54,14 @@ STUDENTS.insert_one(student)
 
 #try new ID but rest the same
 student={'name':'joe','student_id':124,'class':'DS','favorite_food':'tiramisu'}
-student={'name':'joe','class':'DS','favorite_food':'tiramisu'}
-student={'name':'joe','student_id':'abc','class':'DS','favorite_food':'tiramisu'}
-
 STUDENTS.insert_one(student)
+
+student={'name':'joe','class':'DS','favorite_food':'tiramisu'}
+STUDENTS.insert_one(student)
+
+student={'name':'joe','student_id':'abc','class':'DS','favorite_food':'tiramisu'}
+STUDENTS.insert_one(student)
+
 
 #DONT DO THIS UNLESS YOU KNOW YOUR COLLECTION IS SMALL
 all_students=list(STUDENTS.find())
