@@ -1,3 +1,6 @@
+[Tim's slides](https://docs.google.com/presentation/d/1R3UNAMth4yfT9rw1-wixV4ma4aduQ2E5y1jIwCjYlZM/edit?usp=sharing)
+
+
 Matt Drury's Time Series Lecture
 ================================
 
