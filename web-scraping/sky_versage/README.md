@@ -1,7 +1,6 @@
-Matt's Web Scraping Lecture
-===========================
-
 A lecture on Mongo Database and Web Scraping, covers the following topics:
+
+Borrowed heavily from Matt Drury
 
 ### MongoDB
 
