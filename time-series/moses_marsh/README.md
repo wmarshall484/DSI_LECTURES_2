@@ -1,5 +1,7 @@
-Matt Drury's Time Series Lecture
+Time Series Lecture
 ================================
+
+Author: Matt Drury with a little Moses Marsh
 
 This lecture is delivered from a Jupyter notebook.  Student interaction is provided by cells where students can write simple code to solve problems that come up in lecture, using functions provided earlier in the notebook.
 
