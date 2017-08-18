@@ -5,7 +5,7 @@ PANDOC = pandoc -t beamer --template=./default.beamer
 RM = rm -f
 
 # Files
-TGT = dataproducts-eys-lecture.pdf
+TGT = flask.pdf 
 
 # Rules
 default: $(TGT)

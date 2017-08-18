@@ -1,6 +1,6 @@
-% Data Products & Flask Web Apps
+% Flask Web Apps
 % Miles Erickson
-% March 6, 2017
+% August 18, 2017
 
 
 ## Lecture Credits
@@ -11,13 +11,11 @@
 
 ## Objectives
 
-At the end of the day, you'll be able to:
+At the end of the morning, you'll be able to:
 
 * Describe example data product workflows
 * Implement simple webpages using HTML and Flask
 * Describe the HTTP methods GET and POST & list the differences
-* Build a cross-platform, modern website using the Bootstrap framework
-* Embed plots in your website using the bokeh package
 
 
 ## Data Products & Workflow
@@ -48,7 +46,7 @@ Galvanize Data Science Program - Capstone Project - Lili Yao
 
 ## Web application
   * Web application is a client–server software which is run in a web browser.
-  * Developing web application is simplified by frameworks such as Django, Ruby on Rails or Symfony.
+  * Developing web application is simplified by frameworks such as Ruby on Rails, Django (Python), or Ember.js.
 ![Web application](images/webapp.png)
 
 
@@ -117,7 +115,6 @@ It means:
 
 [Jinja2](http://jinja.pocoo.org/) is a templating language for Python
 
-- **Install** using 'pip install Jinja2'
 
 ## Flask Conventions
 
@@ -197,101 +194,3 @@ From inside templates you can access _request_ and _session_ objects
   * session['username']
 
 
-## Bootstrap: Introduction
-
-[Bootstrap](http://getbootstrap.com/) is a popular front-end web framework combining HTML, CSS, & JavaScript.
-
-  * Easy way to develop modern web pages
-  * Cross-platform, including mobile
-  * Downloadable templates available at [startbootstrap.com](http://startbootstrap.com/)
-  * High quality results
-  * Free & open source
-
-## Bootstrap: Getting started
-
-  Start Bootstrap is resource with free Bootstrap themes and templates.
-
-  * Download a theme from [startbootstrap.com](http://startbootstrap.com/) & unzip
-  * You can start with [bare](http://startbootstrap.com/template-overviews/bare/) template
-  * Match the file structure Flask:
-    * Move the js, css, and fonts to 'static' folder
-    * Move .html files to 'templates' folder
-  * Create flask application file .py
-  * Edit content in .html template files
-  * Run application
-
-## Bootstrap: Getting started
-
-  * Use the same .html template for all pages
-  * Don't forget to add routes and links to connect all new pages
-
-
-## Bokeh
-
-[Bokeh](http://bokeh.pydata.org/en/latest/) is a python library to create interactive plots.
-
-* Display your data in a more pleasing way than a static image
-* Update charts easily
-* Users can interact with your charts
-
-## Installation
-
-- **Install** using 'conda install bokeh' with all the dependencies that Bokeh needs
-- If you have installed all dependencies you can use 'pip install bokeh'. (It does not install the examples)
-
-## Use Bokeh in bootstrap/flask sites
-
-Need to add the following two lines to the *.html template(s):
-
-`<link rel="stylesheet" href="http://cdn.pydata.org
-/bokeh/release/bokeh-0.11.1.min.css" type="text/css" />`
-
-`<script type="text/javascript" src="http://cdn.pydata.org
-/bokeh/release/bokeh-0.11.1.min.js"></script>`
-
-
-## Use Bokeh in bootstrap/flask sites
-
-To add a bokeh plot to your site:
-
-  * Build figure in python app
-
-    _from bokeh.plotting import figure_
-
-    _plot = figure(tools=TOOLS)_
-
-  * Bokeh produces embeddable JavaScript that will render plot:
-
-    _from bokeh.embed import components_
-
-    _script, div = components(plot)_
-
-    _return render_template('dashboard.html', script=script, div=div)_
-
-  * Add plot to template
-    _{{ script | safe }}_
-    _{{ div | safe }}_
-
-  The safe filter explicitly marks a string as "safe", i.e., it should not be automatically-escaped if auto-escaping is enabled.
-
-
-## Content
-
-Don't steal content:
-
-  - Plenty of free-to-use images are available.
-      - Google search options: filter images by usage rights
-      - Flickr: license options in search
-  - Give your sources credit!
-
-
-## Post your website
-
-Free options include:
-
-  - [Python Anywhere](https://www.pythonanywhere.com/)
-  - [Heroku](https://www.heroku.com/)
-
-Paid options (free with credits) include:
-
-  - [AWS](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-python-flask.html)
