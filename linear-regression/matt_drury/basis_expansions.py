@@ -3,25 +3,6 @@ import pandas as pd
 from sklearn.base import BaseEstimator, TransformerMixin
 
 
-class ColumnSelector(BaseEstimator, TransformerMixin):
-    """Transformer that selects a column in a numpy array or DataFrame
-    by index or name.
-    """
-    def __init__(self, idxs=None, name=None):
-        self.idxs = np.asarray(idxs)
-
-    def fit(self, *args, **kwargs):
-        return self
-
-    def transform(self, X, **transform_params):
-        # Need to teat pandas data frames and numpy arrays slightly differently.
-        if isinstance(X, pd.DataFrame) and idxs:
-            return X.iloc[:, self.idxs]
-        if isinstance(X, pd.DataFrame) and name:
-            return X[name]
-        return X[:, self.idxs]
-
-
 class Binner(BaseEstimator, TransformerMixin):
     """Apply a binning basis expansion to an array.
 
@@ -225,15 +206,25 @@ class NaturalCubicSpline(AbstractSpline):
 
     @property
     def n_params(self):
-        return self.n_knots
+        return self.n_knots - 1
 
     def transform(self, X, **transform_params):
-        ppart = lambda t: np.maximum(0, t)
-        cube = lambda t: t*t*t
-        X_spl = np.zeros((X.shape[0], self.n_knots))
+        X_spl = self._transform_array(X)
+        if isinstance(X, pd.Series):
+            col_names = ["{}_spline_linear".format(X.name)] + [
+                "{}_spline_{}".format(X.name, idx)
+                for idx in range(self.n_knots - 2)]
+            X_spl = pd.DataFrame(X_spl, columns=col_names, index=X.index)
+        return X_spl
+
+    def _transform_array(self, X, **transform_params):
+        X = X.squeeze()
+        X_spl = np.zeros((X.shape[0], self.n_knots - 1))
         X_spl[:, 0] = X.squeeze()
 
         def d(knot_idx, x):
+            ppart = lambda t: np.maximum(0, t)
+            cube = lambda t: t*t*t
             numerator = (cube(ppart(x - self.knots[knot_idx]))
                             - cube(ppart(x - self.knots[self.n_knots - 1])))
             denominator = self.knots[self.n_knots - 1] - self.knots[knot_idx]
@@ -241,5 +232,4 @@ class NaturalCubicSpline(AbstractSpline):
 
         for i in range(0, self.n_knots - 2):
             X_spl[:, i+1] = (d(i, X) - d(self.n_knots - 2, X)).squeeze()
-
         return X_spl
