@@ -54,16 +54,17 @@ def plot_univariate_smooth(ax, x, y,
         x_lim = (np.min(x), np.max(x))
     x, y = x.reshape(-1, 1), y.reshape(-1, 1)
     
-    ax.scatter(x, y, color='grey', alpha=0.25)
+    ax.scatter(x, y, color='grey', alpha=0.25, label="Data")
     if smooth:
         if bootstrap:
             for _ in range(bootstrap):
                 x_boot, y_boot = resample(x, y)
                 plot_smoother(ax, x_boot, y_boot, 
                               x_lim, n_knots, 
-                              alpha=0.5, color="lightblue")        
+                              alpha=0.5, color="lightblue",
+                              label=None)        
         plot_smoother(ax, x, y, x_lim, n_knots, 
-                      linewidth=3, color="blue")
+                      linewidth=3, color="blue", label="Trend")
 
 def make_natural_cubic_regression(n_knots):
     return Pipeline([
@@ -134,7 +135,7 @@ def get_bootstrap_coefs(bootstrap_models):
     return bootstrap_coefs
 
 
-def plot_bootstrap_coefs(models, coef_names, n_col=3):
+def plot_bootstrap_coefs(models, coef_names, n_col=4):
     """Plot histograms of the bootstrapped parameter estimates from a model.
     """
     bootstrap_coefs = get_bootstrap_coefs(models)
