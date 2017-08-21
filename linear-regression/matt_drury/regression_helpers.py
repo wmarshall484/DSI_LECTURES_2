@@ -116,19 +116,28 @@ def bootstrap_train(model, X, y, bootstraps=1000, **kwargs):
     bootstrap_coefs: A (bootstraps, n_features) numpy array.  Each row contains
     the parameter estimates for one trained boostrapped model.
     """
-    bootstrap_coefs = np.empty(shape=(bootstraps, X.shape[1]))
+    bootstrap_models = []
     for i in range(bootstraps):
         boot_idxs = np.random.choice(X.shape[0], size=X.shape[0], replace=True)
         X_boot = X[boot_idxs, :]
         y_boot = y[boot_idxs]
         M = model(**kwargs)
         M.fit(X_boot, y_boot)
-        bootstrap_coefs[i, :] = M.coef_
+        bootstrap_models.append(M)
+    return bootstrap_models
+
+def get_bootstrap_coefs(bootstrap_models):
+    n_models, n_coefs = len(bootstrap_models), len(bootstrap_models[0].coef_)
+    bootstrap_coefs = np.empty(shape=(n_models, n_coefs))
+    for i, model in enumerate(bootstrap_models):
+        bootstrap_coefs[i, :] = model.coef_
     return bootstrap_coefs
 
-def plot_bootstrap_coefs(bootstrap_coefs, coef_names, n_col=3):
+
+def plot_bootstrap_coefs(models, coef_names, n_col=3):
     """Plot histograms of the bootstrapped parameter estimates from a model.
     """
+    bootstrap_coefs = get_bootstrap_coefs(models)
     n_coeffs = bootstrap_coefs.shape[1]
     n_row = int(ceil(n_coeffs / n_col))
     fig, axs = plt.subplots(n_row, n_col, figsize=(n_col*3, n_row*2))
@@ -139,7 +148,7 @@ def plot_bootstrap_coefs(bootstrap_coefs, coef_names, n_col=3):
 
 
 def plot_partial_depenence(ax, model, X, var_name,
-                           y=None, pipeline=None, n_points=250):
+                           y=None, pipeline=None, n_points=250, **kwargs):
     """Create a partial dependence plot of a feature in a model.
 
     Parameters
@@ -169,7 +178,21 @@ def plot_partial_depenence(ax, model, X, var_name,
     if y is not None:
         ax.scatter(X[var_name], y, color="grey", alpha=0.5)
     y_hat = model.predict(Xpd)
-    ax.plot(x_plot, y_hat, linewidth=3, color="blue")
+    ax.plot(x_plot, y_hat, **kwargs)
+
+def plot_partial_dependences(model, X, var_names, 
+                            y=None, bootstrap_models=None, pipeline=None, n_points=250):
+    fig, axs = plt.subplots(len(var_names), figsize=(12, 3*len(var_names)))
+    for ax, name in zip(axs, var_names):
+        if bootstrap_models:
+            for M in bootstrap_models[:100]:
+                plot_partial_depenence(
+                    ax, M, X=X, var_name=name, pipeline=pipeline, alpha=0.8, 
+                    linewidth=1, color="lightblue")
+        plot_partial_depenence(ax, model, X=X, var_name=name, y=y,
+                               pipeline=pipeline, color="blue", linewidth=3)
+        ax.set_title("{} Partial Dependence".format(name))
+    return fig, axs
 
 def make_partial_dependence_data(X, var_name,
                                  n_points=250,
