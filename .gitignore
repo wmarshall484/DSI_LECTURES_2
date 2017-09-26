@@ -23,4 +23,5 @@ secrets.json
 *_build
 *_static
 
+geckodriver.log
 
