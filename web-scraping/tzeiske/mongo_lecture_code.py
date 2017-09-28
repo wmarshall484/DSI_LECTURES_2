@@ -95,7 +95,7 @@ student = STUDENTS.find_one({'student_id':125})
 pp.pprint(student)
 #print student
 
-student = STUDENTS.find_one({'name':'michelle'})
+student = STUDENTS.find_one({'name':'joe'})
 pp.pprint(student)
 #print student
 
