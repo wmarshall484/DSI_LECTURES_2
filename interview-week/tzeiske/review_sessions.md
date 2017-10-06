@@ -59,12 +59,12 @@ Subjects will be chosen by students on a first come first serve basis, but stude
 
 **Model Fitting/Recommenders/easter eggs:**
 
-1. **(?, ?)** Compare Maximum Likelihood and Method of Moments.
-1. **(?, ?)** Explain loss and cost functions and model fitting.
-1. **(?, ?)** Compare and contrast gradient decent and gradient boosting.
+1. **(Madhan)** Compare Maximum Likelihood and Method of Moments.
+1. **(Dan)** Explain loss and cost functions and model fitting.
+1. **(Matt)** Compare and contrast gradient decent and gradient boosting.
 1. **(?, ?)** Explain why gradient boosting can outperform random forests.
 1. **(?, ?)** Explain how PCA can be used for dimensionality reduction
-1. **(?, ?)** Compare PCA/SVD, NMF, and UV decomposition.
+1. **(Chad)** Compare PCA/SVD, NMF, and UV decomposition.
 1. **(?, ?)** Discuss how to evaluate recommender system performance.
 1. **(?, ?)** Tell us what a RNN is!
 ~
