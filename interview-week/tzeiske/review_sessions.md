@@ -30,7 +30,7 @@ Subjects will be chosen by students on a first come first serve basis, but stude
 1. **(Madhan)** Describe the issue of multicollinearity with particular attention to linear regression model contexts.
 1. **(Tyler)** Contrast model bias, model variance and intrinsic variance; and discuss their relationship to underfitting and overfitting.
 1. **(Matt 2)** Discuss three ways to combat high model variance.
-1. **(?, ?)** Discuss the issues and context of imbalanced classes classification.
+1. **(Dan 2)** Discuss the issues and context of imbalanced classes classification.
 
 
 **SVMs/NNs/Profit Curves:**
@@ -54,7 +54,7 @@ Subjects will be chosen by students on a first come first serve basis, but stude
 1. **(Madhan 2)** Explain two ways to choose k.
 1. **(Madhan)** Explain how Naive Bayes predicts classifications in NLP contexts.
 1. **(Tyler)** Tell us the most useful things to know about in order to do web scrapping.
-1. **(?, ?)** Show off your Rest API, describing how it works.
+1. **(Dan 2)** Show off your Rest API, describing how it works.
 
 
 **Model Fitting/Recommenders/easter eggs:**
