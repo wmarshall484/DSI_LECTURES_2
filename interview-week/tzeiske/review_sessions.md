@@ -1,9 +1,11 @@
 We will do 5 sessions according to the sections below.
-Sections 1 and 2 will be covered in two blocks of 1.5 hours on Monday.
-Sections 3 and 4 will be covered in two blocks of 1.5 hours on Tuesday.
-Section 5 and any leftover subjects will be covered on Thursday before graduation.
+
+* Sections 1 and 2 will be covered in two blocks of 1.5 hours on Monday.
+* Sections 3 and 4 will be covered in two blocks of 1.5 hours on Tuesday.
+* Section 5 and any leftover subjects will be covered on Thursday before graduation.
 
 Every subject should be covered by one student for about 5 minutes with discussion afterwards.
+
 Subjects will be chosen by students on a first come first serve basis, but students are strongly urged to choose stubjects they feel weaker in.
 
 **Probability/Statistics/(A/B)Testing/Bayesian Analysis:**
