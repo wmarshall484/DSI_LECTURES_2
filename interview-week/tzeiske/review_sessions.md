@@ -13,7 +13,7 @@ Subjects will be chosen by students on a first come first serve basis, but stude
 1. **(?, ?)** Compare and contrast three common continuous distributions, and three common discrete distributions.
 1. **(?, ?)** Explain the difference between sample statistics and population parameters, and give a few examples.
 1. **(?, ?)** Explain the difference between a joint distribution, and conditional distribution and a marginal distribution, and their respective roles in Bayes' theorem.
-1. **(?, ?)** Explain the steps to perform a hypothesis test.
+1. **(Madhan)** Explain the steps to perform a hypothesis test.
 1. **(?, ?)** Explain the stesp to perform a power calculation.
 1. **(Matt)** Compare and contrast CLT and bootstrapping  confidence intervals.
 1. **(Chad)** Expound upon the Bayesian philosophy relative to the frequentist approach based on p-values.
@@ -27,7 +27,7 @@ Subjects will be chosen by students on a first come first serve basis, but stude
 1. **(Dan)** Compare and contrast ensemble methods.
 1. **(?, ?)** Compare and contrast linear and logistic regression models.
 1. **(Matt)** Explain stepwise selection in a linear regression model context.
-1. **(?, ?)** Describe the issue of multicollinearity with particular attention to linear regression model contexts.
+1. **(Madhan)** Describe the issue of multicollinearity with particular attention to linear regression model contexts.
 1. **(?, ?)** Contrast model bias, model variance and intrinsic variance; and discuss their relationship to underfitting and overfitting.
 1. **(?, ?)** Discuss three ways to combat high model variance.
 1. **(?, ?)** Discuss the issues and context of imbalanced classes classification.
@@ -36,23 +36,23 @@ Subjects will be chosen by students on a first come first serve basis, but stude
 **SVMs/NNs/Profit Curves:**
 
 1. **(Chad)** What are support vectors and what is the margin in SVM contexts?
-1. **(?, ?)** What is the kernel trick?
+1. **(Dan)** What is the kernel trick?
 1. **(?, ?)** In a NN, how do we initialize the weights and how do we train the weights?
 1. **(Matt)** Discuss activation and softmax functions in the NN context.
 1. **(?, ?)** Describe the mechanics and role of convolutional kernel and max pooling layers in CNN contexts.
 1. **(?, ?)** Distinguish a confusion matrix from a cost-benefit matrix.
-1. **(?, ?)** Compare a profit curve to an ROC curve.
+1. **(Madhan)** Compare a profit curve to an ROC curve.
 1. **(?, ?)** Discuss how multi-cass (>2 class) classification is done.
 
 
 **NLP/Clustering/Web:**
 
 1. **(?, ?)** What is text normalization?
-1. **(?, ?)** Compare bag-of-words, binary bag-of-words and TF-IDF.
-1. **(?, ?)** Why is Cosine Similarity (usually) a better choice of a distance metric for NLP instead of Euclidean Distance?
-1. **(?, ?)** Comare and contrast k-means with hierarchical clustering.
+1. **(Chad)** Compare bag-of-words, binary bag-of-words and TF-IDF.
+1. **(Dan)** Why is Cosine Similarity (usually) a better choice of a distance metric for NLP instead of Euclidean Distance?
+1. **(Matt)** Comare and contrast k-means with hierarchical clustering.
 1. **(?, ?)** Explain two ways to choose k.
-1. **(?, ?)** Explain how Naive Bayes predicts classifications in NLP contexts.
+1. **(Madhan)** Explain how Naive Bayes predicts classifications in NLP contexts.
 1. **(?, ?)** Tell us the most useful things to know about in order to do web scrapping.
 1. **(?, ?)** Show off your Rest API, describing how it works.
 
