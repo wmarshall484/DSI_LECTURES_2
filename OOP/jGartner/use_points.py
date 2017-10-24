@@ -1,7 +1,6 @@
 from Point import Point
 from Origin import Origin
 
-
 def main():
     p1 = Point(4, 2)
     p2 = Origin()
