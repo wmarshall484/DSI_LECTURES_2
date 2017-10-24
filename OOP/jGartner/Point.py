@@ -43,7 +43,7 @@ class Point:
 
     def get(self):
         """Return a Tuple version of the point"""
-        return (self._x, self_y)
+        return (self._x, self._y)
 
     def get_x(self):
         """Provide access to the X variable"""
