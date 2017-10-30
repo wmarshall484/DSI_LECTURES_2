@@ -190,6 +190,8 @@ Or another editor that you're already good at.
 #+BEGIN_SRC python
   lambda x, y: x + y
 #+END_SRC
+** An familiar example
+Remember anagrams?
 ** Important modules
 - Everything we've discussed today is a part of "base python"
 - Other functionality is available via the standard library which is included with most distributions.
