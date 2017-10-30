@@ -1,0 +1,88 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage[margin=1.25in, paperwidth=8.5in, paperheight=11in]{geometry}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{relsize}
+\usepackage{bm}
+\setlength\parindent{0pt}
+
+\title{Discrete AdaBoost}
+\author{Cary Goltermann}
+
+\begin{document}
+
+\maketitle
+
+\section*{Introduction}
+Discrete AdaBoost, referred to hereafter as adaboost, is an application of forward stagewise additive modeling, the goal of which is to minimize, at each stage, $m$:
+
+$$ \min\limits_{\phi} \; \sum_{i=1}^N L(y_i, f_{m-1}(x_i) + \phi(x_i)), $$
+
+where $L(y, \hat{y})$ is come loss function and $f$ is a sum of adaptive basis functions, $\phi$, often referring to as a weak learning, frequently chosen to be a decision tree.
+\vspace{1em}
+The additive part of the model can be seen in the equation that at each stage we will train a model $\phi(x)$ that minimizes the loss when it's opinion as added to the previous $f$, $f_{m-1}$.
+
+\section*{AdaBoost}
+In the situation of a binary classification problem we can use exponential loss as our $L$, $L(y, f) = e^{-yf}$.
+
+\vspace{1em}
+Here we will label $y \in \{-1, 1\}$, different than the usual $y \in \{0, 1\}$, will make the math work out more simply. Therefore, at step $m$ we have to minimize:
+
+\begin{align*}
+  L_m(\phi) &= \sum_{i=1}^N e^{-y_i(f_{m-1}(x_i) + \beta \phi(x_i))} \\
+            &= \sum_{i=1}^N w_{i,m} e^{-\beta y \phi(x_i)}
+\end{align*}
+
+where $w_{i,m} = e^{-y f_{m-1}(x_i)}$ is a weight applied to observation $i$. This objective can be rewritten as:
+
+\begin{align*}
+  L_m &= e^{-\beta} \sum_{y_i=\phi(x_i)} w_{i,m} - e^\beta \sum_{y_i \ne \phi(x_i)} w_{i,m} \\
+      &= (e^\beta - e^{-\beta}) \sum_{i=1}^N w_{i,m} {\rm I\!I}(y \ne \phi(x_i)) + e^{-\beta} \sum_{i=1}^N w_{i,m}
+\end{align*}
+
+Consequently the optimal function to add is:
+
+  $$ \phi_m = \underset{\phi}{\mathrm{argmin}}\; w_{i,m} {\rm I\!I}(y \ne \phi(x_i)) $$
+
+This can be found by fitting $\phi$ to a weighted version of the dataset, with weights $w_{i,m}$. Substituting $\phi_m$ into $L(m)$ and solving for $\beta$ we find:
+
+  $$ \beta_m = \frac12 log \frac{1-err_m}{err_m} $$
+
+where
+
+  $$ err_m = \frac{\sum_{i=1}^N w_{i,m} {\rm I\!I}(y \ne \phi(x_i))}{\sum_{i=1}^N w_{i,m}} $$
+
+The overall update becomes:
+
+  $$ f_m(x) = f_{m-1}(x) + \beta_m \phi_m(x) $$
+
+\vspace{1em}
+With this, the weights at the next iteration, $w+1$, become:
+
+\begin{align*}
+  w_{i,m+1} &= w_{i,m} e^{-\beta_m y_i \phi_m(x_i)} \\
+            &= w_{i,m} e^{-\beta_m (2{\rm I\!I}(y_i \ne \phi(x_i)-1)} \\
+            &= w_{i,m} e^{-\beta_m (2{\rm I\!I}(y_i \ne \phi(x_i))} e^{-\beta_m}
+\end{align*}
+
+Notice, we were exploiting the fact that $-y_i\phi_m(x_i) = -1$ if $y_i = \phi_m(x_i)$ and $-y_i\phi_m(x_i) = 1$ otherwise.
+
+\newpage
+\section*{AdaBoost: Algorithm}
+This leads us to the full AdaBoost algorithm:
+
+\begin{enumerate}
+  \item $w_i$ = $\frac1N$;
+  \item for $m=1$ to $M$:
+    \begin{enumerate}
+      \item Fit a classifier $\phi_m(x)$ to the training set using weights $w$;
+      \item Compute $err_m = \frac{\sum_{i=1}^N w_i {\rm I\!I}(y \ne \phi(x_i))}{\sum_{i=1}^N w_{i,m}}$;
+      \item Compute $\alpha_m = log \frac{1-err_m}{err_m}$;
+      \item Set $w_i \leftarrow w_i e^{\alpha_m {\rm I\!I}(y \ne \phi(x_i))}$;
+    \end{enumerate}
+  \item Return $f(x) = sgn \big[\sum_{m=1}^M \alpha_m \phi_m(x) \big]$
+\end{enumerate}
+
+\end{document}

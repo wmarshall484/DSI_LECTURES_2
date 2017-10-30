@@ -1,0 +1,2 @@
+1. Assumes an underlying form in the data.
+2. Number of parameters needed to describe that form is fixed.

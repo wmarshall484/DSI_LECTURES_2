@@ -1,6 +1,6 @@
 % Using AWS
 % [Miles Erickson](miles.erickson@galvanize.com)
-% October 24, 2016
+% July 28, 2017 
 
 
 # Objectives
@@ -37,7 +37,7 @@ Afternoon:
 
 # Amazon Web Sevices (AWS)
 
-AWS provides on-demand use of computing resorces in the cloud
+AWS provides on-demand use of computing resources in the cloud
 
  * No need to build data centers
  * Easy to create a new business
@@ -65,7 +65,7 @@ Spin up EC2 instaces for on-demand computing power:
  * Instance: a type of hardware you can rent, e.g., 'm3.xlarge' or 't2.micro'
  * Amazon Machine Image (AMI), an OS you can run on an instance
  * Region: a geograpic region, e.g., Oregon a.k.a. 'us-west-2'
- * Availability Zone (AZ): a specific subset of a region, often a data ceter, such as 'us-west-2a'
+ * Availability Zone (AZ): a specific subset of a region, often a specific building, such as 'us-west-2a'
 
 # Elastic block store (EBS)
 
@@ -97,12 +97,11 @@ Use the AWS command-line interface (CLI):
 
 # Install AWS CLI
 
-If you're using Anaconda:
+* The 'awscli' package installs the 'aws' command
 
- * pip install awscli
-
-If you're using system Python (you're not):
- * <s>sudo pip install awscli</s>
+```bash
+$ pip install --upgrade awscli
+```
 
 
 # Obtain your AWS credentials
@@ -118,7 +117,7 @@ If you're using system Python (you're not):
 Make sure you choose Oregon (us-west-2) as your region.
 
 
-# Configure AWS CLI (1/3)
+# Configure AWS CLI (1/2)
 
 Easiest way: run `aws configure`:
 
@@ -133,7 +132,7 @@ $ aws configure --profile fancy_profile
  * Can also set credential on CLI or via environment variables
 
 
-# Configure AWS CLI (2/3)
+# Configure AWS CLI (2/2)
 Create AWS configuration info in `~/.aws`:
 
 ```bash
@@ -147,24 +146,15 @@ Default output format [None]: json
 See Amazon’s [doc](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html) for details
 
 
-# Configure AWS CLI (3/3)
-Some tools get AWS credentials via environment variables. Set the
-following in `~/.bash_profile` or equivalent:
-
-```bash
-export AWS_ACCESS_KEY_ID='your access key'
-export AWS_SECRET_ACCESS_KEY='your secret key'
-```
-
 # Verify configuration
 Check S3:
 ```bash
 $ aws s3 ls
-2015-08-25 10:42:43 dsci
-2015-08-25 11:30:33 seattle-dsi
-$ aws s3 ls s3://seattle-dsi
-        PRE cohort1/
-        PRE dsi_interviews/
+2016-12-04 10:36:03 spark.rocks
+2016-12-04 12:13:38 spark.supplies
+$ aws s3 ls s3://spark.supplies/
+                           PRE data/
+                           PRE scripts/
 ```
 
 Check EC2:
@@ -267,7 +257,7 @@ Host master
     User ubuntu
     ForwardAgent yes
     TCPKeepAlive yes
-    IdentityFile /Users/jackbenn/.ssh/aws-master.pem
+    IdentityFile ~/.ssh/aws-master.pem
 ```
 Now, `ssh master` will connect to your EC2 instance
 
@@ -276,12 +266,11 @@ Now, `ssh master` will connect to your EC2 instance
 Connect to your machine via `ssh`:
 
 1. Launch an EC2 instance from console
-2. Use ssh from command line to connect to the instances **public
-DNS** (Shown in EC2 Dashboard):
+2. Use ssh from command line to connect 
+3. Do this after setting up ~/.ssh/config
 
 ```bash
-$ ssh -i ~/.ssh/aws-master.pem \
-    ubuntu@ec2-54-186-136-57.us-west-2.compute.amazonaws.com
+$ ssh master 
 ```
 
 # Example: `ssh` to EC2
@@ -297,48 +286,32 @@ To copy files between machines, use `scp`:
 
  * Works just like regular copy
  * Good for simple operations
- * ...if you specify remote user and machine correctly
- * Reference remote location as *user@host:path*
-
+ * Configure ~/.ssh/config
 ```bash
-$ scp -i ~/.ssh/aws-master.pem ./toy_data.txt \
-ubuntu@54.186.136.57:/home/ubuntu/data
+$ scp toy_data.txt remote_host:data/
 toy_data.txt 100% 136 0.1KB/s 00:00
-```
-
-# Transferring files with `sftp`
-To copy files interactively, use `sftp`:
-
- * Interactive shell for transferring files
- * Use to transfer many files
- * Use when you don’t know the location of a file
-
-```bash
-$ sftp -i ~/.ssh/aws-master.pem ubuntu@54.186.136.57
-Connected to 54.186.136.57.
-sftp> help
 ```
 
 # Managing a session with `tmux`
 Use `tmux` to persist jobs across multiple sessions:
 
- * On logout, all child processes terminate
- * Use `tmux` to safely disconnect from a session
- * Reconnect on next login
+ * Normally, on logout, all child processes terminate
+ * Use `tmux` to create a session
+ * Disconnect
+ * Reconnect with `tmux attach`
  * Install `tmux` via brew or Linux package manager
- * See `tmux` exercise
 
 
 # EC2 pro-tips
 A few tips to make EC2 easier to deal with:
 
- * Always create instances with tags so that you can find them easily
+ * Use Name tags so that you can find instances easily
  * Choose the appropriate hardware type for your problem
- * If in doubt, use Ubuntu because it is a friendly flavor of Linux (optionally, use galvanize-dsi-ami)
- * Use `tmux` when you login in case you need to disconnect or your connection dies
+ * If in doubt, use Ubuntu 16.04 LTS
+ * Use `tmux` when you login if launching long-running jobs
  * Be paranoid: sometimes Amazon will reboot or reclaim your instances
- * Put data you need to persist in EBS or a database
- * Never put AWS keys in GitHub because someone will steal them
+ * Put data you need to persist in S3, EBS, or a database
+ * Never put AWS keys in your code because someone will steal them
 
 
 # Launching an EC2 instance
@@ -356,36 +329,36 @@ To master the basics, see this [tutorial](http://docs.aws.amazon.com/AmazonS3/la
  * no leading or terminal ‘.’
 
 
-# Boto config
-To access S3 via Python, use the boto package
+# Boto3 config
+To access S3 via Python, use the boto3 package
 
- * Should be installed if you followed setup instructions
- * Make sure boto is up to date:
+ * boto (without the 3) is old, don't use it
+ * Make sure boto3 is up to date:
 
 ```bash
-$ conda update boto
+$ pip install --upgrade boto3 
 ```
 
  * Uses credentials in ~/.aws/credentials which you setup earlier
  * Can also read directly from Pandas if you specify S3 URL
 
 
-# Advanced: accessing ipython notebook
+# Advanced: accessing Jupyter notebook
 
- * Use an ssh tunnel to run ipython notebook on a remote instance
+ * Use an ssh tunnel to use a notebook on a remote instance
  * On remote host:
 
 ```bash
-$ jupyter notebook --no-browser --port=8889
+$ jupyter notebook --no-browser --port=18888
 ```
 
- * On local machine:
+ * First set up the remote machine in `~/.ssh/config`
+ * Then, on local machine:
 
 ```bash
-$ ssh -N -f -L localhost:8888:localhost:8889 \
-    remote_user@remote_host
+$ ssh -NfL 18888:localhost:18888 remote_host_alias
 ```
 
- * Access notebook via browser at URL localhost:8888
+ * Access notebook via browser at URL localhost:18888
 
 

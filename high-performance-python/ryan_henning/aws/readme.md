@@ -200,7 +200,7 @@ AMIs are re-configured VPS images that you can clone. This is usually more conve
 We'll only use IMA enough to allow us to programmatically store things in S3. Here's what you need to do.
 
 Steps:
-1. Open the IMA console.
+1. Open the [IMA console](https://console.aws.amazon.com/iam/home?#/home).
 2. Create a user. Be sure to note the **Access Key Id** and the **Secret Access Key** because they will only be shown once! You will use these two keys in your program; they are essentially passwords that your program will use to sign-in to your AWS account.
 3. Create a group, give the group the permission named "AmazonS3FullAccess".
 4. Add the user created above to the group created above.

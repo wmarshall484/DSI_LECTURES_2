@@ -160,7 +160,7 @@ class DifferenceJob(MRJob):
 
     def reducer(self, key, values):
         values = list(values)
-        if values == [1]:
+        if values == [True]:
             yield (key, None)
 
 if __name__ == '__main__':

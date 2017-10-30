@@ -1,0 +1,101 @@
+\section{A Framework for Statistical Learning}
+%
+%
+\begin{frame}
+  In this section we will outline a very general framework we can use to study
+  statistical modeling.
+\end{frame}
+%
+%
+\begin{frame}
+  Suppose that we have a jointly distributed random variable $X, Y$.
+
+  The variable $X$ is called the \textbf{predictor}.
+
+  The variable $Y$ is called the \textbf{response}.
+\end{frame}
+%
+%
+\begin{frame}
+  In general, we think of the distribution of $X$ as unknowable, and our goal is
+  to learn something about the conditional distribution $Y|X$.
+\end{frame}
+%
+%
+\begin{frame}
+  The simplest thing we could want to know is the expectation $E(Y|X)$, which is
+  a pure function of $X$, and is often referred to as the \textbf{regression
+  function}.
+\end{frame}
+%
+%
+\begin{frame}
+  An attractive method for estimating approximations to the regression function
+  is to minimize some \textbf{loss functional} chosen so that the minimizer is
+  ``close'' to the regression function.
+\end{frame}
+%
+%
+\begin{frame}
+  The most popular choice is the \textbf{squared error loss}.  
+  
+  $$ \ESE(f) = E_{X, Y} \left[ (y - f(x))^2 \right] $$
+
+  which is ubiquitous for good reason: the pointwise minimizer of
+  
+  $$ \ESE(f; x) = E_Y \left[ (y - f(x))^2 \mid x \right] $$
+  
+  \textbf{is} the regression function.
+\end{frame}
+%
+%
+\begin{frame}
+
+  % Demonstration that the regression function minimizes the expected 
+  % squared error.
+  \begin{align*}
+    \ESE(f; x)& = E_Y \left[ \left( y - \textcolor<8>{blue}{f(x)} \right)^2 \mid x \right] \\
+    %Squaring
+    \onslide<2->{
+      & = E_Y \left[ \left( y - \textcolor<2>{orange}{E[y \mid x] + E[y \mid x]} 
+          - f(x) \right)^2 \mid x \right] \\
+    }
+    % Outside terms
+    \onslide<3->{
+      & = E_Y \left[ \left( y - E[y \mid x] \right)^2 \mid x \right] 
+          + E_Y \left[ \left(E[y \mid x] - f(x) \right)^2 \mid x \right] \\
+    }
+      % Inside square term
+      \only<3-5> {
+      & \quad + 2 E_Y \left[ 
+          \textcolor<5>{orange}{ \left( y - E[y \mid x] \right) } 
+          \textcolor<4>{orange}{ \left( E[y \mid x] - f(x) \right) } 
+        \mid x \right] \\
+      }
+    % Discarding the positive term...
+    \onslide<7->{
+      & \geq E_y \left[ \left( y - \textcolor<8>{blue}{E[y \mid x]} \right)^2 \mid x \right]
+    }
+  \end{align*}
+
+  % Notes on the computation.
+  \only<2>{The most common trick in mathematics: add zero.}
+  \only<3>{Square.}
+  \only<4>{This factor has no dependence on y, so it is a constant from the view of the outside expectation.}
+  \only<5>{This factor is zero in expectation, so the cross term is zero.}
+  \only<6>{Goodbye!}
+  \only<7>{Discarding a positive term.}
+  \only<8>{The regression function $E[Y|X]$ is the minimizer.}
+
+\end{frame}
+%
+%
+\begin{frame}
+  Because of it's importance, let's reserve the symbol $\F$ for the regression
+  function:
+
+  $$\F(x) = E_Y \left[ Y | X \right]$$
+  
+  It is also common to refer to $\F$ as the \textbf{ground truth}, just the
+  \textbf{truth}, or the \textbf{signal}.
+\end{frame}

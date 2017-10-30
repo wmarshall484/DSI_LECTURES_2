@@ -1,0 +1,15 @@
+Date,Outlook,Temperature,Humidity,Windy,Result,HeatIndex,DateTime
+07-01-2014,sunny,85,85,False,Don't Play,993.78,2014-07-01
+07-02-2014,sunny,80,90,True,Don't Play,1034.23,2014-07-02
+07-03-2014,overcast,83,78,False,Play,918.7,2014-07-03
+07-04-2014,rain,70,96,False,Play,1074.57,2014-07-04
+07-05-2014,rain,68,80,False,Play,908.23,2014-07-05
+07-06-2014,rain,65,70,True,Don't Play,800.68,2014-07-06
+07-07-2014,overcast,64,65,True,Play,747.93,2014-07-07
+07-08-2014,sunny,72,95,False,Don't Play,1068.53,2014-07-08
+07-09-2014,sunny,69,70,False,Play,808.88,2014-07-09
+07-10-2014,rain,75,80,False,Play,922.58,2014-07-10
+07-11-2014,sunny,75,70,True,Play,821.18,2014-07-11
+07-12-2014,overcast,72,90,True,Play,1017.83,2014-07-12
+07-13-2014,overcast,81,75,False,Play,884.18,2014-07-13
+07-14-2014,rain,71,80,True,Don't Play,914.38,2014-07-14
