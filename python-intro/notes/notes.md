@@ -91,6 +91,9 @@ You can check out the ipython [documentation](http://ipython.org/documentation.h
 
 # Advanced Python
 
+## Note
+`range`, `zip`, `dictionary.keys` do not make lists in Python 3, while they do in Python 2.  Therefore much of the discussion below is about optimizing Python 2, not 3.  
+
 This is a bunch of syntax and special tools that are available in python that come in very handy.
 
 ## Generators

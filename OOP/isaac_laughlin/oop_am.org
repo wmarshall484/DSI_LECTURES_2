@@ -1,0 +1,32 @@
+#+options: H:2
+#+TITLE: Object Oriented Code in Python
+#+AUTHOR: Isaac Laughlin
+#+BEAMER_THEME: metropolis
+
+* OOP
+** What/Why?
+- It's Classes!
+- We definitely need to use them
+- We probably want to write them
+** For Data Science
+- Kind of an awkward fit actually (see Pandas)
+- sklearn beatiful example of an OO API
+- Not the only option see Scala and `dplyr` in R
+** Caution:
+- We're not reading linearly anymore!
+- 
+** This morning's sprint
+- Drawing shapes
+- Requires _composing_ classes
+- Also exploits _polymorphism_ 
+** This afternoon
+- More in depth use of magic methods etc.
+* OOP and Tests
+** Why tests first?
+- Design your code (I want my code to look like...)
+- Reward your lizard brain
+- Pay it forward (to yourself)
+
+
+
+

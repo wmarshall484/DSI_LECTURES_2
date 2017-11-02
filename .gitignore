@@ -25,3 +25,5 @@ secrets.json
 
 geckodriver.log
 
+## spark
+*.dat
