@@ -1,0 +1,11 @@
+id,specialty
+0,General Surgery
+1,Unknown
+2,Family Practice
+3,Emergency Medicine
+4,Plastic and Reconstructive Surgery
+5,Cardiology
+6,Plastic and Reconstructive Surgery
+7,Cardiology
+8,Anesthesiology
+9,Cardiology
