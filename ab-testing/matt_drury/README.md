@@ -3,17 +3,20 @@ Matt's Hypothesis Testing Lecture
 
 A lecture on classical null hypothesis significance testing, in the hybrid style of Fisher, Neyman and Pearson.
 
-Covers the following topics:
+Covers the following topics / objectives:
 
   - Null Hypothesis Significance Testing, including:
     - Binomial exact test for a population proportion.
     - Approximate test for a population proportion.
-    - Approximate test for a population mean.
     - Two sample approximate test for equality of population proportions.
     - Two sample approximate test for equality of sample means.
   - Control of the long term false positive rate.
   - Problems with control of the false positive rate caused by multiple testing.
   - Correcting for multiple tests.
+
+With Optional
+
+  - The Mann-Whitney U Test
   - The Chi Squared test.
 
 Morning and Afternoon
@@ -21,7 +24,13 @@ Morning and Afternoon
 
 The morning focuses on introducing the fundamental concepts of hypothesis testing, and working its way through a litany of tests.  This is done in the style of Fisher, interpreting the p-value as a weight of evidence against the Null.
 
-The afternoon covers the Neymann, Pearson side of the story, introducing the false positive rate, and interpreting thresholding as an attempt to control the false positive rate.  In the end, we wrap up with the Chi Squared test as a palette cleanser.
+The afternoon covers the Neymann, Pearson side of the story, introducing the false positive rate, and interpreting thresholding as an attempt to control the false positive rate.  As an example of the risks involved, we come to some false conclusions about an ab-test of a website change due to multiple testing.
+
+A few optional topics are included as Appendices:
+  - The Mann-Whitney U test is a modern alternative to the t-test (roughly) that substitutes distributional assumptions for computational power.
+  - The Chi Squared test... just the classical chi squared test.
+
+I generally don't cover these in class, but guide students to read the section on thier own time.
 
 Thoughts
 --------
