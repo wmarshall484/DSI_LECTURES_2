@@ -10,6 +10,7 @@ Objectives:
 
   - Describe the difference between probability and statistics.
   - Plot the empirical distribution function of a data set.
+  - Describe the empirical distribution of a data set.
   - Define *statistical model* and *fit a statistical model*.
   - Describe two ways to fit a statistical model.
   - Diagnose the quality of fit of a statistical model visually.
@@ -49,7 +50,7 @@ This is a difficult and important topic.  I've done everything I can to present 
 
 I hope all the visuals make the topic more memorable and real than overdosing on math.  It seems effective, but is time consuming.
 
-I included a module `samplers.py` that implements the following API around the random variable methods in numpy ans scipy:
+I included a module `samplers.py` that implements the following API around the random variable methods in numpy and scipy:
 
 ```
 class ARandomVaraible(object):
