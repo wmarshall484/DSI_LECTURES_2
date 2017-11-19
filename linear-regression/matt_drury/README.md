@@ -34,6 +34,6 @@ The [Regression Tools](https://github.com/madrury/regression-tools) library cont
 You can install these tools from github using `pip`.  They are written for Python 3, and will not work in Python 2.
 
 ```
-pip install git+https://github.com/madrury/basis-expansions
+pip install git+https://github.com/madrury/basis-expansions.git
 pip install git+https://github.com/madrury/regression-tools.git
 ```
