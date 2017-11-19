@@ -23,7 +23,7 @@ The objectives for this lesson are
 
 ## Software
 
-Sklearn, unfortuantely, does not contain the tools that I need to accomplish my goals for this lesson, so I have created these tools myself.
+Sklearn, unfortunately, does not contain the tools that I need to accomplish my goals for this lesson, so I have created these tools myself.
 
 The [Basis Expansions](https://github.com/madrury/basis-expansions) library contains classes used for creating basis expansions for predictors in regression.  These include linear and cubic splines, which we will be using today. 
 
