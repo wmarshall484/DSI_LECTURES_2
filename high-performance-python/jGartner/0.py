@@ -24,7 +24,7 @@ threads in python (a very rare event, really).
 Note: Use `killall python` if you want to quickly kill a bunch of processes
 you've forked all at once.
 '''
-
+from random import random
 import numpy as np
 import multiprocessing, time
 from threading import Thread
@@ -32,8 +32,17 @@ from threading import Thread
 def do_stuff():
     A = np.random.rand(1000, 1000)
     B = np.random.rand(1000, 1000)
-    for i in range(200):
+    for i in range(1000):
         C = A.dot(B)
+
+def do_stuff_not_numpy():
+    A = [[random() for j in range(1000)] for i in range(1000)]
+    B = [[random() for j in range(1000)] for i in range(1000)]
+    for aaa in range(100):
+        C = 0
+        for i in range(len(A)):
+            for j in range(len(B)):
+                C += A[i][j]*B[j][i]
 
 
 if __name__ == '__main__':
@@ -45,9 +54,11 @@ if __name__ == '__main__':
 
     print("# cores =", multiprocessing.cpu_count())
 
-    do_stuff()
+    #do_stuff()
+    #do_stuff_not_numpy()
 
     #threads = [Thread(target=do_stuff) for i in range(2)]
-    #for thread in threads: thread.start()
-    #for thread in threads: thread.join()
+    threads = [Thread(target=do_stuff_not_numpy) for i in range(2)]
+    for thread in threads: thread.start()
+    for thread in threads: thread.join()
     print("Runtime: {}".format(time.time()-then))

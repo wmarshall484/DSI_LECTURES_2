@@ -13,7 +13,7 @@ def fizz_buzz(i):
     return i
 
 if __name__ == "__main__":
-    for i in range(10):
+    for i in range(100):
         print(fizz_buzz(i))
         sys.stdout.flush()
-        time.sleep(2)
+        #time.sleep(2)

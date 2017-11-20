@@ -18,7 +18,6 @@ class Kiwi(Fruit):
         super(Kiwi, self).__init__(color, is_delicious=is_delicious)
         self.name = "Kiwi"
 
-
 def main():
     my_fruit = [Kiwi('brown'), Apple('green')]
     for fruit in my_fruit:
