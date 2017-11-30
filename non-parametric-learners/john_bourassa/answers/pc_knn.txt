@@ -1,0 +1,20 @@
+Pros:
+-----
+* Training is trivial!
+    * Save the data....done.
+* Simple to explain.
+    * Things that are close are similar.
+* Works with any number of classes.
+* Easy to add new data.
+    * Add it to saved data.
+* Few hyperparameters to tune.
+    * k
+    * distance metric
+* Insensitive to outliers
+Cons:
+-----
+* Slow (and costly) to predict.
+    * Have to calculate the distance to every training point
+* Bad at high dimensions
+    * Curses!
+* Categorical features don't work well
