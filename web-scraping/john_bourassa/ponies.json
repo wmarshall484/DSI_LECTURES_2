@@ -1,0 +1,38 @@
+{name: 'TwilightSparkle',
+friends: ['Applejack', 'Fluttershy'],
+age: 16,
+gender: 'f',
+wings: true,
+horn: true,
+residence: {
+    town: 'Ponyville',
+    address: '15 Gandolfini Lane'}
+}
+{name: 'PrincessCelestia',
+age: 20,
+friends: ['TwilightSparkle'],
+wings: true,
+horn: true}
+{name: 'Applejack',
+age: 71,
+friends: ['TwilightSparkle', 'Rarity'],
+wings: false,
+horn: false}
+{name: 'Nightmare Moon',
+friends: [],
+age: 34,
+wings: true,
+horn: true,
+residence: {
+    town: 'Evil Ponyville',
+    address: '25 James Lane'}}
+{name: 'Rarity',
+friends: ['Applejack', 'Bill'],
+age: 18,
+gender: 'f',
+wings: true,
+horn: true,
+residence: {
+    town: 'Ponyville',
+    address: '25 Gandolfini Lane'}
+}
