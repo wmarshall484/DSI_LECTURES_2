@@ -1,7 +1,7 @@
 import numpy as np
 
 def format_dict_of_floats(d):
-    return {key: '{0:2.2f}'.format(val) for key, val in d.iteritems()}
+    return {key: '{0:2.2f}'.format(val) for key, val in d.items()}
 
 def get_num_nodes(adj_list):
     '''Return the number of nodes in a graph represented by an adjacency list.'''
@@ -11,7 +11,7 @@ def adjacency_list_to_matrix(adj_list):
     '''Convert an adjacency list to an adjacency matrix.'''
     n_nodes = len(adj_list)
     M = np.zeros(shape=(n_nodes, n_nodes))
-    for vertex, lst in adj_list.iteritems():
+    for vertex, lst in adj_list.items():
         for v in lst:
             M[vertex][v] = 1
     return M
@@ -34,11 +34,11 @@ def color_edges(G, edge_list, color):
         color_edge(G, edge, color)
 
 def label_nodes(G, labeling_dict):
-    for node, label in labeling_dict.iteritems():
+    for node, label in labeling_dict.items():
         G.node[node]['label'] = label
 
 def label_edges(G, labeling_dict):
-    for e, label in labeling_dict.iteritems():
+    for e, label in labeling_dict.items():
         G.edge[e[0]][e[1]]['label'] = label
 
 def label_edges_with_weights(G):
