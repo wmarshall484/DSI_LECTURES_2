@@ -21,12 +21,12 @@ db = client[db_name] #specify the database you want to work with
 
 ###DONT RUN THE FOLLOWING###
 ## db.drop_collection('student_collection') #dont do this, this will delete entire collection
-## db.drop_collection('aardvark_student_collection') #dont do this, this will delete entire collection
+## db.drop_collection('capybara_student_collection') #dont do this, this will delete entire collection
 ## db.drop_collection('article_word_counts') #dont do this, this will delete entire collection
 ############################
 
 print db.collection_names()
-collection_name = 'aardvark_student_collection' # Specify the collection name to work with
+collection_name = 'capybara_student_collection' # Specify the collection name to work with
 
 #create new collection
 STUDENTS = db[collection_name] # Get a collection instance
