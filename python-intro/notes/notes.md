@@ -102,14 +102,14 @@ First look at this bit of code:
 
 ```python
 for i in range(1000):
-    print i
+    print(i)
 ```
 
 In Python 2, the `range` function will create a list of length 1000 and then we iterate over it. This is very wasteful for space! We don't need to create a list of 1000 elements and store it in memory! We can use a *generator* to save the memory:
 
 ```python
 for i in xrange(1000):
-    print i
+    print(i)
 ```
 
 In Python 2, the `xrange` function will generate the next value when it's needed, but won't pre-generate everything like the `range` function.
@@ -125,7 +125,7 @@ There are a couple handy tools in python that help you clean up your code when y
 
 ```python
 for item in L:
-    print item
+    print(item)
 ```
 
 ### Enumerate
@@ -134,14 +134,14 @@ If you need to know the index, you've probably seen code like this:
 
 ```python
 for i in range(len(L)):
-    print i, L[i]
+    print(i, L[i])
 ```
 
 But you should really use `enumerate` (a generator!):
 
 ```python
 for i, item in enumerate(L):
-    print i, item
+    print(i, item)
 ```
 
 Isn't that cleaner?
@@ -156,7 +156,7 @@ first_names = ['Giovanna', 'Ryan', 'Jon']
 last_names = ['Thron', 'Orban', 'Dinu']
 
 for i in range(len(first_names)):
-    print first_names[i], last_names[i]
+    print(first_names[i], last_names[i])
 ```
 
 But python has a handy `zip` function to zip two lists together:
@@ -170,14 +170,14 @@ Out[3]: [('Giovanna', 'Thron'), ('Ryan', 'Orban'), ('Jon', 'Dinu')]
 
 ```python
 for first, last in zip(first_names, last_names):
-    print first, last
+    print(first, last)
 ```
 
 If you want like a combination of zip and enumerate, you can do the following and have the index and the values:
 
 ```python
 for i, first, last in zip(count(), first_names, last_names):
-    print i, first, last
+    print(i, first, last)
 ```
 
 
@@ -259,7 +259,7 @@ You can make it a generator instead of a list if you're just going to be looping
 ```python
 L = ["zack desario", "giovanna thron", "ryan orban", "jonathan dinu"]
 for name in (item.split()[0] for item in L):
-    print name
+    print(name)
 ```
 
 Another example is if you're just going to put the result into another function that can use a generator:
