@@ -2,7 +2,7 @@ This is all setup on the Galvanize DSI workstations, but if you'd like to use yo
 
 #### Step 1: Install Anaconda
 
-We will be using [Anaconda](https://store.continuum.io/cshop/anaconda/) with Python version 2.7. Install this and you will have Python along several useful packages and programs:
+We will be using [Anaconda](https://store.continuum.io/cshop/anaconda/) with Python version 3.6. Install this and you will have Python along several useful packages and programs:
 
 * NumPy
 * SciPy
@@ -23,7 +23,7 @@ pip install flask
 
 #### Step 2: Install Atom
 
-We will use Atom for editing (If you have mastered `vi` or `emacs`, there is no need to switch). When you are working alone, you are welcome to use any editor you'd like. You can download [Atom](https://atom.io) for free, or install via `brew`:
+We will use Atom for editing (If you have mastered `vim` or `emacs`, there is no need to switch). When you are working alone, you are welcome to use any editor you'd like. You can download [Atom](https://atom.io) for free, or install via `brew`:
 
 ```
 brew cask install atom
