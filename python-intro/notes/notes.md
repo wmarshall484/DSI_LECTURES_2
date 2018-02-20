@@ -1,5 +1,5 @@
 # Topics
-* [Python Termimal (ipython)](#python-terminal)
+* [Python Terminal (ipython)](#python-terminal)
 * [Advanced Python](#advanced-python)
     * [Generators](#generators)
     * [Looping tools](#looping-tools)
