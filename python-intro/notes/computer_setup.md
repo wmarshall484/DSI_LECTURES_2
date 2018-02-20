@@ -2,7 +2,7 @@ This is all setup on the Galvanize DSI workstations, but if you'd like to use yo
 
 #### Step 1: Install Anaconda
 
-We will be using [Anaconda](https://store.continuum.io/cshop/anaconda/) with Python version 3.6. Install this and you will have Python along several useful packages and programs:
+We will be using [Anaconda](https://www.anaconda.com/download) with Python version 3.6. Download the command line installer (the one ending in `.sh`). Install this by navigating to the directory containing the file in your terminal and typing `bash name_of_anaconda_installer.sh` (for example, `Anaconda3-5.1.0-MacOSX-x86_64.sh`). Say yes to all the prompts. Once Anaconda is installed, you will have Python along with several useful packages and programs:
 
 * NumPy
 * SciPy
