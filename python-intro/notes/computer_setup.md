@@ -13,9 +13,9 @@ We will be using [Anaconda](https://www.anaconda.com/download) with Python versi
 * nose
 * pep8
 
-You can see the [full list of packages](http://docs.continuum.io/anaconda/pkg-docs.html) if you are so inclined.
+You can see the [full list of packages](https://docs.anaconda.com/anaconda/packages/pkg-docs) if you are so inclined.
 
-You can use [conda](http://www.continuum.io/blog/conda) or pip to install any packages that are not included like this:
+You can use [conda](https://www.anaconda.com/blog/developer-blog/conda-data-science/) or pip to install any packages that are not included like this:
 
 ```
 pip install flask
