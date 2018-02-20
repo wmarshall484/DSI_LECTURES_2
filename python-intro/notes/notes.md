@@ -92,7 +92,7 @@ You can check out the ipython [documentation](http://ipython.org/documentation.h
 # Advanced Python
 
 ## Note
-`range`, `zip`, `dictionary.keys` do not make lists in Python 3, while they do in Python 2.  Therefore much of the discussion below is about optimizing Python 2, not 3.  
+`range`, `zip`, `dictionary.keys` do not make lists in Python 3, while they do in Python 2. 
 
 This is a bunch of syntax and special tools that are available in python that come in very handy.
 
@@ -105,16 +105,18 @@ for i in range(1000):
     print i
 ```
 
-The `range` function will create a list of length 1000 and then we iterate over it. This is very wasteful for space! We don't need to create a list of 1000 elements and store it in memory! We can use a *generator* to save the memory:
+In Python 2, the `range` function will create a list of length 1000 and then we iterate over it. This is very wasteful for space! We don't need to create a list of 1000 elements and store it in memory! We can use a *generator* to save the memory:
 
 ```python
 for i in xrange(1000):
     print i
 ```
 
-The `xrange` function will generate the next value when it's needed, but won't pre-generate everything like the `range` function.
+In Python 2, the `xrange` function will generate the next value when it's needed, but won't pre-generate everything like the `range` function.
 
-You'll see other examples of generators below.
+In Python 3, `xrange` is deprecated and `range` creates a generator by default, already optimized.
+
+You'll see other examples of generators below. For the rest of the assignment, we will work in Python 3.
 
 
 ## Looping tools
@@ -131,7 +133,7 @@ for item in L:
 If you need to know the index, you've probably seen code like this:
 
 ```python
-for i in xrange(len(L)):
+for i in range(len(L)):
     print i, L[i]
 ```
 
@@ -153,7 +155,7 @@ Let's say you have two lists and you want to loop over both of them at the same 
 first_names = ['Giovanna', 'Ryan', 'Jon']
 last_names = ['Thron', 'Orban', 'Dinu']
 
-for i in xrange(len(first_names)):
+for i in range(len(first_names)):
     print first_names[i], last_names[i]
 ```
 
@@ -164,24 +166,22 @@ In [3]: zip(first_names, last_names)
 Out[3]: [('Giovanna', 'Thron'), ('Ryan', 'Orban'), ('Jon', 'Dinu')]
 ```
 
-If you're going to loop over it, you should use `izip` instead, since it's a generator. You'll need to import `izip` from the `itertools` module.
+
 
 ```python
-from itertools import izip
-
-for first, last in izip(first_names, last_names):
+for first, last in zip(first_names, last_names):
     print first, last
 ```
 
 If you want like a combination of zip and enumerate, you can do the following and have the index and the values:
 
 ```python
-from itertools import izip, count
-
-for i, first, last in izip(count(), first_names, last_names):
+for i, first, last in zip(count(), first_names, last_names):
     print i, first, last
 ```
 
+
+(In Python 2, `zip` returns a list; the generator version is called `izip` and you must import it from `itertools`)
 
 ## List comprehensions
 
@@ -303,9 +303,10 @@ L = [0, 5, -8, 9, -3, -2]
 M = map(abs, L)  # [0, 5, 8, 9, 3, 2]
 ```
 
-The build-in `reduce` can be used to implement aggregation functions. Here's an implementation of `sum` (if sum wasn't already implemented in python):
+The `reduce` function can be used to implement aggregation functions. Here's an implementation of `sum` (if sum wasn't already implemented in python):
 
 ```python
+
 def sum(L):
     total = 0
     for x in L:
@@ -316,6 +317,8 @@ def sum(L):
 But we can do this so much more simply if we use `reduce`. Here `total` is the running total and `x` is the new element from the list.
 
 ```python
+from functools import reduce
+
 def sum(L):
     return reduce(lambda total, x: total + x, L)
 ```
@@ -327,6 +330,7 @@ def len(L):
     return reduce(lambda total, x: total + 1, L, 0)
 ```
 
+(In Python 2, `reduce` is a built-in function. In Python 3, it must be imported from `functools`)
 
 ## Sets and Dictionaries
 
@@ -334,7 +338,7 @@ Python has some specialized datatypes that come in very handy!
 
 ### Dictionaries
 
-Dictionaries are an implementation of hash tables (like Java's hashmaps if you're familiar with them). It's basically a way of matching key, value pairs. Here is an example:
+Dictionaries are an implementation of hash tables (like Java's hashmaps if you're familiar with them). It's a way of matching key, value pairs. Here is an example:
 
 ```python
 homestate = {"giovanna": "maine", "ryan": "california", "katie": "michigan", "zack": "new york"}
@@ -343,7 +347,7 @@ homestate = {"giovanna": "maine", "ryan": "california", "katie": "michigan", "za
 You can easily lookup a person's homestate like this:
 
 ```python
-print homestate['katie']
+print(homestate['katie'])
 ```
 
 Dictionaries are more powerful than they first appear. It's import to note that it's always really fast to access a dictionary. In a list, if you want to find an element without having the index, you have to search through the whole list. In a dictionary, you can access an element by key quickly!
@@ -358,14 +362,19 @@ for k in d:
     # iterations over the keys
 ```
 
-DO NOT do `for k in d.keys()`. This is completely unneccessary. You are creating a list of all your keys which is a waste of time and space.
+```python
+for k in d.keys():
+    # iterations over the keys
+```
+
 
 ```python
-for k, v in d.iteritems():
+for k, v in d.items():
     # iterates over key, value pairs
 ```
 
-Here `iteritems` is a generator, so it's preferred over `items` when you're looping.
+
+(In Python 2, `d.keys()` and `d.items()` return lists. Use `d.iterkeys()` and `d.iteritems()` instead when looping.)
 
 
 #### Checking membership in a dictionary
@@ -376,8 +385,6 @@ If you would like to check if a key is in a dictionary, just do this:
 if k in d:
     # do something
 ```
-
-DO NOT do `if k in d.keys():`. This is horribly inefficient. You are creating a list of your keys and then searching in a list. Searching in a list is slow, but searching in a dictionary is fast! Keep it as a dictionary to get all the speed power of dictionaries! You can also add and remove to a dictionary quickly. Lists are only fast if you are adding or removing from the end (if you change the beginning, you have to slide all the elements over to make or fill in space).
 
 
 ### Counter and defaultdict
@@ -564,7 +571,7 @@ In [1]: from itertools import permutations, combinations
 In [2]: L = [1, 2, 3]
 
 In [3]: for perm in permutations(L):
-   ...:     print perm
+   ...:     print(perm)
    ...:
 (1, 2, 3)
 (1, 3, 2)
@@ -574,7 +581,7 @@ In [3]: for perm in permutations(L):
 (3, 2, 1)
 
 In [4]: for comb in combinations(L, 2):
-   ...:     print comb
+   ...:     print(comb)
    ...:
 (1, 2)
 (1, 3)
@@ -646,7 +653,7 @@ You can catch exceptions in python with the following syntax:
 try:
     f = open(filename)
 except IOError:
-    print "Couldn't open file %s" % filename
+    print("Couldn't open file {}".format(filename))
 ```
 
 ### Guidelines
