@@ -16,6 +16,8 @@ Objectives:
 
   - Define the sampling distribution of a statistic, give two examples.
   - State the Law of Large Numbers.
+  - Calculate the standard deviation of a sample mean.
+  - Define the standard error.
 
 ### The Central Limit Theorem and Bootstrapping
 
