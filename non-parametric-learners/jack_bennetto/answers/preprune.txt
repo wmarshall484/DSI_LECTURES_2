@@ -1,0 +1,6 @@
+Common Things to Pre-Prune
+--------------------------
+* Leaf size: stop splitting when num of samples is small enough
+* Tree depth: stop splitting at a certain depth
+* Purity: stop splitting if purity of leaf nodes hits certain threshold
+* Gain Threshold: stop splitting when info gain fails to meet threshold

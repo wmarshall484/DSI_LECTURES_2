@@ -1,0 +1,7 @@
+func Train:
+    save the data
+func Predict:
+    for data point in training set:
+        calculate distance from data point to new_value
+    Order distances in increasing order and take the first k data points
+    Return the label with most votes
