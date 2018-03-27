@@ -6,7 +6,7 @@ Instructors might find the google docs [here](https://docs.google.com/presentati
 
 ## Resources
 
-[Spark Documents](http://spark.apache.org/docs/latest/): Best stop for the most up to date (and versioned) information
+[Spark Documentation](http://spark.apache.org/docs/latest/): Best stop for the most up to date (and versioned) information
 
 [JF’s Walkthroughs](https://github.com/gSchool/DSI_Lectures/tree/master/spark/jf_omhover): Galvanize instructor who made some helpful walkthroughs
 
