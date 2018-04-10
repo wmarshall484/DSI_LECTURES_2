@@ -1,0 +1,20 @@
+Pros:
+-----
+* Flexible
+    * Can be used for classification and for regression.
+* Interpretable
+    * It's just a flowchart.
+* Cheap (and Quick) Prediction
+    * Follows a flowchart
+* Can handle missing values and outliers
+* Can handle irrelevant features
+* Provides information about structure of data: set of rules
+Cons:
+-----
+* Slow (and costly) to train.
+    * Has to try every possible split every time.
+* Greedy algorithm
+    * Local maxima
+* Overfits always and forever (if you don't stop it)
+* Right-angle decision boundaries only
+    * Binary decisions

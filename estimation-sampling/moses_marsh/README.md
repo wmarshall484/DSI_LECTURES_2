@@ -1,4 +1,4 @@
-Matt's Sampling and Estimation Lecture
+Sampling and Estimation Lecture
 ======================================
 
 This lecture focuses on sampling from random variables and fitting statistical models to data, with an emphasis on how the two topics are closely related.

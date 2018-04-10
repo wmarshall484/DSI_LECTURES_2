@@ -1,0 +1,5 @@
+As k increases, bias increases.
+    Strands data points in other classes' territory
+As k decreases, bias decreases.
+    Creates islands for strange outliers
+    Perfectly fits every point

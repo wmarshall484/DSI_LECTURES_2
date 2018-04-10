@@ -1,0 +1,2 @@
+Use variance as your measure of impurity.
+Select feature that minimizes the weighted variance across the resulting nodes.
