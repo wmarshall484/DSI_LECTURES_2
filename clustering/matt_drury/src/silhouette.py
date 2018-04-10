@@ -4,8 +4,7 @@ import numpy as np
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score, silhouette_samples
 
-
-def make_sihlouette_plot(axs, X, n_clusters):
+def make_silhouette_plot(axs, X, n_clusters):
 
     ax1, ax2 = axs
 
