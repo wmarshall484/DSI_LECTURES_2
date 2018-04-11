@@ -47,11 +47,13 @@ def label_edges_with_weights(G):
         weight = G.edge[e[0]][e[1]]['weight']
         G.edge[e[0]][e[1]]['label'] = weight
 
-def remove_labels(G):
-    for node in G.nodes():
-        G.node[node]['label'] = ' '
-    for edge in G.edges():
-        G.edge[edge[0]][edge[1]].pop('label', None)
+def remove_labels(G, edges=True, nodes=True):
+    if nodes:
+        for node in G.nodes():
+            G.node[node]['label'] = ' '
+    if edges:
+        for edge in G.edges():
+            G.edge[edge[0]][edge[1]].pop('label', None)
 
 def reset_graph(G):
     color_nodes(G, G.nodes(), 'white')
