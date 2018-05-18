@@ -59,7 +59,7 @@ def plot_svm(X,y):
     plt.xlim(-6,6)
     plt.ylim(-6,6)
 
-def plot_boundary(svm,X):
+def plot_boundary(svm,X, **kwargs):
 
     h = .02  # step size in the mesh
     # create a mesh to plot in
@@ -75,4 +75,4 @@ def plot_boundary(svm,X):
 
     # Put the result into a color plot
     Z = Z.reshape(xx.shape)
-    plt.contour(xx, yy, Z)
+    plt.contour(xx, yy, Z, **kwargs)
