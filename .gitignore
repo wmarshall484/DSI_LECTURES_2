@@ -4,6 +4,7 @@
 tmp-*
 tmp/
 secrets.json
+*.swp
 
 ## latex
 *.bak
