@@ -16,7 +16,7 @@ class SaleCount(MRJob):
        yield (amount, state)
 
    def reducer2(self, amount, states):
-       for state in states: 
+       for state in states:  
            yield (state, amount)
    
    def steps(self):
