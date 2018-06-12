@@ -1,6 +1,8 @@
 Sampling and Estimation Lecture
 ======================================
 
+*mostly Matt Drury, some Moses*
+
 This lecture focuses on sampling from random variables and fitting statistical models to data, with an emphasis on how the two topics are closely related.
 
 Objectives:
@@ -50,22 +52,3 @@ This is a difficult and important topic.  I've done everything I can to present 
 
 I hope all the visuals make the topic more memorable and real than overdosing on math.  It seems effective, but is time consuming.
 
-I included a module `samplers.py` that implements the following API around the random variable methods in numpy and scipy:
-
-```
-class ARandomVariable(object):
-
-    def __init__(self *params):
-        # Memorize parameters
-
-    def sample(self, n):
-        # Sample n data points from the distribution.
-
-    def pdf(self, t):
-        # Evaluate the density function of the random variable.
-
-    def cdf(self, t):
-        # Evaluate the distribution function of the random variable.
-```
-
-This does tend to make the code in the lecture more self explanatory. I also liked it as an example of the facade pattern in OOP. Unfortunately, it turned into a point of confusion with students. I would advise anyone using the material for a lecture to dedicate a couple minuets to describing the module and showing the code.
