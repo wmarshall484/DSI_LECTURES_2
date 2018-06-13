@@ -11776,6 +11776,7 @@ ul.typeahead-list > li > a {
 /* Overrides of notebook CSS for static HTML export */
 .reveal {
   font-size: 160%;
+  overflow-y: scroll;
 }
 .reveal pre {
   width: inherit;
@@ -11805,41 +11806,6 @@ ul.typeahead-list > li > a {
 }
 .reveal .progress {
   position: static;
-}
-.reveal .controls .navigate-left,
-.reveal .controls .navigate-left.enabled {
-  border-right-color: #727272;
-}
-.reveal .controls .navigate-left.enabled:hover,
-.reveal .controls .navigate-left.enabled.enabled:hover {
-  border-right-color: #dfdfdf;
-}
-.reveal .controls .navigate-right,
-.reveal .controls .navigate-right.enabled {
-  border-left-color: #727272;
-}
-.reveal .controls .navigate-right.enabled:hover,
-.reveal .controls .navigate-right.enabled.enabled:hover {
-  border-left-color: #dfdfdf;
-}
-.reveal .controls .navigate-up,
-.reveal .controls .navigate-up.enabled {
-  border-bottom-color: #727272;
-}
-.reveal .controls .navigate-up.enabled:hover,
-.reveal .controls .navigate-up.enabled.enabled:hover {
-  border-bottom-color: #dfdfdf;
-}
-.reveal .controls .navigate-down,
-.reveal .controls .navigate-down.enabled {
-  border-top-color: #727272;
-}
-.reveal .controls .navigate-down.enabled:hover,
-.reveal .controls .navigate-down.enabled.enabled:hover {
-  border-top-color: #dfdfdf;
-}
-.reveal .progress span {
-  background: #727272;
 }
 div.input_area {
   padding: 0.06em;
@@ -11874,19 +11840,6 @@ a.anchor-link {
 .rendered_html p {
   text-align: inherit;
 }
-::-webkit-scrollbar
-{
-  width: 6px;
-  height: 6px;
-}
-::-webkit-scrollbar *
-{
-  background:transparent;
-}
-::-webkit-scrollbar-thumb
-{
-  background: #727272 !important;
-}
 </style>
 
 <!-- Custom stylesheet, it must be in the same directory as the html file -->
@@ -11905,7 +11858,7 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Hypothesis-Testing">Hypothesis Testing<a class="anchor-link" href="#Hypothesis-Testing">&#182;</a></h1><h2 id="Lecture-for-Galvanize-DSI">Lecture for Galvanize DSI<a class="anchor-link" href="#Lecture-for-Galvanize-DSI">&#182;</a></h2><h4 id="Mark-Llorente">Mark Llorente<a class="anchor-link" href="#Mark-Llorente">&#182;</a></h4><h4 id="From-Dan-Wiesenthal's-and-Darren-Reger's-Excellent-Slides">From Dan Wiesenthal's and Darren Reger's Excellent Slides<a class="anchor-link" href="#From-Dan-Wiesenthal's-and-Darren-Reger's-Excellent-Slides">&#182;</a></h4>
+<h1 id="Hypothesis-Testing">Hypothesis Testing<a class="anchor-link" href="#Hypothesis-Testing">&#182;</a></h1><h2 id="Lecture-for-Galvanize-DSI">Lecture for Galvanize DSI<a class="anchor-link" href="#Lecture-for-Galvanize-DSI">&#182;</a></h2><h4 id="Dan-Wiesenthal">Dan Wiesenthal<a class="anchor-link" href="#Dan-Wiesenthal">&#182;</a></h4><h4 id="From-Darren-Reger's-Excellent-Slides">From Darren Reger's Excellent Slides<a class="anchor-link" href="#From-Darren-Reger's-Excellent-Slides">&#182;</a></h4>
 </div>
 </div>
 </div></section></section><section><section>
@@ -11939,7 +11892,7 @@ a.anchor-link {
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Story-Time">Story Time<a class="anchor-link" href="#Story-Time">&#182;</a></h1><ul>
 <li>Does tea taste different if the milk was poured in first?</li>
-<li>Fisher and his <em>improbably lucky</em> colleague, Muriel Bristol</li>
+<li>Fisher and his <em>improbably lucky</em> secretary</li>
 <li>Fisher and his rejection of the null hypothesis</li>
 <li>"You're either the luckiest woman in the world, or you can actually tell the difference."</li>
 <li>... what if she had gotten 19 right? 18? ...12?</li>
@@ -12872,7 +12825,18 @@ AElFTkSuQmCC
 </div>
 </div>
 
-</div></div></section><section>
+</div></div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Bonferroni-Correction">Bonferroni Correction<a class="anchor-link" href="#Bonferroni-Correction">&#182;</a></h1><p><img src='abvenn.gif'></p>
+<p>P(A) + P(B) - P(A$\cap$B) $\Rightarrow$ 0.05 + 0.05 - ?</p>
+<p>$\frac{0.05+0.05}{2}$ $\rightarrow$ new $\alpha$</p>
+
+</div>
+</div>
+</div></section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
@@ -13167,8 +13131,7 @@ QmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Goodness-of-Fit---Example">Goodness of Fit - Example<a class="anchor-link" href="#Goodness-of-Fit---Example">&#182;</a></h1><p>$$\chi^2 = \sum_{i} \frac{(O_i - E_i)^2}{E_i}$$</p>
-<p>Dice Game:</p>
+<h1 id="Goodness-of-Fit---Example">Goodness of Fit - Example<a class="anchor-link" href="#Goodness-of-Fit---Example">&#182;</a></h1>$$\chi^2 = \sum_{i} \frac{(O_i - E_i)^2}{E_i}$$<p>Dice Game:</p>
 <table>
 <thead><tr>
 <th>Value</th>
@@ -13222,8 +13185,7 @@ QmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Goodness-of-Fit---Example">Goodness of Fit - Example<a class="anchor-link" href="#Goodness-of-Fit---Example">&#182;</a></h1><p>$$\chi^2 = \sum_{i} \frac{(O_i - E_i)^2}{E_i}$$</p>
-<p>Dice Game:</p>
+<h1 id="Goodness-of-Fit---Example">Goodness of Fit - Example<a class="anchor-link" href="#Goodness-of-Fit---Example">&#182;</a></h1>$$\chi^2 = \sum_{i} \frac{(O_i - E_i)^2}{E_i}$$<p>Dice Game:</p>
 <table>
 <thead><tr>
 <th>Value</th>
@@ -13277,7 +13239,8 @@ QmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><code>obs_table = # use an np array
+<p><code>from __future__ import division
+obs_table = # use an np array
 exp_table = #use an np array
 chi2_stat = # use the chi2 formula
 print "Chi2 Statistic: {}".format(chi2_stat)
@@ -13291,7 +13254,8 @@ print "Critical Chi2 Value: {:0.2f}".format(scs.chi2.ppf(0.95,5))</code></p>
 <div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">obs_table</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">16</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">17</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">division</span>
+<span class="n">obs_table</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">16</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">17</span><span class="p">])</span>
 <span class="n">exp_table</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
 <span class="n">chi2_stat</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">((</span><span class="n">exp_table</span> <span class="o">-</span> <span class="n">obs_table</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">exp_table</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Chi2 Statistic: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">chi2_stat</span><span class="p">))</span>
@@ -13379,8 +13343,7 @@ Critical Chi2 Value: 11.07
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Independence-Example">Independence Example<a class="anchor-link" href="#Independence-Example">&#182;</a></h1><p>Question: Is voting behavior independent of gender?   (or, similarly, is churn behavior independent of operating system?)</p>
-<p>$$\chi^2 = \sum_{i} \frac{(O_i - E_i)^2}{E_i}$$</p>
-<p><strong>Actual</strong></p>
+$$\chi^2 = \sum_{i} \frac{(O_i - E_i)^2}{E_i}$$<p><strong>Actual</strong></p>
 <table>
 <thead><tr>
 <th></th>
@@ -13434,8 +13397,7 @@ Critical Chi2 Value: 11.07
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Independence-Example">Independence Example<a class="anchor-link" href="#Independence-Example">&#182;</a></h1><p>Question: Is voting behavior independent of gender?</p>
-<p>$$\chi^2 = \sum_{i} \frac{(O_i - E_i)^2}{E_i}$$</p>
-<p><strong>Actual</strong></p>
+$$\chi^2 = \sum_{i} \frac{(O_i - E_i)^2}{E_i}$$<p><strong>Actual</strong></p>
 <table>
 <thead><tr>
 <th></th>
@@ -13644,7 +13606,15 @@ Expected Value Array:
 
 </div>
 </div>
-</div></section>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+
+</div>
+</div>
+</div></section></section>
 </div>
 </div>
 
@@ -13669,7 +13639,8 @@ require(
             progress: true,
             history: true,
 
-            transition: "slide",
+            theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+            transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/none
 
             // Optional libraries used to extend on reveal.js
             dependencies: [
@@ -13689,25 +13660,13 @@ require(
 
         Reveal.addEventListener('slidechanged', update);
 
-        function setScrollingSlide() {
-            var scroll = false
-            if (scroll === true) {
-              var h = $('.reveal').height() * 0.95;
-              $('section.present').find('section')
-                .filter(function() {
-                  return $(this).height() > h;
-                })
-                .css('height', 'calc(95vh)')
-                .css('overflow-y', 'scroll')
-                .css('margin-top', '20px');
-            }
-        }
+        var update_scroll = function(event){
+          $(".reveal").scrollTop(0);
+        };
 
-        // check and set the scrolling slide every time the slide change
-        Reveal.addEventListener('slidechanged', setScrollingSlide);
+        Reveal.addEventListener('slidechanged', update_scroll);
 
     }
-
 );
 </script>
 
