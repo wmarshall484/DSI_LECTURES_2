@@ -44,13 +44,13 @@ class Bayes(object):
         '''
         sorted_keys = sorted(self.prior.keys())
         for key in sorted_keys:
-            print "{}: {}".format(key, self.prior[key])
+            print("{}: {}".format(key, self.prior[key]))
 
-    def plot(self, color=None, title=None, label=None):
+    def plot(self, title=None, **kwargs):
         '''
         Plot the current prior.
         '''
         sorted_keys = sorted(self.prior.keys())
         sorted_probs = [self.prior[key] for key in sorted_keys]
-        plt.plot(sorted_keys, sorted_probs, color=color, label=label)
+        plt.plot(sorted_keys, sorted_probs, **kwargs)
         plt.title(title)
