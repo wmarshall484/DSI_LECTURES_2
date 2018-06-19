@@ -2,9 +2,9 @@
 
 ## Lesson 1: Intro to Linear Regression
 
-This lesson introduces linear regressiona as a predictive model.  It coveres these themes:
+This lesson introduces linear regression as a predictive model.  It covers these themes:
 
-  - Basic expoloratory data analysis for regression.
+  - Basic exploratory data analysis for regression.
   - Fitting linear regression models.
   - Basic feature selection thinking.
   - Plotting predictions from linear regression models.
@@ -15,8 +15,8 @@ We do not discuss inferential features of the model in this lesson.
 
   - Make basic data visualizations to assist in building a regression model.
   - Ask questions about data that can be answered with a linear regression.
-  - Interpret the parameter estiamtes in a linear regression.
-  - Discuss how the parameter estiamtes in a linear regression are computed.
+  - Interpret the parameter estimates in a linear regression.
+  - Discuss how the parameter estimates in a linear regression are computed.
 
 ### Software
 
