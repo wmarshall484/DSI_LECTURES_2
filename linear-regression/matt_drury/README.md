@@ -1,4 +1,33 @@
-# Predictive Regression and Model Specification
+# Matt's Linear Regression Lessons
+
+## Lesson 1: Intro to Linear Regression
+
+This lesson introduces linear regressiona as a predictive model.  It coveres these themes:
+
+  - Basic expoloratory data analysis for regression.
+  - Fitting linear regression models.
+  - Basic feature selection thinking.
+  - Plotting predictions from linear regression models.
+
+We do not discuss inferential features of the model in this lesson.
+
+### Objectives
+
+  - Make basic data visualizations to assist in building a regression model.
+  - Ask questions about data that can be answered with a linear regression.
+  - Interpret the parameter estiamtes in a linear regression.
+  - Discuss how the parameter estiamtes in a linear regression are computed.
+
+### Software
+
+We will use the `py-glm` library for this lesson, so students will need to install it from github with this command.
+
+```
+pip install git+https://github.com/madrury/py-glm.git
+```
+
+
+## Lesson 2: Predictive Regression and Model Specification
 
 This lesson focuses on the use of regression as a predictive model.  It covers three main themes:
 
@@ -8,7 +37,7 @@ This lesson focuses on the use of regression as a predictive model.  It covers t
 
 We do not discuss inferential issues in this lecture, as they bear little weight when using regression as a predictive model.  We will turn to these inferential issues in the following lesson.
 
-## Objectives
+### Objectives
 
 The objectives for this lesson are
 
@@ -21,7 +50,7 @@ The objectives for this lesson are
     - Residuals vs. Predictor plots
     - Partial Dependency plots
 
-## Software
+### Software
 
 Sklearn, unfortunately, does not contain the tools that I need to accomplish my goals for this lesson, so I have created these tools myself.
 
@@ -37,3 +66,7 @@ You can install these tools from github using `pip`.  They are written for Pytho
 pip install git+https://github.com/madrury/basis-expansions.git
 pip install git+https://github.com/madrury/regression-tools.git
 ```
+
+# Lesson 3: Inferential Linear Regression
+
+We will discuss the inferential features of linear regression.
