@@ -23,7 +23,7 @@ def color_node(G, node_id, color):
 
 def color_edge(G, edge_id, color):
     '''Color a single edge in a graph.'''
-    G.edge[edge_id[0]][edge_id[1]]['color'] = color
+    G.edges[(edge_id[0],edge_id[1])]['color'] = color
 
 def color_nodes(G, node_list, color):
     for node in node_list:
@@ -39,13 +39,13 @@ def label_nodes(G, labeling_dict):
 
 def label_edges(G, labeling_dict):
     for e, label in labeling_dict.items():
-        G.edge[e[0]][e[1]]['label'] = label
+        G.edges()[(e[0],e[1])]['label'] = label
 
 def label_edges_with_weights(G):
     '''Label each edge in a graph with its associated weight.'''
     for e in G.edges():
         weight = G.edge[e[0]][e[1]]['weight']
-        G.edge[e[0]][e[1]]['label'] = weight
+        G.edges[(e[0],e[1])]['label'] = weight
 
 def remove_labels(G, edges=True, nodes=True):
     if nodes:
@@ -53,7 +53,7 @@ def remove_labels(G, edges=True, nodes=True):
             G.node[node]['label'] = ' '
     if edges:
         for edge in G.edges():
-            G.edge[edge[0]][edge[1]].pop('label', None)
+            G.edges()[(edge[0], edge[1])].pop('label', None)
 
 def reset_graph(G):
     color_nodes(G, G.nodes(), 'white')
