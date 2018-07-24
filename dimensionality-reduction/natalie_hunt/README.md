@@ -11,7 +11,7 @@ Objectives
   - Given a scatterplot, pen, and paper, draw the principal components of the data (approximately).
   - Define an eigenvector of a matrix.
   - Compute the projections of a data set onto its principal components to reduce dimension.
-  - Relate the eigenvectors of $X^t X$ to the principal components of `X`.
+  - Relate the eigenvectors of `X^t X` to the principal components of `X`.
   - Critque the principal components regression procedure.
 
 ### Afternoon: SVD
