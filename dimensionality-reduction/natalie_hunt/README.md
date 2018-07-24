@@ -1,5 +1,5 @@
-Dimensionality Reduction Lecture (based on Matt Drury)
-=============================================
+### Dimensionality Reduction Lecture (based on Matt Drury)
+
 
 
 Objectives
