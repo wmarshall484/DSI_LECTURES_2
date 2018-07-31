@@ -2,7 +2,7 @@ Pros:
 -----
 1. Flexibility:
     * Can conform to many different (and exotic) signals in the data
-2. No (or Weak) Assumptions:
+2. Weak Assumptions:
     * Lets the data's form speak for itself
 Cons:
 -----

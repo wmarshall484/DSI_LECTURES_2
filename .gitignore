@@ -28,3 +28,6 @@ geckodriver.log
 
 ## spark
 *.dat
+derby.log
+metastore_db
+
