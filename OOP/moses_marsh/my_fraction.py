@@ -26,12 +26,17 @@ class Fraction:
         sum_denominator = self.denominator * other.denominator
         return Fraction(sum_numerator, sum_denominator)
 
+    def __eq__(self, other):
+        return ((self.numerator == other.numerator) and
+                (self.denominator == other.denominator))
 
-def gcd(self, a, b):
-    '''
-    Return the greatest common divisor of two integers
-    '''
 
-    while a != 0:
-        (a, b) = (b % a, a)
-    return b
+    def _gcd(self, a, b):
+        '''
+        Return the greatest common divisor of two integers
+        '''
+
+        while a != 0:
+            (a, b) = (b % a, a)
+        return b
+
