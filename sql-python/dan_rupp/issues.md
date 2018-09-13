@@ -1,7 +1,9 @@
 If students are running Linux they might not be able to use psycopg2 because of default security settings.
 
 Make sure they ran line
+```
 sudo ln -s /var/run/postgresql/.s.PGSQL.5432 /tmp/.s.PGSQL.5432
+```
 
 IF they are still having issues they can follow these steps:
 
