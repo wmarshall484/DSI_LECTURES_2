@@ -1,3 +1,4 @@
-Google slides version:
+Morning: hard classification metrics, ROC curves
 
-https://docs.google.com/a/galvanize.com/presentation/d/1T-Ebnn9EtQ83v7rCRfUrhG4j-SdklCedlSXj6amfwl4
+Afternoon: profit curves, resampling methods.
+- [google slides](https://docs.google.com/presentation/d/1T-Ebnn9EtQ83v7rCRfUrhG4j-SdklCedlSXj6amfwl4)
