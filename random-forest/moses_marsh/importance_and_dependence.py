@@ -107,7 +107,7 @@ def permutation_importance(model, X_test, y_test, scorer=accuracy_score):
     test_score = scorer(model.predict(X_test), y_test)
     for i in range(X_test.shape[1]):
         X_test_shuffled = shuffle_column(X_test, i)
-        test_score_permuted = scorer(model.predict(X_test_shuffled), y_test)
+        test_score_permuted = scorer(y_test, model.predict(X_test_shuffled))
         feat_importances[i] = test_score - test_score_permuted
     return feat_importances
 
