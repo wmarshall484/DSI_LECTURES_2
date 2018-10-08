@@ -171,7 +171,7 @@ def partial_dependence(model, X, feature_index, classification=True):
         partial dependence values
         
     example:
-    >> x, pdp = partial_dependece(model, X_train, 3, classification=False)
+    >> x, pdp = partial_dependence(model, X_train, 3, classification=False)
     >> plt.plot(x, pdp)
     '''
     
