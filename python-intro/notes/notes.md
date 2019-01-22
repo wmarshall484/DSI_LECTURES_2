@@ -108,6 +108,7 @@ for i in range(1000):
 In Python 2, the `range` function will create a list of length 1000 and then we iterate over it. This is very wasteful for space! We don't need to create a list of 1000 elements and store it in memory! We can use a *generator* to save the memory:
 
 ```python
+# python2 only
 for i in xrange(1000):
     print(i)
 ```
@@ -173,7 +174,7 @@ for first, last in zip(first_names, last_names):
     print(first, last)
 ```
 
-If you want like a combination of zip and enumerate, you can do the following and have the index and the values:
+If you want a combination of zip and enumerate, you can do the following and have the index and the values:
 
 ```python
 for i, first, last in zip(count(), first_names, last_names):
