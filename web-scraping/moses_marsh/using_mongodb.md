@@ -26,7 +26,8 @@ $ docker exec -it mongoserver bash
 |`use db_name` | connect to database `db_name`|
 |`show collections` | show collections (tables) in the database|
 |`db.collection_name.find()` | return all records in the collection |
-|`db.collection_name.find().limit(5)| return 5 records in the collection|
+|`db.collection_name.find().limit(5)`| return 5 records in the collection|
 |`db.collection_name.findOne()` | return one record in the collection|
 |`db.collection_name.find().count()` | return the count of all records|
 |`db.collection_name.insert({field_name_1:'example_string', field_name_2:['ex_list_item1', 'ex_list_item2']})`|insert a record into the collection. Mongo will create an `_id` field if not provided.|
+
