@@ -1,17 +1,17 @@
 # Using MongoDB with Docker
 
 To start a container running the mongodb server,
-```
+```bash
 $ docker run --name mongoserver -p 27017:27017 -d mongo
 ```
 
 To access the mongo terminal in the container,
-```
+```bash
 $ docker exec -it mongoserver mongo
 ```
 
 To load data into the database,
-```
+```bash
 $ cd path/to/data_dump.json
 $ docker cp data_dump.json mongoserver:/home/
 $ docker exec -it mongoserver bash
@@ -82,12 +82,12 @@ db.users.update({}, { $set: { activated : false } }, false, true)
 # Using PyMongo
 
 First, install the pymongo package
-```
+```bash
 $ conda install pymongo
 ```
 
 Then, in ipython,
-```
+```python
 from pymongo import MongoClient
 client = MongoClient('localhost', 27017)
 db = client['database_name']
@@ -95,7 +95,7 @@ table = db['collection_name']
 ```
 Now you can use python to insert, update, and query records
 
-```
+```python
 example_record = {'name':'moses', 'age':31, friends:['ted', 'gahl']}
 
 table.insert_one(example_record)
