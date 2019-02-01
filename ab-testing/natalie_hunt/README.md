@@ -1,5 +1,5 @@
-Matt's Hypothesis Testing Lecture
-=================================
+Hypothesis Testing Lecture (credit Matt Drury)
+===============================================
 
 A lecture on classical null hypothesis significance testing, in the hybrid style of Fisher, Neyman and Pearson.
 
