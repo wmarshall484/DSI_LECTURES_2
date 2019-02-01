@@ -96,15 +96,15 @@ table = db['collection_name']
 Now you can use python to insert, update, and query records
 
 ```python
-example_record = {'name':'moses', 'age':31, friends:['ted', 'gahl']}
+example_record = {'name':'moses', 'age':31, 'friends':['ted', 'gahl']}
 
 table.insert_one(example_record)
 
-table.update_one('name':'moses', '$set':{'age':32})
+table.update_one({'name':'moses'}, {'$set':{'age':32}})
 
 table.find() # returns a generator for all records
 
-table.find({'age':30} # find all records with age = 30
+table.find({'age':30}) # find all records with age = 30
 
 table.count_documents({}) # return the count of all records in the collection
 
