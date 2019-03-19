@@ -12,3 +12,20 @@ Morning exercise:
 * Do it for a really wacky function with if statements and loops and stuff
 
 Post your favorite findings in the slack.
+
+Afternoon exercise:
+
+Your choice of:
+- Pedestrain detection:
+  * Data:
+    * http://www.vision.caltech.edu/Image_Datasets/CaltechPedestrians/
+    * http://pascal.inrialpes.fr/data/human/
+    * https://www.cis.upenn.edu/~jshi/ped_html/
+    * big list: https://riemenschneider.hayko.at/vision/dataset/index.php?filter=pedestrian+pedestrian
+- classify articles of clothing https://www.tensorflow.org/alpha/tutorials/keras/basic_classification
+- classify text https://www.tensorflow.org/alpha/tutorials/keras/basic_text_classification
+- Recognize complicated things without spending a long time training: https://www.tensorflow.org/alpha/tutorials/images/transfer_learning
+- Classify text with recursive models: https://www.tensorflow.org/alpha/tutorials/sequences/text_classification_rnn
+- Generate text (hilarious!) https://www.tensorflow.org/alpha/tutorials/sequences/text_generation
+- Neural networks for machine translation https://www.tensorflow.org/alpha/tutorials/sequences/nmt_with_attention
+- Get a computer to generate new pictures of cats and stuff: https://www.tensorflow.org/alpha/tutorials/generative/dcgan
