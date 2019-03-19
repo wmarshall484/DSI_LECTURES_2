@@ -1,3 +1,14 @@
 from this directory:
 
 $ docker run -it -p 888x:8888 -v "$PWD":/tf/lec tensorflow/tensorflow:2.0.0a0-py3-jupyter
+
+Morning exercise:
+
+* define an arbitrary Python function
+  * start with a polynomial
+* convert it into a tensorflow-style tensor
+* use GradientTape to find the gradient of the output with respect to the input
+* Do it for a multivariate function
+* Do it for a really wacky function with if statements and loops and stuff
+
+Post your favorite findings in the slack.
