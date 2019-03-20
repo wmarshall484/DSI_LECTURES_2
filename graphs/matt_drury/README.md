@@ -29,13 +29,13 @@ Discussion of Graphs and Networks.
 
 ## Installs
 
-Assuming that you are using Anaconda, you should already have `networkx` (the main graph library in python).  This lecture assumes you are running `networkx` version 2.0 (you can check by importing networkx and running `nextworkx.__version__`).  If your install is out of data, run `pip install networkx --upgrade`.
+Assuming that you are using Anaconda, you should already have `networkx` (the main graph library in python).  This lecture assumes you are running `networkx` version 2.0 (you can check by importing networkx and running `nextworkx.__version__`).  If your install is out of date, run `pip install networkx --upgrade`.
 
 I'll also be using the following libraries to help out:
 
 ```
 brew install graphviz
-pip install community
+pip install python-louvain
 pip install nxpd
 ```
 
