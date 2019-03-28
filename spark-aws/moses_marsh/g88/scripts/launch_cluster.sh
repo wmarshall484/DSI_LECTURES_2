@@ -21,11 +21,12 @@ aws s3 cp bootstrap-emr.sh s3://$1/scripts/bootstrap-emr.sh
 
 aws emr create-cluster \
     --name PySparkCluster \
-    --release-label emr-5.22.0 \
+    --release-label emr-5.8.0 \
     --applications Name=Spark \
     --ec2-attributes KeyName=$2 \
+    --log-uri s3://$1/logs/\
     --use-default-roles \
     --instance-groups \
-      InstanceGroupType=MASTER,InstanceCount=1,InstanceType=m5.xlarge \
-      InstanceGroupType=CORE,InstanceCount=$3,InstanceType=m5.xlarge \
+      InstanceGroupType=MASTER,InstanceCount=1,InstanceType=m3.xlarge \
+      InstanceGroupType=CORE,InstanceCount=$3,InstanceType=m3.xlarge \
     --bootstrap-actions Path=s3://$1/scripts/bootstrap-emr.sh
