@@ -8,3 +8,9 @@ Start the app by running:
 ```
 python app.py
 ```
+
+and then navigate to your page in a browser at the address
+
+```
+http://localhost:8000/
+```
