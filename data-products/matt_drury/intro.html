@@ -41,7 +41,13 @@ class: middle, center
 ---
 class: middle, center
 
-Pictures on Whiteboard.
+A *server* is program that sits around and waits for requests, and responds with an answer.
+
+A *client* is a program that makes requests to the server and waits for the answer.
+
+Question: what's an example of a web client?
+
+Question: what else using a client-server architecture?
 
 ---
 class: middle, center
@@ -51,7 +57,7 @@ class: middle, center
 ---
 class: middle, center
 
-HTTP is the communication *protocall* used to send messages between computers on the world wide web.
+HTTP (Hyper-Text Transfer Protocol) is the communication *protocol* used to send messages between computers on the world wide web.
 
 ---
 class: middle, center
@@ -66,10 +72,9 @@ class: middle, center
 ### Request Verbs:
 
 .left[
-  - **GET**: Requests some data.  Should only retrieve data and have no other effect.
-
-  - **POST** Sends some data.  Requests that the server accept and process the data, possibly sending a response.
-  - Others...
+- **GET**: Requests some data.  Generally only retrieves data with no other effect.
+- **POST** Sends some data.  Requests that the server accept and process the data, possibly sending a response.
+- Others...
 ]
 
 ---
@@ -78,9 +83,9 @@ class: middle, center
 ### Response Codes:
 
 .left[
-  - **200**: Ok.  The request was processed successfully.
-  - **401**: Unauthorized.
-  - **404**: Not found.
+- **200**: Ok.  The request was processed successfully.
+- **401**: Unauthorized.
+- **404**: Not found.
 ]
 
 ---
@@ -100,15 +105,40 @@ HTML is a language for creating an annotated text document, which web browsers i
 ---
 class: middle, center
 
+### HTML Syntax
+
+.left[
+HTML consists of ordinary text marked up with tags (words in angle brackets). To make an unordered list
+
+<ul>
+  <li>1st item</li>
+  <li>2nd item</li>
+  <li>3rd item</li>
+</ul>
+
+you do
+```
+<ul>
+  <li>1st item</li>
+  <li>2nd item</li>
+  <li>3rd item</li>
+</ul>
+```
+]
+
+---
+class: middle, center
+
 ### HTML Tags
 
 .left[
-  - `<head>`: Contains other tags giving overview information on the document, title, author, etc.
-  - `<p>`: A paragraph of text.
-  - `<span>`: A short segment of text with a distinct semantic meaning.
-  - `<div>`: A section of the document with a distinct semantic meaning.
-  - `<input>`: <input value="A place for the user to type input.">
-  - `<button>`: <button>A button for the user to click.</button>
+- `<head>`: Contains other tags giving overview information on the document, title, author, etc.
+- `<p>`: A paragraph of text.
+- `<span>`: A short segment of inline text with a distinct semantic meaning.
+- `<div>`: A section of the document with a distinct semantic meaning.
+- `<input>`: <input value="A place for the user to type input.">
+- `<button>`: <button>A button for the user to click.</button>
+- `<a>`: An anchor, generally a link to another site.
 ]
 
 ---
@@ -122,7 +152,7 @@ The `class` attribute is used to attach visual style to the element.
 <button class="btn-primary btn-real-big">A Really Big Button</button>
 ```
 
-The `id` attribute should uniquly identify the element, and is used to attach *behaviour* to the element:
+The `id` attribute should uniquely identify the element, and is used to attach *behaviour* to the element:
 
 ```html
 <input id="username" value="What is your username?">
@@ -138,7 +168,7 @@ class: middle, center
 
 *Javascript* is a programming language that runs in web browsers.
 
-It is used to associate dynamic bahviour with HTML elements.
+It is used to associate dynamic behaviour with HTML elements.
 
 ---
 class: middle, center
@@ -147,12 +177,12 @@ class: middle, center
 
 .left[
 ```javascript
-// Grab the vlaue of the input element with id username
+// Grab the value of the input element with id username
 $("input#username").val()
 ```
 
 ```javascript
-// Associte an event to clicking on the button with id message
+// Associate an event to clicking on the button with id message
 $("button#message").click(function() {console.log("You clicked it!");}
 ```
 ]
@@ -174,7 +204,8 @@ Flask works by attaching python functions to urls.  These "functions attached to
 
 .left[
 ```python
-@app.route('/respond-to-message'):
+@app.route('/respond-to-message')
+def respond_to_message():
     users_message = request.json['message']
     return jsonify({"message": "I am responding to: {}".format(users_message)})
 ```
