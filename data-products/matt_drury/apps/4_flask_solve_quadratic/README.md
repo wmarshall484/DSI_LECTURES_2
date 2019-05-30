@@ -1,14 +1,14 @@
-Step 4: Solve A Quadratic Equation in Views
+Step 4: Solve a Quadratic Equation in Views
 ===========================================
 
 Implement the main backend functionality.
 
 Here we implement a view accepting the POST method.  It expects json to be posted containing the three coefficient values of the quadratic to be solved.
 
-To try out the new functionality, I reccoment a short tutorial on POSTing with `curl`:
+To try out the new functionality, I recommend a short tutorial on POSTing with `curl`:
 
 ```
-app $ curl -H "Content-Type: application/json" -X POST -d '{"a":1, "b":0, "c":-1}' "http://localhost:5000/solve"
+$ curl -H "Content-Type: application/json" -X POST -d '{"a":1, "b":0, "c":-1}' "http://localhost:8000/solve"
 ```
 
 Which will give you a nice json response:
@@ -24,7 +24,7 @@ Then it's worth doing this:
 
 
 ```
-app $ curl -H "Content-Type: application/json" -X POST -d '{"a":1, "b":0, "c":1}' "http://localhost:5000/solve"
+$ curl -H "Content-Type: application/json" -X POST -d '{"a":1, "b":0, "c":1}' "http://localhost:8000/solve"
 ```
 
-and discussing the resulting exposion.
+and discussing the resulting explosion.
