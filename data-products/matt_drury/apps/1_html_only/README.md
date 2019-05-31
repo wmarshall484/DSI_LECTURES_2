@@ -1,7 +1,7 @@
 Step 1: HTML Document Only
 ==========================
 
-Launch a simple HTTP server with (python2.7):
+Launch a simple HTTP server with (python 3):
 
 ```
 python -m http.server
