@@ -1,4 +1,4 @@
-Step 5: Send and Recieve Data From Server
+Step 6: Send and Recieve Data From Server
 ===========================================
 
 Implement the main frontend functionality.

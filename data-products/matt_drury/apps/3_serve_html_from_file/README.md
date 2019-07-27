@@ -1,4 +1,4 @@
-Step 2.5: HTML Document From Template File
+Step 3: HTML Document From Template File
 ==========================================
 
 Instead of serving the HTML from a string in a view, we serve it from a html file in the `templates` directory.
