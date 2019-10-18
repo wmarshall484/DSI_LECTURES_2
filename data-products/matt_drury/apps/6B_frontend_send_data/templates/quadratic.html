@@ -5,9 +5,7 @@
   <title>Quadratic Equation Solver</title>
   <meta name="description" content="Quadratic Equation Solver">
   <meta name="author" content="Galvanize DSI">
-
-    <script type="text/javascript" src="{{ url_for('static', filename='jquery.js') }}">  </script>
-
+  <script src="{{ url_for('static', filename='brython.js')}}"></script>
 </head>
 
 <body>
@@ -33,17 +31,24 @@
         <p> The solution is: <span id="solution"></span> </p>
 
 
-<script type="text/javascript">
+<script type="text/python">
 
-let get_input_coefficients = function() {
-    let a = $("input#a").val()
-    let b = $("input#b").val()
-    let c = $("input#c").val()
-    return {'a': parseInt(a),
-            'b': parseInt(b),
-            'c': parseInt(c)} 
-};
+from browser import document, ajax
 
+def get_input_coefficients():
+    a = document['a'].value
+    b = document['b'].value
+    c = document['c'].value
+
+    return {'a': int(a),
+            'b': int(b),
+            'c': int(c)}
+
+def send_coefficient_json(coefficients):
+    req = ajax.ajax()
+    req.open('POST',
+             url='/solve/,
+             headers={"Content-Type": "application/json; charset=utf-8")
 let send_coefficient_json = function(coefficients) {
     $.ajax({
         url: '/solve',
