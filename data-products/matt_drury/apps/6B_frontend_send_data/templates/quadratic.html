@@ -6,9 +6,11 @@
   <meta name="description" content="Quadratic Equation Solver">
   <meta name="author" content="Galvanize DSI">
   <script src="{{ url_for('static', filename='brython.js')}}"></script>
+  <script src="{{ url_for('static', filename='brython_stdlib.js')}}"></script>
+
 </head>
 
-<body>
+<body onload="brython()">
 
     <h1>The DSI Quadratic Equation Solver</h1>
     <p>This app will solve quadratic equations for you!</p>
@@ -34,6 +36,7 @@
 <script type="text/python">
 
 from browser import document, ajax
+import json
 
 def get_input_coefficients():
     a = document['a'].value
@@ -44,22 +47,25 @@ def get_input_coefficients():
             'b': int(b),
             'c': int(c)}
 
+def display_solutions(req):
+    result = json.loads(req.text)
+    # note the syntax for setting the child text of an element
+    document['solution'].html = f"{result['root_1']} and {result['root_2']}"
+
 def send_coefficient_json(coefficients):
-    req = ajax.ajax()
+    req = ajax.Ajax()
+    req.bind('complete', display_solutions)
     req.open('POST',
-             url='/solve/,
-             headers={"Content-Type": "application/json; charset=utf-8")
-let send_coefficient_json = function(coefficients) {
-    $.ajax({
-        url: '/solve',
-        contentType: "application/json; charset=utf-8",
-        type: 'POST',
-        success: function (data) {
-            console.log(data);
-        },
-        data: JSON.stringify(coefficients)
-    });
-};
+                '/solve',
+                True)
+    req.set_header('Content-Type', 'application/json')
+    req.send(json.dumps(coefficients))
+
+def click(event):
+    coefficients = get_input_coefficients()
+    send_coefficient_json(coefficients)
+
+document['solve'].bind('click', click)
 
 </script>
 
