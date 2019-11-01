@@ -7,18 +7,16 @@
   <meta name="description" content="Quadratic Equation Solver">
   <meta name="author" content="Galvanize DSI">
 
-    <script type="text/javascript"
-            src="{{ url_for('static', filename='jquery.js') }}">  
-    </script>
-    <script type="text/javascript" 
-            src="{{ url_for('static', filename='app.js') }}">  
-    </script>
+  <script src="{{ url_for('static', filename='brython.js')}}"></script>
+  <script src="{{ url_for('static', filename='brython_stdlib.js')}}"></script>
     <link rel="stylesheet" type="text/css" 
           href="{{ url_for('static', filename='css/bootstrap.css') }}">
 
 </head>
 
-<body>
+<body onload="brython()">
+<script type="text/python" src="{{ url_for('static', filename='brapp.py') }}"></script>
+
 <div class="container">
 
     <h1>The DSI Quadratic Equation Solver</h1>
